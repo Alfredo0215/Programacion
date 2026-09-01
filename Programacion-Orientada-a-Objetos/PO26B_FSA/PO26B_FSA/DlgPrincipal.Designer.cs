@@ -32,6 +32,7 @@
             this.BtnMesaPracticas4 = new System.Windows.Forms.Button();
             this.BtnMesaPracticas3 = new System.Windows.Forms.Button();
             this.BtnMesaPracticas2 = new System.Windows.Forms.Button();
+            this.LblMesa1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BtnMesaPractica1
@@ -74,11 +75,22 @@
             this.BtnMesaPracticas2.UseVisualStyleBackColor = true;
             this.BtnMesaPracticas2.Click += new System.EventHandler(this.BtnMesaPracticas2_Click);
             // 
+            // LblMesa1
+            // 
+            this.LblMesa1.AutoSize = true;
+            this.LblMesa1.Location = new System.Drawing.Point(254, 38);
+            this.LblMesa1.Name = "LblMesa1";
+            this.LblMesa1.Size = new System.Drawing.Size(42, 13);
+            this.LblMesa1.TabIndex = 4;
+            this.LblMesa1.Text = "Mesa 1";
+            this.LblMesa1.MouseHover += new System.EventHandler(this.LblMesa1_MouseHover);
+            // 
             // DlgPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.LblMesa1);
             this.Controls.Add(this.BtnMesaPracticas2);
             this.Controls.Add(this.BtnMesaPracticas3);
             this.Controls.Add(this.BtnMesaPracticas4);
@@ -86,6 +98,7 @@
             this.Name = "DlgPrincipal";
             this.Text = "POO26B_FSA";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -95,6 +108,7 @@
         private System.Windows.Forms.Button BtnMesaPracticas4;
         private System.Windows.Forms.Button BtnMesaPracticas3;
         private System.Windows.Forms.Button BtnMesaPracticas2;
+        private System.Windows.Forms.Label LblMesa1;
     }
 }
 

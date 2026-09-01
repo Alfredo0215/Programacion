@@ -54,5 +54,15 @@ namespace PO26B_FSA.Mesas_De_Practicas
             PnlPracticas2.Visible = false;
             PnlPracticas3.Visible = false;
         }
+
+        private void BtnP1Pnl1_Click(object sender, EventArgs e)
+        {
+            string Captura1 = TbxCaptura1.Text;
+            string Captura2 = TbxCaptura2.Text;
+
+            Celular Celular1 = new Celular(Captura1, Captura2);
+            MessageBox.Show("Tienes un " + Celular1.Marca.ToString() +" "+ Celular1.Modelo.ToString());
+
+        }
     }
 }

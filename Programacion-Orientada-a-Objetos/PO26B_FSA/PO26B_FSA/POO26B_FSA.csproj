@@ -46,12 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Celular.cs" />
     <Compile Include="DlgPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DlgPrincipal.Designer.cs">
       <DependentUpon>DlgPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper.cs" />
     <Compile Include="Mesas-De-Practicas\MesaDePracticas4.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -41,5 +41,10 @@ namespace PO26B_FSA
             MesaDePracticas4 Mesa4 = new MesaDePracticas4();
             Mesa4.Show();
         }
+
+        private void LblMesa1_MouseHover(object sender, EventArgs e)
+        {
+
+        }
     }
 }

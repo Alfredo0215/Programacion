@@ -43,14 +43,16 @@
             this.LblCaptura2 = new System.Windows.Forms.Label();
             this.LblCaptura1 = new System.Windows.Forms.Label();
             this.PnlFill = new System.Windows.Forms.Panel();
-            this.PnlPracticas4 = new System.Windows.Forms.Panel();
             this.PnlPracticas1 = new System.Windows.Forms.Panel();
+            this.BtnP1Pnl1 = new System.Windows.Forms.Button();
             this.PnlPracticas3 = new System.Windows.Forms.Panel();
             this.PnlPracticas2 = new System.Windows.Forms.Panel();
+            this.PnlPracticas4 = new System.Windows.Forms.Panel();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.PnlFill.SuspendLayout();
+            this.PnlPracticas1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelBottom
@@ -209,32 +211,32 @@
             this.PnlFill.Size = new System.Drawing.Size(923, 394);
             this.PnlFill.TabIndex = 3;
             // 
-            // PnlPracticas4
-            // 
-            this.PnlPracticas4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlPracticas4.BackColor = System.Drawing.Color.YellowGreen;
-            this.PnlPracticas4.Location = new System.Drawing.Point(4, 6);
-            this.PnlPracticas4.Name = "PnlPracticas4";
-            this.PnlPracticas4.Size = new System.Drawing.Size(910, 379);
-            this.PnlPracticas4.TabIndex = 3;
-            // 
             // PnlPracticas1
             // 
-            this.PnlPracticas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.PnlPracticas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlPracticas1.BackColor = System.Drawing.Color.SteelBlue;
+            this.PnlPracticas1.Controls.Add(this.BtnP1Pnl1);
             this.PnlPracticas1.Location = new System.Drawing.Point(7, 7);
             this.PnlPracticas1.Name = "PnlPracticas1";
             this.PnlPracticas1.Size = new System.Drawing.Size(909, 379);
             this.PnlPracticas1.TabIndex = 0;
             // 
+            // BtnP1Pnl1
+            // 
+            this.BtnP1Pnl1.Location = new System.Drawing.Point(45, 23);
+            this.BtnP1Pnl1.Name = "BtnP1Pnl1";
+            this.BtnP1Pnl1.Size = new System.Drawing.Size(75, 23);
+            this.BtnP1Pnl1.TabIndex = 0;
+            this.BtnP1Pnl1.Text = "P1";
+            this.BtnP1Pnl1.UseVisualStyleBackColor = true;
+            this.BtnP1Pnl1.Click += new System.EventHandler(this.BtnP1Pnl1_Click);
+            // 
             // PnlPracticas3
             // 
-            this.PnlPracticas3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.PnlPracticas3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlPracticas3.BackColor = System.Drawing.Color.Indigo;
             this.PnlPracticas3.Location = new System.Drawing.Point(6, 6);
@@ -244,14 +246,25 @@
             // 
             // PnlPracticas2
             // 
-            this.PnlPracticas2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.PnlPracticas2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlPracticas2.BackColor = System.Drawing.Color.Lavender;
             this.PnlPracticas2.Location = new System.Drawing.Point(5, 7);
             this.PnlPracticas2.Name = "PnlPracticas2";
             this.PnlPracticas2.Size = new System.Drawing.Size(911, 379);
             this.PnlPracticas2.TabIndex = 1;
+            // 
+            // PnlPracticas4
+            // 
+            this.PnlPracticas4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnlPracticas4.BackColor = System.Drawing.Color.YellowGreen;
+            this.PnlPracticas4.Location = new System.Drawing.Point(4, 6);
+            this.PnlPracticas4.Name = "PnlPracticas4";
+            this.PnlPracticas4.Size = new System.Drawing.Size(910, 379);
+            this.PnlPracticas4.TabIndex = 3;
             // 
             // MesaDePracticas1
             // 
@@ -270,6 +283,7 @@
             this.PanelTop.ResumeLayout(false);
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
+            this.PnlPracticas1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -295,5 +309,6 @@
         private System.Windows.Forms.Label LblCaptura3;
         private System.Windows.Forms.Label LblCaptura2;
         private System.Windows.Forms.Label LblCaptura1;
+        private System.Windows.Forms.Button BtnP1Pnl1;
     }
 }
