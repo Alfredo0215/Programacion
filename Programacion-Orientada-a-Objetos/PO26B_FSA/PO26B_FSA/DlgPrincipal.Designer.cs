@@ -28,87 +28,130 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.BtnMesaPractica1 = new System.Windows.Forms.Button();
-            this.BtnMesaPracticas4 = new System.Windows.Forms.Button();
-            this.BtnMesaPracticas3 = new System.Windows.Forms.Button();
-            this.BtnMesaPracticas2 = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DlgPrincipal));
+            this.PnlBackground = new System.Windows.Forms.Panel();
+            this.PbxLogoMenu = new System.Windows.Forms.PictureBox();
+            this.PnlMenu = new System.Windows.Forms.Panel();
             this.LblMesa1 = new System.Windows.Forms.Label();
+            this.LblMesa2 = new System.Windows.Forms.Label();
+            this.LblMesa3 = new System.Windows.Forms.Label();
+            this.LblMesa4 = new System.Windows.Forms.Label();
+            this.PnlBackground.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxLogoMenu)).BeginInit();
+            this.PnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // BtnMesaPractica1
+            // PnlBackground
             // 
-            this.BtnMesaPractica1.Location = new System.Drawing.Point(26, 29);
-            this.BtnMesaPractica1.Name = "BtnMesaPractica1";
-            this.BtnMesaPractica1.Size = new System.Drawing.Size(122, 57);
-            this.BtnMesaPractica1.TabIndex = 0;
-            this.BtnMesaPractica1.Text = "Mesa de Prácticas 1";
-            this.BtnMesaPractica1.UseVisualStyleBackColor = true;
-            this.BtnMesaPractica1.Click += new System.EventHandler(this.BtnMesaPractica1_Click);
+            this.PnlBackground.BackgroundImage = global::PO26B_FSA.Properties.Resources.TerrariaBackground;
+            this.PnlBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PnlBackground.Controls.Add(this.PbxLogoMenu);
+            this.PnlBackground.Controls.Add(this.PnlMenu);
+            this.PnlBackground.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlBackground.Location = new System.Drawing.Point(0, 0);
+            this.PnlBackground.MaximumSize = new System.Drawing.Size(783, 718);
+            this.PnlBackground.MinimumSize = new System.Drawing.Size(783, 718);
+            this.PnlBackground.Name = "PnlBackground";
+            this.PnlBackground.Size = new System.Drawing.Size(783, 718);
+            this.PnlBackground.TabIndex = 8;
             // 
-            // BtnMesaPracticas4
+            // PbxLogoMenu
             // 
-            this.BtnMesaPracticas4.Location = new System.Drawing.Point(26, 267);
-            this.BtnMesaPracticas4.Name = "BtnMesaPracticas4";
-            this.BtnMesaPracticas4.Size = new System.Drawing.Size(122, 57);
-            this.BtnMesaPracticas4.TabIndex = 1;
-            this.BtnMesaPracticas4.Text = "Mesa de Prácticas 4";
-            this.BtnMesaPracticas4.UseVisualStyleBackColor = true;
-            this.BtnMesaPracticas4.Click += new System.EventHandler(this.BtnMesaPracticas4_Click);
+            this.PbxLogoMenu.BackColor = System.Drawing.Color.Transparent;
+            this.PbxLogoMenu.Image = global::PO26B_FSA.Properties.Resources.LogoPOO1;
+            this.PbxLogoMenu.Location = new System.Drawing.Point(50, 26);
+            this.PbxLogoMenu.Name = "PbxLogoMenu";
+            this.PbxLogoMenu.Size = new System.Drawing.Size(690, 182);
+            this.PbxLogoMenu.TabIndex = 1;
+            this.PbxLogoMenu.TabStop = false;
             // 
-            // BtnMesaPracticas3
+            // PnlMenu
             // 
-            this.BtnMesaPracticas3.Location = new System.Drawing.Point(26, 184);
-            this.BtnMesaPracticas3.Name = "BtnMesaPracticas3";
-            this.BtnMesaPracticas3.Size = new System.Drawing.Size(122, 57);
-            this.BtnMesaPracticas3.TabIndex = 2;
-            this.BtnMesaPracticas3.Text = "Mesa de Prácticas 3";
-            this.BtnMesaPracticas3.UseVisualStyleBackColor = true;
-            this.BtnMesaPracticas3.Click += new System.EventHandler(this.BtnMesaPracticas3_Click);
-            // 
-            // BtnMesaPracticas2
-            // 
-            this.BtnMesaPracticas2.Location = new System.Drawing.Point(26, 104);
-            this.BtnMesaPracticas2.Name = "BtnMesaPracticas2";
-            this.BtnMesaPracticas2.Size = new System.Drawing.Size(122, 57);
-            this.BtnMesaPracticas2.TabIndex = 3;
-            this.BtnMesaPracticas2.Text = "Mesa de Prácticas 2";
-            this.BtnMesaPracticas2.UseVisualStyleBackColor = true;
-            this.BtnMesaPracticas2.Click += new System.EventHandler(this.BtnMesaPracticas2_Click);
+            this.PnlMenu.BackColor = System.Drawing.Color.Transparent;
+            this.PnlMenu.Controls.Add(this.LblMesa1);
+            this.PnlMenu.Controls.Add(this.LblMesa2);
+            this.PnlMenu.Controls.Add(this.LblMesa3);
+            this.PnlMenu.Controls.Add(this.LblMesa4);
+            this.PnlMenu.Location = new System.Drawing.Point(301, 270);
+            this.PnlMenu.Name = "PnlMenu";
+            this.PnlMenu.Size = new System.Drawing.Size(175, 200);
+            this.PnlMenu.TabIndex = 0;
             // 
             // LblMesa1
             // 
-            this.LblMesa1.AutoSize = true;
-            this.LblMesa1.Location = new System.Drawing.Point(254, 38);
+            this.LblMesa1.Font = new System.Drawing.Font("Andy", 25F, System.Drawing.FontStyle.Bold);
+            this.LblMesa1.ForeColor = System.Drawing.Color.Gainsboro;
+            this.LblMesa1.Location = new System.Drawing.Point(18, 13);
+            this.LblMesa1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LblMesa1.Name = "LblMesa1";
-            this.LblMesa1.Size = new System.Drawing.Size(42, 13);
+            this.LblMesa1.Size = new System.Drawing.Size(167, 50);
             this.LblMesa1.TabIndex = 4;
             this.LblMesa1.Text = "Mesa 1";
-            this.LblMesa1.MouseHover += new System.EventHandler(this.LblMesa1_MouseHover);
+            this.LblMesa1.Click += new System.EventHandler(this.LblMesa1_Click);
+            // 
+            // LblMesa2
+            // 
+            this.LblMesa2.Font = new System.Drawing.Font("Andy", 25F, System.Drawing.FontStyle.Bold);
+            this.LblMesa2.ForeColor = System.Drawing.Color.Gainsboro;
+            this.LblMesa2.Location = new System.Drawing.Point(18, 63);
+            this.LblMesa2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblMesa2.Name = "LblMesa2";
+            this.LblMesa2.Size = new System.Drawing.Size(167, 50);
+            this.LblMesa2.TabIndex = 5;
+            this.LblMesa2.Text = "Mesa 2";
+            this.LblMesa2.Click += new System.EventHandler(this.LblMesa2_Click);
+            // 
+            // LblMesa3
+            // 
+            this.LblMesa3.Font = new System.Drawing.Font("Andy", 25F, System.Drawing.FontStyle.Bold);
+            this.LblMesa3.ForeColor = System.Drawing.Color.Gainsboro;
+            this.LblMesa3.Location = new System.Drawing.Point(18, 113);
+            this.LblMesa3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblMesa3.Name = "LblMesa3";
+            this.LblMesa3.Size = new System.Drawing.Size(167, 50);
+            this.LblMesa3.TabIndex = 6;
+            this.LblMesa3.Text = "Mesa 3";
+            this.LblMesa3.Click += new System.EventHandler(this.LblMesa3_Click);
+            // 
+            // LblMesa4
+            // 
+            this.LblMesa4.Font = new System.Drawing.Font("Andy", 25F, System.Drawing.FontStyle.Bold);
+            this.LblMesa4.ForeColor = System.Drawing.Color.Gainsboro;
+            this.LblMesa4.Location = new System.Drawing.Point(18, 163);
+            this.LblMesa4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.LblMesa4.Name = "LblMesa4";
+            this.LblMesa4.Size = new System.Drawing.Size(167, 50);
+            this.LblMesa4.TabIndex = 7;
+            this.LblMesa4.Text = "Mesa 4";
+            this.LblMesa4.Click += new System.EventHandler(this.LblMesa4_Click);
             // 
             // DlgPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.LblMesa1);
-            this.Controls.Add(this.BtnMesaPracticas2);
-            this.Controls.Add(this.BtnMesaPracticas3);
-            this.Controls.Add(this.BtnMesaPracticas4);
-            this.Controls.Add(this.BtnMesaPractica1);
+            this.ClientSize = new System.Drawing.Size(783, 718);
+            this.Controls.Add(this.PnlBackground);
+            this.Font = new System.Drawing.Font("Andy", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "DlgPrincipal";
-            this.Text = "POO26B_FSA";
+            this.Text = "POO26B_FSA Programación Orientada a Objetos";
+            this.Load += new System.EventHandler(this.DlgPrincipal_Load);
+            this.PnlBackground.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PbxLogoMenu)).EndInit();
+            this.PnlMenu.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button BtnMesaPractica1;
-        private System.Windows.Forms.Button BtnMesaPracticas4;
-        private System.Windows.Forms.Button BtnMesaPracticas3;
-        private System.Windows.Forms.Button BtnMesaPracticas2;
         private System.Windows.Forms.Label LblMesa1;
+        private System.Windows.Forms.Label LblMesa2;
+        private System.Windows.Forms.Label LblMesa3;
+        private System.Windows.Forms.Label LblMesa4;
+        private System.Windows.Forms.Panel PnlBackground;
+        private System.Windows.Forms.Panel PnlMenu;
+        private System.Windows.Forms.PictureBox PbxLogoMenu;
     }
 }
 
