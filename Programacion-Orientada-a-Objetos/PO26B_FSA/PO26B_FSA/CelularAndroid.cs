@@ -7,29 +7,28 @@ using System.Windows.Forms;
 
 namespace PO26B_FSA
 {
-    public class Celular
+    public class CelularAndroid : Celular
     {
 
+        //---------------------------------------------------------------------
+        // Atributos.
+        //---------------------------------------------------------------------
+        public string Marca;
+        public string Modelo;
 
         //---------------------------------------------------------------------
-        // Atributos. 
+        // Métodos.
         //---------------------------------------------------------------------
-
-        public bool Encendido;
-
-        //---------------------------------------------------------------------
-        // Constructor. 
-        //---------------------------------------------------------------------
-
-        public Celular()
+        public CelularAndroid(string Marca, string Modelo) : base()
         {
+            //---------------------------------------------------------------------
+            // Recibe parámetros
+            //---------------------------------------------------------------------
 
-        }
+            this.Marca = Marca;
+            this.Modelo = Modelo;
 
-        public void Encender()
-        {
-            Encendido = true;
-            MessageBox.Show("Celular encendido");
+
         }
     }
 }

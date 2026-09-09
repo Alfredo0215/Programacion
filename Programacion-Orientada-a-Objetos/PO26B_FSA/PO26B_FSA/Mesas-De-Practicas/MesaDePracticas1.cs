@@ -60,8 +60,8 @@ namespace PO26B_FSA.Mesas_De_Practicas
             string Captura1 = TbxCaptura1.Text;
             string Captura2 = TbxCaptura2.Text;
 
-            Celular Celular1 = new Celular(Captura1, Captura2);
-            MessageBox.Show("Tienes un " + Celular1.Marca.ToString() +" "+ Celular1.Modelo.ToString());
+            CelularAndroid Celular1 = new CelularAndroid(Captura1, Captura2);
+            Celular1.Encender();
 
         }
     }
