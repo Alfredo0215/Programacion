@@ -15,21 +15,34 @@ namespace PO26B_FSA
         // Atributos. 
         //---------------------------------------------------------------------
 
-        public bool Encendido;
+        private bool encendido;
+        private string sistemaOperativo;
+        private string marca;
+        private string modelo;
 
         //---------------------------------------------------------------------
         // Constructor. 
         //---------------------------------------------------------------------
 
-        public Celular()
+        public Celular(string sistemaOperativo, string modelo, string marca) 
         {
+            this.sistemaOperativo = sistemaOperativo;
+            this.modelo = modelo;
+            this.marca = marca;
 
+            this.encendido = false;
         }
 
         public void Encender()
         {
-            Encendido = true;
-            MessageBox.Show("Celular encendido");
+            if ( encendido == false ) 
+                encendido = true;
+        }
+
+        public void Apagar()
+        {
+            if ( encendido == true )
+                encendido = false;
         }
     }
 }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace PO26B_FSA
 {
-    public class CelularAndroid : Celular
+    public class CelularIos : Celular
     {
+
 
         //---------------------------------------------------------------------
         // Atributos.
@@ -17,11 +17,12 @@ namespace PO26B_FSA
         //---------------------------------------------------------------------
         // Métodos.
         //---------------------------------------------------------------------
-        public CelularAndroid(string modelo, string marca) : base("Android", modelo, marca)
+        public CelularIos(string modelo, string marca) : base("Ios", modelo, marca)
         {
             //---------------------------------------------------------------------
             // Recibe parámetros
             //---------------------------------------------------------------------
+
         }
     }
 }

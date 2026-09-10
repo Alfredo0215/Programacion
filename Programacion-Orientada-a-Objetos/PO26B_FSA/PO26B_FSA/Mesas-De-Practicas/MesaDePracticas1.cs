@@ -62,6 +62,7 @@ namespace PO26B_FSA.Mesas_De_Practicas
 
             CelularAndroid Celular1 = new CelularAndroid(Captura1, Captura2);
             Celular1.Encender();
+            MessageBox.Show("Celular encendido");
 
         }
     }
