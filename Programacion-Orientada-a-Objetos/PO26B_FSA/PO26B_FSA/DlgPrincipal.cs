@@ -57,6 +57,10 @@ namespace PO26B_FSA
             originalX = PbxLogoMenu.Left;
             originalY = PbxLogoMenu.Top;
             StartLogoAnimation();
+
+            Helper.UIHelper.RoundControl(PnlMesa1, 30);
+            Helper.UIHelper.RoundControl(PbxMesa1, 20);
+            Helper.UIHelper.RoundControl(PnlPbxMesa1, 20);
         }
 
 
@@ -93,8 +97,8 @@ namespace PO26B_FSA
 
         private void LblMesa1_Click(object sender, EventArgs e)
         {
-            MesaDePracticas1 Mesa1 = new MesaDePracticas1();
-            Mesa1.Show();
+            PnlMesas.Visible = true;
+            PnlMenu.Visible = false;
         }
         private void LblMesa2_Click(object sender, EventArgs e)
         {
