@@ -46,9 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CAnimal.cs" />
     <Compile Include="Celular.cs" />
     <Compile Include="CelularAndroid.cs" />
     <Compile Include="CelularIos.cs" />
+    <Compile Include="CHombre.cs" />
+    <Compile Include="CMujer.cs" />
+    <Compile Include="CPersona.cs" />
+    <Compile Include="CSerVivo.cs" />
     <Compile Include="DlgPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>

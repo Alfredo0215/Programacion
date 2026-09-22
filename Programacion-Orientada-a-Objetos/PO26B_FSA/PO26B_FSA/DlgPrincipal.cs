@@ -49,6 +49,9 @@ namespace PO26B_FSA
             LblMesa2.MouseLeave += LabelMouseLeave;
             LblMesa3.MouseLeave += LabelMouseLeave;
             LblMesa4.MouseLeave += LabelMouseLeave;
+
+            
+            
         }
         private void DlgPrincipal_Load(object sender, EventArgs e)
         {

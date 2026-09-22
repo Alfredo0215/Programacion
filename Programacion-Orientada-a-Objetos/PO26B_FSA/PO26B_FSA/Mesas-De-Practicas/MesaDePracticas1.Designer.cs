@@ -48,11 +48,16 @@
             this.PnlPracticas3 = new System.Windows.Forms.Panel();
             this.PnlPracticas2 = new System.Windows.Forms.Panel();
             this.PnlPracticas4 = new System.Windows.Forms.Panel();
+            this.BtnP2Pnl1 = new System.Windows.Forms.Button();
+            this.BtnP1Pnl2 = new System.Windows.Forms.Button();
+            this.BtnP2Pnl2 = new System.Windows.Forms.Button();
+            this.BtnP3Pnl2 = new System.Windows.Forms.Button();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.PnlFill.SuspendLayout();
             this.PnlPracticas1.SuspendLayout();
+            this.PnlPracticas2.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelBottom
@@ -201,10 +206,10 @@
             // PnlFill
             // 
             this.PnlFill.BackColor = System.Drawing.Color.AliceBlue;
-            this.PnlFill.Controls.Add(this.PnlPracticas1);
-            this.PnlFill.Controls.Add(this.PnlPracticas3);
             this.PnlFill.Controls.Add(this.PnlPracticas2);
             this.PnlFill.Controls.Add(this.PnlPracticas4);
+            this.PnlFill.Controls.Add(this.PnlPracticas1);
+            this.PnlFill.Controls.Add(this.PnlPracticas3);
             this.PnlFill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlFill.Location = new System.Drawing.Point(193, 100);
             this.PnlFill.Name = "PnlFill";
@@ -217,6 +222,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlPracticas1.BackColor = System.Drawing.Color.SteelBlue;
+            this.PnlPracticas1.Controls.Add(this.BtnP2Pnl1);
             this.PnlPracticas1.Controls.Add(this.BtnP1Pnl1);
             this.PnlPracticas1.Location = new System.Drawing.Point(7, 7);
             this.PnlPracticas1.Name = "PnlPracticas1";
@@ -250,6 +256,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlPracticas2.BackColor = System.Drawing.Color.Lavender;
+            this.PnlPracticas2.Controls.Add(this.BtnP3Pnl2);
+            this.PnlPracticas2.Controls.Add(this.BtnP2Pnl2);
+            this.PnlPracticas2.Controls.Add(this.BtnP1Pnl2);
             this.PnlPracticas2.Location = new System.Drawing.Point(5, 7);
             this.PnlPracticas2.Name = "PnlPracticas2";
             this.PnlPracticas2.Size = new System.Drawing.Size(911, 379);
@@ -265,6 +274,55 @@
             this.PnlPracticas4.Name = "PnlPracticas4";
             this.PnlPracticas4.Size = new System.Drawing.Size(910, 379);
             this.PnlPracticas4.TabIndex = 3;
+            // 
+            // BtnP2Pnl1
+            // 
+            this.BtnP2Pnl1.Location = new System.Drawing.Point(136, 23);
+            this.BtnP2Pnl1.Name = "BtnP2Pnl1";
+            this.BtnP2Pnl1.Size = new System.Drawing.Size(75, 23);
+            this.BtnP2Pnl1.TabIndex = 1;
+            this.BtnP2Pnl1.Text = "P2";
+            this.BtnP2Pnl1.UseVisualStyleBackColor = true;
+            this.BtnP2Pnl1.Click += new System.EventHandler(this.BtnP2Pnl1_Click);
+            // 
+            // BtnP1Pnl2
+            // 
+            this.BtnP1Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnP1Pnl2.Location = new System.Drawing.Point(47, 23);
+            this.BtnP1Pnl2.Name = "BtnP1Pnl2";
+            this.BtnP1Pnl2.Size = new System.Drawing.Size(75, 23);
+            this.BtnP1Pnl2.TabIndex = 0;
+            this.BtnP1Pnl2.Text = "P1";
+            this.BtnP1Pnl2.UseVisualStyleBackColor = true;
+            this.BtnP1Pnl2.Click += new System.EventHandler(this.BtnP1Pnl2_Click);
+            // 
+            // BtnP2Pnl2
+            // 
+            this.BtnP2Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnP2Pnl2.Location = new System.Drawing.Point(138, 23);
+            this.BtnP2Pnl2.Name = "BtnP2Pnl2";
+            this.BtnP2Pnl2.Size = new System.Drawing.Size(75, 23);
+            this.BtnP2Pnl2.TabIndex = 1;
+            this.BtnP2Pnl2.Text = "P2";
+            this.BtnP2Pnl2.UseVisualStyleBackColor = true;
+            this.BtnP2Pnl2.Click += new System.EventHandler(this.BtnP2Pnl2_Click);
+            // 
+            // BtnP3Pnl2
+            // 
+            this.BtnP3Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnP3Pnl2.Location = new System.Drawing.Point(230, 23);
+            this.BtnP3Pnl2.Name = "BtnP3Pnl2";
+            this.BtnP3Pnl2.Size = new System.Drawing.Size(75, 23);
+            this.BtnP3Pnl2.TabIndex = 2;
+            this.BtnP3Pnl2.Text = "P3";
+            this.BtnP3Pnl2.UseVisualStyleBackColor = true;
+            this.BtnP3Pnl2.Click += new System.EventHandler(this.BtnP3Pnl2_Click);
             // 
             // MesaDePracticas1
             // 
@@ -284,6 +342,7 @@
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
             this.PnlPracticas1.ResumeLayout(false);
+            this.PnlPracticas2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -310,5 +369,9 @@
         private System.Windows.Forms.Label LblCaptura2;
         private System.Windows.Forms.Label LblCaptura1;
         private System.Windows.Forms.Button BtnP1Pnl1;
+        private System.Windows.Forms.Button BtnP2Pnl1;
+        private System.Windows.Forms.Button BtnP3Pnl2;
+        private System.Windows.Forms.Button BtnP2Pnl2;
+        private System.Windows.Forms.Button BtnP1Pnl2;
     }
 }

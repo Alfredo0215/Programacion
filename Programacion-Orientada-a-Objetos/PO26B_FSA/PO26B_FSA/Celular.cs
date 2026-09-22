@@ -44,5 +44,10 @@ namespace PO26B_FSA
             if ( encendido == true )
                 encendido = false;
         }
+
+        public string GetSistemaOperativo() 
+        { 
+            return sistemaOperativo; 
+        }
     }
 }
