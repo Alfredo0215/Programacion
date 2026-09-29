@@ -16,9 +16,25 @@ namespace PO26B_FSA
 
         private int tasaProduccionOvulos;
 
-        public CMujer() : base()
+        public CMujer(int altura, double peso) : base(altura, peso, 0)
         {
-            tasaProduccionOvulos = 0;
+            tasaProduccionOvulos = IniciaProduccionOvulos();
+        }
+
+        //---------------------------------------------------------------------
+        //  Inicia la Producción de Óvulos
+        //---------------------------------------------------------------------
+
+        public int IniciaProduccionOvulos()
+        {
+            Random numRandom = new Random();
+            return tasaProduccionOvulos = numRandom.Next(1000000, 2000000);
+            
+        }
+
+        protected override string GetFactorReproductivo()
+        {
+            return $"mi cantidad de óvulos es: {IniciaProduccionOvulos()}";
         }
     }
 }

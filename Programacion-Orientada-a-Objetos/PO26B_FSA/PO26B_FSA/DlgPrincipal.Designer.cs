@@ -34,21 +34,21 @@
             this.PnlContenedor = new System.Windows.Forms.Panel();
             this.PnlMesas = new System.Windows.Forms.Panel();
             this.PnlMesa1 = new System.Windows.Forms.Panel();
+            this.PnlPbxMesa1 = new System.Windows.Forms.Panel();
             this.PbxMesa1 = new System.Windows.Forms.PictureBox();
             this.PnlMenu = new System.Windows.Forms.Panel();
             this.LblMesa1 = new System.Windows.Forms.Label();
             this.LblMesa2 = new System.Windows.Forms.Label();
             this.LblMesa3 = new System.Windows.Forms.Label();
             this.LblMesa4 = new System.Windows.Forms.Label();
-            this.PnlPbxMesa1 = new System.Windows.Forms.Panel();
             this.PnlBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxLogoMenu)).BeginInit();
             this.PnlContenedor.SuspendLayout();
             this.PnlMesas.SuspendLayout();
             this.PnlMesa1.SuspendLayout();
+            this.PnlPbxMesa1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxMesa1)).BeginInit();
             this.PnlMenu.SuspendLayout();
-            this.PnlPbxMesa1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlBackground
@@ -105,6 +105,15 @@
             this.PnlMesa1.Size = new System.Drawing.Size(482, 91);
             this.PnlMesa1.TabIndex = 0;
             // 
+            // PnlPbxMesa1
+            // 
+            this.PnlPbxMesa1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(91)))), ((int)(((byte)(162)))));
+            this.PnlPbxMesa1.Controls.Add(this.PbxMesa1);
+            this.PnlPbxMesa1.Location = new System.Drawing.Point(11, 4);
+            this.PnlPbxMesa1.Name = "PnlPbxMesa1";
+            this.PnlPbxMesa1.Size = new System.Drawing.Size(65, 64);
+            this.PnlPbxMesa1.TabIndex = 1;
+            // 
             // PbxMesa1
             // 
             this.PbxMesa1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(36)))), ((int)(((byte)(71)))));
@@ -129,7 +138,7 @@
             // 
             // LblMesa1
             // 
-            this.LblMesa1.Font = new System.Drawing.Font("Andy", 25F, System.Drawing.FontStyle.Bold);
+            this.LblMesa1.Font = new System.Drawing.Font("Andy", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblMesa1.ForeColor = System.Drawing.Color.Gainsboro;
             this.LblMesa1.Location = new System.Drawing.Point(18, 13);
             this.LblMesa1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -175,18 +184,9 @@
             this.LblMesa4.Text = "Mesa 4";
             this.LblMesa4.Click += new System.EventHandler(this.LblMesa4_Click);
             // 
-            // PnlPbxMesa1
-            // 
-            this.PnlPbxMesa1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(67)))), ((int)(((byte)(91)))), ((int)(((byte)(162)))));
-            this.PnlPbxMesa1.Controls.Add(this.PbxMesa1);
-            this.PnlPbxMesa1.Location = new System.Drawing.Point(11, 4);
-            this.PnlPbxMesa1.Name = "PnlPbxMesa1";
-            this.PnlPbxMesa1.Size = new System.Drawing.Size(65, 64);
-            this.PnlPbxMesa1.TabIndex = 1;
-            // 
             // DlgPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(5F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 11F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(783, 718);
             this.Controls.Add(this.PnlBackground);
@@ -201,9 +201,9 @@
             this.PnlContenedor.ResumeLayout(false);
             this.PnlMesas.ResumeLayout(false);
             this.PnlMesa1.ResumeLayout(false);
+            this.PnlPbxMesa1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbxMesa1)).EndInit();
             this.PnlMenu.ResumeLayout(false);
-            this.PnlPbxMesa1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

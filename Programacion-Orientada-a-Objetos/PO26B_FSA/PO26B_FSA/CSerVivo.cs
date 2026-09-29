@@ -24,8 +24,6 @@ namespace PO26B_FSA
         protected DateTime fechaNacimiento;
         protected string nombre;
         protected int nivelRazonamiento;
-
-        protected int sexo;
         public CSerVivo()
         {
             fechaNacimiento = new DateTime();

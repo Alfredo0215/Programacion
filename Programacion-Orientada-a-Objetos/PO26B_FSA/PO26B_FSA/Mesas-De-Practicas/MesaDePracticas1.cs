@@ -73,14 +73,14 @@ namespace PO26B_FSA.Mesas_De_Practicas
 
         private void BtnP1Pnl2_Click(object sender, EventArgs e)
         {
-            CMujer mujer1 = new CMujer();
-            CHombre hombre1 = new CHombre();
+            CMujer mujer1 = new CMujer(25, 2.5);
+            CHombre hombre1 = new CHombre(32, 3.2);
 
             hombre1.RegistrarPersona("Alfredo", "Fletes", "Sánchez", new DateTime(2007, 02, 15));
             MessageBox.Show(hombre1.ToString());
 
 
-            mujer1.RegistrarPersona("Valentina", "Velázquez", "López", new DateTime(2007, 02, 15));
+            mujer1.RegistrarPersona("Valentina", "Velázquez", "López", new DateTime(2007, 12, 14));
             MessageBox.Show(mujer1.ToString());
         }
         

@@ -50,6 +50,7 @@ namespace PO26B_FSA
             LblMesa3.MouseLeave += LabelMouseLeave;
             LblMesa4.MouseLeave += LabelMouseLeave;
 
+
             
             
         }
@@ -100,8 +101,11 @@ namespace PO26B_FSA
 
         private void LblMesa1_Click(object sender, EventArgs e)
         {
-            PnlMesas.Visible = true;
-            PnlMenu.Visible = false;
+
+            MesaDePracticas1 Mesa1 = new MesaDePracticas1();
+            Mesa1.Show();
+            /* PnlMesas.Visible = true;
+             PnlMenu.Visible = false;*/
         }
         private void LblMesa2_Click(object sender, EventArgs e)
         {
