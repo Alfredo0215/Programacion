@@ -15,6 +15,10 @@ namespace PO26B_FSA
 {
     public partial class DlgPrincipal : Form
     {
+
+        //---------------------------------------------------------------------
+        // Inicialización de atributos
+        //---------------------------------------------------------------------
         private const double maxScale = 1.1;
         private const double animationDuration = 2000.0;
         private Stopwatch stopwatch = new Stopwatch();
@@ -24,6 +28,9 @@ namespace PO26B_FSA
         int originalX;
         int originalY;
 
+        //---------------------------------------------------------------------
+        // Método constructor, configuración inicial del programa.
+        //---------------------------------------------------------------------
         public DlgPrincipal()
         {
             InitializeComponent();
@@ -37,8 +44,6 @@ namespace PO26B_FSA
             timerLogoAnimation.Interval = 16;
 
             timerLogoAnimation.Tick += AnimationLogoTick;
-            
-
 
             LblMesa1.MouseEnter += LabelMouseEnter;
             LblMesa2.MouseEnter += LabelMouseEnter;
@@ -49,11 +54,12 @@ namespace PO26B_FSA
             LblMesa2.MouseLeave += LabelMouseLeave;
             LblMesa3.MouseLeave += LabelMouseLeave;
             LblMesa4.MouseLeave += LabelMouseLeave;
-
-
-            
-            
+ 
         }
+
+        //---------------------------------------------------------------------
+        // Método que carga los elementos gráficos del programa.
+        //---------------------------------------------------------------------
         private void DlgPrincipal_Load(object sender, EventArgs e)
         {
             originalHeight = PbxLogoMenu.Height;
@@ -67,7 +73,9 @@ namespace PO26B_FSA
             Helper.UIHelper.RoundControl(PnlPbxMesa1, 20);
         }
 
-
+        //---------------------------------------------------------------------
+        // 
+        //---------------------------------------------------------------------
         private void AnimationLogoTick(object sender, EventArgs e)
         {
             double elapsed = stopwatch.Elapsed.TotalMilliseconds;
@@ -130,6 +138,9 @@ namespace PO26B_FSA
             return 1 + (maxScale - 1) * Math.Sin(Math.PI * progress);
         }
 
+        //---------------------------------------------------------------------
+        // Método Clamp personalizado.
+        //---------------------------------------------------------------------
         public static double Clamp(double valor, double min, double max)
         {
             if (valor < min) return min;

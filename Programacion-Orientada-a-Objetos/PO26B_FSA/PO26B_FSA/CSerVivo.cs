@@ -12,7 +12,7 @@ namespace PO26B_FSA
     //-------------------------------------------------------------------------
 
     
-    internal class CSerVivo
+    internal abstract class CSerVivo
     {
 
        
@@ -29,5 +29,8 @@ namespace PO26B_FSA
             fechaNacimiento = new DateTime();
             nombre = "";
         }
+
+        public abstract bool Respirar();
+       
     }
 }

@@ -43,21 +43,30 @@
             this.LblCaptura2 = new System.Windows.Forms.Label();
             this.LblCaptura1 = new System.Windows.Forms.Label();
             this.PnlFill = new System.Windows.Forms.Panel();
+            this.PnlPracticas2 = new System.Windows.Forms.Panel();
+            this.BtnP3Pnl2 = new System.Windows.Forms.Button();
+            this.BtnP2Pnl2 = new System.Windows.Forms.Button();
+            this.BtnP1Pnl2 = new System.Windows.Forms.Button();
+            this.PnlPracticas4 = new System.Windows.Forms.Panel();
             this.PnlPracticas1 = new System.Windows.Forms.Panel();
+            this.BtnP2Pnl1 = new System.Windows.Forms.Button();
             this.BtnP1Pnl1 = new System.Windows.Forms.Button();
             this.PnlPracticas3 = new System.Windows.Forms.Panel();
-            this.PnlPracticas2 = new System.Windows.Forms.Panel();
-            this.PnlPracticas4 = new System.Windows.Forms.Panel();
-            this.BtnP2Pnl1 = new System.Windows.Forms.Button();
-            this.BtnP1Pnl2 = new System.Windows.Forms.Button();
-            this.BtnP2Pnl2 = new System.Windows.Forms.Button();
-            this.BtnP3Pnl2 = new System.Windows.Forms.Button();
+            this.DgvTabla2 = new System.Windows.Forms.DataGridView();
+            this.ColNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColApellidoP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColApellidoM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColSexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColFactorReproductivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColFechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.PnlFill.SuspendLayout();
-            this.PnlPracticas1.SuspendLayout();
             this.PnlPracticas2.SuspendLayout();
+            this.PnlPracticas1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelBottom
@@ -216,6 +225,71 @@
             this.PnlFill.Size = new System.Drawing.Size(923, 394);
             this.PnlFill.TabIndex = 3;
             // 
+            // PnlPracticas2
+            // 
+            this.PnlPracticas2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnlPracticas2.BackColor = System.Drawing.Color.Lavender;
+            this.PnlPracticas2.Controls.Add(this.DgvTabla2);
+            this.PnlPracticas2.Controls.Add(this.BtnP3Pnl2);
+            this.PnlPracticas2.Controls.Add(this.BtnP2Pnl2);
+            this.PnlPracticas2.Controls.Add(this.BtnP1Pnl2);
+            this.PnlPracticas2.Location = new System.Drawing.Point(5, 7);
+            this.PnlPracticas2.Name = "PnlPracticas2";
+            this.PnlPracticas2.Size = new System.Drawing.Size(911, 379);
+            this.PnlPracticas2.TabIndex = 1;
+            // 
+            // BtnP3Pnl2
+            // 
+            this.BtnP3Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnP3Pnl2.Location = new System.Drawing.Point(230, 23);
+            this.BtnP3Pnl2.Name = "BtnP3Pnl2";
+            this.BtnP3Pnl2.Size = new System.Drawing.Size(75, 23);
+            this.BtnP3Pnl2.TabIndex = 2;
+            this.BtnP3Pnl2.Text = "P3";
+            this.BtnP3Pnl2.UseVisualStyleBackColor = true;
+            this.BtnP3Pnl2.Click += new System.EventHandler(this.BtnP3Pnl2_Click);
+            // 
+            // BtnP2Pnl2
+            // 
+            this.BtnP2Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnP2Pnl2.Location = new System.Drawing.Point(138, 23);
+            this.BtnP2Pnl2.Name = "BtnP2Pnl2";
+            this.BtnP2Pnl2.Size = new System.Drawing.Size(75, 23);
+            this.BtnP2Pnl2.TabIndex = 1;
+            this.BtnP2Pnl2.Text = "P2";
+            this.BtnP2Pnl2.UseVisualStyleBackColor = true;
+            this.BtnP2Pnl2.Click += new System.EventHandler(this.BtnP2Pnl2_Click);
+            // 
+            // BtnP1Pnl2
+            // 
+            this.BtnP1Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnP1Pnl2.Location = new System.Drawing.Point(47, 23);
+            this.BtnP1Pnl2.Name = "BtnP1Pnl2";
+            this.BtnP1Pnl2.Size = new System.Drawing.Size(75, 23);
+            this.BtnP1Pnl2.TabIndex = 0;
+            this.BtnP1Pnl2.Text = "P1";
+            this.BtnP1Pnl2.UseVisualStyleBackColor = true;
+            this.BtnP1Pnl2.Click += new System.EventHandler(this.BtnP1Pnl2_Click);
+            // 
+            // PnlPracticas4
+            // 
+            this.PnlPracticas4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnlPracticas4.BackColor = System.Drawing.Color.YellowGreen;
+            this.PnlPracticas4.Location = new System.Drawing.Point(4, 6);
+            this.PnlPracticas4.Name = "PnlPracticas4";
+            this.PnlPracticas4.Size = new System.Drawing.Size(910, 379);
+            this.PnlPracticas4.TabIndex = 3;
+            // 
             // PnlPracticas1
             // 
             this.PnlPracticas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -228,6 +302,15 @@
             this.PnlPracticas1.Name = "PnlPracticas1";
             this.PnlPracticas1.Size = new System.Drawing.Size(909, 379);
             this.PnlPracticas1.TabIndex = 0;
+            // 
+            // BtnP2Pnl1
+            // 
+            this.BtnP2Pnl1.Location = new System.Drawing.Point(136, 23);
+            this.BtnP2Pnl1.Name = "BtnP2Pnl1";
+            this.BtnP2Pnl1.Size = new System.Drawing.Size(75, 23);
+            this.BtnP2Pnl1.TabIndex = 1;
+            this.BtnP2Pnl1.Text = "P2";
+            this.BtnP2Pnl1.UseVisualStyleBackColor = true;
             // 
             // BtnP1Pnl1
             // 
@@ -250,79 +333,59 @@
             this.PnlPracticas3.Size = new System.Drawing.Size(910, 379);
             this.PnlPracticas3.TabIndex = 2;
             // 
-            // PnlPracticas2
+            // DgvTabla2
             // 
-            this.PnlPracticas2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.DgvTabla2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlPracticas2.BackColor = System.Drawing.Color.Lavender;
-            this.PnlPracticas2.Controls.Add(this.BtnP3Pnl2);
-            this.PnlPracticas2.Controls.Add(this.BtnP2Pnl2);
-            this.PnlPracticas2.Controls.Add(this.BtnP1Pnl2);
-            this.PnlPracticas2.Location = new System.Drawing.Point(5, 7);
-            this.PnlPracticas2.Name = "PnlPracticas2";
-            this.PnlPracticas2.Size = new System.Drawing.Size(911, 379);
-            this.PnlPracticas2.TabIndex = 1;
+            this.DgvTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvTabla2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColNumero,
+            this.ColNombre,
+            this.ColApellidoP,
+            this.ColApellidoM,
+            this.ColSexo,
+            this.ColFactorReproductivo,
+            this.ColFechaNacimiento});
+            this.DgvTabla2.Location = new System.Drawing.Point(22, 60);
+            this.DgvTabla2.Name = "DgvTabla2";
+            this.DgvTabla2.Size = new System.Drawing.Size(866, 304);
+            this.DgvTabla2.TabIndex = 3;
             // 
-            // PnlPracticas4
+            // ColNumero
             // 
-            this.PnlPracticas4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlPracticas4.BackColor = System.Drawing.Color.YellowGreen;
-            this.PnlPracticas4.Location = new System.Drawing.Point(4, 6);
-            this.PnlPracticas4.Name = "PnlPracticas4";
-            this.PnlPracticas4.Size = new System.Drawing.Size(910, 379);
-            this.PnlPracticas4.TabIndex = 3;
+            this.ColNumero.HeaderText = "No.";
+            this.ColNumero.Name = "ColNumero";
             // 
-            // BtnP2Pnl1
+            // ColNombre
             // 
-            this.BtnP2Pnl1.Location = new System.Drawing.Point(136, 23);
-            this.BtnP2Pnl1.Name = "BtnP2Pnl1";
-            this.BtnP2Pnl1.Size = new System.Drawing.Size(75, 23);
-            this.BtnP2Pnl1.TabIndex = 1;
-            this.BtnP2Pnl1.Text = "P2";
-            this.BtnP2Pnl1.UseVisualStyleBackColor = true;
-            this.BtnP2Pnl1.Click += new System.EventHandler(this.BtnP2Pnl1_Click);
+            this.ColNombre.HeaderText = "Nombre";
+            this.ColNombre.Name = "ColNombre";
             // 
-            // BtnP1Pnl2
+            // ColApellidoP
             // 
-            this.BtnP1Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnP1Pnl2.Location = new System.Drawing.Point(47, 23);
-            this.BtnP1Pnl2.Name = "BtnP1Pnl2";
-            this.BtnP1Pnl2.Size = new System.Drawing.Size(75, 23);
-            this.BtnP1Pnl2.TabIndex = 0;
-            this.BtnP1Pnl2.Text = "P1";
-            this.BtnP1Pnl2.UseVisualStyleBackColor = true;
-            this.BtnP1Pnl2.Click += new System.EventHandler(this.BtnP1Pnl2_Click);
+            this.ColApellidoP.HeaderText = "Apellido P";
+            this.ColApellidoP.Name = "ColApellidoP";
             // 
-            // BtnP2Pnl2
+            // ColApellidoM
             // 
-            this.BtnP2Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnP2Pnl2.Location = new System.Drawing.Point(138, 23);
-            this.BtnP2Pnl2.Name = "BtnP2Pnl2";
-            this.BtnP2Pnl2.Size = new System.Drawing.Size(75, 23);
-            this.BtnP2Pnl2.TabIndex = 1;
-            this.BtnP2Pnl2.Text = "P2";
-            this.BtnP2Pnl2.UseVisualStyleBackColor = true;
-            this.BtnP2Pnl2.Click += new System.EventHandler(this.BtnP2Pnl2_Click);
+            this.ColApellidoM.HeaderText = "ApellidoM";
+            this.ColApellidoM.Name = "ColApellidoM";
             // 
-            // BtnP3Pnl2
+            // ColSexo
             // 
-            this.BtnP3Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnP3Pnl2.Location = new System.Drawing.Point(230, 23);
-            this.BtnP3Pnl2.Name = "BtnP3Pnl2";
-            this.BtnP3Pnl2.Size = new System.Drawing.Size(75, 23);
-            this.BtnP3Pnl2.TabIndex = 2;
-            this.BtnP3Pnl2.Text = "P3";
-            this.BtnP3Pnl2.UseVisualStyleBackColor = true;
-            this.BtnP3Pnl2.Click += new System.EventHandler(this.BtnP3Pnl2_Click);
+            this.ColSexo.HeaderText = "Sexo";
+            this.ColSexo.Name = "ColSexo";
+            // 
+            // ColFactorReproductivo
+            // 
+            this.ColFactorReproductivo.HeaderText = "Factor Reproductivo";
+            this.ColFactorReproductivo.Name = "ColFactorReproductivo";
+            // 
+            // ColFechaNacimiento
+            // 
+            this.ColFechaNacimiento.HeaderText = "Fecha Nacimiento";
+            this.ColFechaNacimiento.Name = "ColFechaNacimiento";
             // 
             // MesaDePracticas1
             // 
@@ -341,8 +404,9 @@
             this.PanelTop.ResumeLayout(false);
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
-            this.PnlPracticas1.ResumeLayout(false);
             this.PnlPracticas2.ResumeLayout(false);
+            this.PnlPracticas1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -373,5 +437,13 @@
         private System.Windows.Forms.Button BtnP3Pnl2;
         private System.Windows.Forms.Button BtnP2Pnl2;
         private System.Windows.Forms.Button BtnP1Pnl2;
+        private System.Windows.Forms.DataGridView DgvTabla2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNumero;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColApellidoP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColApellidoM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColSexo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColFactorReproductivo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColFechaNacimiento;
     }
 }

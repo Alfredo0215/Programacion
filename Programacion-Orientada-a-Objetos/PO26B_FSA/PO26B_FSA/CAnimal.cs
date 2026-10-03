@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PO26B_FSA
 {
@@ -34,6 +35,15 @@ namespace PO26B_FSA
             numExtremidades = 0;
             tipoSangre = "";
             nivelInstinto = 0;
+        }
+
+        //---------------------------------------------------------------------
+        // Implementa el método abstracto respirar para la clase.
+        //---------------------------------------------------------------------
+        public override bool Respirar()
+        {
+            MessageBox.Show("Animal respirando");
+            return true;
         }
     }
 }

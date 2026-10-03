@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PO26B_FSA
 {
@@ -37,5 +38,17 @@ namespace PO26B_FSA
         {
             return $"mi cantidad de espermatozoides es: {IniciaProduccionEspermatozoides()}, por dia";
         }
+
+        //---------------------------------------------------------------------
+        // Implementa el método abstracto respirar para la clase.
+        //---------------------------------------------------------------------
+       
+        /*
+        protected override bool Respirar()
+        {
+            MessageBox.Show("Hombre respirando");
+            return true;
+        }
+        */
     }
 }
