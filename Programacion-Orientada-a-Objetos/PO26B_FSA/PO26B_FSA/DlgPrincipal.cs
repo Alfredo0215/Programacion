@@ -40,6 +40,7 @@ namespace PO26B_FSA
             LblMesa2.TextAlign = ContentAlignment.MiddleCenter;
             LblMesa3.TextAlign = ContentAlignment.MiddleCenter;
             LblMesa4.TextAlign = ContentAlignment.MiddleCenter;
+            
 
             timerLogoAnimation.Interval = 16;
 
@@ -68,9 +69,11 @@ namespace PO26B_FSA
             originalY = PbxLogoMenu.Top;
             StartLogoAnimation();
 
-            Helper.UIHelper.RoundControl(PnlMesa1, 30);
-            Helper.UIHelper.RoundControl(PbxMesa1, 20);
-            Helper.UIHelper.RoundControl(PnlPbxMesa1, 20);
+            Helper.UIHelper.RoundControl(PnlMesa1, 30, Color.FromArgb(75, 98, 183), 2);
+            Helper.UIHelper.RoundControl(PbxMesa1, 20, Color.FromArgb(76, 99, 183), 2);
+            Helper.UIHelper.RoundControl(PnlPbxMesa1, 20, Color.FromArgb(87, 102, 156), 2);
+            Helper.UIHelper.RoundControl(PnlLabelMesas, 30, Color.FromArgb(0, 0, 0), 2);
+
         }
 
         //---------------------------------------------------------------------
@@ -110,10 +113,11 @@ namespace PO26B_FSA
         private void LblMesa1_Click(object sender, EventArgs e)
         {
 
-            MesaDePracticas1 Mesa1 = new MesaDePracticas1();
-            Mesa1.Show();
-            /* PnlMesas.Visible = true;
-             PnlMenu.Visible = false;*/
+            /*MesaDePracticas1 Mesa1 = new MesaDePracticas1();
+            Mesa1.Show(); */
+            PnlMesas.Visible = true;
+            PnlLabelMesas.Visible = true;
+            PnlMenu.Visible = false;
         }
         private void LblMesa2_Click(object sender, EventArgs e)
         {
