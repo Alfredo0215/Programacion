@@ -113,11 +113,12 @@ namespace PO26B_FSA
         private void LblMesa1_Click(object sender, EventArgs e)
         {
 
-            /*MesaDePracticas1 Mesa1 = new MesaDePracticas1();
-            Mesa1.Show(); */
+            MesaDePracticas1 Mesa1 = new MesaDePracticas1();
+            Mesa1.Show(); 
+            /*
             PnlMesas.Visible = true;
             PnlLabelMesas.Visible = true;
-            PnlMenu.Visible = false;
+            PnlMenu.Visible = false;*/
         }
         private void LblMesa2_Click(object sender, EventArgs e)
         {

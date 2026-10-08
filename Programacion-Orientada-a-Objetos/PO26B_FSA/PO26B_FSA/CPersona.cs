@@ -19,6 +19,7 @@ namespace PO26B_FSA
         protected int genero;
 
         protected int religion;
+        protected int factorReproductivo;
 
         public CPersona(int altura, double peso, int sexo) : base(altura, peso, sexo)
         {
@@ -26,6 +27,7 @@ namespace PO26B_FSA
             apellidoM = "";
             nivelRazonamiento = 0;
             preferencisSexual = 0;
+            this.factorReproductivo = factorReproductivo;
         }
 
         //---------------------------------------------------------------------
@@ -71,6 +73,14 @@ namespace PO26B_FSA
             this.apellidoP = apellidoP ;
             this.apellidoM = apellidoM; 
             this.fechaNacimiento = fechaNacimiento ;
+        }
+
+        public object[] GetDatosBasicos()
+        {
+            return new object[]
+            {
+                nombre, apellidoP, apellidoM, fechaNacimiento
+            };
         }
     }
 }

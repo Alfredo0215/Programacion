@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ComponentModel;
 
 namespace PO26B_FSA.Mesas_De_Practicas
 {
@@ -129,16 +130,52 @@ namespace PO26B_FSA.Mesas_De_Practicas
             CHombre hombre1 = new CHombre(32, 3.2);
 
             hombre1.RegistrarPersona("Alfredo", "Fletes", "Sánchez", new DateTime(2007, 02, 15));
-            MessageBox.Show(hombre1.ToString());
+            hombre1.IniciaProduccionEspermatozoides();
+            DgvTabla2.Rows.Add(hombre1.GetDatosBasicos());
+
+            hombre1.RegistrarPersona("arnulfo", "xd", "Sánxdchez", new DateTime(2007, 02, 15));
+            hombre1.IniciaProduccionEspermatozoides();
+            DgvTabla2.Rows.Add(hombre1.GetDatosBasicos());
+
+            hombre1 = new CHombre(32, 3.2);
+
+            hombre1.RegistrarPersona("Alfredo", "Fletes", "Sánchez", new DateTime(2007, 02, 15));
+            hombre1.IniciaProduccionEspermatozoides();
+            DgvTabla2.Rows.Add(hombre1.GetDatosBasicos());
+
+            hombre1 = new CHombre(32, 3.2);
+
+            hombre1.RegistrarPersona("Alfredo", "Fletes", "Sánchez", new DateTime(2007, 02, 15));
+            hombre1.IniciaProduccionEspermatozoides();
+            DgvTabla2.Rows.Add(hombre1.GetDatosBasicos());
+
+            hombre1 = new CHombre(32, 3.2);
+
+            hombre1.RegistrarPersona("Alfredo", "Fletes", "Sánchez", new DateTime(2007, 02, 15));
+            hombre1.IniciaProduccionEspermatozoides();
+            DgvTabla2.Rows.Add(hombre1.GetDatosBasicos());
+
+            hombre1 = new CHombre(32, 3.2);
+
+            hombre1.RegistrarPersona("Alfredo", "Fletes", "Sánchez", new DateTime(2007, 02, 15));
+            hombre1.IniciaProduccionEspermatozoides();
+            DgvTabla2.Rows.Add(hombre1.GetDatosBasicos());
+
+            hombre1 = new CHombre(32, 3.2);
+
+            hombre1.RegistrarPersona("Alfredo", "Fletes", "Sánchez", new DateTime(2007, 02, 15));
+            hombre1.IniciaProduccionEspermatozoides();
+            DgvTabla2.Rows.Add(hombre1.GetDatosBasicos());
+
+
+
+
+
 
 
             mujer1.RegistrarPersona("Valentina", "Velázquez", "López", new DateTime(2007, 12, 14));
-            MessageBox.Show(mujer1.ToString());
 
-            hombre1.IniciaProduccionEspermatozoides();
-
-            DgvTabla2.Rows.Add(hombre1);
-            DgvTabla2.Rows.Add(mujer1);
         }
     }
+
 }
