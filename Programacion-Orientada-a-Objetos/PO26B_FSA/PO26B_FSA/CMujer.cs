@@ -16,6 +16,8 @@ namespace PO26B_FSA
         //-------------------------------------------------------------------------
 
         private int tasaProduccionOvulos;
+        Random numRandom = new Random();
+
 
         public CMujer(int altura, double peso) : base(altura, peso, 0)
         {
@@ -28,7 +30,6 @@ namespace PO26B_FSA
 
         public int IniciaProduccionOvulos()
         {
-            Random numRandom = new Random();
             return tasaProduccionOvulos = numRandom.Next(1000000, 2000000);
             
         }

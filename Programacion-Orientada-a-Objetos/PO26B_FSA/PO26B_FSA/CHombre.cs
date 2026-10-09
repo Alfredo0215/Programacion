@@ -13,6 +13,8 @@ namespace PO26B_FSA
         //-------------------------------------------------------------------------
         // Atributos.
         //-------------------------------------------------------------------------
+        Random numRandom = new Random();
+
 
         private int tasaProduccionEspermatozoides;
         //-------------------------------------------------------------------------
@@ -28,7 +30,6 @@ namespace PO26B_FSA
         //---------------------------------------------------------------------
         public int IniciaProduccionEspermatozoides()
         {
-            Random numRandom = new Random();
 
 
             return tasaProduccionEspermatozoides = numRandom.Next(100, 170) * 1000000;
