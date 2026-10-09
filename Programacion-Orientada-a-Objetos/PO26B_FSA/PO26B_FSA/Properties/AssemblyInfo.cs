@@ -19,6 +19,9 @@ using System.Runtime.InteropServices;
 // COM, establezca el atributo ComVisible en true en este tipo.
 [assembly: ComVisible(false)]
 
+// Permite que el proyecto de pruebas acceda a las clases internal (CPersona, CHombre, etc.).
+[assembly: InternalsVisibleTo("PO26B_FSA.Tests")]
+
 // El siguiente GUID sirve como id. de typelib si este proyecto se expone a COM.
 [assembly: Guid("3bee2c10-0f74-4b18-bd02-d69bd06b8138")]
 

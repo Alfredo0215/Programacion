@@ -15,17 +15,17 @@ namespace PO26B_FSA
 
         protected string apellidoP;
         protected string apellidoM;
-        protected int preferencisSexual;
+        protected int preferenciaSexual;
         protected int genero;
 
         protected int religion;
 
         public CPersona(int altura, double peso, int sexo) : base(altura, peso, sexo)
         {
-            apellidoM = "";
+            apellidoP = "";
             apellidoM = "";
             nivelRazonamiento = 0;
-            preferencisSexual = 0;
+            preferenciaSexual = 0;
         }
 
         //---------------------------------------------------------------------

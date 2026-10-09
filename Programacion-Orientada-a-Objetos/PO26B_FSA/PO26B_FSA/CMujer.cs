@@ -19,7 +19,7 @@ namespace PO26B_FSA
 
         public CMujer(int altura, double peso) : base(altura, peso, 0)
         {
-            tasaProduccionOvulos = IniciaProduccionOvulos();
+            IniciaProduccionOvulos();
         }
 
         //---------------------------------------------------------------------
@@ -35,7 +35,7 @@ namespace PO26B_FSA
 
         protected override string GetFactorReproductivo()
         {
-            return $"mi cantidad de óvulos es: {IniciaProduccionOvulos()}";
+            return $"mi cantidad de óvulos es: {tasaProduccionOvulos}";
         }
 
         //---------------------------------------------------------------------

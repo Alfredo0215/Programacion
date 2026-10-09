@@ -21,7 +21,7 @@ namespace PO26B_FSA
 
         public CHombre(int altura, double peso) :base (altura, peso, 1) 
         {
-            tasaProduccionEspermatozoides = 0;
+            IniciaProduccionEspermatozoides();
         }
         //---------------------------------------------------------------------
         // Inicia la Producción de Espermatozoides
@@ -31,12 +31,12 @@ namespace PO26B_FSA
             Random numRandom = new Random();
 
 
-            return tasaProduccionEspermatozoides = numRandom.Next(100, 170) * 1000000; ;
+            return tasaProduccionEspermatozoides = numRandom.Next(100, 170) * 1000000;
         }
 
         protected override string GetFactorReproductivo()
         {
-            return $"mi cantidad de espermatozoides es: {IniciaProduccionEspermatozoides()}, por dia";
+            return $"mi cantidad de espermatozoides es: {tasaProduccionEspermatozoides}, por dia";
         }
 
         //---------------------------------------------------------------------
