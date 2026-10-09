@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/compilar.sh\"",
+            "timeout": 120,
+            "statusMessage": "Compilando con MSBuild..."
+          }
+        ]
+      }
+    ]
+  }
+}
