@@ -53,13 +53,10 @@
             this.BtnP1Pnl1 = new System.Windows.Forms.Button();
             this.PnlPracticas3 = new System.Windows.Forms.Panel();
             this.DgvTabla2 = new System.Windows.Forms.DataGridView();
-            this.ColNumero = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColApellidoP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColApellidoM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColSexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColFactorReproductivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColFechaNacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
@@ -335,57 +332,36 @@
             // 
             // DgvTabla2
             // 
-            this.DgvTabla2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.DgvTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvTabla2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ColNumero,
-            this.ColNombre,
-            this.ColApellidoP,
-            this.ColApellidoM,
-            this.ColSexo,
-            this.ColFactorReproductivo,
-            this.ColFechaNacimiento});
+            this.nombre,
+            this.apellidoP,
+            this.apellidoM,
+            this.date});
             this.DgvTabla2.Location = new System.Drawing.Point(22, 60);
             this.DgvTabla2.Name = "DgvTabla2";
-            this.DgvTabla2.Size = new System.Drawing.Size(866, 304);
+            this.DgvTabla2.Size = new System.Drawing.Size(806, 286);
             this.DgvTabla2.TabIndex = 3;
             // 
-            // ColNumero
+            // nombre
             // 
-            this.ColNumero.HeaderText = "No.";
-            this.ColNumero.Name = "ColNumero";
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
             // 
-            // ColNombre
+            // apellidoP
             // 
-            this.ColNombre.HeaderText = "Nombre";
-            this.ColNombre.Name = "ColNombre";
+            this.apellidoP.HeaderText = "Apellido P";
+            this.apellidoP.Name = "apellidoP";
             // 
-            // ColApellidoP
+            // apellidoM
             // 
-            this.ColApellidoP.HeaderText = "Apellido P";
-            this.ColApellidoP.Name = "ColApellidoP";
+            this.apellidoM.HeaderText = "Apellido M";
+            this.apellidoM.Name = "apellidoM";
             // 
-            // ColApellidoM
+            // date
             // 
-            this.ColApellidoM.HeaderText = "ApellidoM";
-            this.ColApellidoM.Name = "ColApellidoM";
-            // 
-            // ColSexo
-            // 
-            this.ColSexo.HeaderText = "Sexo";
-            this.ColSexo.Name = "ColSexo";
-            // 
-            // ColFactorReproductivo
-            // 
-            this.ColFactorReproductivo.HeaderText = "Factor Reproductivo";
-            this.ColFactorReproductivo.Name = "ColFactorReproductivo";
-            // 
-            // ColFechaNacimiento
-            // 
-            this.ColFechaNacimiento.HeaderText = "Fecha Nacimiento";
-            this.ColFechaNacimiento.Name = "ColFechaNacimiento";
+            this.date.HeaderText = "Date";
+            this.date.Name = "date";
             // 
             // MesaDePracticas1
             // 
@@ -438,12 +414,9 @@
         private System.Windows.Forms.Button BtnP2Pnl2;
         private System.Windows.Forms.Button BtnP1Pnl2;
         private System.Windows.Forms.DataGridView DgvTabla2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColNumero;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColNombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColApellidoP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColApellidoM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColSexo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColFactorReproductivo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColFechaNacimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoP;
+        private System.Windows.Forms.DataGridViewTextBoxColumn apellidoM;
+        private System.Windows.Forms.DataGridViewTextBoxColumn date;
     }
 }
