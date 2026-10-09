@@ -1,0 +1,2 @@
+# Los scripts de bash deben quedar siempre con saltos de línea LF; con CRLF fallan.
+*.sh text eol=lf
