@@ -13,7 +13,9 @@ namespace PO26B_FSA
         //-------------------------------------------------------------------------
         // Atributos.
         //-------------------------------------------------------------------------
-        Random numRandom = new Random();
+        // static: una sola instancia compartida, para que dos objetos creados
+        // en el mismo instante no reciban la misma semilla.
+        private static Random numRandom = new Random();
 
 
         private int tasaProduccionEspermatozoides;
@@ -35,21 +37,12 @@ namespace PO26B_FSA
             return tasaProduccionEspermatozoides = numRandom.Next(100, 170) * 1000000;
         }
 
+        //---------------------------------------------------------------------
+        // Factor reproductivo en millones de espermatozoides por día.
+        //---------------------------------------------------------------------
         protected override string GetFactorReproductivo()
         {
-            return $"mi cantidad de espermatozoides es: {tasaProduccionEspermatozoides}, por dia";
+            return $"{tasaProduccionEspermatozoides / 1000000} millones de espermatozoides/día";
         }
-
-        //---------------------------------------------------------------------
-        // Implementa el método abstracto respirar para la clase.
-        //---------------------------------------------------------------------
-       
-        /*
-        protected override bool Respirar()
-        {
-            MessageBox.Show("Hombre respirando");
-            return true;
-        }
-        */
     }
 }

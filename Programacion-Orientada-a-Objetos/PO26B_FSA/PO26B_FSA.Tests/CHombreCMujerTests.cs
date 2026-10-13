@@ -43,7 +43,7 @@ namespace PO26B_FSA.Tests
         {
             CHombre hombre = new CHombre(175, 70);
 
-            Assert.IsFalse(hombre.ToString().Contains("es: 0,"));
+            Assert.IsFalse(hombre.ToString().Contains("es: 0 millones"));
         }
 
         //---------------------------------------------------------------------

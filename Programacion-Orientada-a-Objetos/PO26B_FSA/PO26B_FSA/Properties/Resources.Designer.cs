@@ -63,6 +63,16 @@ namespace PO26B_FSA.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap BotonJugar {
+            get {
+                object obj = ResourceManager.GetObject("BotonJugar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LogoPOO {
             get {
                 object obj = ResourceManager.GetObject("LogoPOO", resourceCulture);
@@ -86,6 +96,46 @@ namespace PO26B_FSA.Properties {
         internal static System.Drawing.Bitmap Personaje1 {
             get {
                 object obj = ResourceManager.GetObject("Personaje1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Personaje2 {
+            get {
+                object obj = ResourceManager.GetObject("Personaje2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Personaje3 {
+            get {
+                object obj = ResourceManager.GetObject("Personaje3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Personaje4 {
+            get {
+                object obj = ResourceManager.GetObject("Personaje4", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayButton {
+            get {
+                object obj = ResourceManager.GetObject("PlayButton", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

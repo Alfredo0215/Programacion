@@ -15,8 +15,10 @@ namespace PO26B_FSA
         // Atributos.
         //-------------------------------------------------------------------------
 
-        private int tasaProduccionOvulos;
-        Random numRandom = new Random();
+        private int cantidadOvulos;
+        // static: una sola instancia compartida, para que dos objetos creados
+        // en el mismo instante no reciban la misma semilla.
+        private static Random numRandom = new Random();
 
 
         public CMujer(int altura, double peso) : base(altura, peso, 0)
@@ -30,25 +32,18 @@ namespace PO26B_FSA
 
         public int IniciaProduccionOvulos()
         {
-            return tasaProduccionOvulos = numRandom.Next(1000000, 2000000);
+            return cantidadOvulos = numRandom.Next(1000000, 2000000);
             
         }
 
+        //---------------------------------------------------------------------
+        // Factor reproductivo en millones de óvulos (reserva total).
+        // Se divide entre 1000000.0 para no perder los decimales.
+        //---------------------------------------------------------------------
         protected override string GetFactorReproductivo()
         {
-            return $"mi cantidad de óvulos es: {tasaProduccionOvulos}";
+            return $"{cantidadOvulos / 1000000.0:0.##} millones de óvulos";
         }
 
-        //---------------------------------------------------------------------
-        // Implementa el método abstracto respirar para la clase.
-        //---------------------------------------------------------------------
-
-        /*
-        protected override bool Respirar()
-        {
-            MessageBox.Show("Mujer respirando");
-            return true;
-        }
-        */
     }
 }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.LblInfo = new System.Windows.Forms.Label();
             this.PanelSide = new System.Windows.Forms.Panel();
@@ -44,6 +45,7 @@
             this.LblCaptura1 = new System.Windows.Forms.Label();
             this.PnlFill = new System.Windows.Forms.Panel();
             this.PnlPracticas2 = new System.Windows.Forms.Panel();
+            this.DgvTabla2 = new System.Windows.Forms.DataGridView();
             this.BtnP3Pnl2 = new System.Windows.Forms.Button();
             this.BtnP2Pnl2 = new System.Windows.Forms.Button();
             this.BtnP1Pnl2 = new System.Windows.Forms.Button();
@@ -52,18 +54,18 @@
             this.BtnP2Pnl1 = new System.Windows.Forms.Button();
             this.BtnP1Pnl1 = new System.Windows.Forms.Button();
             this.PnlPracticas3 = new System.Windows.Forms.Panel();
-            this.DgvTabla2 = new System.Windows.Forms.DataGridView();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.apellidoM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FactorReproductivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.PnlFill.SuspendLayout();
             this.PnlPracticas2.SuspendLayout();
-            this.PnlPracticas1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2)).BeginInit();
+            this.PnlPracticas1.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelBottom
@@ -237,6 +239,20 @@
             this.PnlPracticas2.Size = new System.Drawing.Size(911, 379);
             this.PnlPracticas2.TabIndex = 1;
             // 
+            // DgvTabla2
+            // 
+            this.DgvTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvTabla2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.nombre,
+            this.apellidoP,
+            this.apellidoM,
+            this.date,
+            this.FactorReproductivo});
+            this.DgvTabla2.Location = new System.Drawing.Point(22, 60);
+            this.DgvTabla2.Name = "DgvTabla2";
+            this.DgvTabla2.Size = new System.Drawing.Size(806, 286);
+            this.DgvTabla2.TabIndex = 3;
+            // 
             // BtnP3Pnl2
             // 
             this.BtnP3Pnl2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -330,19 +346,6 @@
             this.PnlPracticas3.Size = new System.Drawing.Size(910, 379);
             this.PnlPracticas3.TabIndex = 2;
             // 
-            // DgvTabla2
-            // 
-            this.DgvTabla2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgvTabla2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.nombre,
-            this.apellidoP,
-            this.apellidoM,
-            this.date});
-            this.DgvTabla2.Location = new System.Drawing.Point(22, 60);
-            this.DgvTabla2.Name = "DgvTabla2";
-            this.DgvTabla2.Size = new System.Drawing.Size(806, 286);
-            this.DgvTabla2.TabIndex = 3;
-            // 
             // nombre
             // 
             this.nombre.HeaderText = "Nombre";
@@ -360,8 +363,18 @@
             // 
             // date
             // 
-            this.date.HeaderText = "Date";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.date.DefaultCellStyle = dataGridViewCellStyle1;
+            this.date.HeaderText = "Fecha De Nacimiento";
             this.date.Name = "date";
+            // 
+            // FactorReproductivo
+            // 
+            this.FactorReproductivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.FactorReproductivo.HeaderText = "Factor Reproductivo";
+            this.FactorReproductivo.Name = "FactorReproductivo";
+            this.FactorReproductivo.Width = 118;
             // 
             // MesaDePracticas1
             // 
@@ -381,8 +394,8 @@
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
             this.PnlPracticas2.ResumeLayout(false);
-            this.PnlPracticas1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2)).EndInit();
+            this.PnlPracticas1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -418,5 +431,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoP;
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoM;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FactorReproductivo;
     }
 }

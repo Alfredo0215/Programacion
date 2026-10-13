@@ -19,15 +19,12 @@ namespace PO26B_FSA
         protected int genero;
 
         protected int religion;
-        protected int factorReproductivo;
-
         public CPersona(int altura, double peso, int sexo) : base(altura, peso, sexo)
         {
             apellidoP = "";
             apellidoM = "";
             nivelRazonamiento = 0;
             preferenciaSexual = 0;
-            this.factorReproductivo = factorReproductivo;
         }
 
         //---------------------------------------------------------------------
@@ -35,34 +32,17 @@ namespace PO26B_FSA
         //---------------------------------------------------------------------
         public override string ToString()
         {
-            string factorReproductivo;
-            if (sexo == 0)
-            {
-                factorReproductivo = "Tengo una cantidad de óvulos";
-            }
-            else
-            {
-                factorReproductivo = "Tengo una cantidad de espermatozoides";
-            }
-            return $"Hola, soy {nombre} {apellidoP} {apellidoM} y nací el {fechaNacimiento}. Mi altura fue de {altura} y mi peso fue de {peso}, además {GetFactorReproductivo()}";
+            return $"Hola, soy {nombre} {apellidoP} {apellidoM} y nací el {fechaNacimiento:d}. Mi altura fue de {altura} y mi peso fue de {peso}, y mi factor reproductivo es: {GetFactorReproductivo()}";
         }
 
+        //---------------------------------------------------------------------
+        // Devuelve el factor reproductivo con su unidad. Cada subclase lo
+        // sobrescribe; lo usan ToString y GetDatosBasicos.
+        //---------------------------------------------------------------------
         protected virtual string GetFactorReproductivo()
         {
             return "{factor reproductivo}";
         }
-
-        //---------------------------------------------------------------------
-        // Implementa el método abstracto respirar para la clase.
-        //---------------------------------------------------------------------
-        
-        /*
-        protected override bool Respirar()
-        {
-            MessageBox.Show("Persona respirando");
-            return true;
-        }
-        */
 
         //---------------------------------------------------------------------
         // Registra a una persona.
@@ -75,11 +55,15 @@ namespace PO26B_FSA
             this.fechaNacimiento = fechaNacimiento ;
         }
 
+        //---------------------------------------------------------------------
+        // Devuelve los datos para una fila de tabla. El orden debe coincidir
+        // con el de las columnas de DgvTabla2.
+        //---------------------------------------------------------------------
         public object[] GetDatosBasicos()
         {
             return new object[]
             {
-                nombre, apellidoP, apellidoM, fechaNacimiento
+                nombre, apellidoP, apellidoM, fechaNacimiento, GetFactorReproductivo()
             };
         }
     }

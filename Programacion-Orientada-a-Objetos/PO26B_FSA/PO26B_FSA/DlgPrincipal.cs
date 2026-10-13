@@ -36,26 +36,22 @@ namespace PO26B_FSA
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             PbxLogoMenu.SizeMode = PictureBoxSizeMode.Zoom;
-            LblMesa1.TextAlign = ContentAlignment.MiddleCenter;
-            LblMesa2.TextAlign = ContentAlignment.MiddleCenter;
-            LblMesa3.TextAlign = ContentAlignment.MiddleCenter;
-            LblMesa4.TextAlign = ContentAlignment.MiddleCenter;
-            
-
             timerLogoAnimation.Interval = 16;
 
             timerLogoAnimation.Tick += AnimationLogoTick;
 
-            LblMesa1.MouseEnter += LabelMouseEnter;
-            LblMesa2.MouseEnter += LabelMouseEnter;
-            LblMesa3.MouseEnter += LabelMouseEnter;
-            LblMesa4.MouseEnter += LabelMouseEnter;
+            Helper.UIHelper.AplicarEstiloTerraria(LblMesas);
+            Helper.UIHelper.AplicarEstiloTerraria(LblAtras);
 
-            LblMesa1.MouseLeave += LabelMouseLeave;
-            LblMesa2.MouseLeave += LabelMouseLeave;
-            LblMesa3.MouseLeave += LabelMouseLeave;
-            LblMesa4.MouseLeave += LabelMouseLeave;
- 
+            // Esc vuelve del listado de mesas al menú principal.
+            this.KeyPreview = true;
+            this.KeyDown += DlgPrincipal_KeyDown;
+
+            // Cada fila avisa que se pulsó "abrir"; aquí se decide qué mesa abre.
+            UcMesa1.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas1());
+            UcMesa2.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas2());
+            UcMesa3.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas3());
+            UcMesa4.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas4());
         }
 
         //---------------------------------------------------------------------
@@ -69,11 +65,18 @@ namespace PO26B_FSA
             originalY = PbxLogoMenu.Top;
             StartLogoAnimation();
 
-            Helper.UIHelper.RoundControl(PnlMesa1, 30, Color.FromArgb(75, 98, 183), 2);
-            Helper.UIHelper.RoundControl(PbxMesa1, 20, Color.FromArgb(76, 99, 183), 2);
-            Helper.UIHelper.RoundControl(PnlPbxMesa1, 20, Color.FromArgb(87, 102, 156), 2);
             Helper.UIHelper.RoundControl(PnlLabelMesas, 30, Color.FromArgb(0, 0, 0), 2);
 
+            // Datos provisionales: colores aproximados (no son los RGB de Terraria)
+            // y cifras inventadas que crecen con la dificultad de la mesa.
+            Image retrato1 = Properties.Resources.Personaje2;
+            Image retrato2 = Properties.Resources.Personaje1;
+            Image retrato3 = Properties.Resources.Personaje3;
+            Image retrato4 = Properties.Resources.Personaje4;
+            UcMesa1.Configurar("Mesa de prácticas 1", "Clásico", Color.Gainsboro, retrato1, 100, 20, "2:15:08");
+            UcMesa2.Configurar("Mesa de prácticas 2", "Experto", Color.Gold, retrato2, 260, 80, "18:42:31");
+            UcMesa3.Configurar("Mesa de prácticas 3", "Maestro", Color.Crimson, retrato3, 400, 160, "63:07:54");
+            UcMesa4.Configurar("Mesa de prácticas 4", "Legendario", Color.MediumPurple, retrato4, 500, 200, "152:39:12");
         }
 
         //---------------------------------------------------------------------
@@ -97,45 +100,58 @@ namespace PO26B_FSA
             }
 
         }
-        private void LabelMouseEnter(object sender, EventArgs e)
+        //---------------------------------------------------------------------
+        // Muestra el listado de mesas y oculta el menú.
+        //---------------------------------------------------------------------
+        private void LblMesas_Click(object sender, EventArgs e)
         {
-            Label label = (Label)sender;
-            Helper.UIHelper.SetLabelHover(label);
-        }
-
-        private void LabelMouseLeave(object sender, EventArgs e)
-        {
-            Label label = (Label)sender;
-
-            Helper.UIHelper.SetLabelNormal(label);
-        }
-
-        private void LblMesa1_Click(object sender, EventArgs e)
-        {
-
-            MesaDePracticas1 Mesa1 = new MesaDePracticas1();
-            Mesa1.Show(); 
-            /*
-            PnlMesas.Visible = true;
+            PnlMenu.Visible = false;
             PnlLabelMesas.Visible = true;
-            PnlMenu.Visible = false;*/
-        }
-        private void LblMesa2_Click(object sender, EventArgs e)
-        {
-            MesaDePracticas2 Mesa2 = new MesaDePracticas2();
-            Mesa2.Show();
+            PnlMesas.Visible = true;
+            LblAtras.Visible = true;
         }
 
-        private void LblMesa3_Click(object sender, EventArgs e)
+        //---------------------------------------------------------------------
+        // Vuelve del listado de mesas al menú principal con Esc.
+        //---------------------------------------------------------------------
+        private void DlgPrincipal_KeyDown(object sender, KeyEventArgs e)
         {
-            MesaDePracticas3 Mesa3 = new MesaDePracticas3();
-            Mesa3.Show();
+            if (e.KeyCode == Keys.Escape && PnlMesas.Visible)
+            {
+                VolverAlMenu();
+            }
         }
 
-        private void LblMesa4_Click(object sender, EventArgs e)
+        //---------------------------------------------------------------------
+        // Vuelve del listado de mesas al menú principal con el botón Atrás.
+        //---------------------------------------------------------------------
+        private void LblAtras_Click(object sender, EventArgs e)
         {
-            MesaDePracticas4 Mesa4 = new MesaDePracticas4();
-            Mesa4.Show();
+            VolverAlMenu();
+        }
+
+        //---------------------------------------------------------------------
+        // Oculta el listado de mesas y muestra el menú.
+        //---------------------------------------------------------------------
+        private void VolverAlMenu()
+        {
+            PnlMesas.Visible = false;
+            PnlLabelMesas.Visible = false;
+            LblAtras.Visible = false;
+            PnlMenu.Visible = true;
+        }
+
+        //---------------------------------------------------------------------
+        // Abre una mesa ocultando el menú; al cerrarla, el menú vuelve.
+        //---------------------------------------------------------------------
+        private void AbrirMesa(Form mesa)
+        {
+            this.Hide();
+            using (mesa)
+            {
+                mesa.ShowDialog();
+            }
+            this.Show();
         }
 
         private double GetScale(double progress)
@@ -170,5 +186,11 @@ namespace PO26B_FSA
             stopwatch.Restart();
             timerLogoAnimation.Start();
         }
+
+        private void filaMesa3_Load(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }

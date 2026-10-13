@@ -60,6 +60,12 @@
     <Compile Include="DlgPrincipal.Designer.cs">
       <DependentUpon>DlgPrincipal.cs</DependentUpon>
     </Compile>
+    <Compile Include="FilaMesa.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FilaMesa.Designer.cs">
+      <DependentUpon>FilaMesa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="Mesas-De-Practicas\MesaDePracticas4.cs">
       <SubType>Form</SubType>
@@ -89,6 +95,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DlgPrincipal.resx">
       <DependentUpon>DlgPrincipal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilaMesa.resx">
+      <DependentUpon>FilaMesa.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mesas-De-Practicas\MesaDePracticas4.resx">
       <DependentUpon>MesaDePracticas4.cs</DependentUpon>
@@ -136,6 +145,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Personaje1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BotonJugar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlayButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Personaje2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Personaje3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Personaje4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CorazonVida.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EstrellaMana.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -118,8 +118,8 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="LogoPOO1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LogoPOO1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="PlayButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlayButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LogoPOO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LogoPOO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -127,7 +127,28 @@
   <data name="TerrariaBackground" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\TerrariaBackground.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="LogoPOO1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoPOO1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BotonJugar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BotonJugar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Personaje1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Personaje1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Personaje2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Personaje2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Personaje3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Personaje3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Personaje4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Personaje4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="CorazonVida" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\CorazonVida.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="EstrellaMana" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\EstrellaMana.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

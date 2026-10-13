@@ -1,4 +1,21 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(dotnet test:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "PowerShell($msbuild = & *vswhere.exe* -latest -requires Microsoft.Component.MSBuild -find *)",
+      "PowerShell(& $msbuild *POO26B_FSA.csproj*)"
+    ],
+    "deny": [
+      "Edit(**/*.Designer.cs)",
+      "Write(**/*.Designer.cs)",
+      "Bash(git push:*)",
+      "Bash(git reset --hard:*)",
+      "Bash(git clean:*)"
+    ]
+  },
   "hooks": {
     "PostToolUse": [
       {
@@ -13,5 +30,9 @@
         ]
       }
     ]
+  },
+  "enabledPlugins": {
+    "savvy-flow@claude-kit": true,
+    "savvy-progress@claude-kit": true
   }
 }
