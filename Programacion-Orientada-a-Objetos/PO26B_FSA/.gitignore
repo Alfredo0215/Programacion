@@ -1,3 +1,4 @@
 *.user
 TestResults/
 .claude/settings.local.json
+packages/
