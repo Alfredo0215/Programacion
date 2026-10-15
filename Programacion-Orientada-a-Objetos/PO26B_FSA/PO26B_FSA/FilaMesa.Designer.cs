@@ -35,12 +35,16 @@
             this.LblVida = new System.Windows.Forms.Label();
             this.LblTiempo = new System.Windows.Forms.Label();
             this.PnlStats = new System.Windows.Forms.Panel();
+            this.PbxMana = new System.Windows.Forms.PictureBox();
+            this.PbxVida = new System.Windows.Forms.PictureBox();
             this.PnlDificultad = new System.Windows.Forms.Panel();
             this.LblDificultad = new System.Windows.Forms.Label();
             this.PnlTiempo = new System.Windows.Forms.Panel();
             this.PnlRetrato.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxRetrato)).BeginInit();
             this.PnlStats.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxMana)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxVida)).BeginInit();
             this.PnlDificultad.SuspendLayout();
             this.PnlTiempo.SuspendLayout();
             this.SuspendLayout();
@@ -76,8 +80,10 @@
             // LblMana
             // 
             this.LblMana.AutoSize = true;
+            this.LblMana.BackColor = System.Drawing.Color.Transparent;
             this.LblMana.Font = new System.Drawing.Font("Andy", 10.25F, System.Drawing.FontStyle.Bold);
-            this.LblMana.Location = new System.Drawing.Point(88, 6);
+            this.LblMana.ForeColor = System.Drawing.Color.Gainsboro;
+            this.LblMana.Location = new System.Drawing.Point(113, 10);
             this.LblMana.Name = "LblMana";
             this.LblMana.Size = new System.Drawing.Size(41, 16);
             this.LblMana.TabIndex = 2;
@@ -86,8 +92,10 @@
             // LblVida
             // 
             this.LblVida.AutoSize = true;
+            this.LblVida.BackColor = System.Drawing.Color.Transparent;
             this.LblVida.Font = new System.Drawing.Font("Andy", 10.25F, System.Drawing.FontStyle.Bold);
-            this.LblVida.Location = new System.Drawing.Point(15, 6);
+            this.LblVida.ForeColor = System.Drawing.Color.Gainsboro;
+            this.LblVida.Location = new System.Drawing.Point(33, 10);
             this.LblVida.Name = "LblVida";
             this.LblVida.Size = new System.Drawing.Size(45, 16);
             this.LblVida.TabIndex = 3;
@@ -96,8 +104,10 @@
             // LblTiempo
             // 
             this.LblTiempo.AutoSize = true;
+            this.LblTiempo.BackColor = System.Drawing.Color.Transparent;
             this.LblTiempo.Font = new System.Drawing.Font("Andy", 10.25F, System.Drawing.FontStyle.Bold);
-            this.LblTiempo.Location = new System.Drawing.Point(15, 6);
+            this.LblTiempo.ForeColor = System.Drawing.Color.Gainsboro;
+            this.LblTiempo.Location = new System.Drawing.Point(22, 10);
             this.LblTiempo.Name = "LblTiempo";
             this.LblTiempo.Size = new System.Drawing.Size(43, 16);
             this.LblTiempo.TabIndex = 4;
@@ -105,26 +115,50 @@
             // 
             // PnlStats
             // 
+            this.PnlStats.Controls.Add(this.PbxMana);
+            this.PnlStats.Controls.Add(this.PbxVida);
             this.PnlStats.Controls.Add(this.LblVida);
             this.PnlStats.Controls.Add(this.LblMana);
             this.PnlStats.Location = new System.Drawing.Point(81, 26);
             this.PnlStats.Name = "PnlStats";
-            this.PnlStats.Size = new System.Drawing.Size(157, 28);
+            this.PnlStats.Size = new System.Drawing.Size(173, 35);
             this.PnlStats.TabIndex = 6;
+            // 
+            // PbxMana
+            // 
+            this.PbxMana.Image = global::PO26B_FSA.Properties.Resources.EstrellaMana;
+            this.PbxMana.Location = new System.Drawing.Point(86, 3);
+            this.PbxMana.Name = "PbxMana";
+            this.PbxMana.Size = new System.Drawing.Size(25, 25);
+            this.PbxMana.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PbxMana.TabIndex = 10;
+            this.PbxMana.TabStop = false;
+            // 
+            // PbxVida
+            // 
+            this.PbxVida.Image = global::PO26B_FSA.Properties.Resources.CorazonVida;
+            this.PbxVida.Location = new System.Drawing.Point(6, 5);
+            this.PbxVida.Name = "PbxVida";
+            this.PbxVida.Size = new System.Drawing.Size(25, 25);
+            this.PbxVida.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PbxVida.TabIndex = 9;
+            this.PbxVida.TabStop = false;
             // 
             // PnlDificultad
             // 
             this.PnlDificultad.Controls.Add(this.LblDificultad);
-            this.PnlDificultad.Location = new System.Drawing.Point(244, 26);
+            this.PnlDificultad.Location = new System.Drawing.Point(260, 26);
             this.PnlDificultad.Name = "PnlDificultad";
-            this.PnlDificultad.Size = new System.Drawing.Size(115, 28);
+            this.PnlDificultad.Size = new System.Drawing.Size(99, 35);
             this.PnlDificultad.TabIndex = 7;
             // 
             // LblDificultad
             // 
             this.LblDificultad.AutoSize = true;
+            this.LblDificultad.BackColor = System.Drawing.Color.Transparent;
             this.LblDificultad.Font = new System.Drawing.Font("Andy", 10.25F, System.Drawing.FontStyle.Bold);
-            this.LblDificultad.Location = new System.Drawing.Point(20, 6);
+            this.LblDificultad.ForeColor = System.Drawing.Color.Gainsboro;
+            this.LblDificultad.Location = new System.Drawing.Point(23, 10);
             this.LblDificultad.Name = "LblDificultad";
             this.LblDificultad.Size = new System.Drawing.Size(46, 16);
             this.LblDificultad.TabIndex = 3;
@@ -136,7 +170,7 @@
             this.PnlTiempo.Controls.Add(this.LblTiempo);
             this.PnlTiempo.Location = new System.Drawing.Point(365, 26);
             this.PnlTiempo.Name = "PnlTiempo";
-            this.PnlTiempo.Size = new System.Drawing.Size(93, 28);
+            this.PnlTiempo.Size = new System.Drawing.Size(93, 35);
             this.PnlTiempo.TabIndex = 8;
             // 
             // FilaMesa
@@ -155,6 +189,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.PbxRetrato)).EndInit();
             this.PnlStats.ResumeLayout(false);
             this.PnlStats.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxMana)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxVida)).EndInit();
             this.PnlDificultad.ResumeLayout(false);
             this.PnlDificultad.PerformLayout();
             this.PnlTiempo.ResumeLayout(false);
@@ -176,5 +212,7 @@
         private System.Windows.Forms.Panel PnlDificultad;
         private System.Windows.Forms.Label LblDificultad;
         private System.Windows.Forms.Panel PnlTiempo;
+        private System.Windows.Forms.PictureBox PbxVida;
+        private System.Windows.Forms.PictureBox PbxMana;
     }
 }

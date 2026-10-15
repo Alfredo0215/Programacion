@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.LblInfo = new System.Windows.Forms.Label();
             this.PanelSide = new System.Windows.Forms.Panel();
@@ -44,8 +45,20 @@
             this.LblCaptura2 = new System.Windows.Forms.Label();
             this.LblCaptura1 = new System.Windows.Forms.Label();
             this.PnlFill = new System.Windows.Forms.Panel();
+            this.PnlPracticas3 = new System.Windows.Forms.Panel();
+            this.DgvTabla3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PnlPracticas2 = new System.Windows.Forms.Panel();
             this.DgvTabla2 = new System.Windows.Forms.DataGridView();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.apellidoM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FactorReproductivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnP3Pnl2 = new System.Windows.Forms.Button();
             this.BtnP2Pnl2 = new System.Windows.Forms.Button();
             this.BtnP1Pnl2 = new System.Windows.Forms.Button();
@@ -53,16 +66,15 @@
             this.PnlPracticas1 = new System.Windows.Forms.Panel();
             this.BtnP2Pnl1 = new System.Windows.Forms.Button();
             this.BtnP1Pnl1 = new System.Windows.Forms.Button();
-            this.PnlPracticas3 = new System.Windows.Forms.Panel();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellidoP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.apellidoM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.date = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FactorReproductivo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BtnP1Pnl3 = new System.Windows.Forms.Button();
+            this.BtnP2Pnl3 = new System.Windows.Forms.Button();
+            this.LblNumPersonas = new System.Windows.Forms.Label();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.PnlFill.SuspendLayout();
+            this.PnlPracticas3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvTabla3)).BeginInit();
             this.PnlPracticas2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2)).BeginInit();
             this.PnlPracticas1.SuspendLayout();
@@ -177,6 +189,7 @@
             this.TbxCaptura1.Name = "TbxCaptura1";
             this.TbxCaptura1.Size = new System.Drawing.Size(100, 20);
             this.TbxCaptura1.TabIndex = 4;
+            this.TbxCaptura1.Text = "10";
             // 
             // LblCaptura3
             // 
@@ -214,15 +227,74 @@
             // PnlFill
             // 
             this.PnlFill.BackColor = System.Drawing.Color.AliceBlue;
+            this.PnlFill.Controls.Add(this.PnlPracticas3);
             this.PnlFill.Controls.Add(this.PnlPracticas2);
             this.PnlFill.Controls.Add(this.PnlPracticas4);
             this.PnlFill.Controls.Add(this.PnlPracticas1);
-            this.PnlFill.Controls.Add(this.PnlPracticas3);
             this.PnlFill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlFill.Location = new System.Drawing.Point(193, 100);
             this.PnlFill.Name = "PnlFill";
             this.PnlFill.Size = new System.Drawing.Size(923, 394);
             this.PnlFill.TabIndex = 3;
+            // 
+            // PnlPracticas3
+            // 
+            this.PnlPracticas3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnlPracticas3.BackColor = System.Drawing.Color.Indigo;
+            this.PnlPracticas3.Controls.Add(this.LblNumPersonas);
+            this.PnlPracticas3.Controls.Add(this.BtnP2Pnl3);
+            this.PnlPracticas3.Controls.Add(this.BtnP1Pnl3);
+            this.PnlPracticas3.Controls.Add(this.DgvTabla3);
+            this.PnlPracticas3.Location = new System.Drawing.Point(6, 6);
+            this.PnlPracticas3.Name = "PnlPracticas3";
+            this.PnlPracticas3.Size = new System.Drawing.Size(910, 379);
+            this.PnlPracticas3.TabIndex = 2;
+            // 
+            // DgvTabla3
+            // 
+            this.DgvTabla3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgvTabla3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.DgvTabla3.Location = new System.Drawing.Point(1, 61);
+            this.DgvTabla3.Name = "DgvTabla3";
+            this.DgvTabla3.Size = new System.Drawing.Size(806, 286);
+            this.DgvTabla3.TabIndex = 4;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Nombre";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Apellido P";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Apellido M";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            dataGridViewCellStyle3.Format = "d";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Fecha De Nacimiento";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Factor Reproductivo";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 118;
             // 
             // PnlPracticas2
             // 
@@ -252,6 +324,36 @@
             this.DgvTabla2.Name = "DgvTabla2";
             this.DgvTabla2.Size = new System.Drawing.Size(806, 286);
             this.DgvTabla2.TabIndex = 3;
+            // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            // 
+            // apellidoP
+            // 
+            this.apellidoP.HeaderText = "Apellido P";
+            this.apellidoP.Name = "apellidoP";
+            // 
+            // apellidoM
+            // 
+            this.apellidoM.HeaderText = "Apellido M";
+            this.apellidoM.Name = "apellidoM";
+            // 
+            // date
+            // 
+            dataGridViewCellStyle4.Format = "d";
+            dataGridViewCellStyle4.NullValue = null;
+            this.date.DefaultCellStyle = dataGridViewCellStyle4;
+            this.date.HeaderText = "Fecha De Nacimiento";
+            this.date.Name = "date";
+            // 
+            // FactorReproductivo
+            // 
+            this.FactorReproductivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.FactorReproductivo.HeaderText = "Factor Reproductivo";
+            this.FactorReproductivo.Name = "FactorReproductivo";
+            this.FactorReproductivo.Width = 118;
             // 
             // BtnP3Pnl2
             // 
@@ -335,46 +437,35 @@
             this.BtnP1Pnl1.UseVisualStyleBackColor = true;
             this.BtnP1Pnl1.Click += new System.EventHandler(this.BtnP1Pnl1_Click);
             // 
-            // PnlPracticas3
+            // BtnP1Pnl3
             // 
-            this.PnlPracticas3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlPracticas3.BackColor = System.Drawing.Color.Indigo;
-            this.PnlPracticas3.Location = new System.Drawing.Point(6, 6);
-            this.PnlPracticas3.Name = "PnlPracticas3";
-            this.PnlPracticas3.Size = new System.Drawing.Size(910, 379);
-            this.PnlPracticas3.TabIndex = 2;
+            this.BtnP1Pnl3.Location = new System.Drawing.Point(21, 24);
+            this.BtnP1Pnl3.Name = "BtnP1Pnl3";
+            this.BtnP1Pnl3.Size = new System.Drawing.Size(75, 23);
+            this.BtnP1Pnl3.TabIndex = 5;
+            this.BtnP1Pnl3.Text = "P1";
+            this.BtnP1Pnl3.UseVisualStyleBackColor = true;
+            this.BtnP1Pnl3.Click += new System.EventHandler(this.BtnP1Pnl3_Click);
             // 
-            // nombre
+            // BtnP2Pnl3
             // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
+            this.BtnP2Pnl3.Location = new System.Drawing.Point(127, 24);
+            this.BtnP2Pnl3.Name = "BtnP2Pnl3";
+            this.BtnP2Pnl3.Size = new System.Drawing.Size(75, 23);
+            this.BtnP2Pnl3.TabIndex = 6;
+            this.BtnP2Pnl3.Text = "P2";
+            this.BtnP2Pnl3.UseVisualStyleBackColor = true;
+            this.BtnP2Pnl3.Click += new System.EventHandler(this.BtnP2Pnl3_Click);
             // 
-            // apellidoP
+            // LblNumPersonas
             // 
-            this.apellidoP.HeaderText = "Apellido P";
-            this.apellidoP.Name = "apellidoP";
-            // 
-            // apellidoM
-            // 
-            this.apellidoM.HeaderText = "Apellido M";
-            this.apellidoM.Name = "apellidoM";
-            // 
-            // date
-            // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.date.DefaultCellStyle = dataGridViewCellStyle1;
-            this.date.HeaderText = "Fecha De Nacimiento";
-            this.date.Name = "date";
-            // 
-            // FactorReproductivo
-            // 
-            this.FactorReproductivo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.FactorReproductivo.HeaderText = "Factor Reproductivo";
-            this.FactorReproductivo.Name = "FactorReproductivo";
-            this.FactorReproductivo.Width = 118;
+            this.LblNumPersonas.AutoSize = true;
+            this.LblNumPersonas.BackColor = System.Drawing.Color.Gainsboro;
+            this.LblNumPersonas.Location = new System.Drawing.Point(700, 29);
+            this.LblNumPersonas.Name = "LblNumPersonas";
+            this.LblNumPersonas.Size = new System.Drawing.Size(51, 13);
+            this.LblNumPersonas.TabIndex = 7;
+            this.LblNumPersonas.Text = "Personas";
             // 
             // MesaDePracticas1
             // 
@@ -393,6 +484,9 @@
             this.PanelTop.ResumeLayout(false);
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
+            this.PnlPracticas3.ResumeLayout(false);
+            this.PnlPracticas3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgvTabla3)).EndInit();
             this.PnlPracticas2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgvTabla2)).EndInit();
             this.PnlPracticas1.ResumeLayout(false);
@@ -432,5 +526,14 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn apellidoM;
         private System.Windows.Forms.DataGridViewTextBoxColumn date;
         private System.Windows.Forms.DataGridViewTextBoxColumn FactorReproductivo;
+        private System.Windows.Forms.DataGridView DgvTabla3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.Button BtnP1Pnl3;
+        private System.Windows.Forms.Button BtnP2Pnl3;
+        private System.Windows.Forms.Label LblNumPersonas;
     }
 }

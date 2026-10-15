@@ -73,6 +73,26 @@ namespace PO26B_FSA.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CorazonVida {
+            get {
+                object obj = ResourceManager.GetObject("CorazonVida", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EstrellaMana {
+            get {
+                object obj = ResourceManager.GetObject("EstrellaMana", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LogoPOO {
             get {
                 object obj = ResourceManager.GetObject("LogoPOO", resourceCulture);
