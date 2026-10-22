@@ -24,7 +24,7 @@ namespace PO26B_FSA
 
 
         //-------------------------------------------------------------------------
-        // Atributos.
+        // Constructor.
         //-------------------------------------------------------------------------
 
         public CAnimal(int altura, double peso, int sexo) : base()
@@ -40,10 +40,9 @@ namespace PO26B_FSA
         //---------------------------------------------------------------------
         // Implementa el método abstracto respirar para la clase.
         //---------------------------------------------------------------------
-        public override bool Respirar()
+        public override string Respirar()
         {
-            MessageBox.Show("Animal respirando");
-            return true;
+            return "Animal respirando por instinto";
         }
     }
 }

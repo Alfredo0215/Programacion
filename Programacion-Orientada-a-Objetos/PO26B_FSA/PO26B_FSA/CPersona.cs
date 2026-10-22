@@ -16,15 +16,25 @@ namespace PO26B_FSA
         protected string apellidoP;
         protected string apellidoM;
         protected int preferenciaSexual;
-        protected int genero;
 
-        protected int religion;
+        //-------------------------------------------------------------------------
+        // Constructor.
+        //-------------------------------------------------------------------------
+
         public CPersona(int altura, double peso, int sexo) : base(altura, peso, sexo)
         {
             apellidoP = "";
             apellidoM = "";
-            nivelRazonamiento = 0;
             preferenciaSexual = 0;
+        }
+
+        //---------------------------------------------------------------------
+        // Sobrescribe Respirar de CAnimal: una persona puede controlar su
+        // respiración. CHombre y CMujer heredan esta versión.
+        //---------------------------------------------------------------------
+        public override string Respirar()
+        {
+            return "Persona respirando de forma consciente";
         }
 
         //---------------------------------------------------------------------

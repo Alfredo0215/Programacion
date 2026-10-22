@@ -23,7 +23,7 @@ namespace PO26B_FSA
         private const double animationDuration = 2000.0;
         private Stopwatch stopwatch = new Stopwatch();
         private Timer timerLogoAnimation = new Timer();
-        int originalWidht;
+        int originalWidth;
         int originalHeight;
         int originalX;
         int originalY;
@@ -40,8 +40,8 @@ namespace PO26B_FSA
 
             timerLogoAnimation.Tick += AnimationLogoTick;
 
-            Helper.UIHelper.AplicarEstiloTerraria(LblMesas);
-            Helper.UIHelper.AplicarEstiloTerraria(LblAtras);
+            UIHelper.AplicarEstiloTerraria(LblMesas);
+            UIHelper.AplicarEstiloTerraria(LblAtras);
 
             // Esc vuelve del listado de mesas al menú principal.
             this.KeyPreview = true;
@@ -60,12 +60,12 @@ namespace PO26B_FSA
         private void DlgPrincipal_Load(object sender, EventArgs e)
         {
             originalHeight = PbxLogoMenu.Height;
-            originalWidht = PbxLogoMenu.Width;
+            originalWidth = PbxLogoMenu.Width;
             originalX = PbxLogoMenu.Left;
             originalY = PbxLogoMenu.Top;
             StartLogoAnimation();
 
-            Helper.UIHelper.RoundControl(PnlLabelMesas, 30, Color.FromArgb(0, 0, 0), 2);
+            UIHelper.RoundControl(PnlLabelMesas, 30, Color.FromArgb(0, 0, 0), 2);
 
             // Datos provisionales: colores aproximados (no son los RGB de Terraria)
             // y cifras inventadas que crecen con la dificultad de la mesa.
@@ -92,11 +92,10 @@ namespace PO26B_FSA
 
             ApplyScale(scale);
 
+            // Al terminar un ciclo, reinicia el reloj; el timer sigue corriendo.
             if (progress >= 1.0)
             {
-                timerLogoAnimation.Stop();
                 stopwatch.Restart();
-                timerLogoAnimation.Start();
             }
 
         }
@@ -162,7 +161,7 @@ namespace PO26B_FSA
         //---------------------------------------------------------------------
         // Método Clamp personalizado.
         //---------------------------------------------------------------------
-        public static double Clamp(double valor, double min, double max)
+        private static double Clamp(double valor, double min, double max)
         {
             if (valor < min) return min;
             if (valor > max) return max;
@@ -172,9 +171,9 @@ namespace PO26B_FSA
         private void ApplyScale(double scale)
         {
             int newHeight = (int)(originalHeight * scale);
-            int newWidth = (int)(originalWidht * scale);
+            int newWidth = (int)(originalWidth * scale);
 
-            int newX = originalX - (newWidth - originalWidht) / 2;
+            int newX = originalX - (newWidth - originalWidth) / 2;
             int newY = originalY - (newHeight - originalHeight) / 2;
 
             PbxLogoMenu.SetBounds(newX, newY, newWidth, newHeight);
@@ -186,11 +185,5 @@ namespace PO26B_FSA
             stopwatch.Restart();
             timerLogoAnimation.Start();
         }
-
-        private void filaMesa3_Load(object sender, EventArgs e)
-        {
-
-        }
-
     }
 }

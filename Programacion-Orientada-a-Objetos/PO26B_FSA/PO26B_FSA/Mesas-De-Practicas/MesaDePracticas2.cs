@@ -22,37 +22,38 @@ namespace PO26B_FSA.Mesas_De_Practicas
             PnlPracticas4.Visible = false;
         }
 
-        private void BtnPractica1_Click(object sender, EventArgs e)
+        //---------------------------------------------------------------------
+        // Alterna el panel elegido y oculta los otros tres. "mostrar" se
+        // calcula antes de ocultar todo para que un segundo clic lo cierre.
+        //---------------------------------------------------------------------
+        private void AlternarPractica(Panel elegido)
         {
-            PnlPracticas1.Visible = !PnlPracticas1.Visible;
+            bool mostrar = !elegido.Visible;
+            PnlPracticas1.Visible = false;
             PnlPracticas2.Visible = false;
             PnlPracticas3.Visible = false;
             PnlPracticas4.Visible = false;
+            elegido.Visible = mostrar;
+        }
+
+        private void BtnPractica1_Click(object sender, EventArgs e)
+        {
+            AlternarPractica(PnlPracticas1);
         }
 
         private void BtnPractica2_Click(object sender, EventArgs e)
         {
-            PnlPracticas2.Visible = !PnlPracticas2.Visible;
-            PnlPracticas1.Visible = false;
-            PnlPracticas3.Visible = false;
-            PnlPracticas4.Visible = false;
+            AlternarPractica(PnlPracticas2);
         }
 
         private void BtnPractica3_Click(object sender, EventArgs e)
         {
-            PnlPracticas3.Visible = !PnlPracticas3.Visible;
-            PnlPracticas1.Visible = false;
-            PnlPracticas2.Visible = false;
-            PnlPracticas4.Visible = false;
-
+            AlternarPractica(PnlPracticas3);
         }
 
         private void BtnPractica4_Click(object sender, EventArgs e)
         {
-            PnlPracticas4.Visible = !PnlPracticas4.Visible;
-            PnlPracticas1.Visible = false;
-            PnlPracticas2.Visible = false;
-            PnlPracticas3.Visible = false;
+            AlternarPractica(PnlPracticas4);
         }
     }
 }

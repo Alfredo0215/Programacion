@@ -32,7 +32,6 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 ```
 
 - Las clases `C*` son `internal`; los tests las ven por `InternalsVisibleTo` en `Properties\AssemblyInfo.cs`.
-- No pruebes `CAnimal.Respirar()`: abre un `MessageBox` y bloquea el test.
 - `CHombre` / `CMujer` usan `Random`; prueba rangos, no valores exactos.
 - Los tests nuevos también van en español.
 

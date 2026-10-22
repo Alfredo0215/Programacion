@@ -36,17 +36,34 @@ namespace PO26B_FSA.Tests
         }
 
         //---------------------------------------------------------------------
-        // Encender y apagar se pueden repetir sin fallar.
+        // El constructor guarda marca y modelo en el campo correcto.
         //---------------------------------------------------------------------
         [TestMethod]
-        public void EncenderYApagar_RepetidosNoLanzanExcepcion()
+        public void Constructor_GuardaMarcaYModelo()
         {
             Celular celular = new Celular("Android", "Galaxy", "Samsung");
 
+            Assert.AreEqual("Samsung", celular.GetMarca());
+            Assert.AreEqual("Galaxy", celular.GetModelo());
+        }
+
+        //---------------------------------------------------------------------
+        // El celular empieza apagado y Encender/Apagar cambian su estado,
+        // aunque se llamen dos veces seguidas.
+        //---------------------------------------------------------------------
+        [TestMethod]
+        public void EncenderYApagar_CambianElEstado()
+        {
+            Celular celular = new Celular("Android", "Galaxy", "Samsung");
+            Assert.IsFalse(celular.GetEncendido());
+
             celular.Encender();
             celular.Encender();
+            Assert.IsTrue(celular.GetEncendido());
+
             celular.Apagar();
             celular.Apagar();
+            Assert.IsFalse(celular.GetEncendido());
         }
     }
 }

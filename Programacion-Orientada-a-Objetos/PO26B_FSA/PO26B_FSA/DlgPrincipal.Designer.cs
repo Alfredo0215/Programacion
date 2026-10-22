@@ -170,7 +170,6 @@
             this.UcMesa4.Name = "UcMesa4";
             this.UcMesa4.Size = new System.Drawing.Size(482, 80);
             this.UcMesa4.TabIndex = 3;
-            this.UcMesa4.Load += new System.EventHandler(this.filaMesa3_Load);
             // 
             // UcMesa3
             // 

@@ -53,53 +53,39 @@ namespace PO26B_FSA.Mesas_De_Practicas
 
         //---------------------------------------------------------------------
         // Navegación entre paneles.
-        // Cada botón alterna (muestra/oculta) su panel con "!" y oculta los
-        // otros tres. Si se pulsa dos veces el mismo botón, su panel se cierra.
+        // Alterna (muestra/oculta) el panel elegido y oculta los otros tres.
+        // Si se pulsa dos veces el mismo botón, su panel se cierra.
+        // "mostrar" se calcula antes de ocultar todo; si no, el panel elegido
+        // ya estaría oculto y siempre se volvería a mostrar.
         //---------------------------------------------------------------------
+        private void AlternarPractica(Panel elegido)
+        {
+            bool mostrar = !elegido.Visible;
+            PnlPracticas1.Visible = false;
+            PnlPracticas2.Visible = false;
+            PnlPracticas3.Visible = false;
+            PnlPracticas4.Visible = false;
+            elegido.Visible = mostrar;
+        }
 
-        //---------------------------------------------------------------------
-        // Botón que activa el panel de la práctica 1 y desactiva los demás.
-        //---------------------------------------------------------------------
         private void BtnPractica1_Click(object sender, EventArgs e)
         {
-            PnlPracticas1.Visible = !PnlPracticas1.Visible;
-            PnlPracticas2.Visible = false;
-            PnlPracticas3.Visible = false;
-            PnlPracticas4.Visible = false;
+            AlternarPractica(PnlPracticas1);
         }
 
-        //---------------------------------------------------------------------
-        // Botón que activa el panel de la práctica 2 y desactiva los demás.
-        //---------------------------------------------------------------------
         private void BtnPractica2_Click(object sender, EventArgs e)
         {
-            PnlPracticas2.Visible = !PnlPracticas2.Visible;
-            PnlPracticas1.Visible = false;
-            PnlPracticas3.Visible = false;
-            PnlPracticas4.Visible = false;
+            AlternarPractica(PnlPracticas2);
         }
 
-        //---------------------------------------------------------------------
-        // Botón que activa el panel de la práctica 3 y desactiva los demás.
-        //---------------------------------------------------------------------
         private void BtnPractica3_Click(object sender, EventArgs e)
         {
-            PnlPracticas3.Visible = !PnlPracticas3.Visible;
-            PnlPracticas1.Visible = false;
-            PnlPracticas2.Visible = false;
-            PnlPracticas4.Visible = false;
-
+            AlternarPractica(PnlPracticas3);
         }
 
-        //---------------------------------------------------------------------
-        // Botón que activa el panel de la práctica 4 y desactiva los demás.
-        //---------------------------------------------------------------------
         private void BtnPractica4_Click(object sender, EventArgs e)
         {
-            PnlPracticas4.Visible = !PnlPracticas4.Visible;
-            PnlPracticas1.Visible = false;
-            PnlPracticas2.Visible = false;
-            PnlPracticas3.Visible = false;
+            AlternarPractica(PnlPracticas4);
         }
 
         //---------------------------------------------------------------------
@@ -160,13 +146,12 @@ namespace PO26B_FSA.Mesas_De_Practicas
             CMujer mujer1 = new CMujer(30, 30);
 
             // Llama a Respirar() en cada uno para ver qué versión del método
-            // se ejecuta según la clase del objeto.
-            MessageBox.Show(animal1.Respirar().ToString());
-            MessageBox.Show(persona1.Respirar().ToString());
-
-            MessageBox.Show(hombre1.Respirar().ToString());
-
-            MessageBox.Show(mujer1.Respirar().ToString());
+            // se ejecuta según la clase del objeto: CAnimal usa la suya;
+            // CPersona la sobrescribe, y CHombre y CMujer heredan la de CPersona.
+            MessageBox.Show(animal1.Respirar());
+            MessageBox.Show(persona1.Respirar());
+            MessageBox.Show(hombre1.Respirar());
+            MessageBox.Show(mujer1.Respirar());
 
         }
 

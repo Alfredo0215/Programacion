@@ -33,21 +33,38 @@ namespace PO26B_FSA
             this.encendido = false;
         }
 
+        //---------------------------------------------------------------------
+        // Métodos.
+        //---------------------------------------------------------------------
+
         public void Encender()
         {
-            if ( encendido == false ) 
-                encendido = true;
+            encendido = true;
         }
 
         public void Apagar()
         {
-            if ( encendido == true )
-                encendido = false;
+            encendido = false;
         }
 
-        public string GetSistemaOperativo() 
-        { 
-            return sistemaOperativo; 
+        public bool GetEncendido()
+        {
+            return encendido;
+        }
+
+        public string GetSistemaOperativo()
+        {
+            return sistemaOperativo;
+        }
+
+        public string GetMarca()
+        {
+            return marca;
+        }
+
+        public string GetModelo()
+        {
+            return modelo;
         }
     }
 }

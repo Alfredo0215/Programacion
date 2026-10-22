@@ -15,6 +15,5 @@ Al terminar:
 - Si alguno falla, lista cada test con su mensaje y la causa probable, en español.
 
 Reglas al escribir o corregir tests:
-- No pruebes `CAnimal.Respirar()`: abre un `MessageBox` y bloquea la ejecución.
 - `CHombre`/`CMujer` usan `Random`: prueba rangos, no valores exactos.
 - Los tests nuevos van en español.

@@ -41,5 +41,24 @@ namespace PO26B_FSA.Tests
 
             StringAssert.Contains(persona.ToString(), "óvulos");
         }
+
+        //---------------------------------------------------------------------
+        // CPersona sobrescribe Respirar de CAnimal, y CHombre / CMujer
+        // heredan la versión de CPersona. Se llama a través de una variable
+        // CAnimal para comprobar que se elige el método según el objeto.
+        //---------------------------------------------------------------------
+        [TestMethod]
+        public void Respirar_UsaLaVersionDeLaClaseDelObjeto()
+        {
+            CAnimal animal = new CAnimal(30, 30, 1);
+            CAnimal persona = new CPersona(30, 30, 1);
+            CAnimal hombre = new CHombre(30, 30);
+            CAnimal mujer = new CMujer(30, 30);
+
+            Assert.AreEqual("Animal respirando por instinto", animal.Respirar());
+            Assert.AreEqual("Persona respirando de forma consciente", persona.Respirar());
+            Assert.AreEqual(persona.Respirar(), hombre.Respirar());
+            Assert.AreEqual(persona.Respirar(), mujer.Respirar());
+        }
     }
 }

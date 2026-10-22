@@ -36,15 +36,15 @@ namespace PO26B_FSA
             PnlTiempo.BackColor = colorPaneles;
             PnlDificultad.BackColor = colorPaneles;
             this.Cursor = Cursors.Hand;
-            Helper.UIHelper.RoundControl(this, 30, Color.FromArgb(75, 98, 183), 2);
-            Helper.UIHelper.RoundControl(PnlRetrato, 20, Color.FromArgb(87, 102, 156), 2);
-            Helper.UIHelper.RoundControl(PnlDificultad, 20, Color.FromArgb(87, 102, 156), 2);
-            Helper.UIHelper.RoundControl(PnlStats, 20, Color.FromArgb(87, 102, 156), 2);
-            Helper.UIHelper.RoundControl(PnlTiempo, 20, Color.FromArgb(87, 102, 156), 2);
+            UIHelper.RoundControl(this, 30, Color.FromArgb(75, 98, 183), 2);
+            UIHelper.RoundControl(PnlRetrato, 20, Color.FromArgb(87, 102, 156), 2);
+            UIHelper.RoundControl(PnlDificultad, 20, Color.FromArgb(87, 102, 156), 2);
+            UIHelper.RoundControl(PnlStats, 20, Color.FromArgb(87, 102, 156), 2);
+            UIHelper.RoundControl(PnlTiempo, 20, Color.FromArgb(87, 102, 156), 2);
 
             
 
-            ConectarHover(this);
+            ConectarEventos(this);
         }
 
         //---------------------------------------------------------------------
@@ -64,15 +64,22 @@ namespace PO26B_FSA
         }
 
         //---------------------------------------------------------------------
-        // Conecta el hover a la fila y a todos sus controles hijos.
+        // Conecta el hover y el clic a la fila y a todos sus controles hijos.
+        // En WinForms el Click de un hijo no llega al padre.
         //---------------------------------------------------------------------
-        private void ConectarHover(Control control)
+        private void ConectarEventos(Control control)
         {
             control.MouseEnter += Fila_MouseEnter;
             control.MouseLeave += Fila_MouseLeave;
+            // "this" ya tiene Click desde el diseñador; conectarlo otra vez
+            // abriría la mesa dos veces.
+            if (control != this)
+            {
+                control.Click += FilaMesa_Click;
+            }
             foreach (Control hijo in control.Controls)
             {
-                ConectarHover(hijo);
+                ConectarEventos(hijo);
             }
         }
 

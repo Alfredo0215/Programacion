@@ -69,7 +69,7 @@
     <Compile Include="FilaMesa.Designer.cs">
       <DependentUpon>FilaMesa.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helper.cs" />
+    <Compile Include="UIHelper.cs" />
     <Compile Include="Mesas-De-Practicas\MesaDePracticas4.cs">
       <SubType>Form</SubType>
     </Compile>
