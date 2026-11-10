@@ -1,0 +1,182 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Text;
+using System.Linq;
+using System.Runtime.Remoting.Channels;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace PO26B_FSA
+{
+    internal class CDron : PictureBox
+    {
+
+        //---------------------------------------------------------------------
+        //Atributos.
+        //---------------------------------------------------------------------
+
+        Random numRandom = new Random();
+        //Atributos de nacimiento
+        protected int posicionInicialX;
+        protected int posicionInicialY;
+        //Atributos del área de desplazamiento:
+
+        protected Control areaDesplazamiento;
+        protected bool norte;
+        protected bool sur;
+        protected bool este;
+        protected bool oeste;
+
+        //Atributos de control
+
+        protected bool inhabilitado;
+        protected bool encendido;
+
+        protected bool regresarACasa;
+
+        //Atributos de ejecución
+
+        protected Thread procesoNavegacion;
+
+        //Atributos de configuración
+
+        protected const int TAMAÑO = 50;
+        //---------------------------------------------------------------------
+        //Métodos.
+        //---------------------------------------------------------------------
+
+
+        public CDron(Control areaDesplazamiento)
+        {
+
+            int R = numRandom.Next(0, 256);
+            int G = numRandom.Next(0, 256);
+            int B = numRandom.Next(0, 256);
+
+            CheckForIllegalCrossThreadCalls = false;
+
+
+
+            //Recibe parámetros
+            this.areaDesplazamiento = areaDesplazamiento;
+            this.areaDesplazamiento.Controls.Add(this);
+
+            //Calcula posición inicial
+            posicionInicialX = numRandom.Next(0, this.areaDesplazamiento.Width - TAMAÑO);
+            posicionInicialY = numRandom.Next(0, this.areaDesplazamiento.Height - TAMAÑO);
+
+            //Inicia atributos de nagevación
+
+            norte = false;
+            sur = true;
+            este = true;
+            oeste = false;
+
+            //Inicia atributos de control
+
+            encendido = false;
+            inhabilitado = false;
+            regresarACasa = false;
+
+            //Inicializa atributos de ejecución
+
+            
+
+            //Inicializa otras propiedades 
+   
+            Location = new System.Drawing.Point(this.posicionInicialX, this.posicionInicialY);
+            Name = "DRON";
+            Size = new System.Drawing.Size(50, 50);
+            BackColor = Color.FromArgb(0,G,B);
+            BringToFront();
+           
+            Click += new EventHandler(Accion);
+        }
+
+        public void Encender(int tiempoArranque)
+        {
+            Thread procesoEncendido;
+
+            procesoEncendido = new Thread(() => {
+                Thread.Sleep(tiempoArranque);
+
+                Visible = false;
+                Thread.Sleep(100);
+                Visible = true;
+                Thread.Sleep(100);
+                Visible = true;
+
+
+                BackColor = Color.Red;
+                encendido = true;
+                Desplazar(numRandom.Next(1, 50
+                    ));
+            });
+
+            procesoEncendido.Start();
+        }
+
+        public void Desplazar(int velocidad)
+        {
+
+            int x;
+            int y;
+
+            procesoNavegacion = new Thread(() =>
+            {
+
+                while(encendido)
+                {
+                    x = Location.X; 
+                    y = Location.Y;
+
+                    if (norte)
+                        y = y - 1;
+                    if (sur)
+                        y = y + 1;
+                    if (este)
+                        x = x +1;
+                    if (oeste)
+                        x = x - 1;
+
+                    if(x <= 0)
+                    {
+                        oeste = false;
+                        este = true;
+                    }
+
+                    if (x >= areaDesplazamiento.Width - TAMAÑO)
+                    {
+                        oeste = true;
+                        este = false;
+                    }
+
+                    if (y <= 0)
+                    {
+                        norte = false;
+                        sur = true;
+                    }
+
+                    if (y >= areaDesplazamiento.Height - TAMAÑO)
+                    {
+                        sur = false;
+                        norte = true;
+                    }
+
+                    Location = new Point(x, y);
+                    Thread.Sleep(velocidad);
+                }
+            });
+
+            procesoNavegacion.Start();
+        }
+
+        private void Accion(object sender, EventArgs e)
+        {
+            BackColor = Color.Black;
+        }
+    }
+}

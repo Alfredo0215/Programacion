@@ -55,5 +55,26 @@ namespace PO26B_FSA.Mesas_De_Practicas
         {
             AlternarPractica(PnlPracticas4);
         }
+        private void PnlPracticas1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TbxCaptura1.Text = e.X.ToString();
+            TbxCaptura2.Text = e.Y.ToString();
+        }
+
+        private void PnlPracticas1_MouseMove(object sender, MouseEventArgs e)
+        {
+            PbxDron.Left = e.X;
+            PbxDron.Top = e.Y;
+
+            TbxCaptura1.Text = PbxDron.Left.ToString();
+            TbxCaptura2.Text = PbxDron.Top.ToString();
+
+        }
+
+        private void BtnP1Pnl1_Click(object sender, EventArgs e)
+        {
+            CDron Dron = new CDron(PnlPracticas1);
+            Dron.Encender(2000);
+        }
     }
 }

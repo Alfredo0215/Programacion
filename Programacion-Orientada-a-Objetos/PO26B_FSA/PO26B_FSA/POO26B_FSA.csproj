@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CAnimal.cs" />
+    <Compile Include="CDron.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Celular.cs" />
     <Compile Include="CelularAndroid.cs" />
     <Compile Include="CelularIos.cs" />
@@ -170,6 +173,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\EstrellaMana.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dron.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

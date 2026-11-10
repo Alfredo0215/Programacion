@@ -44,13 +44,17 @@
             this.LblCaptura1 = new System.Windows.Forms.Label();
             this.PnlFill = new System.Windows.Forms.Panel();
             this.PnlPracticas1 = new System.Windows.Forms.Panel();
+            this.PbxDron = new System.Windows.Forms.PictureBox();
             this.PnlPracticas3 = new System.Windows.Forms.Panel();
             this.PnlPracticas2 = new System.Windows.Forms.Panel();
             this.PnlPracticas4 = new System.Windows.Forms.Panel();
+            this.BtnP1Pnl1 = new System.Windows.Forms.Button();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.PnlFill.SuspendLayout();
+            this.PnlPracticas1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxDron)).BeginInit();
             this.SuspendLayout();
             // 
             // PanelBottom
@@ -215,10 +219,25 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlPracticas1.BackColor = System.Drawing.Color.SteelBlue;
+            this.PnlPracticas1.Controls.Add(this.BtnP1Pnl1);
+            this.PnlPracticas1.Controls.Add(this.PbxDron);
             this.PnlPracticas1.Location = new System.Drawing.Point(7, 7);
             this.PnlPracticas1.Name = "PnlPracticas1";
             this.PnlPracticas1.Size = new System.Drawing.Size(909, 379);
             this.PnlPracticas1.TabIndex = 0;
+            this.PnlPracticas1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlPracticas1_MouseDown);
+            this.PnlPracticas1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlPracticas1_MouseMove);
+            // 
+            // PbxDron
+            // 
+            this.PbxDron.BackColor = System.Drawing.Color.Transparent;
+            this.PbxDron.Image = global::PO26B_FSA.Properties.Resources.Dron;
+            this.PbxDron.Location = new System.Drawing.Point(20, 105);
+            this.PbxDron.Name = "PbxDron";
+            this.PbxDron.Size = new System.Drawing.Size(50, 50);
+            this.PbxDron.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.PbxDron.TabIndex = 0;
+            this.PbxDron.TabStop = false;
             // 
             // PnlPracticas3
             // 
@@ -253,6 +272,16 @@
             this.PnlPracticas4.Size = new System.Drawing.Size(910, 379);
             this.PnlPracticas4.TabIndex = 3;
             // 
+            // BtnP1Pnl1
+            // 
+            this.BtnP1Pnl1.Location = new System.Drawing.Point(20, 15);
+            this.BtnP1Pnl1.Name = "BtnP1Pnl1";
+            this.BtnP1Pnl1.Size = new System.Drawing.Size(75, 23);
+            this.BtnP1Pnl1.TabIndex = 1;
+            this.BtnP1Pnl1.Text = "P1";
+            this.BtnP1Pnl1.UseVisualStyleBackColor = true;
+            this.BtnP1Pnl1.Click += new System.EventHandler(this.BtnP1Pnl1_Click);
+            // 
             // MesaDePracticas2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -270,6 +299,8 @@
             this.PanelTop.ResumeLayout(false);
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
+            this.PnlPracticas1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PbxDron)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -295,5 +326,7 @@
         private System.Windows.Forms.Label LblCaptura3;
         private System.Windows.Forms.Label LblCaptura2;
         private System.Windows.Forms.Label LblCaptura1;
+        private System.Windows.Forms.PictureBox PbxDron;
+        private System.Windows.Forms.Button BtnP1Pnl1;
     }
 }

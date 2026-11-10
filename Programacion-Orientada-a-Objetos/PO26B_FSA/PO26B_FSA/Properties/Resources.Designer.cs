@@ -83,6 +83,16 @@ namespace PO26B_FSA.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Dron {
+            get {
+                object obj = ResourceManager.GetObject("Dron", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap EstrellaMana {
             get {
                 object obj = ResourceManager.GetObject("EstrellaMana", resourceCulture);

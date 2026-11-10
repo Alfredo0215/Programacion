@@ -194,7 +194,7 @@ namespace PO26B_FSA.Mesas_De_Practicas
         //---------------------------------------------------------------------
         private void BtnP2Pnl3_Click(object sender, EventArgs e)
         {
-            //Obtiene el número de personas
+             //Obtiene el número de personas
             // TryParse no lanza excepción: devuelve false si el texto no es
             // un entero. Si falla, avisa y sale del método con return.
             // OJO: un número negativo sí pasa; el for simplemente no se ejecuta.
