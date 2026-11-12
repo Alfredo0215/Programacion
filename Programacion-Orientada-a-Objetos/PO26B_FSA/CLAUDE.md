@@ -50,3 +50,12 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 - No edites los `.Designer.cs` a mano. Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
 - Estética de la interfaz: pixel-art estilo Terraria.
 - Navegación entre vistas (p. ej. menú principal y selector de mesas): un formulario abre u oculta a otro sin tocar sus controles. No añadir interfaces ni gestores de navegación hasta que haya un problema real que justifique su coste.
+
+## Proyecto final: Acuario
+
+Simulación de ecosistema (plantas, peces herbívoros y depredadores). Fases, estado y registro de decisiones en `PLAN.md`; léelo solo cuando la tarea sea del proyecto final.
+
+- Vive en un panel de `MesaDePracticas4`, abierto con `AlternarPractica`.
+- Movimiento con un solo `System.Windows.Forms.Timer`; nada de hilos por objeto ni `CheckForIllegalCrossThreadCalls` (los problemas de `CDron`).
+- Las entidades son objetos normales, no controles: se dibujan en el `Paint` de un solo control del área. Las plantas también son entidades.
+- El diseño de clases lo deduce Alfredo: guía con preguntas, no entregues jerarquías ni código resueltos salvo que lo pida.

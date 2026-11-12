@@ -18,7 +18,7 @@ namespace PO26B_FSA
         //Atributos.
         //---------------------------------------------------------------------
 
-        Random numRandom = new Random();
+        private static Random numRandom = new Random();
         //Atributos de nacimiento
         protected int posicionInicialX;
         protected int posicionInicialY;
@@ -56,7 +56,7 @@ namespace PO26B_FSA
             int G = numRandom.Next(0, 256);
             int B = numRandom.Next(0, 256);
 
-            CheckForIllegalCrossThreadCalls = false;
+            
 
 
 
@@ -94,6 +94,8 @@ namespace PO26B_FSA
             BringToFront();
            
             Click += new EventHandler(Accion);
+
+            CheckForIllegalCrossThreadCalls = false;
         }
 
         public void Encender(int tiempoArranque)

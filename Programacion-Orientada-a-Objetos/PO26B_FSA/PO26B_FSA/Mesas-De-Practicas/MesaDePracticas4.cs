@@ -12,14 +12,14 @@ namespace PO26B_FSA.Mesas_De_Practicas
 {
     public partial class MesaDePracticas4 : Form
     {
+
+        private int contador;
         public MesaDePracticas4()
         {
 
             InitializeComponent();
-            PnlPracticas1.Visible = false;
-            PnlPracticas2.Visible = false;
-            PnlPracticas3.Visible = false;
-            PnlPracticas4.Visible = false;
+            PnlProyectoF.Visible = false;
+            PnlProyectoFIA.Visible = false;
         }
 
         //---------------------------------------------------------------------
@@ -29,31 +29,43 @@ namespace PO26B_FSA.Mesas_De_Practicas
         private void AlternarPractica(Panel elegido)
         {
             bool mostrar = !elegido.Visible;
-            PnlPracticas1.Visible = false;
-            PnlPracticas2.Visible = false;
-            PnlPracticas3.Visible = false;
-            PnlPracticas4.Visible = false;
+            PnlProyectoF.Visible = false;
+            PnlProyectoFIA.Visible = false;
             elegido.Visible = mostrar;
         }
 
-        private void BtnPractica1_Click(object sender, EventArgs e)
-        {
-            AlternarPractica(PnlPracticas1);
-        }
+
 
         private void BtnPractica2_Click(object sender, EventArgs e)
         {
-            AlternarPractica(PnlPracticas2);
+            AlternarPractica(PnlProyectoF);
         }
 
-        private void BtnPractica3_Click(object sender, EventArgs e)
-        {
-            AlternarPractica(PnlPracticas3);
-        }
+
 
         private void BtnPractica4_Click(object sender, EventArgs e)
         {
-            AlternarPractica(PnlPracticas4);
+            AlternarPractica(PnlProyectoFIA);
+        }
+        private void TimerAcuario_Tick(object sender, EventArgs e)
+        {
+            contador++;
+
+            ActualizarLabel(LblTicks);
+
+        }
+
+        private void ActualizarLabel(Label label)
+        {
+            label.Text = $"Ticks: {contador.ToString()}";
+        }
+
+        private void PnlProyectoF_VisibleChanged(object sender, EventArgs e)
+        {
+            if (!PnlProyectoF.Visible)
+            { TimerAcuario.Stop(); return; }
+
+            TimerAcuario.Start();
         }
     }
 }
