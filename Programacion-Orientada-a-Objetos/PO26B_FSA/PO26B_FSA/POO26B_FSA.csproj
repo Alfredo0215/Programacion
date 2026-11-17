@@ -49,6 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acuario\CDepredador.cs" />
+    <Compile Include="Acuario\CEcosistema.cs" />
+    <Compile Include="Acuario\CEntidad.cs" />
+    <Compile Include="Acuario\CHerbivoro.cs" />
+    <Compile Include="Acuario\CParametros.cs" />
+    <Compile Include="Acuario\CPez.cs" />
+    <Compile Include="Acuario\CPlanta.cs" />
     <Compile Include="CAnimal.cs" />
     <Compile Include="CDron.cs">
       <SubType>Component</SubType>

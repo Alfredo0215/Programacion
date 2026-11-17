@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PO26B_FSA.Acuario;
 
 namespace PO26B_FSA.Mesas_De_Practicas
 {
@@ -14,12 +15,14 @@ namespace PO26B_FSA.Mesas_De_Practicas
     {
 
         private int contador;
+        private CEcosistema ecosistema;
         public MesaDePracticas4()
         {
 
             InitializeComponent();
             PnlProyectoF.Visible = false;
             PnlProyectoFIA.Visible = false;
+            PbxAcuario.Paint += PbxAcuario_Paint;
         }
 
         //---------------------------------------------------------------------
@@ -53,6 +56,11 @@ namespace PO26B_FSA.Mesas_De_Practicas
 
             ActualizarLabel(LblTicks);
 
+            // El Timer solo arranca después de crear el ecosistema
+            // (PnlProyectoF_VisibleChanged), así que aquí nunca es null.
+            ecosistema.Paso();
+            PbxAcuario.Invalidate();
+
         }
 
         private void ActualizarLabel(Label label)
@@ -65,7 +73,26 @@ namespace PO26B_FSA.Mesas_De_Practicas
             if (!PnlProyectoF.Visible)
             { TimerAcuario.Stop(); return; }
 
+            // Se crea al mostrarse por primera vez: hasta entonces el Dock
+            // no garantiza que PbxAcuario tenga su tamaño real.
+            if (ecosistema == null)
+            {
+                ecosistema = new CEcosistema(PbxAcuario.ClientSize.Width, PbxAcuario.ClientSize.Height);
+                PbxAcuario.Invalidate();
+            }
+
             TimerAcuario.Start();
+        }
+
+        //---------------------------------------------------------------------
+        // Dibuja el acuario. Invalidate() pide a Windows que lance este evento.
+        //---------------------------------------------------------------------
+        private void PbxAcuario_Paint(object sender, PaintEventArgs e)
+        {
+            if (ecosistema != null)
+            {
+                ecosistema.Dibujar(e.Graphics);
+            }
         }
     }
 }

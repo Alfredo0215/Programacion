@@ -21,7 +21,7 @@ $msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere
 
 `vswhere` localiza el MSBuild de la versión de Visual Studio instalada, así que no hay ruta fija que se rompa al actualizar. El hook y el skill `/compilar` usan el mismo método.
 
-Un hook compila automáticamente tras cada edición de un `.cs` del proyecto principal y muestra los errores. No hay linter.
+Un hook compila automáticamente tras cada edición de un `.cs` del proyecto principal y muestra los errores. No hay linter. En un cambio que abarca varios archivos, el hook muestra errores de los pasos intermedios (p. ej. una firma ya cambiada y sus llamadas aún no); no los persigas uno por uno: la verificación válida es compilar al terminar todas las ediciones.
 
 ## Tests
 
@@ -41,9 +41,10 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 - Clases con prefijo `C` (`CPersona`, `CHombre`); las de celular no lo llevan (`Celular`, `CelularAndroid`).
 - Getters como métodos estilo Java (`GetSistemaOperativo()`), no propiedades.
 - Controles con prefijo de 3 letras (`Btn`, `Lbl`, `Pnl`, `Pbx`, `Tbx`) y handlers `Control_Evento` (`LblMesa2_Click`).
+- Excepciones aceptadas por Alfredo en `MesaDePracticas4`, que no se proponen renombrar: `TimerAcuario` (sin prefijo de 3 letras) y `BtnPractica2_Click`, conectado a `BtnProyectoF`. Los controles nuevos siguen la convención.
 - Llaves en su propia línea, 4 espacios de indentación.
 - Secciones de clase con banner `//----` / `// Atributos.` / `//----`.
-- Los namespaces son `PO26B_FSA` y `PO26B_FSA.Mesas_De_Practicas` (la carpeta se llama `Mesas-De-Practicas`).
+- Los namespaces son `PO26B_FSA`, `PO26B_FSA.Mesas_De_Practicas` (carpeta `Mesas-De-Practicas`) y `PO26B_FSA.Acuario` (carpeta `Acuario`, clases del proyecto final).
 
 ## Interfaz y diseñador
 
@@ -58,4 +59,6 @@ Simulación de ecosistema (plantas, peces herbívoros y depredadores). Fases, es
 - Vive en un panel de `MesaDePracticas4`, abierto con `AlternarPractica`.
 - Movimiento con un solo `System.Windows.Forms.Timer`; nada de hilos por objeto ni `CheckForIllegalCrossThreadCalls` (los problemas de `CDron`).
 - Las entidades son objetos normales, no controles: se dibujan en el `Paint` de un solo control del área. Las plantas también son entidades.
-- El diseño de clases lo deduce Alfredo: guía con preguntas, no entregues jerarquías ni código resueltos salvo que lo pida.
+- Claude propone diseño y código con justificación (incluye "qué debes entender para defenderlo") y espera la aprobación de Alfredo antes de implementar. Los controles se siguen agregando en el diseñador.
+- Los eventos de controles ya existentes pueden suscribirse en código (p. ej. `PbxAcuario.Paint` en el constructor) para no tocar el `.Designer.cs`.
+- El estado actual y el siguiente paso están en la sección "Estado actual" de `PLAN.md`.

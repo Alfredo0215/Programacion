@@ -43,9 +43,8 @@
             this.LblCaptura1 = new System.Windows.Forms.Label();
             this.PnlFill = new System.Windows.Forms.Panel();
             this.PnlProyectoF = new System.Windows.Forms.Panel();
-            this.BtnPrueba = new System.Windows.Forms.Button();
-            this.LblTicks = new System.Windows.Forms.Label();
             this.PbxAcuario = new System.Windows.Forms.PictureBox();
+            this.LblTicks = new System.Windows.Forms.Label();
             this.PnlProyectoFIA = new System.Windows.Forms.Panel();
             this.TimerAcuario = new System.Windows.Forms.Timer(this.components);
             this.PanelBottom.SuspendLayout();
@@ -196,31 +195,11 @@
             this.PnlProyectoF.BackColor = System.Drawing.Color.Lavender;
             this.PnlProyectoF.Controls.Add(this.PbxAcuario);
             this.PnlProyectoF.Controls.Add(this.LblTicks);
-            this.PnlProyectoF.Controls.Add(this.BtnPrueba);
             this.PnlProyectoF.Location = new System.Drawing.Point(5, 7);
             this.PnlProyectoF.Name = "PnlProyectoF";
             this.PnlProyectoF.Size = new System.Drawing.Size(911, 379);
             this.PnlProyectoF.TabIndex = 1;
             this.PnlProyectoF.VisibleChanged += new System.EventHandler(this.PnlProyectoF_VisibleChanged);
-            // 
-            // BtnPrueba
-            // 
-            this.BtnPrueba.Location = new System.Drawing.Point(47, 47);
-            this.BtnPrueba.Name = "BtnPrueba";
-            this.BtnPrueba.Size = new System.Drawing.Size(75, 23);
-            this.BtnPrueba.TabIndex = 2;
-            this.BtnPrueba.Text = "Prueba";
-            this.BtnPrueba.UseVisualStyleBackColor = true;
-            // 
-            // LblTicks
-            // 
-            this.LblTicks.AutoSize = true;
-            this.LblTicks.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LblTicks.Location = new System.Drawing.Point(0, 0);
-            this.LblTicks.Name = "LblTicks";
-            this.LblTicks.Size = new System.Drawing.Size(51, 13);
-            this.LblTicks.TabIndex = 1;
-            this.LblTicks.Text = "Ticks = 0";
             // 
             // PbxAcuario
             // 
@@ -231,6 +210,16 @@
             this.PbxAcuario.Size = new System.Drawing.Size(911, 366);
             this.PbxAcuario.TabIndex = 0;
             this.PbxAcuario.TabStop = false;
+            // 
+            // LblTicks
+            // 
+            this.LblTicks.AutoSize = true;
+            this.LblTicks.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LblTicks.Location = new System.Drawing.Point(0, 0);
+            this.LblTicks.Name = "LblTicks";
+            this.LblTicks.Size = new System.Drawing.Size(51, 13);
+            this.LblTicks.TabIndex = 1;
+            this.LblTicks.Text = "Ticks = 0";
             // 
             // PnlProyectoFIA
             // 
@@ -245,6 +234,7 @@
             // 
             // TimerAcuario
             // 
+            this.TimerAcuario.Interval = 33;
             this.TimerAcuario.Tick += new System.EventHandler(this.TimerAcuario_Tick);
             // 
             // MesaDePracticas4
@@ -291,6 +281,5 @@
         private System.Windows.Forms.PictureBox PbxAcuario;
         private System.Windows.Forms.Label LblTicks;
         private System.Windows.Forms.Timer TimerAcuario;
-        private System.Windows.Forms.Button BtnPrueba;
     }
 }
