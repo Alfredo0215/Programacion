@@ -32,21 +32,88 @@ namespace PO26B_FSA.Acuario
 
             for (int i = 0; i < CParametros.PlantasIniciales; i++)
             {
-                PointF p = PosicionAleatoria(CParametros.LadoPlanta);
-                entidades.Add(new CPlanta(p.X, p.Y));
+                AgregarPlanta();
             }
 
             for (int i = 0; i < CParametros.HerbivorosIniciales; i++)
             {
-                PointF p = PosicionAleatoria(CParametros.LadoHerbivoro);
-                entidades.Add(new CHerbivoro(p.X, p.Y, AnguloAleatorio()));
+                AgregarHerbivoro();
             }
 
             for (int i = 0; i < CParametros.DepredadoresIniciales; i++)
             {
-                PointF p = PosicionAleatoria(CParametros.LadoDepredador);
-                entidades.Add(new CDepredador(p.X, p.Y, AnguloAleatorio()));
+                AgregarDepredador();
             }
+        }
+
+        //---------------------------------------------------------------------
+        // Agregan una entidad en una posición al azar. Devuelven false si el
+        // acuario está lleno. "Crear al azar" vive solo aquí: lo usan el
+        // constructor y los botones del formulario.
+        // Ojo: modifican la lista, así que nunca deben llamarse desde dentro
+        // de Paso(). El Click y el Tick corren en el mismo hilo, uno después
+        // del otro, así que un clic nunca interrumpe un Paso().
+        //---------------------------------------------------------------------
+        public bool AgregarPlanta()
+        {
+            if (entidades.Count >= CParametros.PoblacionMaxima)
+            {
+                return false;
+            }
+
+            PointF p = PosicionAleatoria(CParametros.LadoPlanta);
+            entidades.Add(new CPlanta(p.X, p.Y));
+            return true;
+        }
+
+        public bool AgregarHerbivoro()
+        {
+            if (entidades.Count >= CParametros.PoblacionMaxima)
+            {
+                return false;
+            }
+
+            PointF p = PosicionAleatoria(CParametros.LadoHerbivoro);
+            entidades.Add(new CHerbivoro(p.X, p.Y, AnguloAleatorio()));
+            return true;
+        }
+
+        public bool AgregarDepredador()
+        {
+            if (entidades.Count >= CParametros.PoblacionMaxima)
+            {
+                return false;
+            }
+
+            PointF p = PosicionAleatoria(CParametros.LadoDepredador);
+            entidades.Add(new CDepredador(p.X, p.Y, AnguloAleatorio()));
+            return true;
+        }
+
+        //---------------------------------------------------------------------
+        // Cuenta las entidades de un tipo. T es un parámetro de tipo: quien
+        // llama elige qué contar, p. ej. Contar<CPlanta>(). "where" obliga a
+        // que T sea una entidad. Si una especie se extinguió, devuelve 0.
+        //---------------------------------------------------------------------
+        public int Contar<T>() where T : CEntidad
+        {
+            int total = 0;
+            foreach (CEntidad entidad in entidades)
+            {
+                if (entidad is T)
+                {
+                    total++;
+                }
+            }
+            return total;
+        }
+
+        //---------------------------------------------------------------------
+        // Única fuente del tiempo de la simulación (el formulario no cuenta).
+        //---------------------------------------------------------------------
+        public int GetTicks()
+        {
+            return ticks;
         }
 
         //---------------------------------------------------------------------

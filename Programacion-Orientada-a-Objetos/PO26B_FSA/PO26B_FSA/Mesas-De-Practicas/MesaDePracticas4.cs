@@ -14,8 +14,10 @@ namespace PO26B_FSA.Mesas_De_Practicas
     public partial class MesaDePracticas4 : Form
     {
 
-        private int contador;
         private CEcosistema ecosistema;
+        // La pausa la decide el usuario; ocultar el panel es otra causa
+        // (navegación). Por eso van separadas.
+        private bool pausado;
         public MesaDePracticas4()
         {
 
@@ -52,20 +54,26 @@ namespace PO26B_FSA.Mesas_De_Practicas
         }
         private void TimerAcuario_Tick(object sender, EventArgs e)
         {
-            contador++;
-
-            ActualizarLabel(LblTicks);
-
             // El Timer solo arranca después de crear el ecosistema
             // (PnlProyectoF_VisibleChanged), así que aquí nunca es null.
             ecosistema.Paso();
-            PbxAcuario.Invalidate();
-
+            RefrescarAcuario();
         }
 
-        private void ActualizarLabel(Label label)
+        //---------------------------------------------------------------------
+        // Solo muestra: pregunta al ecosistema y redibuja. No cuenta por su
+        // cuenta ni guarda otro reloj. El tiempo va en ticks, la unidad de
+        // las reglas; no en segundos, porque Interval es un mínimo, no una
+        // duración garantizada.
+        //---------------------------------------------------------------------
+        private void RefrescarAcuario()
         {
-            label.Text = $"Ticks: {contador.ToString()}";
+            LblEstadisticas.Text =
+                $"Plantas: {ecosistema.Contar<CPlanta>()}   " +
+                $"Herbívoros: {ecosistema.Contar<CHerbivoro>()}   " +
+                $"Depredadores: {ecosistema.Contar<CDepredador>()}   " +
+                $"Ticks: {ecosistema.GetTicks()}";
+            PbxAcuario.Invalidate();
         }
 
         private void PnlProyectoF_VisibleChanged(object sender, EventArgs e)
@@ -78,10 +86,14 @@ namespace PO26B_FSA.Mesas_De_Practicas
             if (ecosistema == null)
             {
                 ecosistema = new CEcosistema(PbxAcuario.ClientSize.Width, PbxAcuario.ClientSize.Height);
-                PbxAcuario.Invalidate();
+                RefrescarAcuario();
             }
 
-            TimerAcuario.Start();
+            // Volver al panel no anula una pausa del usuario.
+            if (!pausado)
+            {
+                TimerAcuario.Start();
+            }
         }
 
         //---------------------------------------------------------------------
@@ -93,6 +105,47 @@ namespace PO26B_FSA.Mesas_De_Practicas
             {
                 ecosistema.Dibujar(e.Graphics);
             }
+        }
+
+        //---------------------------------------------------------------------
+        // Botones del acuario: solo reenvían la acción al ecosistema y
+        // refrescan. Las reglas (dónde nace, si cabe) están en CEcosistema.
+        //---------------------------------------------------------------------
+        private void BtnIniciarPausar_Click(object sender, EventArgs e)
+        {
+            pausado = !pausado;
+            TimerAcuario.Enabled = !pausado;
+            BtnIniciarPausar.Text = pausado ? "Iniciar" : "Pausar";
+        }
+
+        //---------------------------------------------------------------------
+        // Un ecosistema nuevo vuelve al estado inicial; el viejo queda sin
+        // referencias y el recolector de basura lo libera. Respeta la pausa.
+        //---------------------------------------------------------------------
+        private void BtnReiniciar_Click(object sender, EventArgs e)
+        {
+            ecosistema = new CEcosistema(PbxAcuario.ClientSize.Width, PbxAcuario.ClientSize.Height);
+            RefrescarAcuario();
+        }
+
+        // Si el acuario está lleno, Agregar devuelve false y no pasa nada;
+        // los conteos ya lo muestran. Refrescar hace que se vea en pausa.
+        private void BtnAgregarPlanta_Click(object sender, EventArgs e)
+        {
+            ecosistema.AgregarPlanta();
+            RefrescarAcuario();
+        }
+
+        private void BtnAgregarHerbivoro_Click(object sender, EventArgs e)
+        {
+            ecosistema.AgregarHerbivoro();
+            RefrescarAcuario();
+        }
+
+        private void BtnAgregarDepredador_Click(object sender, EventArgs e)
+        {
+            ecosistema.AgregarDepredador();
+            RefrescarAcuario();
         }
     }
 }

@@ -29,7 +29,8 @@ namespace PO26B_FSA.Acuario
 
         //---------------------------------------------------------------------
         // Energía y edad. La energía se gasta por tick; la edad se mide en
-        // ticks (con Interval = 33 ms, 30 ticks ≈ 1 s).
+        // ticks. Todo el tiempo de la simulación va en ticks: Interval = 33 ms
+        // es un mínimo, así que un tick real puede durar más.
         //---------------------------------------------------------------------
         public const int EnergiaPlanta = 300;
         public const int EnergiaInicialHerbivoro = 600;

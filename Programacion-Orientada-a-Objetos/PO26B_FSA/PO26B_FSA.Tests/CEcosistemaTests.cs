@@ -276,6 +276,55 @@ namespace PO26B_FSA.Tests
         }
 
         //---------------------------------------------------------------------
+        // Fase 6: conteos, agregar y tiempo.
+        //---------------------------------------------------------------------
+        [TestMethod]
+        public void Contar_CoincideConPoblacionInicial()
+        {
+            CEcosistema ecosistema = new CEcosistema(300f, 200f);
+
+            Assert.AreEqual(CParametros.PlantasIniciales, ecosistema.Contar<CPlanta>());
+            Assert.AreEqual(CParametros.HerbivorosIniciales, ecosistema.Contar<CHerbivoro>());
+            Assert.AreEqual(CParametros.DepredadoresIniciales, ecosistema.Contar<CDepredador>());
+        }
+
+        [TestMethod]
+        public void AgregarHerbivoro_SumaUno()
+        {
+            CEcosistema ecosistema = new CEcosistema(300f, 200f);
+            int antes = ecosistema.Contar<CHerbivoro>();
+
+            Assert.IsTrue(ecosistema.AgregarHerbivoro());
+            Assert.AreEqual(antes + 1, ecosistema.Contar<CHerbivoro>());
+        }
+
+        [TestMethod]
+        public void Agregar_RespetaElTope()
+        {
+            CEcosistema ecosistema = new CEcosistema(300f, 200f);
+            bool ultima = true;
+
+            for (int i = 0; i < 200; i++)
+            {
+                ultima = ecosistema.AgregarPlanta();
+            }
+
+            Assert.AreEqual(CParametros.PoblacionMaxima, ecosistema.GetEntidades().Count);
+            Assert.IsFalse(ultima, "Agregó con el acuario lleno.");
+        }
+
+        [TestMethod]
+        public void Paso_AvanzaLosTicks()
+        {
+            CEcosistema ecosistema = new CEcosistema(300f, 200f);
+
+            ecosistema.Paso();
+            ecosistema.Paso();
+
+            Assert.AreEqual(2, ecosistema.GetTicks());
+        }
+
+        //---------------------------------------------------------------------
         // Pez solo para pruebas: permite elegir energía y edad máxima, para
         // aislar la muerte por vejez de la muerte por hambre.
         //---------------------------------------------------------------------

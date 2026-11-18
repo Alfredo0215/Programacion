@@ -43,8 +43,14 @@
             this.LblCaptura1 = new System.Windows.Forms.Label();
             this.PnlFill = new System.Windows.Forms.Panel();
             this.PnlProyectoF = new System.Windows.Forms.Panel();
+            this.FlpControlesAcuario = new System.Windows.Forms.FlowLayoutPanel();
+            this.BtnIniciarPausar = new System.Windows.Forms.Button();
+            this.BtnReiniciar = new System.Windows.Forms.Button();
+            this.BtnAgregarPlanta = new System.Windows.Forms.Button();
+            this.BtnAgregarHerbivoro = new System.Windows.Forms.Button();
+            this.BtnAgregarDepredador = new System.Windows.Forms.Button();
             this.PbxAcuario = new System.Windows.Forms.PictureBox();
-            this.LblTicks = new System.Windows.Forms.Label();
+            this.LblEstadisticas = new System.Windows.Forms.Label();
             this.PnlProyectoFIA = new System.Windows.Forms.Panel();
             this.TimerAcuario = new System.Windows.Forms.Timer(this.components);
             this.PanelBottom.SuspendLayout();
@@ -52,6 +58,7 @@
             this.PanelTop.SuspendLayout();
             this.PnlFill.SuspendLayout();
             this.PnlProyectoF.SuspendLayout();
+            this.FlpControlesAcuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxAcuario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -194,32 +201,97 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlProyectoF.BackColor = System.Drawing.Color.Lavender;
             this.PnlProyectoF.Controls.Add(this.PbxAcuario);
-            this.PnlProyectoF.Controls.Add(this.LblTicks);
+            this.PnlProyectoF.Controls.Add(this.FlpControlesAcuario);
+            this.PnlProyectoF.Controls.Add(this.LblEstadisticas);
             this.PnlProyectoF.Location = new System.Drawing.Point(5, 7);
             this.PnlProyectoF.Name = "PnlProyectoF";
             this.PnlProyectoF.Size = new System.Drawing.Size(911, 379);
             this.PnlProyectoF.TabIndex = 1;
             this.PnlProyectoF.VisibleChanged += new System.EventHandler(this.PnlProyectoF_VisibleChanged);
             // 
+            // FlpControlesAcuario
+            // 
+            this.FlpControlesAcuario.AutoSize = true;
+            this.FlpControlesAcuario.Controls.Add(this.BtnIniciarPausar);
+            this.FlpControlesAcuario.Controls.Add(this.BtnReiniciar);
+            this.FlpControlesAcuario.Controls.Add(this.BtnAgregarPlanta);
+            this.FlpControlesAcuario.Controls.Add(this.BtnAgregarHerbivoro);
+            this.FlpControlesAcuario.Controls.Add(this.BtnAgregarDepredador);
+            this.FlpControlesAcuario.Dock = System.Windows.Forms.DockStyle.Top;
+            this.FlpControlesAcuario.Location = new System.Drawing.Point(0, 13);
+            this.FlpControlesAcuario.Name = "FlpControlesAcuario";
+            this.FlpControlesAcuario.Size = new System.Drawing.Size(911, 29);
+            this.FlpControlesAcuario.TabIndex = 2;
+            // 
+            // BtnIniciarPausar
+            // 
+            this.BtnIniciarPausar.Location = new System.Drawing.Point(3, 3);
+            this.BtnIniciarPausar.Name = "BtnIniciarPausar";
+            this.BtnIniciarPausar.Size = new System.Drawing.Size(75, 23);
+            this.BtnIniciarPausar.TabIndex = 0;
+            this.BtnIniciarPausar.Text = "Pausar";
+            this.BtnIniciarPausar.UseVisualStyleBackColor = true;
+            this.BtnIniciarPausar.Click += new System.EventHandler(this.BtnIniciarPausar_Click);
+            // 
+            // BtnReiniciar
+            // 
+            this.BtnReiniciar.Location = new System.Drawing.Point(84, 3);
+            this.BtnReiniciar.Name = "BtnReiniciar";
+            this.BtnReiniciar.Size = new System.Drawing.Size(75, 23);
+            this.BtnReiniciar.TabIndex = 1;
+            this.BtnReiniciar.Text = "Reiniciar";
+            this.BtnReiniciar.UseVisualStyleBackColor = true;
+            this.BtnReiniciar.Click += new System.EventHandler(this.BtnReiniciar_Click);
+            // 
+            // BtnAgregarPlanta
+            // 
+            this.BtnAgregarPlanta.Location = new System.Drawing.Point(165, 3);
+            this.BtnAgregarPlanta.Name = "BtnAgregarPlanta";
+            this.BtnAgregarPlanta.Size = new System.Drawing.Size(75, 23);
+            this.BtnAgregarPlanta.TabIndex = 2;
+            this.BtnAgregarPlanta.Text = "Planta";
+            this.BtnAgregarPlanta.UseVisualStyleBackColor = true;
+            this.BtnAgregarPlanta.Click += new System.EventHandler(this.BtnAgregarPlanta_Click);
+            // 
+            // BtnAgregarHerbivoro
+            // 
+            this.BtnAgregarHerbivoro.Location = new System.Drawing.Point(246, 3);
+            this.BtnAgregarHerbivoro.Name = "BtnAgregarHerbivoro";
+            this.BtnAgregarHerbivoro.Size = new System.Drawing.Size(75, 23);
+            this.BtnAgregarHerbivoro.TabIndex = 3;
+            this.BtnAgregarHerbivoro.Text = "Herbívoro";
+            this.BtnAgregarHerbivoro.UseVisualStyleBackColor = true;
+            this.BtnAgregarHerbivoro.Click += new System.EventHandler(this.BtnAgregarHerbivoro_Click);
+            // 
+            // BtnAgregarDepredador
+            // 
+            this.BtnAgregarDepredador.Location = new System.Drawing.Point(327, 3);
+            this.BtnAgregarDepredador.Name = "BtnAgregarDepredador";
+            this.BtnAgregarDepredador.Size = new System.Drawing.Size(75, 23);
+            this.BtnAgregarDepredador.TabIndex = 4;
+            this.BtnAgregarDepredador.Text = "Depredador";
+            this.BtnAgregarDepredador.UseVisualStyleBackColor = true;
+            this.BtnAgregarDepredador.Click += new System.EventHandler(this.BtnAgregarDepredador_Click);
+            // 
             // PbxAcuario
             // 
             this.PbxAcuario.BackColor = System.Drawing.Color.LightSteelBlue;
             this.PbxAcuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PbxAcuario.Location = new System.Drawing.Point(0, 13);
+            this.PbxAcuario.Location = new System.Drawing.Point(0, 42);
             this.PbxAcuario.Name = "PbxAcuario";
-            this.PbxAcuario.Size = new System.Drawing.Size(911, 366);
+            this.PbxAcuario.Size = new System.Drawing.Size(911, 337);
             this.PbxAcuario.TabIndex = 0;
             this.PbxAcuario.TabStop = false;
             // 
-            // LblTicks
+            // LblEstadisticas
             // 
-            this.LblTicks.AutoSize = true;
-            this.LblTicks.Dock = System.Windows.Forms.DockStyle.Top;
-            this.LblTicks.Location = new System.Drawing.Point(0, 0);
-            this.LblTicks.Name = "LblTicks";
-            this.LblTicks.Size = new System.Drawing.Size(51, 13);
-            this.LblTicks.TabIndex = 1;
-            this.LblTicks.Text = "Ticks = 0";
+            this.LblEstadisticas.AutoSize = true;
+            this.LblEstadisticas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LblEstadisticas.Location = new System.Drawing.Point(0, 0);
+            this.LblEstadisticas.Name = "LblEstadisticas";
+            this.LblEstadisticas.Size = new System.Drawing.Size(51, 13);
+            this.LblEstadisticas.TabIndex = 1;
+            this.LblEstadisticas.Text = "Ticks = 0";
             // 
             // PnlProyectoFIA
             // 
@@ -256,6 +328,7 @@
             this.PnlFill.ResumeLayout(false);
             this.PnlProyectoF.ResumeLayout(false);
             this.PnlProyectoF.PerformLayout();
+            this.FlpControlesAcuario.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbxAcuario)).EndInit();
             this.ResumeLayout(false);
 
@@ -279,7 +352,13 @@
         private System.Windows.Forms.Label LblCaptura2;
         private System.Windows.Forms.Label LblCaptura1;
         private System.Windows.Forms.PictureBox PbxAcuario;
-        private System.Windows.Forms.Label LblTicks;
+        private System.Windows.Forms.Label LblEstadisticas;
         private System.Windows.Forms.Timer TimerAcuario;
+        private System.Windows.Forms.FlowLayoutPanel FlpControlesAcuario;
+        private System.Windows.Forms.Button BtnIniciarPausar;
+        private System.Windows.Forms.Button BtnReiniciar;
+        private System.Windows.Forms.Button BtnAgregarPlanta;
+        private System.Windows.Forms.Button BtnAgregarHerbivoro;
+        private System.Windows.Forms.Button BtnAgregarDepredador;
     }
 }

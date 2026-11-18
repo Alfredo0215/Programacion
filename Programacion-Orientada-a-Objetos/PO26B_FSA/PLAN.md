@@ -2,7 +2,7 @@
 
 Formato: adaptado de disenar-agente · checklist v1.2 (sin los campos propios de agentes: autonomía, permisos, evals y consumo).
 
-Estado global: Fases 0 a 4 terminadas · Fase 5 en curso (falta la prueba manual)
+Estado global: Fases 0 a 5 terminadas · Fase 6 en curso (falta la prueba manual)
 Leyenda: [ ] pendiente · [~] en curso · [x] terminada
 Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
 
@@ -14,8 +14,11 @@ Regla de trabajo (desde 2026-11-17): Claude propone cada paso, lo explica y just
 - **Fase 3 [x]:** prueba manual en verde (ver "Resultado" de la Fase 3).
 - **Población inicial:** se queda en 20 / 10 / 3 (lo que tiene `CParametros`).
 - **Fase 4 [x]:** tests 25/25 y prueba manual en verde (ver "Resultado" de la Fase 4).
-- **Fase 5 [~]:** implementada tras la aprobación; compila sin advertencias; tests 32/32 en verde.
-- **Siguiente paso:** prueba manual de la Fase 5 (Alfredo): aparecen plantas cada ~1.5 s; los peces que comen lo suficiente tienen crías a su lado; la población no pasa de 150 ni se traba la app. Después, Claude propone la Fase 6.
+- **Fase 5 [x]:** tests 32/32 y prueba manual en verde (ver "Resultado" de la Fase 5).
+- **Fase 6 [~]:** propuesta aprobada. Hecho: `CEcosistema` con `Contar<T>()`, `GetTicks()` y `AgregarPlanta/Herbivoro/Depredador()` (respetan el tope; el constructor los usa); tests 36/36 en verde.
+- **Diseñador y formulario:** controles agregados por Alfredo; lógica de `MesaDePracticas4.cs` escrita (bandera `pausado`, `RefrescarAcuario()`, 5 handlers; sin `contador` ni `ActualizarLabel`). Compila; tests 36/36.
+- **Prueba manual (Alfredo, 1.ª vuelta):** el tiempo en segundos iba más lento que el real y los peces nadaban bajo los botones. Causas: los segundos se calculaban suponiendo 33 ms por tick (`Interval` es un mínimo); `PbxAcuario` no está al frente de `FlpControlesAcuario`. Corregido: la etiqueta muestra ticks en vez de segundos (decisión de Alfredo).
+- **Siguiente paso (Alfredo):** traer `PbxAcuario` al frente y guardar (en el `.Designer.cs`, su `Controls.Add` debe quedar primero); corregir el texto "Hervíboro" → "Herbívoro"; repetir la prueba manual de la Fase 6 (pausar congela, volver al panel no quita la pausa, reiniciar vuelve a 20 / 10 / 3 y 0 ticks, agregar se ve aun en pausa, conteos = pantalla, nada se dibuja bajo los botones).
 
 **Prompt para continuar:**
 ~~~
@@ -140,7 +143,7 @@ MesaDePracticas4            tiene un CEcosistema; Tick → Paso() + Invalidate()
 
 ---
 
-## Fase 5: Nacimientos  [~]
+## Fase 5: Nacimientos  [x]
 **Objetivo:** crías y plantas nuevas.
 **Entregable demostrable:** peces con energía suficiente tienen crías cerca; aparecen plantas cada cierto tiempo hasta un máximo; la población nunca supera el tope.
 **Depende de:** 4.
@@ -152,13 +155,13 @@ MesaDePracticas4            tiene un CEcosistema; Tick → Paso() + Invalidate()
 **Riesgos:** explosión de población → revisar costo y tope.
 **Para que lo entiendas tú:** por qué transferir energía al hijo frena el crecimiento sin control.
 **Punto de revisión:** ¿los valores ajustables siguen en un solo lugar?
-**Resultado parcial (2026-11-17):** compila; tests 32/32 en verde (bajo el umbral no hay cría, la energía se conserva al reproducirse, en espera no hay cría, la cría es del mismo tipo y nace dentro, la planta no se reproduce, umbral > energía de cría, 3000 pasos sin pasar el tope). Punto de revisión: sí, todo en `CParametros`. Falta la prueba manual.
+**Resultado (2026-11-17):** compila; tests 32/32 en verde (bajo el umbral no hay cría, la energía se conserva al reproducirse, en espera no hay cría, la cría es del mismo tipo y nace dentro, la planta no se reproduce, umbral > energía de cría, 3000 pasos sin pasar el tope). Punto de revisión: sí, todo en `CParametros`. Prueba manual en verde. Supuesto validado: la reproducción asexual basta para el MVP.
 
 ---
 
-## Fase 6: Interfaz y estadísticas  [ ]
+## Fase 6: Interfaz y estadísticas  [~]
 **Objetivo:** controlar y observar la simulación.
-**Entregable demostrable:** botones Iniciar/Pausar, Reiniciar y Agregar (planta, herbívoro, depredador); panel con conteos por tipo y tiempo.
+**Entregable demostrable:** botones Iniciar/Pausar, Reiniciar y Agregar (planta, herbívoro, depredador); panel con conteos por tipo y ticks.
 **Depende de:** 5.
 **Decisiones:** [Firme] estilo pixel-art Terraria; controles desde el diseñador.
 **Tareas:** pasos en el diseñador; handlers `Control_Evento`; conteos leídos del ecosistema.
@@ -173,7 +176,7 @@ MesaDePracticas4            tiene un CEcosistema; Tick → Paso() + Invalidate()
 
 ## Fase 7: Equilibrio y cierre del MVP  [ ]
 **Objetivo:** que el ecosistema no colapse y el MVP quede verificado.
-**Entregable demostrable:** las tres especies conviven al menos 2 minutos seguidos.
+**Entregable demostrable:** las tres especies conviven al menos 3600 ticks seguidos.
 **Depende de:** 6.
 **Decisiones:** valores finales de los parámetros, anotados en el registro.
 **Tareas:** ajustar parámetros probando; repasar el criterio de terminado.
@@ -182,12 +185,12 @@ MesaDePracticas4            tiene un CEcosistema; Tick → Paso() + Invalidate()
 - [ ] Botones funcionan; nada sale del área.
 - [ ] Se ve comer, morir de hambre y de viejo, nacer crías y aparecer plantas.
 - [ ] Conteos coinciden con la pantalla.
-- [ ] Tres especies sobreviven ≥ 2 minutos.
+- [ ] Tres especies sobreviven ≥ 3600 ticks.
 - [ ] Cerrar con la simulación corriendo no deja procesos ni lanza excepciones.
 - [ ] El ecosistema no pregunta tipos concretos; la energía no se modifica desde fuera.
 - [ ] Tests de gastar, comer, morir y reproducirse en verde (`/test`).
 - [ ] Todo `.cs` nuevo en `POO26B_FSA.csproj`; compila sin errores.
-**Pruebas y evaluación:** suite completa de MSTest + tres corridas manuales de 2 minutos.
+**Pruebas y evaluación:** suite completa de MSTest (puede incluir un test que corra 3600 pasos y compruebe que las tres especies siguen vivas) + tres corridas manuales de 3600 ticks.
 **Fuera de alcance:** extensiones.
 **Riesgos:** no se logra el equilibrio → revisar la razón energía por comida / gasto y la densidad de plantas.
 **Para que lo entiendas tú:** por qué las poblaciones oscilan (presa-depredador) y qué distingue oscilar de colapsar.
@@ -235,6 +238,11 @@ E1 buscar comida · E2 gráfica de población (`DataVisualization.Charting`) · 
 | 2026-11-17 | 5 | Tope revisado antes de `Reproducirse`; nacidos en lista aparte + `AddRange` | Revisar después | El padre no paga por una cría rechazada |
 | 2026-11-17 | 5 | Un solo tope global (150) y una planta cada 45 ticks | Tope aparte de plantas | Contar plantas exigiría preguntar el tipo; se revisa en la Fase 7 si las plantas llenan el acuario |
 | 2026-11-17 | 5 | Cría en la posición del padre; umbral 1000, cría 400, espera 300 ticks, comunes a las dos especies | Separarla; valores por especie | Nace dentro por construcción; se ajusta en la Fase 7 |
+| 2026-11-17 | 6 | Conteo con `Contar<T>()` en `CEcosistema`; el formulario nombra los tipos que muestra | Contar en el formulario; un método por tipo; diccionario por nombre | Se prueba con MSTest; un tipo nuevo no toca el ecosistema para contarse; una especie extinta muestra 0 |
+| 2026-11-17 | 6 | `AgregarX()` en `CEcosistema` (respetan el tope; el constructor los usa) | El formulario hace `new` y calcula la posición | Posición, ángulo y tope son reglas; crear siempre nombra el tipo, así que (d) aplica al comportamiento, no a la creación |
+| 2026-11-17 | 6 | Tiempo desde `GetTicks()` del ecosistema; se elimina el `contador` del formulario | Dos contadores | Una sola fuente de verdad; Reiniciar no los puede desincronizar |
+| 2026-11-17 | 6 | El tiempo se mide y se muestra en ticks; sin segundos. Criterio de la Fase 7: ≥ 3600 ticks (los 2 minutos que se pretendían a 33 ms) | Segundos calculados (`ticks × Interval`); medirlos con `Stopwatch` | `Interval` es un mínimo, no una duración; el tick es la unidad de las reglas y no depende de la máquina, así el criterio es repetible y se puede probar con MSTest. Decisión de Alfredo |
+| 2026-11-17 | 6 | Bandera `pausado` aparte de la visibilidad; Reiniciar = `CEcosistema` nuevo y conserva la pausa | Solo `TimerAcuario.Enabled` | Pausa (usuario) y ocultar (navegación) son causas distintas |
 
 ## Riesgos globales
 - Requisitos del profesor no confirmados → Fase 0.

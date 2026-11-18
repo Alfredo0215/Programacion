@@ -51,6 +51,7 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 
 - No edites los `.Designer.cs` a mano. Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
 - Estética de la interfaz: pixel-art estilo Terraria.
+- Un control con `Dock = Fill` debe quedar al frente de sus hermanos acoplados (clic derecho → Traer al frente); si no, los controles `Top`/`Bottom` lo tapan y su `ClientSize` incluye la zona tapada. En el `.Designer.cs`, su `Controls.Add` aparece primero.
 - Navegación entre vistas (p. ej. menú principal y selector de mesas): un formulario abre u oculta a otro sin tocar sus controles. No añadir interfaces ni gestores de navegación hasta que haya un problema real que justifique su coste.
 
 ## Proyecto final: Acuario
@@ -59,6 +60,7 @@ Simulación de ecosistema (plantas, peces herbívoros y depredadores). Fases, es
 
 - Vive en un panel de `MesaDePracticas4`, abierto con `AlternarPractica`.
 - Movimiento con un solo `System.Windows.Forms.Timer`; nada de hilos por objeto ni `CheckForIllegalCrossThreadCalls` (los problemas de `CDron`).
+- El tiempo de la simulación se mide y se muestra en ticks, nunca en segundos: `Interval` es un mínimo, no una duración garantizada. Parámetros y criterios (p. ej. la Fase 7) van en ticks.
 - Las entidades son objetos normales, no controles: se dibujan en el `Paint` de un solo control del área. Las plantas también son entidades.
 - Claude propone diseño y código con justificación (incluye "qué debes entender para defenderlo") y espera la aprobación de Alfredo antes de implementar. Los controles se siguen agregando en el diseñador.
 - Los eventos de controles ya existentes pueden suscribirse en código (p. ej. `PbxAcuario.Paint` en el constructor) para no tocar el `.Designer.cs`.
