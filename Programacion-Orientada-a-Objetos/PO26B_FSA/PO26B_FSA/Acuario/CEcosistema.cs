@@ -19,6 +19,8 @@ namespace PO26B_FSA.Acuario
         private readonly List<CEntidad> entidades = new List<CEntidad>();
         private readonly float ancho;
         private readonly float alto;
+        // Ticks transcurridos; sirve para agregar plantas cada cierto tiempo.
+        private int ticks;
 
         //---------------------------------------------------------------------
         // Constructor: crea la población inicial en posiciones aleatorias.
@@ -56,9 +58,10 @@ namespace PO26B_FSA.Acuario
         }
 
         //---------------------------------------------------------------------
-        // Un paso de simulación en tres etapas. Las dos primeras solo marcan
-        // muertos; la lista cambia únicamente en la tercera, cuando ya nadie
-        // la recorre (evita InvalidOperationException).
+        // Un paso de simulación en cuatro etapas. Las dos primeras solo marcan
+        // muertos; la lista cambia en la tercera (quitar) y al final de la
+        // cuarta (agregar), cuando ya nadie la recorre (evita
+        // InvalidOperationException).
         //---------------------------------------------------------------------
         public void Paso()
         {
@@ -83,6 +86,34 @@ namespace PO26B_FSA.Acuario
 
             // 3. Retirar a los muertos.
             entidades.RemoveAll(e => !e.EstaViva());
+
+            // 4. Nacimientos en una lista aparte. El tope se revisa ANTES de
+            //    llamar a Reproducirse, para que el padre no pague energía
+            //    por una cría que no cabría.
+            List<CEntidad> nacidos = new List<CEntidad>();
+            foreach (CEntidad entidad in entidades)
+            {
+                if (entidades.Count + nacidos.Count >= CParametros.PoblacionMaxima)
+                {
+                    break;
+                }
+
+                CEntidad cria = entidad.Reproducirse(azar);
+                if (cria != null)
+                {
+                    nacidos.Add(cria);
+                }
+            }
+
+            ticks++;
+            if (ticks % CParametros.IntervaloPlanta == 0
+                && entidades.Count + nacidos.Count < CParametros.PoblacionMaxima)
+            {
+                PointF p = PosicionAleatoria(CParametros.LadoPlanta);
+                nacidos.Add(new CPlanta(p.X, p.Y));
+            }
+
+            entidades.AddRange(nacidos);
         }
 
         //---------------------------------------------------------------------

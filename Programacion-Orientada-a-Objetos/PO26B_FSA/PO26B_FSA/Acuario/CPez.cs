@@ -20,6 +20,8 @@ namespace PO26B_FSA.Acuario
         // Edad en ticks.
         private int edad;
         private readonly int edadMaxima;
+        // Ticks que faltan para poder tener otra cría.
+        private int espera;
 
         //---------------------------------------------------------------------
         // Constructor. El ángulo va en radianes (0 = hacia la derecha).
@@ -55,6 +57,11 @@ namespace PO26B_FSA.Acuario
             if (!EstaViva())
             {
                 return;
+            }
+
+            if (espera > 0)
+            {
+                espera--;
             }
 
             edad++;
@@ -113,5 +120,27 @@ namespace PO26B_FSA.Acuario
         {
             return edad;
         }
+
+        //---------------------------------------------------------------------
+        // La cría recibe energía del padre: se transfiere, no se crea. Así la
+        // energía total solo crece cuando alguien come.
+        //---------------------------------------------------------------------
+        public override CEntidad Reproducirse(Random azar)
+        {
+            if (!EstaViva() || espera > 0 || GetEnergia() < CParametros.UmbralReproduccion)
+            {
+                return null;
+            }
+
+            GastarEnergia(CParametros.EnergiaCria);
+            espera = CParametros.EsperaReproduccion;
+            return CrearCria(azar.NextDouble() * 2 * Math.PI, CParametros.EnergiaCria);
+        }
+
+        //---------------------------------------------------------------------
+        // Cada especie sabe crear a su cría; CPez no conoce las subclases.
+        // Abstracto: el compilador obliga a cada especie a definirlo.
+        //---------------------------------------------------------------------
+        protected abstract CPez CrearCria(double angulo, int energia);
     }
 }

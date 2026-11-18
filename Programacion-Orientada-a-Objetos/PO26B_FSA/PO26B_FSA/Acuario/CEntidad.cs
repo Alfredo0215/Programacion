@@ -45,6 +45,15 @@ namespace PO26B_FSA.Acuario
         }
 
         //---------------------------------------------------------------------
+        // Devuelve una cría nueva o null. Por defecto, null (la planta: las
+        // plantas nuevas las agrega el ecosistema).
+        //---------------------------------------------------------------------
+        public virtual CEntidad Reproducirse(Random azar)
+        {
+            return null;
+        }
+
+        //---------------------------------------------------------------------
         // Cada tipo decide qué puede comer. Por defecto, nada (la planta).
         //---------------------------------------------------------------------
         public virtual bool PuedeComer(CEntidad otra)

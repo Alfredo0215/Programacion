@@ -37,5 +37,15 @@ namespace PO26B_FSA.Acuario
         public const int GastoPorTick = 1;
         public const int EdadMaximaHerbivoro = 1800;
         public const int EdadMaximaDepredador = 2700;
+
+        //---------------------------------------------------------------------
+        // Nacimientos. UmbralReproduccion debe ser mayor que EnergiaCria para
+        // que el padre nunca muera al reproducirse (hay un test que lo vigila).
+        //---------------------------------------------------------------------
+        public const int UmbralReproduccion = 1000;
+        public const int EnergiaCria = 400;
+        public const int EsperaReproduccion = 300;
+        public const int PoblacionMaxima = 150;
+        public const int IntervaloPlanta = 45;
     }
 }

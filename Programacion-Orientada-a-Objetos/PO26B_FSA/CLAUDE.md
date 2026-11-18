@@ -34,6 +34,7 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 - Las clases `C*` son `internal`; los tests las ven por `InternalsVisibleTo` en `Properties\AssemblyInfo.cs`.
 - `CHombre` / `CMujer` usan `Random`; prueba rangos, no valores exactos.
 - Los tests nuevos también van en español.
+- Para aislar un caso de un pez (p. ej. morir de viejo sin morir de hambre), usa la subclase `CPezDePrueba` de `CEcosistemaTests.cs`, que recibe energía y edad máxima a elección.
 
 ## Convenciones
 

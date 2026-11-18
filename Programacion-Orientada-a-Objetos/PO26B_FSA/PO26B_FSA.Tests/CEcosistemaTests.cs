@@ -198,6 +198,84 @@ namespace PO26B_FSA.Tests
         }
 
         //---------------------------------------------------------------------
+        // Fase 5: nacimientos.
+        //---------------------------------------------------------------------
+        [TestMethod]
+        public void BajoUmbral_NoSeReproduce()
+        {
+            CHerbivoro pez = new CHerbivoro(100f, 100f, 0.0);
+
+            Assert.IsNull(pez.Reproducirse(new Random(1)));
+            Assert.AreEqual(CParametros.EnergiaInicialHerbivoro, pez.GetEnergia());
+        }
+
+        [TestMethod]
+        public void AlReproducirse_PadrePierdeLoQueRecibeLaCria()
+        {
+            const int energiaAntes = 1500;
+            CHerbivoro padre = new CHerbivoro(100f, 100f, 0.0, energiaAntes);
+
+            CEntidad cria = padre.Reproducirse(new Random(1));
+
+            Assert.IsNotNull(cria);
+            Assert.AreEqual(CParametros.EnergiaCria, cria.GetEnergia());
+            Assert.AreEqual(energiaAntes, padre.GetEnergia() + cria.GetEnergia(), "Se creó o se perdió energía.");
+        }
+
+        [TestMethod]
+        public void EnEspera_NoSeReproduce()
+        {
+            CHerbivoro padre = new CHerbivoro(100f, 100f, 0.0, 2500);
+            Random azar = new Random(1);
+
+            Assert.IsNotNull(padre.Reproducirse(azar));
+            Assert.IsTrue(padre.GetEnergia() >= CParametros.UmbralReproduccion, "La prueba necesita energía sobre el umbral.");
+            Assert.IsNull(padre.Reproducirse(azar));
+        }
+
+        [TestMethod]
+        public void Cria_EsDelMismoTipoYNaceDentroDelArea()
+        {
+            const float ancho = 300f;
+            const float alto = 200f;
+            CDepredador padre = new CDepredador(ancho - CParametros.LadoDepredador, alto - CParametros.LadoDepredador, 0.0, 1500);
+
+            CEntidad cria = padre.Reproducirse(new Random(1));
+
+            Assert.IsInstanceOfType(cria, typeof(CDepredador));
+            RectangleF r = cria.GetLimites();
+            Assert.IsTrue(r.Left >= 0 && r.Top >= 0 && r.Right <= ancho && r.Bottom <= alto, "La cría nació fuera del área.");
+        }
+
+        [TestMethod]
+        public void Planta_NoSeReproduce()
+        {
+            CPlanta planta = new CPlanta(50f, 60f);
+
+            Assert.IsNull(planta.Reproducirse(new Random(1)));
+        }
+
+        [TestMethod]
+        public void Umbral_EsMayorQueEnergiaCria()
+        {
+            Assert.IsTrue(CParametros.UmbralReproduccion > CParametros.EnergiaCria,
+                "Con estos valores el padre podría morir al reproducirse.");
+        }
+
+        [TestMethod]
+        public void MuchosPasos_PoblacionNuncaSuperaElTope()
+        {
+            CEcosistema ecosistema = new CEcosistema(300f, 200f);
+
+            for (int paso = 0; paso < 3000; paso++)
+            {
+                ecosistema.Paso();
+                Assert.IsTrue(ecosistema.GetEntidades().Count <= CParametros.PoblacionMaxima,
+                    $"Paso {paso}: la población superó el tope.");
+            }
+        }
+
+        //---------------------------------------------------------------------
         // Pez solo para pruebas: permite elegir energía y edad máxima, para
         // aislar la muerte por vejez de la muerte por hambre.
         //---------------------------------------------------------------------
@@ -210,6 +288,11 @@ namespace PO26B_FSA.Tests
 
             public override void Dibujar(Graphics g)
             {
+            }
+
+            protected override CPez CrearCria(double angulo, int energia)
+            {
+                return null;
             }
         }
     }

@@ -2,7 +2,7 @@
 
 Formato: adaptado de disenar-agente · checklist v1.2 (sin los campos propios de agentes: autonomía, permisos, evals y consumo).
 
-Estado global: Fases 0 a 3 terminadas · Fase 4 en curso (falta la prueba manual)
+Estado global: Fases 0 a 4 terminadas · Fase 5 en curso (falta la prueba manual)
 Leyenda: [ ] pendiente · [~] en curso · [x] terminada
 Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
 
@@ -12,9 +12,10 @@ Regla de trabajo (desde 2026-11-17): Claude propone cada paso, lo explica y just
 - **Fase 2 [x]:** prueba manual en verde (ver "Resultado" de la Fase 2).
 - **Nombres:** se quedan como están (`TimerAcuario`, `BtnPractica2_Click`); no hay renombres pendientes.
 - **Fase 3 [x]:** prueba manual en verde (ver "Resultado" de la Fase 3).
-- **Por confirmar:** el plan decía que `CParametros` quedó en 80 / 50 / 20, pero el archivo tiene 20 / 10 / 3. Alfredo confirma cuál queda.
-- **Fase 4 [~]:** implementada tras la aprobación; compila; tests 25/25 en verde.
-- **Siguiente paso:** prueba manual de la Fase 4 (Alfredo): los herbívoros comen plantas, los depredadores comen herbívoros, los peces desaparecen al morir de hambre (~20 s / ~30 s) y no hay `InvalidOperationException`. Después, Claude propone la Fase 5.
+- **Población inicial:** se queda en 20 / 10 / 3 (lo que tiene `CParametros`).
+- **Fase 4 [x]:** tests 25/25 y prueba manual en verde (ver "Resultado" de la Fase 4).
+- **Fase 5 [~]:** implementada tras la aprobación; compila sin advertencias; tests 32/32 en verde.
+- **Siguiente paso:** prueba manual de la Fase 5 (Alfredo): aparecen plantas cada ~1.5 s; los peces que comen lo suficiente tienen crías a su lado; la población no pasa de 150 ni se traba la app. Después, Claude propone la Fase 6.
 
 **Prompt para continuar:**
 ~~~
@@ -123,7 +124,7 @@ MesaDePracticas4            tiene un CEcosistema; Tick → Paso() + Invalidate()
 
 ---
 
-## Fase 4: Energía, comer y morir  [~]
+## Fase 4: Energía, comer y morir  [x]
 **Objetivo:** aplicar las reglas de energía y de choques.
 **Entregable demostrable:** herbívoros que comen plantas, depredadores que comen herbívoros, peces que mueren de hambre o de viejos y desaparecen.
 **Depende de:** 3.
@@ -135,11 +136,11 @@ MesaDePracticas4            tiene un CEcosistema; Tick → Paso() + Invalidate()
 **Riesgos:** todo muere en segundos → normal aquí; el equilibrio es la Fase 7.
 **Para que lo entiendas tú:** por qué `Remove` dentro de un `foreach` sobre la misma lista falla.
 **Punto de revisión:** ¿quién decide "esto se puede comer" respeta el criterio (a) de la Fase 1?
-**Resultado parcial (2026-11-17):** compila; tests 25/25 en verde (gastar energía, comer suma, no comer lo prohibido, presa ya comida, energía 0 sin negativos, muerte por edad con un pez de prueba). Punto de revisión: sí; `PuedeComer` vive en cada subclase y el ecosistema solo llama a `Comer` de `CEntidad`. Falta la prueba manual.
+**Resultado (2026-11-17):** compila; tests 25/25 en verde (gastar energía, comer suma, no comer lo prohibido, presa ya comida, energía 0 sin negativos, muerte por edad con un pez de prueba). Punto de revisión: sí; `PuedeComer` vive en cada subclase y el ecosistema solo llama a `Comer` de `CEntidad`. Prueba manual en verde: se ve comer y desaparecer, sin excepciones. Nota: `MilPasos_NingunPezSaleDelArea` ahora cubre ~600 pasos de movimiento de los herbívoros (mueren de hambre y se quedan quietos).
 
 ---
 
-## Fase 5: Nacimientos  [ ]
+## Fase 5: Nacimientos  [~]
 **Objetivo:** crías y plantas nuevas.
 **Entregable demostrable:** peces con energía suficiente tienen crías cerca; aparecen plantas cada cierto tiempo hasta un máximo; la población nunca supera el tope.
 **Depende de:** 4.
@@ -151,6 +152,7 @@ MesaDePracticas4            tiene un CEcosistema; Tick → Paso() + Invalidate()
 **Riesgos:** explosión de población → revisar costo y tope.
 **Para que lo entiendas tú:** por qué transferir energía al hijo frena el crecimiento sin control.
 **Punto de revisión:** ¿los valores ajustables siguen en un solo lugar?
+**Resultado parcial (2026-11-17):** compila; tests 32/32 en verde (bajo el umbral no hay cría, la energía se conserva al reproducirse, en espera no hay cría, la cría es del mismo tipo y nace dentro, la planta no se reproduce, umbral > energía de cría, 3000 pasos sin pasar el tope). Punto de revisión: sí, todo en `CParametros`. Falta la prueba manual.
 
 ---
 
@@ -228,6 +230,11 @@ E1 buscar comida · E2 gráfica de población (`DataVisualization.Charting`) · 
 | 2026-11-17 | 4 | `Paso()` en tres etapas: actualizar → choques (todos contra todos) → `RemoveAll` | Quitar al detectar la muerte | Solo se marca durante los recorridos; ~22 500 pares por tick bastan |
 | 2026-11-17 | 4 | Energía 600 / 900 / planta 300, gasto 1 por tick, edad máxima 1800 / 2700 ticks | — | Punto de partida; se ajusta en la Fase 7 |
 | 2026-11-17 | 4 | Sin tope de energía ni edad máxima con azar | Ponerlos ya | No rompen criterios de la Fase 4; se revisan en las Fases 5 y 7 |
+| 2026-11-17 | 5 | Cada pez crea a su cría (`Reproducirse` virtual en `CEntidad`, `CrearCria` abstracto en `CPez`) | El ecosistema crea la cría según el tipo | Criterios (a) y (d) |
+| 2026-11-17 | 5 | La cría recibe `EnergiaCria` del padre (transferencia) | Energía nueva para la cría | Sin transferencia la energía total crece sin freno |
+| 2026-11-17 | 5 | Tope revisado antes de `Reproducirse`; nacidos en lista aparte + `AddRange` | Revisar después | El padre no paga por una cría rechazada |
+| 2026-11-17 | 5 | Un solo tope global (150) y una planta cada 45 ticks | Tope aparte de plantas | Contar plantas exigiría preguntar el tipo; se revisa en la Fase 7 si las plantas llenan el acuario |
+| 2026-11-17 | 5 | Cría en la posición del padre; umbral 1000, cría 400, espera 300 ticks, comunes a las dos especies | Separarla; valores por especie | Nace dentro por construcción; se ajusta en la Fase 7 |
 
 ## Riesgos globales
 - Requisitos del profesor no confirmados → Fase 0.
