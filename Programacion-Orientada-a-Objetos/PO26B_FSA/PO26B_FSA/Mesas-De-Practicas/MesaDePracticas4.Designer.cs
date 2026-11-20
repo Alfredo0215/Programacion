@@ -43,13 +43,13 @@
             this.LblCaptura1 = new System.Windows.Forms.Label();
             this.PnlFill = new System.Windows.Forms.Panel();
             this.PnlProyectoF = new System.Windows.Forms.Panel();
+            this.PbxAcuario = new System.Windows.Forms.PictureBox();
             this.FlpControlesAcuario = new System.Windows.Forms.FlowLayoutPanel();
             this.BtnIniciarPausar = new System.Windows.Forms.Button();
             this.BtnReiniciar = new System.Windows.Forms.Button();
             this.BtnAgregarPlanta = new System.Windows.Forms.Button();
             this.BtnAgregarHerbivoro = new System.Windows.Forms.Button();
             this.BtnAgregarDepredador = new System.Windows.Forms.Button();
-            this.PbxAcuario = new System.Windows.Forms.PictureBox();
             this.LblEstadisticas = new System.Windows.Forms.Label();
             this.PnlProyectoFIA = new System.Windows.Forms.Panel();
             this.TimerAcuario = new System.Windows.Forms.Timer(this.components);
@@ -58,8 +58,8 @@
             this.PanelTop.SuspendLayout();
             this.PnlFill.SuspendLayout();
             this.PnlProyectoF.SuspendLayout();
-            this.FlpControlesAcuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxAcuario)).BeginInit();
+            this.FlpControlesAcuario.SuspendLayout();
             this.SuspendLayout();
             // 
             // PanelBottom
@@ -209,6 +209,16 @@
             this.PnlProyectoF.TabIndex = 1;
             this.PnlProyectoF.VisibleChanged += new System.EventHandler(this.PnlProyectoF_VisibleChanged);
             // 
+            // PbxAcuario
+            // 
+            this.PbxAcuario.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.PbxAcuario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PbxAcuario.Location = new System.Drawing.Point(0, 42);
+            this.PbxAcuario.Name = "PbxAcuario";
+            this.PbxAcuario.Size = new System.Drawing.Size(911, 337);
+            this.PbxAcuario.TabIndex = 0;
+            this.PbxAcuario.TabStop = false;
+            // 
             // FlpControlesAcuario
             // 
             this.FlpControlesAcuario.AutoSize = true;
@@ -273,16 +283,6 @@
             this.BtnAgregarDepredador.UseVisualStyleBackColor = true;
             this.BtnAgregarDepredador.Click += new System.EventHandler(this.BtnAgregarDepredador_Click);
             // 
-            // PbxAcuario
-            // 
-            this.PbxAcuario.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.PbxAcuario.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PbxAcuario.Location = new System.Drawing.Point(0, 42);
-            this.PbxAcuario.Name = "PbxAcuario";
-            this.PbxAcuario.Size = new System.Drawing.Size(911, 337);
-            this.PbxAcuario.TabIndex = 0;
-            this.PbxAcuario.TabStop = false;
-            // 
             // LblEstadisticas
             // 
             this.LblEstadisticas.AutoSize = true;
@@ -328,8 +328,8 @@
             this.PnlFill.ResumeLayout(false);
             this.PnlProyectoF.ResumeLayout(false);
             this.PnlProyectoF.PerformLayout();
-            this.FlpControlesAcuario.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbxAcuario)).EndInit();
+            this.FlpControlesAcuario.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

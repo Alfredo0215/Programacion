@@ -9,16 +9,9 @@ Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
 Regla de trabajo (desde 2026-11-17): Claude propone cada paso, lo explica y justifica el código; Alfredo aprueba; Claude implementa. Cada propuesta incluye "qué debes entender para defenderlo".
 
 ## Estado actual (2026-11-17)
-- **Fase 2 [x]:** prueba manual en verde (ver "Resultado" de la Fase 2).
-- **Nombres:** se quedan como están (`TimerAcuario`, `BtnPractica2_Click`); no hay renombres pendientes.
-- **Fase 3 [x]:** prueba manual en verde (ver "Resultado" de la Fase 3).
-- **Población inicial:** se queda en 20 / 10 / 3 (lo que tiene `CParametros`).
-- **Fase 4 [x]:** tests 25/25 y prueba manual en verde (ver "Resultado" de la Fase 4).
-- **Fase 5 [x]:** tests 32/32 y prueba manual en verde (ver "Resultado" de la Fase 5).
-- **Fase 6 [~]:** propuesta aprobada. Hecho: `CEcosistema` con `Contar<T>()`, `GetTicks()` y `AgregarPlanta/Herbivoro/Depredador()` (respetan el tope; el constructor los usa); tests 36/36 en verde.
-- **Diseñador y formulario:** controles agregados por Alfredo; lógica de `MesaDePracticas4.cs` escrita (bandera `pausado`, `RefrescarAcuario()`, 5 handlers; sin `contador` ni `ActualizarLabel`). Compila; tests 36/36.
-- **Prueba manual (Alfredo, 1.ª vuelta):** el tiempo en segundos iba más lento que el real y los peces nadaban bajo los botones. Causas: los segundos se calculaban suponiendo 33 ms por tick (`Interval` es un mínimo); `PbxAcuario` no está al frente de `FlpControlesAcuario`. Corregido: la etiqueta muestra ticks en vez de segundos (decisión de Alfredo).
-- **Siguiente paso (Alfredo):** traer `PbxAcuario` al frente y guardar (en el `.Designer.cs`, su `Controls.Add` debe quedar primero); corregir el texto "Hervíboro" → "Herbívoro"; repetir la prueba manual de la Fase 6 (pausar congela, volver al panel no quita la pausa, reiniciar vuelve a 20 / 10 / 3 y 0 ticks, agregar se ve aun en pausa, conteos = pantalla, nada se dibuja bajo los botones).
+- **Fase 6 [~]:** lógica y controles hechos; compila; tests 36/36. Falta la prueba manual.
+- **1.ª prueba manual:** el tiempo ya se muestra en ticks (ver registro). Pendiente: los peces nadan bajo los botones porque `PbxAcuario` no está al frente de `FlpControlesAcuario`.
+- **Siguiente paso (Alfredo):** traer `PbxAcuario` al frente y guardar (en el `.Designer.cs`, su `Controls.Add` debe quedar primero); corregir el texto "Hervíboro" → "Herbívoro"; repetir la prueba manual (pausar congela, volver al panel no quita la pausa, reiniciar vuelve a 20 / 10 / 3 y 0 ticks, agregar se ve aun en pausa, conteos = pantalla, nada se dibuja bajo los botones).
 
 **Prompt para continuar:**
 ~~~
