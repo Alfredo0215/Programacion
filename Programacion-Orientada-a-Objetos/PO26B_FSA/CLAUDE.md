@@ -52,7 +52,7 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 - No edites los `.Designer.cs` a mano. Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
 - Estética: todo el proyecto (menú, mesas 1-3 y `MesaDePracticas4`, acuario incluido) usa el estilo de la sección "Estilo chat". El pixel-art estilo Terraria está retirado: no lo propongas.
 - Un control con `Dock = Fill` debe quedar al frente de sus hermanos acoplados (clic derecho → Traer al frente); si no, los controles `Top`/`Bottom` lo tapan y su `ClientSize` incluye la zona tapada. En el `.Designer.cs`, su `Controls.Add` aparece primero.
-- Navegación entre vistas (p. ej. menú principal y selector de mesas): un formulario abre u oculta a otro sin tocar sus controles. No añadir interfaces ni gestores de navegación hasta que haya un problema real que justifique su coste.
+- Navegación entre vistas (p. ej. el menú y una mesa): un formulario abre u oculta a otro sin tocar sus controles. No añadir interfaces ni gestores de navegación hasta que haya un problema real que justifique su coste.
 
 ## Estilo chat
 
@@ -60,16 +60,14 @@ Inspirado en la interfaz de chat de un asistente de IA (Claude.ai). Es solo insp
 
 En todas las pantallas:
 - Paleta: fondo `#F5F4EE`, paneles laterales `#EDEBE3`, bordes `#DDD9CE`, texto `#2B2A27`, texto secundario `#7A776E`, acento `#C96442`.
-- Fuentes: Georgia en el saludo, Segoe UI en el resto.
-- Diseño plano: sin degradados, transparencias ni brillos.
-- Dificultad: con un punto o una etiqueta de color, nunca con texto de color (no se lee sobre fondo claro).
-- Retratos: avatares circulares simples.
+- Fuentes: Georgia en el logo y el saludo, Segoe UI en el resto. Andy ya no se usa.
+- Diseño plano: sin degradados, transparencias ni brillos. Botones: `Button` con `FlatStyle = Flat` y `FlatAppearance` en la paleta (no FontAwesome.Sharp).
 
-Solo en el menú principal (`DlgPrincipal`): barra lateral izquierda con las 4 mesas como lista de conversaciones; área principal con logo "PO26B", saludo "¿Qué practicamos hoy?", caja de mensaje y chips de sugerencia; botón "Atrás". Las mesas no copian esta distribución.
+Solo en el menú principal (`DlgPrincipal`): una sola vista (menú y selector de mesas juntos): barra lateral izquierda con las 4 mesas como lista de conversaciones; área principal con logo "PO26B" en texto, saludo "¿Qué practicamos hoy?", caja de mensaje (decorativa por ahora) y chips que abren mesas. Sin botón "Atrás" ni Esc; la app se cierra con la X. Las mesas no copian esta distribución.
 
-- Cambia la apariencia, no el comportamiento: se conservan `AbrirMesa`, volver con Esc y con "Atrás", y la animación del logo con `Timer` + `Stopwatch`.
+- Cambia la apariencia, no el comportamiento. Única excepción ya decidida: la vista única del menú (Fase 1 de `PLAN-ESTILO.md`). Se conservan `AbrirMesa` (al cerrar una mesa vuelve el menú) y la animación del logo con `Timer` + `Stopwatch`.
 - Acuario: primero migra el marco (panel, botones, etiquetas). Los colores de peces y plantas en el `Paint` se deciden en su propia fase.
-- Restos de Terraria (no tomarlos como referencia): colores fijos de `FilaMesa.cs`, `UIHelper.AplicarEstiloTerraria`, la fuente Andy, fondos azules de `PnlMesas` y `PnlLabelMesas` en `DlgPrincipal`, y lo que liste el inventario de la Fase 0 del plan.
+- Restos de Terraria (no tomarlos como referencia; se eliminan en la Fase 9 de `PLAN-ESTILO.md`): `FilaMesa` entera, `UIHelper.AplicarEstiloTerraria` e `Interpolar`, la fuente Andy (instalada en Windows, se quita cambiando `Font` en el diseñador), `TerrariaBackground` y los PNG que liste el inventario.
 - Fases y avance: `PLAN-ESTILO.md`; léelo solo en tareas de estilo. `PLAN.md` decide el comportamiento del acuario y `PLAN-ESTILO.md` su aspecto; una fase no mezcla las dos cosas.
 
 ## Proyecto final: Acuario

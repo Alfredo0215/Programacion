@@ -34,14 +34,14 @@
             this.PnlContenedor = new System.Windows.Forms.Panel();
             this.LblAtras = new System.Windows.Forms.Label();
             this.PnlMesas = new System.Windows.Forms.Panel();
-            this.PnlLabelMesas = new System.Windows.Forms.Panel();
-            this.LblSelectMesas = new System.Windows.Forms.Label();
-            this.PnlMenu = new System.Windows.Forms.Panel();
-            this.LblMesas = new System.Windows.Forms.Label();
             this.UcMesa2 = new PO26B_FSA.FilaMesa();
             this.UcMesa4 = new PO26B_FSA.FilaMesa();
             this.UcMesa3 = new PO26B_FSA.FilaMesa();
             this.UcMesa1 = new PO26B_FSA.FilaMesa();
+            this.PnlLabelMesas = new System.Windows.Forms.Panel();
+            this.LblSelectMesas = new System.Windows.Forms.Label();
+            this.PnlMenu = new System.Windows.Forms.Panel();
+            this.LblMesas = new System.Windows.Forms.Label();
             this.PnlBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxLogoMenu)).BeginInit();
             this.PnlContenedor.SuspendLayout();
@@ -110,6 +110,46 @@
             this.PnlMesas.TabIndex = 1;
             this.PnlMesas.Visible = false;
             // 
+            // UcMesa2
+            // 
+            this.UcMesa2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(126)))));
+            this.UcMesa2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.UcMesa2.Location = new System.Drawing.Point(14, 96);
+            this.UcMesa2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.UcMesa2.Name = "UcMesa2";
+            this.UcMesa2.Size = new System.Drawing.Size(482, 80);
+            this.UcMesa2.TabIndex = 4;
+            // 
+            // UcMesa4
+            // 
+            this.UcMesa4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(126)))));
+            this.UcMesa4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.UcMesa4.Location = new System.Drawing.Point(14, 272);
+            this.UcMesa4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.UcMesa4.Name = "UcMesa4";
+            this.UcMesa4.Size = new System.Drawing.Size(482, 80);
+            this.UcMesa4.TabIndex = 3;
+            // 
+            // UcMesa3
+            // 
+            this.UcMesa3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(126)))));
+            this.UcMesa3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.UcMesa3.Location = new System.Drawing.Point(14, 184);
+            this.UcMesa3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.UcMesa3.Name = "UcMesa3";
+            this.UcMesa3.Size = new System.Drawing.Size(482, 80);
+            this.UcMesa3.TabIndex = 2;
+            // 
+            // UcMesa1
+            // 
+            this.UcMesa1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.UcMesa1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.UcMesa1.Location = new System.Drawing.Point(14, 8);
+            this.UcMesa1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.UcMesa1.Name = "UcMesa1";
+            this.UcMesa1.Size = new System.Drawing.Size(482, 80);
+            this.UcMesa1.TabIndex = 1;
+            // 
             // PnlLabelMesas
             // 
             this.PnlLabelMesas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(94)))), ((int)(((byte)(171)))));
@@ -152,42 +192,6 @@
             this.LblMesas.TabIndex = 4;
             this.LblMesas.Text = "Mesas";
             this.LblMesas.Click += new System.EventHandler(this.LblMesas_Click);
-            // 
-            // UcMesa2
-            // 
-            this.UcMesa2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(126)))));
-            this.UcMesa2.Location = new System.Drawing.Point(14, 96);
-            this.UcMesa2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.UcMesa2.Name = "UcMesa2";
-            this.UcMesa2.Size = new System.Drawing.Size(482, 80);
-            this.UcMesa2.TabIndex = 4;
-            // 
-            // UcMesa4
-            // 
-            this.UcMesa4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(126)))));
-            this.UcMesa4.Location = new System.Drawing.Point(14, 272);
-            this.UcMesa4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.UcMesa4.Name = "UcMesa4";
-            this.UcMesa4.Size = new System.Drawing.Size(482, 80);
-            this.UcMesa4.TabIndex = 3;
-            // 
-            // UcMesa3
-            // 
-            this.UcMesa3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(126)))));
-            this.UcMesa3.Location = new System.Drawing.Point(14, 184);
-            this.UcMesa3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.UcMesa3.Name = "UcMesa3";
-            this.UcMesa3.Size = new System.Drawing.Size(482, 80);
-            this.UcMesa3.TabIndex = 2;
-            // 
-            // UcMesa1
-            // 
-            this.UcMesa1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(68)))), ((int)(((byte)(126)))));
-            this.UcMesa1.Location = new System.Drawing.Point(14, 8);
-            this.UcMesa1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
-            this.UcMesa1.Name = "UcMesa1";
-            this.UcMesa1.Size = new System.Drawing.Size(482, 80);
-            this.UcMesa1.TabIndex = 1;
             // 
             // DlgPrincipal
             // 
