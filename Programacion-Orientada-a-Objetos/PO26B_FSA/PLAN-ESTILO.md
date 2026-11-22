@@ -3,8 +3,8 @@
 Formato: planificar-fases v1 · módulos: software
 
 ## Estado actual
-- Fase en curso: 4, Barra lateral y paleta del menú · Última actualización: 2026-11-22
-- **Siguiente acción:** empezar la Fase 4 (las Fases 2 y 3 están descartadas).
+- Fase en curso: 5, Área principal del menú · Última actualización: 2026-11-22
+- **Siguiente acción:** hacer commit de las Fases 1 y 4 (siguen sin commit) y empezar la Fase 5.
 
 Leyenda: [ ] pendiente · [~] en curso · [h] hecho sin verificar · [x] verificado (fecha)
 Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
@@ -31,7 +31,7 @@ Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "I
 | 1 | Vista única: la app abre directamente con las 4 mesas; sin "Mesas", "Atrás" ni Esc | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-22) |
 | 2 | ~~Dificultad con punto de color~~ | — | descartada (2026-11-19) |
 | 3 | ~~Avatares circulares~~ | — | descartada (2026-11-19) |
-| 4 | Barra lateral con 4 `Button` planos en lugar de `FilaMesa`; paleta y Segoe UI en el menú; sin fondo Terraria | Alfredo en diseñador + Claude propone `.cs` | [ ] |
+| 4 | Barra lateral con 4 `Button` planos en lugar de `FilaMesa`; paleta y Segoe UI en el menú; sin fondo Terraria | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-22) |
 | 5 | Área principal: logo "PO26B" en texto, saludo, caja de mensaje y chips que abren mesas | Alfredo en diseñador + Claude propone `.cs` | [ ] |
 | 6 | Mesas 1-3 con paleta y fuentes | Alfredo en diseñador | [ ] |
 | 7 | Marco del acuario en `MesaDePracticas4` con paleta y fuentes | Alfredo en diseñador | [ ] |
@@ -131,7 +131,7 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 
 ---
 
-## Fase 4: Barra lateral y paleta del menú  [ ]
+## Fase 4: Barra lateral y paleta del menú  [x] (2026-11-22)
 **Objetivo:** las 4 mesas en una barra lateral izquierda como lista de conversaciones, con la paleta y Segoe UI.
 **Entregable demostrable:** barra `#EDEBE3` a la izquierda con 4 botones planos "Mesa de prácticas 1-4"; fondo `#F5F4EE`; sin azules, sin Andy y sin fondo Terraria.
 **Escribe:** Alfredo en el diseñador; Claude propone `DlgPrincipal.cs`.
@@ -139,8 +139,8 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 - [Firme] `FilaMesa` se elimina: sin dificultad, retrato ni estadísticas solo le queda nombre + hover + clic, y un `Button` con `FlatStyle = Flat` ya trae `Text`, `FlatAppearance.MouseOverBackColor` y `Click`. Aquí deja de usarse; los archivos se borran en la Fase 9.
 - [Firme] `Button` de WinForms, no `IconButton` de FontAwesome.Sharp: no está en el proyecto y los botones son solo texto.
 - [Firme] Cada botón llama a `AbrirMesa`, igual que hoy `AbrirClick`.
-- [Validar en Fase 4] Hover `#DDD9CE` sobre `#EDEBE3` → si no se distingue al pasar el ratón, borde `#C96442`.
-- [Validar en Fase 4] ¿Dónde viven los colores en código? → si la misma constante se usa en dos o más `.cs`, en un solo lugar (Claude propone dónde, con justificación); si no, constantes locales.
+- [Validado 2026-11-22] Hover `#DDD9CE` sobre `#EDEBE3`: se distingue; no hace falta borde `#C96442`.
+- [Validado 2026-11-22] Colores en código: ninguno; todos viven en el diseñador → no hace falta un lugar común todavía.
 **Tareas:** diseñador: panel con `Dock = Left` y 4 `Button` (`BtnMesa1-4`) con `FlatStyle = Flat` y `FlatAppearance.BorderSize = 0`; quitar `UcMesa1-4`, `PnlMesas`, `PnlLabelMesas` y `LblSelectMesas` si sobran; `BackgroundImage` de `PnlBackground` a ninguna; `Font` del formulario a Segoe UI. `DlgPrincipal.cs`: quitar las 4 llamadas a `Configurar`, los retratos y el `RoundControl` de `PnlLabelMesas`; conectar `BtnMesa1-4_Click` a `AbrirMesa`.
 **Hecho cuando:** las 4 mesas se ven a la izquierda, el hover se nota, cada clic abre la mesa correcta, ningún control del menú usa Andy ni azul, y pasa la cabecera.
 **Verificación:** manual en la app.
@@ -149,6 +149,12 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 **Qué debes entender:** cómo reparte el espacio `Dock`, por qué importa el orden de `Controls.Add`, y por qué un `Button` plano sustituye a `FilaMesa` (qué hacía `ConectarEventos` y por qué un `Button` no lo necesita).
 **Punto de revisión:** ¿los botones de la barra sirven de modelo para los chips? ¿Hizo falta un lugar común para los colores? Si sí, las Fases 5, 6 y 8 lo usan.
 **Notas:**
+- 2026-11-22 · Diseñador (Alfredo): borrado `PnlContenedor` (con `PnlMesas`, `UcMesa1-4`, `PnlLabelMesas`, `LblSelectMesas`); `PnlBarraLateral` (`Dock = Left`, `#EDEBE3`) con `BtnMesa1-4` planos; `PnlBackground` sin `BackgroundImage`, sin `Min/MaximumSize` y sin borde; formulario en Segoe UI 8,25, botones en 9,75. Tamaños restaurados a mano tras el autoescalado.
+- 2026-11-22 · `DlgPrincipal.cs` (Claude): quitados `Configurar`, retratos, `RoundControl` y las suscripciones a `AbrirClick`; añadidos `BtnMesa1-4_Click` → `AbrirMesa`. Los handlers se conectaron desde Propiedades → Eventos (no con doble clic) porque ya existían.
+- 2026-11-22 · Causa de error: `Min/MaximumSize` = 783 × 718 en `PnlBackground` ganaba al `Dock = Fill` y lo empujaba 240 px fuera de la ventana.
+- 2026-11-22 · Causa de error: con `AutoScaleMode = Font`, cambiar la fuente del formulario multiplica tamaños por `AutoScaleDimensions nuevo / viejo`. Andy 8,25 (5 × 13) → Segoe UI 8,25 (6 × 13): anchos ×1,2. Con 9,75 los botones pasaban de 40 a 52 de alto.
+- 2026-11-22 · Compila; 36/36 tests; prueba de regresión manual correcta (Alfredo).
+- 2026-11-22 · Punto de revisión: los botones de la barra sirven de modelo para los chips (mismo `FlatStyle` y hover). No hizo falta un lugar común para los colores.
 
 ---
 
@@ -272,8 +278,12 @@ No cambies comportamiento: si hace falta, detente y consulta.
 | 2026-11-19 | 4, 5, 9 | [Firme] Se deja de usar Andy y se eliminan todos los recursos de Terraria | Conservar los que no estorban | El diseño anterior está retirado; recursos sin uso confunden |
 | 2026-11-19 | 5 | [Firme] Logo "PO26B" en texto Georgia en lugar de `LogoPOO1.png` | Conservar la imagen | Coherente con el estilo chat |
 | 2026-11-20 | 5 | [Firme] Logo fijo, sin animación de crecer y encoger; se quita en la Fase 5 junto con `PbxLogoMenu` | Conservar la animación con `Timer` + `Stopwatch`; quitarla en la Fase 1 | Un logo fijo es más fiel al diseño plano. En la Fase 1 se mezclaría con la navegación |
+| 2026-11-22 | 4 | Se amplía el formulario para dar sitio a la barra lateral | Encoger el área principal a 543 px | El logo de 690 px no cabía; la Fase 5 necesita el ancho original |
+| 2026-11-22 | 4 | Fuente del formulario Segoe UI 8,25; los botones llevan 9,75 propia | Formulario en 9,75 | 9,75 reescala todos los controles (altos ×17/13); 8,25 conserva los altos |
+| 2026-11-22 | 4 | Colores solo en el diseñador; sin clase ni constantes comunes | Un lugar común para los colores ya en la Fase 4 | Ningún `.cs` usa colores; se reevalúa cuando un color aparezca en dos o más `.cs` |
+| 2026-11-22 | 4 | Hover `#DDD9CE` sin borde | Borde `#C96442` | El hover se distingue (validado por Alfredo) |
 
 ## Riesgos globales
 - **Dos planes sobre `MesaDePracticas4`:** no se ejecutan a la vez una fase de `PLAN.md` y la Fase 7 u 8 de este plan.
 - **Romper la navegación al rehacer el menú:** la prueba de regresión de la cabecera se hace en cada fase, no solo al final.
-- **Que el color se vuelva a escribir en muchos sitios:** se resuelve con la decisión de la Fase 4 sobre dónde viven las constantes.
+- **Que el color se vuelva a escribir en muchos sitios:** en la Fase 4 no hizo falta un lugar común (registro 2026-11-22); se reevalúa en las Fases 5, 6 y 8 si un color aparece en dos o más `.cs`.

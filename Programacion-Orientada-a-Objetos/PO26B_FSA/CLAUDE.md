@@ -53,6 +53,7 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 - No edites los `.Designer.cs` a mano. Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
 - Estética: todo el proyecto (menú, mesas 1-3 y `MesaDePracticas4`, acuario incluido) usa el estilo de la sección "Estilo chat". El pixel-art estilo Terraria está retirado: no lo propongas.
 - Un control con `Dock = Fill` debe quedar al frente de sus hermanos acoplados (clic derecho → Traer al frente); si no, los controles `Top`/`Bottom` lo tapan y su `ClientSize` incluye la zona tapada. En el `.Designer.cs`, su `Controls.Add` aparece primero.
+- Cambiar el `Font` de un formulario con `AutoScaleMode = Font` reescala posiciones y tamaños de sus controles (factor = `AutoScaleDimensions` nuevo / viejo); tras cambiarlo, revisa los tamaños. Y `MinimumSize`/`MaximumSize` ganan a `Dock`: un control con `Fill` y tamaño fijo se sale de su contenedor.
 - Navegación entre vistas (p. ej. el menú y una mesa): un formulario abre u oculta a otro sin tocar sus controles. No añadir interfaces ni gestores de navegación hasta que haya un problema real que justifique su coste.
 
 ## Estilo chat

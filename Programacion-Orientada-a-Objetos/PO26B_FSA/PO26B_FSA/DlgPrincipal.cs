@@ -39,12 +39,6 @@ namespace PO26B_FSA
             timerLogoAnimation.Interval = 16;
 
             timerLogoAnimation.Tick += AnimationLogoTick;
-
-            // Cada fila avisa que se pulsó "abrir"; aquí se decide qué mesa abre.
-            UcMesa1.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas1());
-            UcMesa2.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas2());
-            UcMesa3.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas3());
-            UcMesa4.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas4());
         }
 
         //---------------------------------------------------------------------
@@ -57,19 +51,29 @@ namespace PO26B_FSA
             originalX = PbxLogoMenu.Left;
             originalY = PbxLogoMenu.Top;
             StartLogoAnimation();
+        }
 
-            UIHelper.RoundControl(PnlLabelMesas, 30, Color.FromArgb(0, 0, 0), 2);
+        //---------------------------------------------------------------------
+        // Botones de la barra lateral: cada uno abre su mesa.
+        //---------------------------------------------------------------------
+        private void BtnMesa1_Click(object sender, EventArgs e)
+        {
+            AbrirMesa(new MesaDePracticas1());
+        }
 
-            // Datos provisionales: colores aproximados (no son los RGB de Terraria)
-            // y cifras inventadas que crecen con la dificultad de la mesa.
-            Image retrato1 = Properties.Resources.Personaje2;
-            Image retrato2 = Properties.Resources.Personaje1;
-            Image retrato3 = Properties.Resources.Personaje3;
-            Image retrato4 = Properties.Resources.Personaje4;
-            UcMesa1.Configurar("Mesa de prácticas 1", "Clásico", Color.Gainsboro, retrato1, 100, 20, "2:15:08");
-            UcMesa2.Configurar("Mesa de prácticas 2", "Experto", Color.Gold, retrato2, 260, 80, "18:42:31");
-            UcMesa3.Configurar("Mesa de prácticas 3", "Maestro", Color.Crimson, retrato3, 400, 160, "63:07:54");
-            UcMesa4.Configurar("Mesa de prácticas 4", "Legendario", Color.MediumPurple, retrato4, 500, 200, "152:39:12");
+        private void BtnMesa2_Click(object sender, EventArgs e)
+        {
+            AbrirMesa(new MesaDePracticas2());
+        }
+
+        private void BtnMesa3_Click(object sender, EventArgs e)
+        {
+            AbrirMesa(new MesaDePracticas3());
+        }
+
+        private void BtnMesa4_Click(object sender, EventArgs e)
+        {
+            AbrirMesa(new MesaDePracticas4());
         }
 
         //---------------------------------------------------------------------
