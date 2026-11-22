@@ -49,6 +49,7 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 
 ## Interfaz y diseñador
 
+- El diseñador no escribe en el `.Designer.cs` una propiedad con su valor por defecto (p. ej. `Visible = true`): para verificar un cambio así, busca que haya desaparecido la línea con el valor anterior.
 - No edites los `.Designer.cs` a mano. Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
 - Estética: todo el proyecto (menú, mesas 1-3 y `MesaDePracticas4`, acuario incluido) usa el estilo de la sección "Estilo chat". El pixel-art estilo Terraria está retirado: no lo propongas.
 - Un control con `Dock = Fill` debe quedar al frente de sus hermanos acoplados (clic derecho → Traer al frente); si no, los controles `Top`/`Bottom` lo tapan y su `ClientSize` incluye la zona tapada. En el `.Designer.cs`, su `Controls.Add` aparece primero.
@@ -65,7 +66,7 @@ En todas las pantallas:
 
 Solo en el menú principal (`DlgPrincipal`): una sola vista (menú y selector de mesas juntos): barra lateral izquierda con las 4 mesas como lista de conversaciones; área principal con logo "PO26B" en texto, saludo "¿Qué practicamos hoy?", caja de mensaje (decorativa por ahora) y chips que abren mesas. Sin botón "Atrás" ni Esc; la app se cierra con la X. Las mesas no copian esta distribución.
 
-- Cambia la apariencia, no el comportamiento. Única excepción ya decidida: la vista única del menú (Fase 1 de `PLAN-ESTILO.md`). Se conservan `AbrirMesa` (al cerrar una mesa vuelve el menú) y la animación del logo con `Timer` + `Stopwatch`.
+- Cambia la apariencia, no el comportamiento. Excepciones ya decididas: la vista única del menú (Fase 1 de `PLAN-ESTILO.md`) y el logo fijo sin animación (Fase 5). Se conserva `AbrirMesa` (al cerrar una mesa vuelve el menú).
 - Acuario: primero migra el marco (panel, botones, etiquetas). Los colores de peces y plantas en el `Paint` se deciden en su propia fase.
 - Restos de Terraria (no tomarlos como referencia; se eliminan en la Fase 9 de `PLAN-ESTILO.md`): `FilaMesa` entera, `UIHelper.AplicarEstiloTerraria` e `Interpolar`, la fuente Andy (instalada en Windows, se quita cambiando `Font` en el diseñador), `TerrariaBackground` y los PNG que liste el inventario.
 - Fases y avance: `PLAN-ESTILO.md`; léelo solo en tareas de estilo. `PLAN.md` decide el comportamiento del acuario y `PLAN-ESTILO.md` su aspecto; una fase no mezcla las dos cosas.

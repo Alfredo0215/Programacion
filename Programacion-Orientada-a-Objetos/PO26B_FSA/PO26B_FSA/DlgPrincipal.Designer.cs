@@ -32,7 +32,6 @@
             this.PnlBackground = new System.Windows.Forms.Panel();
             this.PbxLogoMenu = new System.Windows.Forms.PictureBox();
             this.PnlContenedor = new System.Windows.Forms.Panel();
-            this.LblAtras = new System.Windows.Forms.Label();
             this.PnlMesas = new System.Windows.Forms.Panel();
             this.UcMesa2 = new PO26B_FSA.FilaMesa();
             this.UcMesa4 = new PO26B_FSA.FilaMesa();
@@ -40,14 +39,11 @@
             this.UcMesa1 = new PO26B_FSA.FilaMesa();
             this.PnlLabelMesas = new System.Windows.Forms.Panel();
             this.LblSelectMesas = new System.Windows.Forms.Label();
-            this.PnlMenu = new System.Windows.Forms.Panel();
-            this.LblMesas = new System.Windows.Forms.Label();
             this.PnlBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxLogoMenu)).BeginInit();
             this.PnlContenedor.SuspendLayout();
             this.PnlMesas.SuspendLayout();
             this.PnlLabelMesas.SuspendLayout();
-            this.PnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlBackground
@@ -77,24 +73,12 @@
             // PnlContenedor
             // 
             this.PnlContenedor.BackColor = System.Drawing.Color.Transparent;
-            this.PnlContenedor.Controls.Add(this.LblAtras);
             this.PnlContenedor.Controls.Add(this.PnlMesas);
             this.PnlContenedor.Controls.Add(this.PnlLabelMesas);
-            this.PnlContenedor.Controls.Add(this.PnlMenu);
             this.PnlContenedor.Location = new System.Drawing.Point(94, 214);
             this.PnlContenedor.Name = "PnlContenedor";
             this.PnlContenedor.Size = new System.Drawing.Size(619, 468);
             this.PnlContenedor.TabIndex = 2;
-            // 
-            // LblAtras
-            // 
-            this.LblAtras.AutoSize = true;
-            this.LblAtras.Location = new System.Drawing.Point(57, 436);
-            this.LblAtras.Name = "LblAtras";
-            this.LblAtras.Size = new System.Drawing.Size(28, 13);
-            this.LblAtras.TabIndex = 3;
-            this.LblAtras.Text = "Atrás";
-            this.LblAtras.Click += new System.EventHandler(this.LblAtras_Click);
             // 
             // PnlMesas
             // 
@@ -108,7 +92,6 @@
             this.PnlMesas.Name = "PnlMesas";
             this.PnlMesas.Size = new System.Drawing.Size(511, 369);
             this.PnlMesas.TabIndex = 1;
-            this.PnlMesas.Visible = false;
             // 
             // UcMesa2
             // 
@@ -159,7 +142,6 @@
             this.PnlLabelMesas.Name = "PnlLabelMesas";
             this.PnlLabelMesas.Size = new System.Drawing.Size(372, 55);
             this.PnlLabelMesas.TabIndex = 2;
-            this.PnlLabelMesas.Visible = false;
             // 
             // LblSelectMesas
             // 
@@ -171,27 +153,6 @@
             this.LblSelectMesas.Size = new System.Drawing.Size(337, 54);
             this.LblSelectMesas.TabIndex = 0;
             this.LblSelectMesas.Text = "Seleccionar Mesa";
-            // 
-            // PnlMenu
-            // 
-            this.PnlMenu.BackColor = System.Drawing.Color.Transparent;
-            this.PnlMenu.Controls.Add(this.LblMesas);
-            this.PnlMenu.Location = new System.Drawing.Point(212, 111);
-            this.PnlMenu.Name = "PnlMenu";
-            this.PnlMenu.Size = new System.Drawing.Size(175, 200);
-            this.PnlMenu.TabIndex = 0;
-            // 
-            // LblMesas
-            // 
-            this.LblMesas.Font = new System.Drawing.Font("Andy", 24.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblMesas.ForeColor = System.Drawing.Color.Gainsboro;
-            this.LblMesas.Location = new System.Drawing.Point(0, 70);
-            this.LblMesas.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.LblMesas.Name = "LblMesas";
-            this.LblMesas.Size = new System.Drawing.Size(175, 60);
-            this.LblMesas.TabIndex = 4;
-            this.LblMesas.Text = "Mesas";
-            this.LblMesas.Click += new System.EventHandler(this.LblMesas_Click);
             // 
             // DlgPrincipal
             // 
@@ -208,19 +169,15 @@
             this.PnlBackground.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbxLogoMenu)).EndInit();
             this.PnlContenedor.ResumeLayout(false);
-            this.PnlContenedor.PerformLayout();
             this.PnlMesas.ResumeLayout(false);
             this.PnlLabelMesas.ResumeLayout(false);
             this.PnlLabelMesas.PerformLayout();
-            this.PnlMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.Label LblMesas;
         private System.Windows.Forms.Panel PnlBackground;
-        private System.Windows.Forms.Panel PnlMenu;
         private System.Windows.Forms.PictureBox PbxLogoMenu;
         private System.Windows.Forms.Panel PnlContenedor;
         private System.Windows.Forms.Panel PnlMesas;
@@ -230,7 +187,6 @@
         private FilaMesa UcMesa4;
         private FilaMesa UcMesa3;
         private FilaMesa UcMesa1;
-        private System.Windows.Forms.Label LblAtras;
     }
 }
 

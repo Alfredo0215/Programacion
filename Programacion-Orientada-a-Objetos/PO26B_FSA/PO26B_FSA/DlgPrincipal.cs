@@ -40,13 +40,6 @@ namespace PO26B_FSA
 
             timerLogoAnimation.Tick += AnimationLogoTick;
 
-            UIHelper.AplicarEstiloTerraria(LblMesas);
-            UIHelper.AplicarEstiloTerraria(LblAtras);
-
-            // Esc vuelve del listado de mesas al menú principal.
-            this.KeyPreview = true;
-            this.KeyDown += DlgPrincipal_KeyDown;
-
             // Cada fila avisa que se pulsó "abrir"; aquí se decide qué mesa abre.
             UcMesa1.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas1());
             UcMesa2.AbrirClick += (s, e) => AbrirMesa(new MesaDePracticas2());
@@ -98,46 +91,6 @@ namespace PO26B_FSA
                 stopwatch.Restart();
             }
 
-        }
-        //---------------------------------------------------------------------
-        // Muestra el listado de mesas y oculta el menú.
-        //---------------------------------------------------------------------
-        private void LblMesas_Click(object sender, EventArgs e)
-        {
-            PnlMenu.Visible = false;
-            PnlLabelMesas.Visible = true;
-            PnlMesas.Visible = true;
-            LblAtras.Visible = true;
-        }
-
-        //---------------------------------------------------------------------
-        // Vuelve del listado de mesas al menú principal con Esc.
-        //---------------------------------------------------------------------
-        private void DlgPrincipal_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape && PnlMesas.Visible)
-            {
-                VolverAlMenu();
-            }
-        }
-
-        //---------------------------------------------------------------------
-        // Vuelve del listado de mesas al menú principal con el botón Atrás.
-        //---------------------------------------------------------------------
-        private void LblAtras_Click(object sender, EventArgs e)
-        {
-            VolverAlMenu();
-        }
-
-        //---------------------------------------------------------------------
-        // Oculta el listado de mesas y muestra el menú.
-        //---------------------------------------------------------------------
-        private void VolverAlMenu()
-        {
-            PnlMesas.Visible = false;
-            PnlLabelMesas.Visible = false;
-            LblAtras.Visible = false;
-            PnlMenu.Visible = true;
         }
 
         //---------------------------------------------------------------------

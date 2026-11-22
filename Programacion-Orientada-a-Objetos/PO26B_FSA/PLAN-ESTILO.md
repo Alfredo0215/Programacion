@@ -3,8 +3,8 @@
 Formato: planificar-fases v1 · módulos: software
 
 ## Estado actual
-- Fase en curso: 1, Vista única · Última actualización: 2026-11-19
-- **Siguiente acción:** empezar la Fase 1 (vista única).
+- Fase en curso: 4, Barra lateral y paleta del menú · Última actualización: 2026-11-22
+- **Siguiente acción:** empezar la Fase 4 (las Fases 2 y 3 están descartadas).
 
 Leyenda: [ ] pendiente · [~] en curso · [h] hecho sin verificar · [x] verificado (fecha)
 Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
@@ -13,9 +13,9 @@ Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "I
 
 **Hecho siempre incluye** (toda fase):
 - Compila con el MSBuild de Visual Studio (comando en `CLAUDE.md`, sección "Compilar") y `dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj` pasa.
-- Prueba de regresión a mano: desde el menú se abre cada mesa con `AbrirMesa`; al cerrar la mesa vuelve el menú; la X cierra la app; el logo sigue animándose. (Hasta terminar la Fase 1, se comprueba además que Esc y "Atrás" funcionan como hoy.)
+- Prueba de regresión a mano: desde el menú se abre cada mesa con `AbrirMesa`; al cerrar la mesa vuelve el menú; la X cierra la app; Esc no hace nada en el menú. (Hasta terminar la Fase 5, se comprueba además que el logo sigue animándose.)
 
-**Reparto en cada fase:** Alfredo agrega y configura los controles en el diseñador de Visual Studio, con los pasos que Claude le explica. Claude propone la lógica de los `.cs` y espera "aplícalo". Una fase solo cambia el aspecto, salvo la Fase 1 (navegación del menú, ver registro). El comportamiento del acuario lo decide `PLAN.md`.
+**Reparto en cada fase:** Alfredo agrega y configura los controles en el diseñador de Visual Studio, con los pasos que Claude le explica. Claude propone la lógica de los `.cs` y espera "aplícalo". Una fase solo cambia el aspecto, salvo la Fase 1 (navegación del menú) y la Fase 5 (logo sin animación); ver registro. El comportamiento del acuario lo decide `PLAN.md`.
 
 ## Resumen del enfoque
 - **Decisión:** primero se junta el menú en una sola vista sin tocar su aspecto. Después se rehace la distribución del menú con la paleta. Luego las mesas y, al final, el lienzo del acuario. Cada fase deja la app usable.
@@ -28,7 +28,7 @@ Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "I
 | Fase | Entregable demostrable | Escribe | Estado |
 |---|---|---|---|
 | 0 | Inventario de restos y entorno comprobado | Claude (inventario) + Alfredo (ejecutar app) | [x] (2026-11-19) |
-| 1 | Vista única: la app abre directamente con las 4 mesas; sin "Mesas", "Atrás" ni Esc | Alfredo en diseñador + Claude propone `.cs` | [ ] |
+| 1 | Vista única: la app abre directamente con las 4 mesas; sin "Mesas", "Atrás" ni Esc | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-22) |
 | 2 | ~~Dificultad con punto de color~~ | — | descartada (2026-11-19) |
 | 3 | ~~Avatares circulares~~ | — | descartada (2026-11-19) |
 | 4 | Barra lateral con 4 `Button` planos en lugar de `FilaMesa`; paleta y Segoe UI en el menú; sin fondo Terraria | Alfredo en diseñador + Claude propone `.cs` | [ ] |
@@ -45,12 +45,12 @@ Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "I
 **Entregable demostrable:** la tabla de inventario de abajo y la app ejecutándose tal como está.
 **Escribe:** Claude (inventario con Grep, hecho el 2026-11-19); Alfredo (ejecutar la app y comprobar las fuentes).
 **Decisiones:**
-- [Validar en Fase 0] Georgia y Segoe UI están instaladas → si alguna falta, se elige otra fuente y se anota en el registro y en `CLAUDE.md`.
+- [Validado 2026-11-19] Georgia y Segoe UI están instaladas (ver Notas): no hace falta otra fuente.
 - [Validado 2026-11-19] El diseñador acepta el color escrito en la propiedad `BackColor` con punto y coma: `245; 244; 238` (no con comas). No cambia el plan, solo los pasos.
-- [Validar en Fase 0] ¿Los colores `LightBlue` / `LightPink` de `MesaDePracticas1.cs` y los de `CDron.cs` significan un estado? → la Fase 0 anota sí o no; la Fase 6 elige el color de la paleta que los sustituye.
+- [Validado 2026-11-19] Los colores `LightBlue` / `LightPink` de `MesaDePracticas1.cs` y los de `CDron.cs` **sí** significan un estado (ver Notas); la Fase 6 elige los colores de la paleta que los sustituyen.
 **Tareas:**
-- [h] Grep de `AplicarEstiloTerraria`, `Andy`, `Color.FromArgb`, `Color.<Nombre>`, `Brushes.` y `Pens.` en los `.cs` de `PO26B_FSA\`.
-- [h] Grep de recursos (`Properties.Resources.*`, `Resources.resx`, `.csproj`) y de FontAwesome.Sharp (no está referenciado; `packages.config` solo tiene `Bogus`).
+- [x] (2026-11-19) Grep de `AplicarEstiloTerraria`, `Andy`, `Color.FromArgb`, `Color.<Nombre>`, `Brushes.` y `Pens.` en los `.cs` de `PO26B_FSA\`. Verificado al recorrer las pantallas: no aparecen restos fuera del inventario.
+- [x] (2026-11-19) Grep de recursos (`Properties.Resources.*`, `Resources.resx`, `.csproj`) y de FontAwesome.Sharp (no está referenciado; `packages.config` solo tiene `Bogus`).
 - [x] (2026-11-19) Ejecutar la app y recorrer las 5 pantallas (menú, mesas 1-4). Menú: `docs/Screenshot_4.png`, `docs/Screenshot_5.png`. Mesas 1-4: sin imágenes salvo `Dron.png` (ya inventariada).
 - [x] (2026-11-19) Comprobar que Georgia y Segoe UI están instaladas.
 - [x] (2026-11-19) Mirar el ícono de la ventana (`$this.Icon`): si es de Terraria, se añade a la Fase 9 y se elige otro.
@@ -98,7 +98,7 @@ Hallazgo general: las mesas 1-4 no son pixel-art. Usan colores con nombre de Win
 
 ---
 
-## Fase 1: Vista única  [ ]
+## Fase 1: Vista única  [x] (2026-11-22)
 **Objetivo:** que el menú principal y el selector de mesas sean una sola vista, sin cambiar todavía el aspecto.
 **Entregable demostrable:** al abrir la app se ven directamente las 4 mesas; no existen "Mesas", "Atrás" ni Esc.
 **Escribe:** Alfredo en el diseñador (borrar `PnlMenu`, `LblMesas`, `LblAtras`; `PnlMesas` y `PnlLabelMesas` visibles al inicio); Claude propone los cambios de `DlgPrincipal.cs`.
@@ -113,6 +113,11 @@ Hallazgo general: las mesas 1-4 no son pixel-art. Usan colores con nombre de Win
 **Qué debes entender:** por qué borrar un control en el diseñador no borra su método `_Click` del `.cs`, pero sí la línea `+=` del `.Designer.cs`.
 **Punto de revisión:** ¿se nota que falta algo sin "Atrás"? Si sí, se anota antes de la Fase 4.
 **Notas:**
+- 2026-11-22 · Diseñador (Alfredo): borrados `LblAtras`, `PnlMenu` (con `LblMesas` dentro); `PnlMesas` y `PnlLabelMesas` en `Visible = True`. Comprobación en el `.Designer.cs`: ya no tienen la línea `Visible = false` (el diseñador no escribe el valor por defecto).
+- 2026-11-22 · `DlgPrincipal.cs` (Claude): quitados `AplicarEstiloTerraria(LblMesas/LblAtras)`, `KeyPreview`, la suscripción a `KeyDown`, `LblMesas_Click`, `DlgPrincipal_KeyDown`, `LblAtras_Click` y `VolverAlMenu`.
+- 2026-11-22 · Compila; 36/36 tests; Grep de `LblMesas`, `LblAtras`, `PnlMenu`, `VolverAlMenu`, `KeyDown`, `KeyPreview` en los `.cs`: sin resultados. Prueba de regresión manual correcta.
+- 2026-11-22 · `UIHelper.AplicarEstiloTerraria` queda sin usos: se borra en la Fase 9.
+- 2026-11-22 · Punto de revisión: no se nota que falte nada sin "Atrás"; según Alfredo, `LblAtras` ni siquiera se veía antes.
 
 ---
 
@@ -154,15 +159,15 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 **Decisiones:**
 - [Firme] El logo es texto "PO26B" en Georgia; `LogoPOO1.png` deja de usarse.
 - [Firme] Los chips abren mesas con `AbrirMesa`, igual que la barra (duplicado aceptado: así es la referencia).
-- [Firme] La animación del logo sigue con `Timer` + `Stopwatch`.
+- [Firme] El logo es fijo, sin animación de crecer y encoger (registro 2026-11-20). Es la segunda excepción a "solo aspecto": se quita aquí, al sustituir el logo, y no en la Fase 1, para no mezclarla con la navegación.
+- [Firme] El logo es un `Label` (`LblLogo`) en Georgia; sustituye a `PbxLogoMenu`.
 - [Firme] La caja de mensaje es decorativa por ahora: se ve, pero no hace nada.
-- [Validar en Fase 5] Cómo se anima el texto: `ApplyScale` cambia el tamaño de `PbxLogoMenu`, y en un `Label` eso no agranda la letra → propuesta: dibujar el texto en un `Bitmap` y ponerlo en `PbxLogoMenu.Image` (`SizeMode = Zoom` ya está), así `ApplyScale` no cambia. Si el texto escalado se ve borroso, se dibuja en el `Paint` con escala.
-**Tareas:** diseñador: `LblSaludo`, `TbxMensaje`, 4 `Button` planos para los chips (`BtnChip1-4`); `DlgPrincipal.cs`: generar el logo y conectar los chips.
-**Hecho cuando:** se ven logo, saludo, caja y chips; el logo se anima; cada chip abre su mesa; pasa la cabecera.
+**Tareas:** diseñador: `LblLogo`, `LblSaludo`, `TbxMensaje`, 4 `Button` planos para los chips (`BtnChip1-4`); borrar `PbxLogoMenu` y `timerLogoAnimation`. `DlgPrincipal.cs`: conectar los chips; borrar `stopwatch`, `AnimationLogoTick`, `GetScale`, `ApplyScale`, `StartLogoAnimation`, `Clamp` (solo lo usa la animación, Grep 2026-11-20), los campos `original*` y el código de `DlgPrincipal_Load` que los usa.
+**Hecho cuando:** se ven logo, saludo, caja y chips; no queda código de la animación; cada chip abre su mesa; pasa la cabecera.
 **Verificación:** manual en la app.
 **Fuera de alcance:** que la caja haga algo (ver "Después del MVP").
 **Riesgos:** el área principal queda estrecha junto a la barra → se ajusta el ancho de la barra (ver "Qué observación la haría revisar").
-**Qué debes entender:** por qué cambiar `Bounds` agranda una imagen con `Zoom` pero no la letra de un `Label`.
+**Qué debes entender:** por qué borrar `timerLogoAnimation` en el diseñador no borra `AnimationLogoTick` del `.cs` (se suscribe en el constructor, no en el `.Designer.cs`), y cómo comprobar con Grep que un método ya no tiene usos antes de borrarlo.
 **Punto de revisión:** ¿el menú se parece a la referencia? Si no, se anota qué falta antes de pasar a las mesas.
 **Notas:**
 
@@ -174,7 +179,7 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 **Escribe:** Alfredo en el diseñador; Claude propone los cambios en `MesaDePracticas1.cs` y `CDron.cs`.
 **Decisiones:**
 - [Firme] Las mesas no copian la distribución de chat (`CLAUDE.md`).
-- [Validar en Fase 0] Colores que significan un estado (`LightBlue`/`LightPink`, colores del dron) → si significan algo, se conserva la distinción con colores que se lean sobre la paleta. No se quita información.
+- [Firme] (validado en Fase 0, 2026-11-19) `LightBlue`/`LightPink` y los colores del dron significan un estado: se conserva la distinción con colores que se lean sobre la paleta. No se quita información. Qué colores usar: ver "Preguntas abiertas".
 - [Validar en Fase 6] Qué color de la paleta lleva cada `PnlPracticasN` → hoy cada panel tiene un color distinto. Si el color solo decora, todos pasan a `#EDEBE3`; si sirve para distinguir prácticas, se usa el acento `#C96442` en el elemento seleccionado.
 **Tareas:** diseñador de `MesaDePracticas1`, `2` y `3` (`PanelSide`, `PnlFill`, `PnlPracticas1-4`, `LblNumPersonas`, fuentes; botones a `FlatStyle = Flat` con `FlatAppearance` en la paleta); `MesaDePracticas1.cs`, `CDron.cs`.
 **Hecho cuando:** al abrir cada una de las tres mesas no queda ningún color fuera de la paleta (salvo los de estado decididos en la Fase 0) y sus prácticas funcionan igual que antes; pasa la prueba de regresión.
@@ -266,6 +271,7 @@ No cambies comportamiento: si hace falta, detente y consulta.
 | 2026-11-19 | 5 | [Firme] La caja de mensaje es decorativa por ahora | Que acepte texto | Sería comportamiento nuevo; va en "Después del MVP" |
 | 2026-11-19 | 4, 5, 9 | [Firme] Se deja de usar Andy y se eliminan todos los recursos de Terraria | Conservar los que no estorban | El diseño anterior está retirado; recursos sin uso confunden |
 | 2026-11-19 | 5 | [Firme] Logo "PO26B" en texto Georgia en lugar de `LogoPOO1.png` | Conservar la imagen | Coherente con el estilo chat |
+| 2026-11-20 | 5 | [Firme] Logo fijo, sin animación de crecer y encoger; se quita en la Fase 5 junto con `PbxLogoMenu` | Conservar la animación con `Timer` + `Stopwatch`; quitarla en la Fase 1 | Un logo fijo es más fiel al diseño plano. En la Fase 1 se mezclaría con la navegación |
 
 ## Riesgos globales
 - **Dos planes sobre `MesaDePracticas4`:** no se ejecutan a la vez una fase de `PLAN.md` y la Fase 7 u 8 de este plan.
