@@ -3,9 +3,9 @@
 Formato: planificar-fases v1 · módulos: software
 
 ## Estado actual
-- Fase en curso: 6, Mesas 1-3 · Última actualización: 2026-11-22
-- **Siguiente acción:** hacer commit de la Fase 5 y empezar la Fase 6 (primero resolver la pregunta abierta de los colores de estado de Mesa 1 y del dron).
-- Decidir si `docs/Screenshot_4.png` (aparece borrado en el árbol de trabajo; lo cita la Fase 0) se restaura con `git restore`.
+- Fase en curso: 6b, Mesa 2 (variante sonnet) · Última actualización: 2026-11-23
+- **Siguiente acción:** Alfredo aplica la paleta en el diseñador de `MesaDePracticas2` (`CDron.cs` ya está) y prueba el dron a mano. A 2026-11-23 el `.Designer.cs` de la Mesa 2 no tenía cambios guardados.
+- `docs/Screenshot_4.png` (lo cita la Fase 0) quedó borrado en el commit `4fcd0e5`. Si hace falta: `git restore --source=45f402e docs/Screenshot_4.png`.
 
 Leyenda: [ ] pendiente · [~] en curso · [h] hecho sin verificar · [x] verificado (fecha)
 Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
@@ -34,8 +34,10 @@ Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "I
 | 3 | ~~Avatares circulares~~ | — | descartada (2026-11-19) |
 | 4 | Barra lateral con 4 `Button` planos en lugar de `FilaMesa`; paleta y Segoe UI en el menú; sin fondo Terraria | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-22) |
 | 5 | Área principal: logo "POO26B" en texto, saludo, caja de mensaje y chips que abren mesas | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-22) |
-| 6 | Mesas 1-3 con paleta y fuentes | Alfredo en diseñador | [ ] |
-| 7 | Marco del acuario en `MesaDePracticas4` con paleta y fuentes | Alfredo en diseñador | [ ] |
+| 6a | Mesa 1 con la variante haiku (acento salvia, paneles sin relleno) | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-23) |
+| 6b | Mesa 2 con la variante sonnet (estilo base) y el dron con 3 estados en la paleta | Alfredo en diseñador + Claude propone `.cs` | [~] |
+| 6c | Mesa 3 con la variante opus (acento ciruela, títulos en Georgia) | Alfredo en diseñador | [ ] |
+| 7 | Marco del acuario en `MesaDePracticas4` con la variante fable (acento ocre) | Alfredo en diseñador | [ ] |
 | 8 | Lienzo del acuario: fondo y colores de entidades (esqueleto) | Claude propone `.cs` | [ ] |
 | 9 | Limpieza: sin `FilaMesa`, sin código ni recursos Terraria, `CLAUDE.md` sin la nota de restos | Claude propone | [ ] |
 
@@ -189,21 +191,76 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 
 ---
 
-## Fase 6: Mesas 1-3  [ ]
-**Objetivo:** aplicar el lenguaje visual (paleta, Segoe UI, diseño plano) a las mesas 1-3, sin cambiar su distribución.
-**Entregable demostrable:** las tres mesas sin colores sueltos de WinForms (`Aquamarine`, `AliceBlue`, `SteelBlue`…).
-**Escribe:** Alfredo en el diseñador; Claude propone los cambios en `MesaDePracticas1.cs` y `CDron.cs`.
-**Decisiones:**
+## Fase 6: Mesas 1-3  [dividida en 6a, 6b y 6c (2026-11-22)]
+
+> **Cambio de plan (2026-11-22):** la Fase 6 se divide en 6a, 6b y 6c, una por mesa. Cada mesa recibe una variante inspirada en un modelo de Claude: Mesa 1 = Haiku, Mesa 2 = Sonnet, Mesa 3 = Opus; la variante Fable pasa al acuario (Fase 7). No hay una estética oficial por modelo: la variante sale del significado de la palabra (haiku: poco y preciso; soneto: forma fija y equilibrada; opus: obra mayor, densa; fábula: historia cálida con animales). Motivo: Alfredo quiere que cada mesa tenga identidad propia. Consecuencias: la paleta deja de tener un solo acento (se actualiza "Estilo chat" en `CLAUDE.md`); la pregunta abierta de los colores de estado se resuelve en 6a y 6b; se retira la regla de no usar nombres de marca, porque es software de estudio.
+
+**Decisiones comunes a 6a, 6b y 6c:**
+- [Firme] Base común en todas las mesas: fondo, paneles, bordes, texto, fuentes y diseño plano de `CLAUDE.md`. Cada variante cambia solo el acento y la densidad.
 - [Firme] Las mesas no copian la distribución de chat (`CLAUDE.md`).
-- [Firme] (validado en Fase 0, 2026-11-19) `LightBlue`/`LightPink` y los colores del dron significan un estado: se conserva la distinción con colores que se lean sobre la paleta. No se quita información. Qué colores usar: ver "Preguntas abiertas".
-- [Validar en Fase 6] Qué color de la paleta lleva cada `PnlPracticasN` → hoy cada panel tiene un color distinto. Si el color solo decora, todos pasan a `#EDEBE3`; si sirve para distinguir prácticas, se usa el acento `#C96442` en el elemento seleccionado.
-**Tareas:** diseñador de `MesaDePracticas1`, `2` y `3` (`PanelSide`, `PnlFill`, `PnlPracticas1-4`, `LblNumPersonas`, fuentes; botones a `FlatStyle = Flat` con `FlatAppearance` en la paleta); `MesaDePracticas1.cs`, `CDron.cs`.
-**Hecho cuando:** al abrir cada una de las tres mesas no queda ningún color fuera de la paleta (salvo los de estado decididos en la Fase 0) y sus prácticas funcionan igual que antes; pasa la prueba de regresión.
-**Verificación:** manual en la app, mesa por mesa.
-**Fuera de alcance:** cambiar cómo funciona cualquier práctica.
-**Riesgos:** si una mesa da problemas, la fase se divide (6a, 6b, 6c) con un bloque de cambio de plan.
-**Qué debes entender:** la diferencia entre un color que decora y uno que lleva información, y por qué el segundo no se puede quitar sin sustituirlo.
-**Punto de revisión:** ¿los valores elegidos para los paneles sirven también para el marco del acuario?
+- [Firme] (validado en Fase 0, 2026-11-19) `LightBlue`/`LightPink` y los colores del dron indican un estado: se sustituyen por colores de la paleta, no se quitan.
+- [Firme] Se permite mostrar el nombre del modelo en la mesa (p. ej. en un título); no es obligatorio.
+- [Firme] (validado por Alfredo, 2026-11-23) El color de los `PnlPracticasN` (hoy `SteelBlue`, `Lavender`, `Indigo`, `YellowGreen`) solo decoraba: todos pasan a la base de la variante. Vale para 6a, 6b y 6c.
+- Criterio Grep de cada subfase: `SystemColors\.|Color\.[A-Z][a-z]+` en los archivos de la mesa solo devuelve `FromArgb`, `Transparent` y `White` (el texto sobre el acento).
+- Criterio de contraste fijado de antemano (WCAG AA): texto blanco sobre el acento ≥ 4.5:1 en texto normal, ≥ 3:1 en texto de 14 pt negrita o más y en elementos que no son texto (bordes, el cuadro del dron). Si un acento no llega, se oscurece o se limita a esos usos.
+
+---
+
+## Fase 6a: Mesa 1, variante haiku  [x] (2026-11-23)
+**Objetivo:** aplicar la variante haiku a `MesaDePracticas1`: mucho aire, paneles sin relleno y separados por bordes de 1 px.
+**Entregable demostrable:** Mesa 1 con acento salvia `#587759`, todas las zonas en el color de fondo separadas por líneas de 1 px `#DDD9CE`, botones de acción en píldora y filas de personas en dos tonos claros.
+**Escribe:** Alfredo en el diseñador; Claude propone el cambio en `MesaDePracticas1.cs`.
+**Decisiones:**
+- [Firme] Acento salvia `#587759` (texto blanco 5.00:1; sobre el fondo 4.54:1). Sustituye a `#5F7F63`, que medía 4.47.
+- [Firme] Filas de categoría: `LightBlue` → `#DCE6DD` y `LightPink` → `#F2DDD3` (texto `#2B2A27` sobre ellas: 11.2 y 11.0).
+- [Validar en 6a] Al quitar el celeste y el rosa se pierde esa asociación. Si en la prueba no se entiende qué fila es de qué categoría, hace falta una leyenda. Como eso es contenido nuevo, se consulta antes de añadirla.
+**Tareas:**
+- Diseñador: `Font` del formulario a Segoe UI 8,25 (primero); `BackColor` de fondo en el formulario, `PnlFill`, `PanelSide`, `PanelTop`, `PanelBottom` y `PnlPracticas1-4`; `ForeColor` de `PanelTop`, `LblCaptura1-3`, `LblInfo` y `LblNumPersonas`; `TbxCaptura1-3` con `BorderStyle = FixedSingle`; divisores de 1 px `PnlDivisorSide`, `PnlDivisorTop` y `PnlDivisorBottom`; botones laterales `BtnPractica1-4` y de acción `BtnP*Pnl*` en `FlatStyle = Flat`; `DgvTabla2` y `DgvTabla3` (fondo, `GridColor`, `EnableHeadersVisualStyles = False`, estilos de encabezado, de celda y de selección).
+- `MesaDePracticas1.cs`: colores de las filas (`#DCE6DD`, `#F2DDD3`) y `RedondearBotones()` con `UIHelper.RoundControl` para los botones de acción.
+**Hecho cuando:** el Grep común de la Fase 6 en `MesaDePracticas1.cs` y `MesaDePracticas1.Designer.cs` solo devuelve `FromArgb` y `Transparent`; las dos categorías se distinguen; registrar personas funciona igual; pasa la prueba de regresión.
+**Verificación:** Grep (automático) y la app (manual).
+**Fuera de alcance:** qué datos muestra la tabla.
+**Riesgos:** paneles sin relleno pueden parecer flotar → si pasa, `PanelSide` vuelve a `#EDEBE3`.
+**Qué debes entender:** por qué cambiar el tono no quita información mientras las dos categorías sigan siendo distinguibles.
+**Punto de revisión:** ¿la variante haiku se nota distinta de la base o parece la misma?
+**Notas:**
+- 2026-11-23: verificada. Compila, tests 36/36, Grep limpio y prueba manual de Alfredo correcta. Claude ajustó los últimos colores en el `.Designer.cs` con permiso de Alfredo: `PnlFill`, el fondo de `BtnPractica1-4` y los estilos de celda y encabezado de las tablas.
+- Alfredo cambió el diámetro de `RedondearBotones()` a 5 px (esquinas suaves en lugar de píldora): con `boton.Height` el borde se veía muy dentado. Ver registro 2026-11-23.
+
+---
+
+## Fase 6b: Mesa 2, variante sonnet  [~]
+**Objetivo:** aplicar la variante sonnet (el estilo base del menú) a `MesaDePracticas2` y al dron.
+**Entregable demostrable:** Mesa 2 con la paleta del menú; el dron muestra sus 3 estados con colores de la paleta.
+**Escribe:** Alfredo en el diseñador; Claude propone el cambio en `CDron.cs`.
+**Decisiones:**
+- [Firme] Acento terracota `#C96442`, el mismo del menú. Mide 3.90 con texto blanco: solo en texto de 14 pt negrita o más, en bordes o en el dron.
+- [Firme] Estados del dron: apagado `#7A776E` (`CDron.cs:93`, sustituye al azar `FromArgb(0,G,B)`, que no era un requisito), encendido `#C96442` (`:115`), clic `#2B2A27` (`:181`). Los tres se distinguen también por lo claro u oscuro que son.
+**Tareas:** en el diseñador, `PanelSide`, `PnlFill`, `PnlPracticas1-4` y los botones; en `CDron.cs`, los tres colores.
+**Hecho cuando:** el Grep común de la Fase 6 en los archivos de Mesa 2 y en `CDron.cs` solo devuelve `FromArgb` y `Transparent`; el dron pasa por los tres estados y se distinguen a simple vista; pasa la prueba de regresión.
+**Verificación:** Grep y la app: encender el dron y hacerle clic.
+**Fuera de alcance:** cómo se mueve el dron y sus hilos (`CheckForIllegalCrossThreadCalls`). Esta fase solo toca colores.
+**Riesgos:** ninguno nuevo.
+**Qué debes entender:** por qué los estados deben distinguirse por lo claro u oscuro que son y no solo por el tono.
+**Punto de revisión:** con `CDron.cs` y `MesaDePracticas1.cs` usando colores en código, ¿alguno de esos colores se repite en dos `.cs`? Si se repite, se reevalúa el lugar común (ver "Riesgos globales").
+**Notas:**
+- 2026-11-23: `CDron.cs` hecho (los tres estados en la paleta; se quitan `R`, `G` y `B`, que eran al azar). Compila, Grep limpio. Falta el diseñador de `MesaDePracticas2` y la prueba manual del dron.
+- Punto de revisión: `#C96442` ya aparece en `DlgPrincipal.cs` y en `CDron.cs`. Son dos `.cs`, así que toca reevaluar el lugar común. Propuesta: no crearlo todavía, porque es un solo valor y el riesgo de que se desincronice es bajo. Se reevalúa si un tercer `.cs` lo usa.
+
+---
+
+## Fase 6c: Mesa 3, variante opus  [ ]
+**Objetivo:** aplicar la variante opus a `MesaDePracticas3`: densa y solemne.
+**Entregable demostrable:** Mesa 3 con acento ciruela `#6B4E7A`, títulos en Georgia y paneles `#EDEBE3`.
+**Escribe:** Alfredo en el diseñador.
+**Decisiones:** [Firme] Ciruela `#6B4E7A` (texto blanco 7.01:1): pasa el criterio en cualquier uso.
+**Tareas:** en el diseñador, `PanelSide`, `PnlFill`, `PnlPracticas1-4`, la fuente de las etiquetas de título y los botones.
+**Hecho cuando:** el Grep común de la Fase 6 en los archivos de Mesa 3 solo devuelve `FromArgb` y `Transparent`; sus prácticas funcionan igual; pasa la prueba de regresión.
+**Verificación:** Grep y la app.
+**Fuera de alcance:** la lógica de las prácticas.
+**Riesgos:** cambiar `Font` del formulario con `AutoScaleMode = Font` reescala todos los controles → Georgia solo en las etiquetas de título.
+**Qué debes entender:** por qué cambiar `Font` en el formulario mueve sus controles y en una sola etiqueta no.
+**Punto de revisión:** ¿las tres variantes juntas se ven como una sola app?
 **Notas:**
 
 ---
@@ -215,6 +272,7 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 **Decisiones:**
 - [Firme] `PbxAcuario` y los colores de las entidades no se tocan aquí (Fase 8).
 - [Firme] No se cambia nada del comportamiento del acuario; eso es de `PLAN.md`.
+- [Firme] (2026-11-22) Variante fable: marco cálido con acento ocre `#8C6420` (texto blanco 5.30:1). Mismas decisiones comunes que la Fase 6.
 **Tareas:** diseñador de `MesaDePracticas4` (`PanelSide`, `PnlFill`, `PnlProyectoF`, `PnlProyectoFIA`, etiquetas, fuentes; botones a `FlatStyle = Flat`).
 **Hecho cuando:** el marco no tiene colores fuera de la paleta, `AlternarPractica` sigue abriendo el acuario, la simulación corre con `TimerAcuario` y los tests pasan.
 **Verificación:** manual en la app; `dotnet test` como en la cabecera.
@@ -266,7 +324,7 @@ No cambies comportamiento: si hace falta, detente y consulta.
 | Pregunta | Supuesto mientras tanto | Cuándo se resuelve |
 |---|---|---|
 | ¿Qué ícono sustituye al árbol de Terraria? | El de WinForms por defecto o uno propio; sin decidir | Fase 9 |
-| ¿Cómo se distinguen 2 categorías (Mesa 1) y 3 estados del dron (uno al azar) con una paleta de un solo acento? | Sin decidir; no se quita el significado de los colores | Fase 6 |
+| ~~¿Cómo se distinguen 2 categorías (Mesa 1) y 3 estados del dron (uno al azar) con una paleta de un solo acento?~~ | Resuelta el 2026-11-22: ver Fases 6a y 6b | — |
 
 ## Registro de decisiones
 | Fecha | Fase | Decisión | Alternativa descartada | Motivo |
@@ -299,6 +357,12 @@ No cambies comportamiento: si hace falta, detente y consulta.
 | 2026-11-22 | 5 | `BtnEnviar` decorativo: sin `Click`, sin cambio de color en hover, `TabStop = False` | Hover visible | La caja es decorativa; no debe parecer que el botón hace algo |
 | 2026-11-22 | 5 | Barra lateral: título "Mesas", botones de 48 px y pie en texto secundario | Subtítulo por mesa; barra más estrecha | Llena el hueco sin contenido nuevo y sin recolocar el área principal |
 | 2026-11-22 | 5 | Se corrige `UIHelper.RoundControl` (borde y tope del diámetro) | Dejarlo como estaba | Con borde de 1 px faltaban dos lados |
+| 2026-11-22 | 6, 7 | [Firme] Una variante por mesa inspirada en un modelo: 1 Haiku, 2 Sonnet, 3 Opus, 4 Fable; base común, cambian acento y densidad | Una sola estética para las tres mesas | Decisión de Alfredo: cada mesa con identidad propia |
+| 2026-11-22 | 6, 7 | [Firme] Se permiten nombres de productos (los modelos) | Mantener la regla de "sin nombres de marca" | Es software de estudio, no se publica (decisión de Alfredo) |
+| 2026-11-22 | 6 | [Firme] La Fase 6 se divide en 6a, 6b y 6c | Una fase para las tres mesas | Cada variante se verifica y puede fallar por separado |
+| 2026-11-22 | 6 | [Firme] Criterio de contraste WCAG AA (4.5:1 texto, 3:1 texto grande y no-texto), medido antes de elegir los acentos | Elegir los acentos a ojo | El terracota del menú mide 3.90 y el salvia inicial 4.47: a ojo no se nota |
+| 2026-11-22 | 6b | [Firme] El dron apagado pasa de color al azar a `#7A776E` fijo | Azar dentro de tonos neutros | El azar no era un requisito (Alfredo) |
+| 2026-11-23 | 6a | [Firme] Botones rellenos sin borde visible: diámetro 5 px, no píldora | Píldora (diámetro = alto), como los chips del menú | `Region` recorta por píxeles, sin suavizado: con una curva larga y un relleno que contrasta con el fondo, la escalera se nota (validado a ojo por Alfredo). Los chips del menú lo disimulan con su borde suavizado `#DDD9CE` |
 
 ## Riesgos globales
 - **Dos planes sobre `MesaDePracticas4`:** no se ejecutan a la vez una fase de `PLAN.md` y la Fase 7 u 8 de este plan.

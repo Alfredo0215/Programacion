@@ -59,13 +59,16 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 
 ## Estilo chat
 
-Inspirado en la interfaz de chat de un asistente de IA (Claude.ai). Es solo inspiración: sin logos, nombres ni elementos de marca de empresas reales. Referencia visual: `docs/referencia-estilo-chat.png`; si choca con esta lista, manda la lista.
+Inspirado en la interfaz de chat de Claude.ai. Es software de estudio, sin publicar: se pueden usar nombres de productos (p. ej. los modelos de Claude como inspiración de cada mesa); no se copian logos ni imágenes de marca. Referencia visual: `docs/referencia-estilo-chat.png`; si choca con esta lista, manda la lista.
 
 En todas las pantallas:
 - Paleta: fondo `#F5F4EE`, paneles laterales `#EDEBE3`, bordes `#DDD9CE`, texto `#2B2A27`, texto secundario `#7A776E`, acento `#C96442`.
+- Cada mesa tiene una variante inspirada en un modelo: misma base, cambian el acento y la densidad. Mesa 1 Haiku (salvia `#587759`, paneles sin relleno), Mesa 2 Sonnet (terracota `#C96442`, el estilo base del menú), Mesa 3 Opus (ciruela `#6B4E7A`, títulos en Georgia), Mesa 4/acuario Fable (ocre `#8C6420`). Detalle y estado en `PLAN-ESTILO.md`.
+- Contraste: texto blanco sobre un acento ≥ 4.5:1; el terracota (3.90) solo va en texto de 14 pt negrita o más, en bordes o en elementos que no son texto.
 - Fuentes: Georgia en el logo y el saludo, Segoe UI en el resto. Andy ya no se usa.
 - Diseño plano: sin degradados, transparencias ni brillos. Botones: `Button` con `FlatStyle = Flat` y `FlatAppearance` en la paleta (no FontAwesome.Sharp).
-- Esquinas redondeadas: `UIHelper.RoundControl` (píldora: diámetro = alto del control). Si el control ya tiene borde (`FlatAppearance.BorderSize`), se pone a 0 para no dibujar dos.
+- Esquinas redondeadas: `UIHelper.RoundControl`. Con borde visible (chips, cajas): píldora, diámetro = alto. En botones rellenos sin borde visible: diámetro 5 px, porque `Region` no suaviza y una curva larga se ve dentada. Si el control ya tiene borde (`FlatAppearance.BorderSize`), se pone a 0 para no dibujar dos.
+- Un `Button` con `FlatStyle = Flat` necesita `BackColor` propio: si se deja `UseVisualStyleBackColor = true`, Windows lo pinta en su gris y el Grep de colores no lo detecta (la propiedad no aparece en el `.Designer.cs`).
 
 Solo en el menú principal (`DlgPrincipal`): una sola vista (menú y selector de mesas juntos): barra lateral izquierda con las 4 mesas como lista de conversaciones; área principal con logo "POO26B" en texto, saludo "¿Qué practicamos hoy?", caja de mensaje (decorativa por ahora) y chips que abren mesas. Sin botón "Atrás" ni Esc; la app se cierra con la X. Las mesas no copian esta distribución.
 

@@ -52,14 +52,6 @@ namespace PO26B_FSA
         public CDron(Control areaDesplazamiento)
         {
 
-            int R = numRandom.Next(0, 256);
-            int G = numRandom.Next(0, 256);
-            int B = numRandom.Next(0, 256);
-
-            
-
-
-
             //Recibe parámetros
             this.areaDesplazamiento = areaDesplazamiento;
             this.areaDesplazamiento.Controls.Add(this);
@@ -90,7 +82,8 @@ namespace PO26B_FSA
             Location = new System.Drawing.Point(this.posicionInicialX, this.posicionInicialY);
             Name = "DRON";
             Size = new System.Drawing.Size(50, 50);
-            BackColor = Color.FromArgb(0,G,B);
+            // Estado apagado: texto secundario #7A776E (Fase 6b, variante sonnet).
+            BackColor = Color.FromArgb(122, 119, 110);
             BringToFront();
            
             Click += new EventHandler(Accion);
@@ -112,7 +105,8 @@ namespace PO26B_FSA
                 Visible = true;
 
 
-                BackColor = Color.Red;
+                // Estado encendido: acento terracota #C96442.
+                BackColor = Color.FromArgb(201, 100, 66);
                 encendido = true;
                 Desplazar(numRandom.Next(1, 50
                     ));
@@ -178,7 +172,8 @@ namespace PO26B_FSA
 
         private void Accion(object sender, EventArgs e)
         {
-            BackColor = Color.Black;
+            // Estado tras el clic: texto #2B2A27.
+            BackColor = Color.FromArgb(43, 42, 39);
         }
     }
 }

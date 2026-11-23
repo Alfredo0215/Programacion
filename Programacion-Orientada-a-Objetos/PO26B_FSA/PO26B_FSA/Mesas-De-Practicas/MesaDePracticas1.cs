@@ -49,6 +49,24 @@ namespace PO26B_FSA.Mesas_De_Practicas
             // Quita la fila vacía que el DataGridView agrega al final para
             // que el usuario escriba. Así Rows.Count cuenta solo personas.
             DgvTabla3.AllowUserToAddRows = false;
+
+            RedondearBotones();
+        }
+
+        //---------------------------------------------------------------------
+        // Botones de acción en forma de píldora (variante haiku, Fase 6a).
+        // Diámetro = alto del botón: los extremos son semicírculos.
+        // El borde se pinta del mismo color que el fondo del botón para que
+        // no se vea un segundo borde. Por eso va después de InitializeComponent():
+        // antes, los botones no existen y BackColor no tiene el valor del diseñador.
+        //---------------------------------------------------------------------
+        private void RedondearBotones()
+        {
+            foreach (Button boton in new[] { BtnP1Pnl1, BtnP2Pnl1, BtnP1Pnl2, BtnP2Pnl2,
+                                             BtnP3Pnl2, BtnP1Pnl3, BtnP2Pnl3 })
+            {
+                UIHelper.RoundControl(boton, 5, boton.BackColor, 1);
+            }
         }
 
         //---------------------------------------------------------------------
@@ -249,7 +267,7 @@ namespace PO26B_FSA.Mesas_De_Practicas
                 // Se escribe Bogus.DataSets.Name completo porque, dentro de un
                 // Form, "Name" a secas es la propiedad Name del formulario.
                 persona.RegistrarPersona(faker.Name.FirstName(Bogus.DataSets.Name.Gender.Male), faker.Name.LastName(), faker.Name.LastName(), fechaNacimiento);
-                color = Color.LightBlue;
+                color = Color.FromArgb(220, 230, 221);   // #DCE6DD
 
             }
 
@@ -257,7 +275,7 @@ namespace PO26B_FSA.Mesas_De_Practicas
             {
                 persona = new CMujer(altura, peso);
                 persona.RegistrarPersona(faker.Name.FirstName(Bogus.DataSets.Name.Gender.Female), faker.Name.LastName(), faker.Name.LastName(), fechaNacimiento);
-                color = Color.LightPink;
+                color = Color.FromArgb(242, 221, 211);   // #F2DDD3
             }
 
             // Rows.Add devuelve el índice de la fila nueva; con él se cambia
