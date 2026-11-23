@@ -52,7 +52,8 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 - El diseñador no escribe en el `.Designer.cs` una propiedad con su valor por defecto (p. ej. `Visible = true`): para verificar un cambio así, busca que haya desaparecido la línea con el valor anterior.
 - No edites los `.Designer.cs` a mano. Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
 - Estética: todo el proyecto (menú, mesas 1-3 y `MesaDePracticas4`, acuario incluido) usa el estilo de la sección "Estilo chat". El pixel-art estilo Terraria está retirado: no lo propongas.
-- Un control con `Dock = Fill` debe quedar al frente de sus hermanos acoplados (clic derecho → Traer al frente); si no, los controles `Top`/`Bottom` lo tapan y su `ClientSize` incluye la zona tapada. En el `.Designer.cs`, su `Controls.Add` aparece primero.
+- Un control con `Dock = Fill` debe quedar al frente de sus hermanos acoplados (clic derecho → Traer al frente); si no, los controles `Top`/`Bottom` lo tapan y su `ClientSize` incluye la zona tapada. En el `.Designer.cs`, su `Controls.Add` aparece primero. En general, WinForms acopla en orden z inverso: el control más al fondo se acopla primero (queda arriba con `Top`, abajo con `Bottom`). El orden se ve y se cambia en Ver → Otras ventanas → Esquema del documento (arriba = frente).
+- `TextBox`, `ComboBox` y `ListBox` son controles nativos y no disparan `Paint`: para darles bordes o esquinas propias (p. ej. `UIHelper.RoundControl`), se meten en un `Panel` y se decora el panel.
 - Cambiar el `Font` de un formulario con `AutoScaleMode = Font` reescala posiciones y tamaños de sus controles (factor = `AutoScaleDimensions` nuevo / viejo); tras cambiarlo, revisa los tamaños. Y `MinimumSize`/`MaximumSize` ganan a `Dock`: un control con `Fill` y tamaño fijo se sale de su contenedor.
 - Navegación entre vistas (p. ej. el menú y una mesa): un formulario abre u oculta a otro sin tocar sus controles. No añadir interfaces ni gestores de navegación hasta que haya un problema real que justifique su coste.
 
@@ -64,8 +65,9 @@ En todas las pantallas:
 - Paleta: fondo `#F5F4EE`, paneles laterales `#EDEBE3`, bordes `#DDD9CE`, texto `#2B2A27`, texto secundario `#7A776E`, acento `#C96442`.
 - Fuentes: Georgia en el logo y el saludo, Segoe UI en el resto. Andy ya no se usa.
 - Diseño plano: sin degradados, transparencias ni brillos. Botones: `Button` con `FlatStyle = Flat` y `FlatAppearance` en la paleta (no FontAwesome.Sharp).
+- Esquinas redondeadas: `UIHelper.RoundControl` (píldora: diámetro = alto del control). Si el control ya tiene borde (`FlatAppearance.BorderSize`), se pone a 0 para no dibujar dos.
 
-Solo en el menú principal (`DlgPrincipal`): una sola vista (menú y selector de mesas juntos): barra lateral izquierda con las 4 mesas como lista de conversaciones; área principal con logo "PO26B" en texto, saludo "¿Qué practicamos hoy?", caja de mensaje (decorativa por ahora) y chips que abren mesas. Sin botón "Atrás" ni Esc; la app se cierra con la X. Las mesas no copian esta distribución.
+Solo en el menú principal (`DlgPrincipal`): una sola vista (menú y selector de mesas juntos): barra lateral izquierda con las 4 mesas como lista de conversaciones; área principal con logo "POO26B" en texto, saludo "¿Qué practicamos hoy?", caja de mensaje (decorativa por ahora) y chips que abren mesas. Sin botón "Atrás" ni Esc; la app se cierra con la X. Las mesas no copian esta distribución.
 
 - Cambia la apariencia, no el comportamiento. Excepciones ya decididas: la vista única del menú (Fase 1 de `PLAN-ESTILO.md`) y el logo fijo sin animación (Fase 5). Se conserva `AbrirMesa` (al cerrar una mesa vuelve el menú).
 - Acuario: primero migra el marco (panel, botones, etiquetas). Los colores de peces y plantas en el `Paint` se deciden en su propia fase.

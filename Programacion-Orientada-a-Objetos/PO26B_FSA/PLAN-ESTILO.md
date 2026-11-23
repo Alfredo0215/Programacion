@@ -3,8 +3,9 @@
 Formato: planificar-fases v1 · módulos: software
 
 ## Estado actual
-- Fase en curso: 5, Área principal del menú · Última actualización: 2026-11-22
-- **Siguiente acción:** hacer commit de las Fases 1 y 4 (siguen sin commit) y empezar la Fase 5.
+- Fase en curso: 6, Mesas 1-3 · Última actualización: 2026-11-22
+- **Siguiente acción:** hacer commit de la Fase 5 y empezar la Fase 6 (primero resolver la pregunta abierta de los colores de estado de Mesa 1 y del dron).
+- Decidir si `docs/Screenshot_4.png` (aparece borrado en el árbol de trabajo; lo cita la Fase 0) se restaura con `git restore`.
 
 Leyenda: [ ] pendiente · [~] en curso · [h] hecho sin verificar · [x] verificado (fecha)
 Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
@@ -13,7 +14,7 @@ Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "I
 
 **Hecho siempre incluye** (toda fase):
 - Compila con el MSBuild de Visual Studio (comando en `CLAUDE.md`, sección "Compilar") y `dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj` pasa.
-- Prueba de regresión a mano: desde el menú se abre cada mesa con `AbrirMesa`; al cerrar la mesa vuelve el menú; la X cierra la app; Esc no hace nada en el menú. (Hasta terminar la Fase 5, se comprueba además que el logo sigue animándose.)
+- Prueba de regresión a mano: desde el menú se abre cada mesa con `AbrirMesa`; al cerrar la mesa vuelve el menú; la X cierra la app; Esc no hace nada en el menú.
 
 **Reparto en cada fase:** Alfredo agrega y configura los controles en el diseñador de Visual Studio, con los pasos que Claude le explica. Claude propone la lógica de los `.cs` y espera "aplícalo". Una fase solo cambia el aspecto, salvo la Fase 1 (navegación del menú) y la Fase 5 (logo sin animación); ver registro. El comportamiento del acuario lo decide `PLAN.md`.
 
@@ -32,7 +33,7 @@ Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "I
 | 2 | ~~Dificultad con punto de color~~ | — | descartada (2026-11-19) |
 | 3 | ~~Avatares circulares~~ | — | descartada (2026-11-19) |
 | 4 | Barra lateral con 4 `Button` planos en lugar de `FilaMesa`; paleta y Segoe UI en el menú; sin fondo Terraria | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-22) |
-| 5 | Área principal: logo "PO26B" en texto, saludo, caja de mensaje y chips que abren mesas | Alfredo en diseñador + Claude propone `.cs` | [ ] |
+| 5 | Área principal: logo "POO26B" en texto, saludo, caja de mensaje y chips que abren mesas | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-22) |
 | 6 | Mesas 1-3 con paleta y fuentes | Alfredo en diseñador | [ ] |
 | 7 | Marco del acuario en `MesaDePracticas4` con paleta y fuentes | Alfredo en diseñador | [ ] |
 | 8 | Lienzo del acuario: fondo y colores de entidades (esqueleto) | Claude propone `.cs` | [ ] |
@@ -158,24 +159,33 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 
 ---
 
-## Fase 5: Área principal del menú  [ ]
-**Objetivo:** logo "PO26B", saludo "¿Qué practicamos hoy?" en Georgia, caja de mensaje y chips de sugerencia.
+## Fase 5: Área principal del menú  [x] (2026-11-22)
+**Objetivo:** logo "POO26B", saludo "¿Qué practicamos hoy?" en Georgia, caja de mensaje y chips de sugerencia.
 **Entregable demostrable:** el menú se parece a la referencia en la distribución, con la paleta.
 **Escribe:** Alfredo en el diseñador; Claude propone `DlgPrincipal.cs`.
 **Decisiones:**
-- [Firme] El logo es texto "PO26B" en Georgia; `LogoPOO1.png` deja de usarse.
+- [Firme] El logo es texto "POO26B" en Georgia (registro 2026-11-22); `LogoPOO1.png` deja de usarse.
 - [Firme] Los chips abren mesas con `AbrirMesa`, igual que la barra (duplicado aceptado: así es la referencia).
 - [Firme] El logo es fijo, sin animación de crecer y encoger (registro 2026-11-20). Es la segunda excepción a "solo aspecto": se quita aquí, al sustituir el logo, y no en la Fase 1, para no mezclarla con la navegación.
 - [Firme] El logo es un `Label` (`LblLogo`) en Georgia; sustituye a `PbxLogoMenu`.
 - [Firme] La caja de mensaje es decorativa por ahora: se ve, pero no hace nada.
-**Tareas:** diseñador: `LblLogo`, `LblSaludo`, `TbxMensaje`, 4 `Button` planos para los chips (`BtnChip1-4`); borrar `PbxLogoMenu` y `timerLogoAnimation`. `DlgPrincipal.cs`: conectar los chips; borrar `stopwatch`, `AnimationLogoTick`, `GetScale`, `ApplyScale`, `StartLogoAnimation`, `Clamp` (solo lo usa la animación, Grep 2026-11-20), los campos `original*` y el código de `DlgPrincipal_Load` que los usa.
+**Tareas:** diseñador: desconectar el evento `Load`; borrar `PbxLogoMenu`; `LblLogo`, `LblSaludo`, `PnlMensaje` (redondeado) con `TbxMensaje` (`Dock = Fill`) y `BtnEnviar` dentro, 4 `Button` planos para los chips (`BtnChip1-4`); barra lateral con título y pie. `DlgPrincipal.cs`: borrar `timerLogoAnimation` (es un campo creado con `new` en el `.cs`, no un componente del diseñador), `stopwatch`, `AnimationLogoTick`, `GetScale`, `ApplyScale`, `StartLogoAnimation`, `Clamp`, los campos `original*` y `DlgPrincipal_Load`; redondear chips, caja y botón con `UIHelper.RoundControl`.
 **Hecho cuando:** se ven logo, saludo, caja y chips; no queda código de la animación; cada chip abre su mesa; pasa la cabecera.
 **Verificación:** manual en la app.
 **Fuera de alcance:** que la caja haga algo (ver "Después del MVP").
 **Riesgos:** el área principal queda estrecha junto a la barra → se ajusta el ancho de la barra (ver "Qué observación la haría revisar").
-**Qué debes entender:** por qué borrar `timerLogoAnimation` en el diseñador no borra `AnimationLogoTick` del `.cs` (se suscribe en el constructor, no en el `.Designer.cs`), y cómo comprobar con Grep que un método ya no tiene usos antes de borrarlo.
+**Qué debes entender:** por qué un `Timer` creado con `new` en el `.cs` no aparece en el diseñador y uno arrastrado desde el cuadro de herramientas sí; por qué el orden de borrado sale de quién nombra a quién (`Load +=` en el `.Designer.cs`, `PbxLogoMenu` en el `.cs`); por qué un `TextBox` no dispara `Paint`; y en qué orden acopla WinForms los controles con `Dock`.
 **Punto de revisión:** ¿el menú se parece a la referencia? Si no, se anota qué falta antes de pasar a las mesas.
 **Notas:**
+- 2026-11-22 · `DlgPrincipal.cs` (Claude): borrado todo el código de la animación y `DlgPrincipal_Load`; `using` reducidos a 3 (+ `System.Drawing`). Grep de los nombres de la animación en los `.cs`: sin resultados.
+- 2026-11-22 · Diseñador (Alfredo): `Load` desconectado, `PbxLogoMenu` borrado, controles del área principal agregados. Chips con `Click` = `BtnMesaN_Click` (elegido de la lista en Eventos, sin crear métodos).
+- 2026-11-22 · `UIHelper.RoundControl` (Claude): `borderWidth/2` era división entera (1/2 = 0): con borde de 1 px no se dibujaban los lados derecho e inferior. Ahora el rectángulo del borde es `(w/2, w/2, Width - w, Height - w)` y el diámetro se limita al lado más corto.
+- 2026-11-22 · Causa de error: `PnlBackground.BackColor` cambió por error a `#EDEBE3`, el mismo color que `TbxMensaje`, y la caja sin borde quedó invisible. Se volvió a `#F5F4EE`.
+- 2026-11-22 · Causa de error: la primera captura era del diseñador con cambios sin guardar; el `.Designer.cs` no tenía `LblLogo`. Verificar siempre después de "Guardar todo".
+- 2026-11-22 · `BtnEnviar`: 70 × 70 en `520; 10`, `Padding` del panel `14; 10; 90; 10` (margen de 10 por los cuatro lados, como la referencia).
+- 2026-11-22 · Barra lateral (Alfredo): `LblTituloMesas` (Top), `BtnMesa1-4`, `PnlLineaPie` y `LblPie` (Bottom); orden de `Controls.Add` correcto. `PnlLineaLateral` no se agregó. `LblPie.Text` termina en un `\r\n` de más (sube un poco el texto).
+- 2026-11-22 · Compila; 36/36 tests (tras la barra lateral). Fase terminada según Alfredo ("quedó todo listo").
+- 2026-11-22 · Punto de revisión (`docs/Screenshot_6.png`, app ejecutándose): el menú se parece a la referencia en distribución; las diferencias que quedan (dificultad, avatares, "Atrás", rombo del logo) son decisiones del registro.
 
 ---
 
@@ -282,8 +292,15 @@ No cambies comportamiento: si hace falta, detente y consulta.
 | 2026-11-22 | 4 | Fuente del formulario Segoe UI 8,25; los botones llevan 9,75 propia | Formulario en 9,75 | 9,75 reescala todos los controles (altos ×17/13); 8,25 conserva los altos |
 | 2026-11-22 | 4 | Colores solo en el diseñador; sin clase ni constantes comunes | Un lugar común para los colores ya en la Fase 4 | Ningún `.cs` usa colores; se reevalúa cuando un color aparezca en dos o más `.cs` |
 | 2026-11-22 | 4 | Hover `#DDD9CE` sin borde | Borde `#C96442` | El hover se distingue (validado por Alfredo) |
+| 2026-11-22 | 5 | Logo "POO26B" (doble O, como el `.csproj`); sustituye a "PO26B" del registro 2026-11-19 | "PO26B" (como el namespace) | Decisión de Alfredo |
+| 2026-11-22 | 5 | Los chips reutilizan `BtnMesa1-4_Click` | 4 handlers `BtnChipN_Click` | La regla "este botón abre la mesa N" queda en un solo sitio; coste: el nombre del handler no sigue `Control_Evento` para los chips |
+| 2026-11-22 | 5 | Caja redondeada con un `Panel` contenedor (`PnlMensaje`) | Redondear el `TextBox` directamente | `TextBox` es un control nativo y no dispara `Paint`: no tendría borde y el texto se cortaría en las esquinas |
+| 2026-11-22 | 5 | Flecha de `BtnEnviar` como texto "↑" | Imagen PNG; dibujarla en `Paint` | Vectorial (nítida con cualquier escala), color con `ForeColor`, sin recurso nuevo |
+| 2026-11-22 | 5 | `BtnEnviar` decorativo: sin `Click`, sin cambio de color en hover, `TabStop = False` | Hover visible | La caja es decorativa; no debe parecer que el botón hace algo |
+| 2026-11-22 | 5 | Barra lateral: título "Mesas", botones de 48 px y pie en texto secundario | Subtítulo por mesa; barra más estrecha | Llena el hueco sin contenido nuevo y sin recolocar el área principal |
+| 2026-11-22 | 5 | Se corrige `UIHelper.RoundControl` (borde y tope del diámetro) | Dejarlo como estaba | Con borde de 1 px faltaban dos lados |
 
 ## Riesgos globales
 - **Dos planes sobre `MesaDePracticas4`:** no se ejecutan a la vez una fase de `PLAN.md` y la Fase 7 u 8 de este plan.
 - **Romper la navegación al rehacer el menú:** la prueba de regresión de la cabecera se hace en cada fase, no solo al final.
-- **Que el color se vuelva a escribir en muchos sitios:** en la Fase 4 no hizo falta un lugar común (registro 2026-11-22); se reevalúa en las Fases 5, 6 y 8 si un color aparece en dos o más `.cs`.
+- **Que el color se vuelva a escribir en muchos sitios:** en la Fase 5 aparecen colores en código, pero solo en `DlgPrincipal.cs` (`RedondearControles`). Sigue sin hacer falta un lugar común; se reevalúa en las Fases 6 y 8 si un color aparece en dos o más `.cs`.

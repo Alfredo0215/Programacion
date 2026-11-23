@@ -1,33 +1,12 @@
 ﻿using PO26B_FSA.Mesas_De_Practicas;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PO26B_FSA
 {
     public partial class DlgPrincipal : Form
     {
-
-        //---------------------------------------------------------------------
-        // Inicialización de atributos
-        //---------------------------------------------------------------------
-        private const double maxScale = 1.1;
-        private const double animationDuration = 2000.0;
-        private Stopwatch stopwatch = new Stopwatch();
-        private Timer timerLogoAnimation = new Timer();
-        int originalWidth;
-        int originalHeight;
-        int originalX;
-        int originalY;
-
         //---------------------------------------------------------------------
         // Método constructor, configuración inicial del programa.
         //---------------------------------------------------------------------
@@ -35,26 +14,29 @@ namespace PO26B_FSA
         {
             InitializeComponent();
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            PbxLogoMenu.SizeMode = PictureBoxSizeMode.Zoom;
-            timerLogoAnimation.Interval = 16;
-
-            timerLogoAnimation.Tick += AnimationLogoTick;
+            RedondearControles();
         }
 
         //---------------------------------------------------------------------
-        // Método que carga los elementos gráficos del programa.
+        // Esquinas redondeadas del área principal: chips, caja y botón.
         //---------------------------------------------------------------------
-        private void DlgPrincipal_Load(object sender, EventArgs e)
+        private void RedondearControles()
         {
-            originalHeight = PbxLogoMenu.Height;
-            originalWidth = PbxLogoMenu.Width;
-            originalX = PbxLogoMenu.Left;
-            originalY = PbxLogoMenu.Top;
-            StartLogoAnimation();
+            Color borde = Color.FromArgb(221, 217, 206);   // #DDD9CE
+            Color acento = Color.FromArgb(201, 100, 66);   // #C96442
+
+            foreach (Button chip in new[] { BtnChip1, BtnChip2, BtnChip3, BtnChip4 })
+            {
+                // Diámetro = alto del chip: los extremos son semicírculos (píldora).
+                UIHelper.RoundControl(chip, chip.Height, borde, 1);
+            }
+
+            UIHelper.RoundControl(PnlMensaje, 16, borde, 1);   // más ligero
+            UIHelper.RoundControl(BtnEnviar, 10, acento, 1);
         }
 
         //---------------------------------------------------------------------
-        // Botones de la barra lateral: cada uno abre su mesa.
+        // Barra lateral y chips: cada botón abre su mesa.
         //---------------------------------------------------------------------
         private void BtnMesa1_Click(object sender, EventArgs e)
         {
@@ -77,27 +59,6 @@ namespace PO26B_FSA
         }
 
         //---------------------------------------------------------------------
-        // 
-        //---------------------------------------------------------------------
-        private void AnimationLogoTick(object sender, EventArgs e)
-        {
-            double elapsed = stopwatch.Elapsed.TotalMilliseconds;
-
-            double progress = Clamp(elapsed / animationDuration, 0.0, 1.0);
-
-            double scale = GetScale(progress);
-
-            ApplyScale(scale);
-
-            // Al terminar un ciclo, reinicia el reloj; el timer sigue corriendo.
-            if (progress >= 1.0)
-            {
-                stopwatch.Restart();
-            }
-
-        }
-
-        //---------------------------------------------------------------------
         // Abre una mesa ocultando el menú; al cerrarla, el menú vuelve.
         //---------------------------------------------------------------------
         private void AbrirMesa(Form mesa)
@@ -108,39 +69,6 @@ namespace PO26B_FSA
                 mesa.ShowDialog();
             }
             this.Show();
-        }
-
-        private double GetScale(double progress)
-        {
-            return 1 + (maxScale - 1) * Math.Sin(Math.PI * progress);
-        }
-
-        //---------------------------------------------------------------------
-        // Método Clamp personalizado.
-        //---------------------------------------------------------------------
-        private static double Clamp(double valor, double min, double max)
-        {
-            if (valor < min) return min;
-            if (valor > max) return max;
-            return valor;
-        }
-
-        private void ApplyScale(double scale)
-        {
-            int newHeight = (int)(originalHeight * scale);
-            int newWidth = (int)(originalWidth * scale);
-
-            int newX = originalX - (newWidth - originalWidth) / 2;
-            int newY = originalY - (newHeight - originalHeight) / 2;
-
-            PbxLogoMenu.SetBounds(newX, newY, newWidth, newHeight);
-
-
-        }
-        private void StartLogoAnimation()
-        {
-            stopwatch.Restart();
-            timerLogoAnimation.Start();
         }
     }
 }
