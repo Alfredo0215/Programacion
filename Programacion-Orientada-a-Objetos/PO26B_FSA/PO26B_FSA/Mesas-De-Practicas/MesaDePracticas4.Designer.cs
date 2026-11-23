@@ -53,6 +53,7 @@
             this.LblEstadisticas = new System.Windows.Forms.Label();
             this.PnlProyectoFIA = new System.Windows.Forms.Panel();
             this.TimerAcuario = new System.Windows.Forms.Timer(this.components);
+            this.LblTitulo = new System.Windows.Forms.Label();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
@@ -85,6 +86,7 @@
             // PanelSide
             // 
             this.PanelSide.BackColor = System.Drawing.Color.Aquamarine;
+            this.PanelSide.Controls.Add(this.LblTitulo);
             this.PanelSide.Controls.Add(this.BtnProyectoFIA);
             this.PanelSide.Controls.Add(this.BtnProyectoF);
             this.PanelSide.Dock = System.Windows.Forms.DockStyle.Left;
@@ -309,6 +311,17 @@
             this.TimerAcuario.Interval = 33;
             this.TimerAcuario.Tick += new System.EventHandler(this.TimerAcuario_Tick);
             // 
+            // LblTitulo
+            // 
+            this.LblTitulo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(119)))), ((int)(((byte)(89)))));
+            this.LblTitulo.Location = new System.Drawing.Point(24, 58);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(133, 34);
+            this.LblTitulo.TabIndex = 6;
+            this.LblTitulo.Text = "Haiku";
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MesaDePracticas4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -360,5 +373,6 @@
         private System.Windows.Forms.Button BtnAgregarPlanta;
         private System.Windows.Forms.Button BtnAgregarHerbivoro;
         private System.Windows.Forms.Button BtnAgregarDepredador;
+        private System.Windows.Forms.Label LblTitulo;
     }
 }

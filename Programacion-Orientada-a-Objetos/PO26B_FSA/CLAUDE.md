@@ -50,7 +50,8 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 ## Interfaz y diseñador
 
 - El diseñador no escribe en el `.Designer.cs` una propiedad con su valor por defecto (p. ej. `Visible = true`): para verificar un cambio así, busca que haya desaparecido la línea con el valor anterior.
-- No edites los `.Designer.cs` a mano. Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
+- No edites los `.Designer.cs` a mano, salvo permiso explícito de Alfredo en esa sesión y solo con el diseñador cerrado en Visual Studio (si está abierto, al guardar puede sobrescribir la edición). Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
+- Al dar colores para el diseñador, usa el formato `R; G; B` (p. ej. `245; 244; 238`).
 - Estética: todo el proyecto (menú, mesas 1-3 y `MesaDePracticas4`, acuario incluido) usa el estilo de la sección "Estilo chat". El pixel-art estilo Terraria está retirado: no lo propongas.
 - Un control con `Dock = Fill` debe quedar al frente de sus hermanos acoplados (clic derecho → Traer al frente); si no, los controles `Top`/`Bottom` lo tapan y su `ClientSize` incluye la zona tapada. En el `.Designer.cs`, su `Controls.Add` aparece primero. En general, WinForms acopla en orden z inverso: el control más al fondo se acopla primero (queda arriba con `Top`, abajo con `Bottom`). El orden se ve y se cambia en Ver → Otras ventanas → Esquema del documento (arriba = frente).
 - `TextBox`, `ComboBox` y `ListBox` son controles nativos y no disparan `Paint`: para darles bordes o esquinas propias (p. ej. `UIHelper.RoundControl`), se meten en un `Panel` y se decora el panel.

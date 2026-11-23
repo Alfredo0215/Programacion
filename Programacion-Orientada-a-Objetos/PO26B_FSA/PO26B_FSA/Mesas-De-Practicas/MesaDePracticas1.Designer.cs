@@ -35,13 +35,17 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PanelBottom = new System.Windows.Forms.Panel();
+            this.PnlDivisorBottom = new System.Windows.Forms.Panel();
             this.LblInfo = new System.Windows.Forms.Label();
             this.PanelSide = new System.Windows.Forms.Panel();
+            this.LblTitulo = new System.Windows.Forms.Label();
             this.BtnPractica4 = new System.Windows.Forms.Button();
             this.BtnPractica3 = new System.Windows.Forms.Button();
             this.BtnPractica2 = new System.Windows.Forms.Button();
             this.BtnPractica1 = new System.Windows.Forms.Button();
+            this.PnlDivisorSide = new System.Windows.Forms.Panel();
             this.PanelTop = new System.Windows.Forms.Panel();
+            this.PnlDivisorTop = new System.Windows.Forms.Panel();
             this.TbxCaptura3 = new System.Windows.Forms.TextBox();
             this.TbxCaptura2 = new System.Windows.Forms.TextBox();
             this.TbxCaptura1 = new System.Windows.Forms.TextBox();
@@ -73,9 +77,6 @@
             this.PnlPracticas1 = new System.Windows.Forms.Panel();
             this.BtnP2Pnl1 = new System.Windows.Forms.Button();
             this.BtnP1Pnl1 = new System.Windows.Forms.Button();
-            this.PnlDivisorTop = new System.Windows.Forms.Panel();
-            this.PnlDivisorBottom = new System.Windows.Forms.Panel();
-            this.PnlDivisorSide = new System.Windows.Forms.Panel();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
@@ -98,6 +99,15 @@
             this.PanelBottom.Size = new System.Drawing.Size(1116, 100);
             this.PanelBottom.TabIndex = 0;
             // 
+            // PnlDivisorBottom
+            // 
+            this.PnlDivisorBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.PnlDivisorBottom.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PnlDivisorBottom.Location = new System.Drawing.Point(0, 0);
+            this.PnlDivisorBottom.Name = "PnlDivisorBottom";
+            this.PnlDivisorBottom.Size = new System.Drawing.Size(1116, 1);
+            this.PnlDivisorBottom.TabIndex = 1;
+            // 
             // LblInfo
             // 
             this.LblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -112,6 +122,7 @@
             // PanelSide
             // 
             this.PanelSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.PanelSide.Controls.Add(this.LblTitulo);
             this.PanelSide.Controls.Add(this.BtnPractica4);
             this.PanelSide.Controls.Add(this.BtnPractica3);
             this.PanelSide.Controls.Add(this.BtnPractica2);
@@ -122,6 +133,17 @@
             this.PanelSide.Name = "PanelSide";
             this.PanelSide.Size = new System.Drawing.Size(193, 494);
             this.PanelSide.TabIndex = 1;
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(119)))), ((int)(((byte)(89)))));
+            this.LblTitulo.Location = new System.Drawing.Point(24, 72);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(133, 34);
+            this.LblTitulo.TabIndex = 5;
+            this.LblTitulo.Text = "Haiku";
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnPractica4
             // 
@@ -191,6 +213,15 @@
             this.BtnPractica1.UseVisualStyleBackColor = false;
             this.BtnPractica1.Click += new System.EventHandler(this.BtnPractica1_Click);
             // 
+            // PnlDivisorSide
+            // 
+            this.PnlDivisorSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.PnlDivisorSide.Dock = System.Windows.Forms.DockStyle.Right;
+            this.PnlDivisorSide.Location = new System.Drawing.Point(192, 0);
+            this.PnlDivisorSide.Name = "PnlDivisorSide";
+            this.PnlDivisorSide.Size = new System.Drawing.Size(1, 494);
+            this.PnlDivisorSide.TabIndex = 4;
+            // 
             // PanelTop
             // 
             this.PanelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
@@ -207,6 +238,15 @@
             this.PanelTop.Name = "PanelTop";
             this.PanelTop.Size = new System.Drawing.Size(923, 100);
             this.PanelTop.TabIndex = 2;
+            // 
+            // PnlDivisorTop
+            // 
+            this.PnlDivisorTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.PnlDivisorTop.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PnlDivisorTop.Location = new System.Drawing.Point(0, 99);
+            this.PnlDivisorTop.Name = "PnlDivisorTop";
+            this.PnlDivisorTop.Size = new System.Drawing.Size(923, 1);
+            this.PnlDivisorTop.TabIndex = 7;
             // 
             // TbxCaptura3
             // 
@@ -598,33 +638,6 @@
             this.BtnP1Pnl1.UseVisualStyleBackColor = false;
             this.BtnP1Pnl1.Click += new System.EventHandler(this.BtnP1Pnl1_Click);
             // 
-            // PnlDivisorTop
-            // 
-            this.PnlDivisorTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.PnlDivisorTop.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlDivisorTop.Location = new System.Drawing.Point(0, 99);
-            this.PnlDivisorTop.Name = "PnlDivisorTop";
-            this.PnlDivisorTop.Size = new System.Drawing.Size(923, 1);
-            this.PnlDivisorTop.TabIndex = 7;
-            // 
-            // PnlDivisorBottom
-            // 
-            this.PnlDivisorBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.PnlDivisorBottom.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PnlDivisorBottom.Location = new System.Drawing.Point(0, 0);
-            this.PnlDivisorBottom.Name = "PnlDivisorBottom";
-            this.PnlDivisorBottom.Size = new System.Drawing.Size(1116, 1);
-            this.PnlDivisorBottom.TabIndex = 1;
-            // 
-            // PnlDivisorSide
-            // 
-            this.PnlDivisorSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.PnlDivisorSide.Dock = System.Windows.Forms.DockStyle.Right;
-            this.PnlDivisorSide.Location = new System.Drawing.Point(192, 0);
-            this.PnlDivisorSide.Name = "PnlDivisorSide";
-            this.PnlDivisorSide.Size = new System.Drawing.Size(1, 494);
-            this.PnlDivisorSide.TabIndex = 4;
-            // 
             // MesaDePracticas1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -698,5 +711,6 @@
         private System.Windows.Forms.Panel PnlDivisorTop;
         private System.Windows.Forms.Panel PnlDivisorBottom;
         private System.Windows.Forms.Panel PnlDivisorSide;
+        private System.Windows.Forms.Label LblTitulo;
     }
 }

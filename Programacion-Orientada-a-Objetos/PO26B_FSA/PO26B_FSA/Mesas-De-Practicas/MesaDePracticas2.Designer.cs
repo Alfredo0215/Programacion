@@ -49,6 +49,7 @@
             this.PnlPracticas3 = new System.Windows.Forms.Panel();
             this.PnlPracticas2 = new System.Windows.Forms.Panel();
             this.PnlPracticas4 = new System.Windows.Forms.Panel();
+            this.LblTitulo = new System.Windows.Forms.Label();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
@@ -83,6 +84,7 @@
             // PanelSide
             // 
             this.PanelSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.PanelSide.Controls.Add(this.LblTitulo);
             this.PanelSide.Controls.Add(this.BtnPractica4);
             this.PanelSide.Controls.Add(this.BtnPractica3);
             this.PanelSide.Controls.Add(this.BtnPractica2);
@@ -96,6 +98,7 @@
             // 
             // BtnPractica4
             // 
+            this.BtnPractica4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.BtnPractica4.FlatAppearance.BorderSize = 0;
             this.BtnPractica4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.BtnPractica4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
@@ -108,11 +111,12 @@
             this.BtnPractica4.Size = new System.Drawing.Size(133, 39);
             this.BtnPractica4.TabIndex = 3;
             this.BtnPractica4.Text = "Practica 4";
-            this.BtnPractica4.UseVisualStyleBackColor = true;
+            this.BtnPractica4.UseVisualStyleBackColor = false;
             this.BtnPractica4.Click += new System.EventHandler(this.BtnPractica4_Click);
             // 
             // BtnPractica3
             // 
+            this.BtnPractica3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.BtnPractica3.FlatAppearance.BorderSize = 0;
             this.BtnPractica3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.BtnPractica3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
@@ -125,11 +129,12 @@
             this.BtnPractica3.Size = new System.Drawing.Size(133, 39);
             this.BtnPractica3.TabIndex = 2;
             this.BtnPractica3.Text = "Practica 3";
-            this.BtnPractica3.UseVisualStyleBackColor = true;
+            this.BtnPractica3.UseVisualStyleBackColor = false;
             this.BtnPractica3.Click += new System.EventHandler(this.BtnPractica3_Click);
             // 
             // BtnPractica2
             // 
+            this.BtnPractica2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.BtnPractica2.FlatAppearance.BorderSize = 0;
             this.BtnPractica2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.BtnPractica2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
@@ -142,11 +147,12 @@
             this.BtnPractica2.Size = new System.Drawing.Size(133, 39);
             this.BtnPractica2.TabIndex = 1;
             this.BtnPractica2.Text = "Practica 2";
-            this.BtnPractica2.UseVisualStyleBackColor = true;
+            this.BtnPractica2.UseVisualStyleBackColor = false;
             this.BtnPractica2.Click += new System.EventHandler(this.BtnPractica2_Click);
             // 
             // BtnPractica1
             // 
+            this.BtnPractica1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.BtnPractica1.FlatAppearance.BorderSize = 0;
             this.BtnPractica1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
             this.BtnPractica1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
@@ -159,7 +165,7 @@
             this.BtnPractica1.Size = new System.Drawing.Size(133, 39);
             this.BtnPractica1.TabIndex = 0;
             this.BtnPractica1.Text = "Practica 1";
-            this.BtnPractica1.UseVisualStyleBackColor = true;
+            this.BtnPractica1.UseVisualStyleBackColor = false;
             this.BtnPractica1.Click += new System.EventHandler(this.BtnPractica1_Click);
             // 
             // PanelTop
@@ -274,6 +280,7 @@
             // 
             // BtnP1Pnl1
             // 
+            this.BtnP1Pnl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.BtnP1Pnl1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
             this.BtnP1Pnl1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.BtnP1Pnl1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
@@ -286,7 +293,7 @@
             this.BtnP1Pnl1.Size = new System.Drawing.Size(75, 24);
             this.BtnP1Pnl1.TabIndex = 1;
             this.BtnP1Pnl1.Text = "P1";
-            this.BtnP1Pnl1.UseVisualStyleBackColor = true;
+            this.BtnP1Pnl1.UseVisualStyleBackColor = false;
             this.BtnP1Pnl1.Click += new System.EventHandler(this.BtnP1Pnl1_Click);
             // 
             // PbxDron
@@ -337,6 +344,17 @@
             this.PnlPracticas4.Size = new System.Drawing.Size(910, 379);
             this.PnlPracticas4.TabIndex = 3;
             // 
+            // LblTitulo
+            // 
+            this.LblTitulo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
+            this.LblTitulo.Location = new System.Drawing.Point(24, 72);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(133, 34);
+            this.LblTitulo.TabIndex = 5;
+            this.LblTitulo.Text = "Sonnet";
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MesaDePracticas2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,6 +372,7 @@
             this.PanelBottom.ResumeLayout(false);
             this.PanelBottom.PerformLayout();
             this.PanelSide.ResumeLayout(false);
+            this.PanelSide.PerformLayout();
             this.PanelTop.ResumeLayout(false);
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
@@ -386,5 +405,6 @@
         private System.Windows.Forms.Label LblCaptura1;
         private System.Windows.Forms.PictureBox PbxDron;
         private System.Windows.Forms.Button BtnP1Pnl1;
+        private System.Windows.Forms.Label LblTitulo;
     }
 }

@@ -47,6 +47,7 @@
             this.PnlPracticas3 = new System.Windows.Forms.Panel();
             this.PnlPracticas2 = new System.Windows.Forms.Panel();
             this.PnlPracticas4 = new System.Windows.Forms.Panel();
+            this.LblTitulo = new System.Windows.Forms.Label();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
@@ -55,7 +56,7 @@
             // 
             // PanelBottom
             // 
-            this.PanelBottom.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.PanelBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.PanelBottom.Controls.Add(this.LblInfo);
             this.PanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PanelBottom.Location = new System.Drawing.Point(0, 494);
@@ -67,15 +68,18 @@
             // 
             this.LblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LblInfo.AutoSize = true;
+            this.LblInfo.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.LblInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(119)))), ((int)(((byte)(110)))));
             this.LblInfo.Location = new System.Drawing.Point(922, 12);
             this.LblInfo.Name = "LblInfo";
-            this.LblInfo.Size = new System.Drawing.Size(191, 13);
+            this.LblInfo.Size = new System.Drawing.Size(238, 17);
             this.LblInfo.TabIndex = 0;
             this.LblInfo.Text = "Programación Orientada a Objetos 26B";
             // 
             // PanelSide
             // 
-            this.PanelSide.BackColor = System.Drawing.Color.Aquamarine;
+            this.PanelSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.PanelSide.Controls.Add(this.LblTitulo);
             this.PanelSide.Controls.Add(this.BtnPractica4);
             this.PanelSide.Controls.Add(this.BtnPractica3);
             this.PanelSide.Controls.Add(this.BtnPractica2);
@@ -88,47 +92,75 @@
             // 
             // BtnPractica4
             // 
+            this.BtnPractica4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.BtnPractica4.FlatAppearance.BorderSize = 0;
+            this.BtnPractica4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnPractica4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnPractica4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPractica4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.BtnPractica4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(78)))), ((int)(((byte)(122)))));
             this.BtnPractica4.Location = new System.Drawing.Point(24, 257);
             this.BtnPractica4.Name = "BtnPractica4";
             this.BtnPractica4.Size = new System.Drawing.Size(133, 39);
             this.BtnPractica4.TabIndex = 3;
             this.BtnPractica4.Text = "Practica 4";
-            this.BtnPractica4.UseVisualStyleBackColor = true;
+            this.BtnPractica4.UseVisualStyleBackColor = false;
             this.BtnPractica4.Click += new System.EventHandler(this.BtnPractica4_Click);
             // 
             // BtnPractica3
             // 
+            this.BtnPractica3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.BtnPractica3.FlatAppearance.BorderSize = 0;
+            this.BtnPractica3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnPractica3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnPractica3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPractica3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.BtnPractica3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(78)))), ((int)(((byte)(122)))));
             this.BtnPractica3.Location = new System.Drawing.Point(24, 212);
             this.BtnPractica3.Name = "BtnPractica3";
             this.BtnPractica3.Size = new System.Drawing.Size(133, 39);
             this.BtnPractica3.TabIndex = 2;
             this.BtnPractica3.Text = "Practica 3";
-            this.BtnPractica3.UseVisualStyleBackColor = true;
+            this.BtnPractica3.UseVisualStyleBackColor = false;
             this.BtnPractica3.Click += new System.EventHandler(this.BtnPractica3_Click);
             // 
             // BtnPractica2
             // 
+            this.BtnPractica2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.BtnPractica2.FlatAppearance.BorderSize = 0;
+            this.BtnPractica2.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnPractica2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnPractica2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPractica2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.BtnPractica2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(78)))), ((int)(((byte)(122)))));
             this.BtnPractica2.Location = new System.Drawing.Point(24, 167);
             this.BtnPractica2.Name = "BtnPractica2";
             this.BtnPractica2.Size = new System.Drawing.Size(133, 39);
             this.BtnPractica2.TabIndex = 1;
             this.BtnPractica2.Text = "Practica 2";
-            this.BtnPractica2.UseVisualStyleBackColor = true;
+            this.BtnPractica2.UseVisualStyleBackColor = false;
             this.BtnPractica2.Click += new System.EventHandler(this.BtnPractica2_Click);
             // 
             // BtnPractica1
             // 
+            this.BtnPractica1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.BtnPractica1.FlatAppearance.BorderSize = 0;
+            this.BtnPractica1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnPractica1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnPractica1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnPractica1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.BtnPractica1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(78)))), ((int)(((byte)(122)))));
             this.BtnPractica1.Location = new System.Drawing.Point(24, 122);
             this.BtnPractica1.Name = "BtnPractica1";
             this.BtnPractica1.Size = new System.Drawing.Size(133, 39);
             this.BtnPractica1.TabIndex = 0;
             this.BtnPractica1.Text = "Practica 1";
-            this.BtnPractica1.UseVisualStyleBackColor = true;
+            this.BtnPractica1.UseVisualStyleBackColor = false;
             this.BtnPractica1.Click += new System.EventHandler(this.BtnPractica1_Click);
             // 
             // PanelTop
             // 
-            this.PanelTop.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.PanelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.PanelTop.Controls.Add(this.TbxCaptura3);
             this.PanelTop.Controls.Add(this.TbxCaptura2);
             this.PanelTop.Controls.Add(this.TbxCaptura1);
@@ -136,7 +168,7 @@
             this.PanelTop.Controls.Add(this.LblCaptura2);
             this.PanelTop.Controls.Add(this.LblCaptura1);
             this.PanelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelTop.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.PanelTop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.PanelTop.Location = new System.Drawing.Point(193, 0);
             this.PanelTop.Name = "PanelTop";
             this.PanelTop.Size = new System.Drawing.Size(923, 100);
@@ -144,33 +176,37 @@
             // 
             // TbxCaptura3
             // 
+            this.TbxCaptura3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TbxCaptura3.Location = new System.Drawing.Point(260, 58);
             this.TbxCaptura3.Name = "TbxCaptura3";
-            this.TbxCaptura3.Size = new System.Drawing.Size(100, 20);
+            this.TbxCaptura3.Size = new System.Drawing.Size(100, 22);
             this.TbxCaptura3.TabIndex = 6;
             // 
             // TbxCaptura2
             // 
+            this.TbxCaptura2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TbxCaptura2.Location = new System.Drawing.Point(143, 58);
             this.TbxCaptura2.Name = "TbxCaptura2";
-            this.TbxCaptura2.Size = new System.Drawing.Size(100, 20);
+            this.TbxCaptura2.Size = new System.Drawing.Size(100, 22);
             this.TbxCaptura2.TabIndex = 5;
             // 
             // TbxCaptura1
             // 
+            this.TbxCaptura1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TbxCaptura1.Location = new System.Drawing.Point(27, 58);
             this.TbxCaptura1.Name = "TbxCaptura1";
-            this.TbxCaptura1.Size = new System.Drawing.Size(100, 20);
+            this.TbxCaptura1.Size = new System.Drawing.Size(100, 22);
             this.TbxCaptura1.TabIndex = 4;
             // 
             // LblCaptura3
             // 
             this.LblCaptura3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LblCaptura3.AutoSize = true;
-            this.LblCaptura3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LblCaptura3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.LblCaptura3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura3.Location = new System.Drawing.Point(257, 32);
             this.LblCaptura3.Name = "LblCaptura3";
-            this.LblCaptura3.Size = new System.Drawing.Size(53, 13);
+            this.LblCaptura3.Size = new System.Drawing.Size(65, 17);
             this.LblCaptura3.TabIndex = 3;
             this.LblCaptura3.Text = "Captura 3";
             // 
@@ -178,10 +214,11 @@
             // 
             this.LblCaptura2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LblCaptura2.AutoSize = true;
-            this.LblCaptura2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LblCaptura2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.LblCaptura2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura2.Location = new System.Drawing.Point(140, 32);
             this.LblCaptura2.Name = "LblCaptura2";
-            this.LblCaptura2.Size = new System.Drawing.Size(53, 13);
+            this.LblCaptura2.Size = new System.Drawing.Size(65, 17);
             this.LblCaptura2.TabIndex = 2;
             this.LblCaptura2.Text = "Captura 2";
             // 
@@ -189,16 +226,17 @@
             // 
             this.LblCaptura1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LblCaptura1.AutoSize = true;
-            this.LblCaptura1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LblCaptura1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.LblCaptura1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura1.Location = new System.Drawing.Point(24, 32);
             this.LblCaptura1.Name = "LblCaptura1";
-            this.LblCaptura1.Size = new System.Drawing.Size(53, 13);
+            this.LblCaptura1.Size = new System.Drawing.Size(65, 17);
             this.LblCaptura1.TabIndex = 1;
             this.LblCaptura1.Text = "Captura 1";
             // 
             // PnlFill
             // 
-            this.PnlFill.BackColor = System.Drawing.Color.AliceBlue;
+            this.PnlFill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.PnlFill.Controls.Add(this.PnlPracticas1);
             this.PnlFill.Controls.Add(this.PnlPracticas3);
             this.PnlFill.Controls.Add(this.PnlPracticas2);
@@ -214,7 +252,7 @@
             this.PnlPracticas1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlPracticas1.BackColor = System.Drawing.Color.SteelBlue;
+            this.PnlPracticas1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.PnlPracticas1.Location = new System.Drawing.Point(7, 7);
             this.PnlPracticas1.Name = "PnlPracticas1";
             this.PnlPracticas1.Size = new System.Drawing.Size(909, 379);
@@ -225,7 +263,7 @@
             this.PnlPracticas3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlPracticas3.BackColor = System.Drawing.Color.Indigo;
+            this.PnlPracticas3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.PnlPracticas3.Location = new System.Drawing.Point(6, 6);
             this.PnlPracticas3.Name = "PnlPracticas3";
             this.PnlPracticas3.Size = new System.Drawing.Size(910, 379);
@@ -236,7 +274,7 @@
             this.PnlPracticas2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlPracticas2.BackColor = System.Drawing.Color.Lavender;
+            this.PnlPracticas2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.PnlPracticas2.Location = new System.Drawing.Point(5, 7);
             this.PnlPracticas2.Name = "PnlPracticas2";
             this.PnlPracticas2.Size = new System.Drawing.Size(911, 379);
@@ -247,26 +285,40 @@
             this.PnlPracticas4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlPracticas4.BackColor = System.Drawing.Color.YellowGreen;
+            this.PnlPracticas4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.PnlPracticas4.Location = new System.Drawing.Point(4, 6);
             this.PnlPracticas4.Name = "PnlPracticas4";
             this.PnlPracticas4.Size = new System.Drawing.Size(910, 379);
             this.PnlPracticas4.TabIndex = 3;
             // 
+            // LblTitulo
+            // 
+            this.LblTitulo.Font = new System.Drawing.Font("Georgia", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(107)))), ((int)(((byte)(78)))), ((int)(((byte)(122)))));
+            this.LblTitulo.Location = new System.Drawing.Point(24, 72);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(133, 34);
+            this.LblTitulo.TabIndex = 4;
+            this.LblTitulo.Text = "Opus";
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MesaDePracticas3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.ClientSize = new System.Drawing.Size(1116, 594);
             this.Controls.Add(this.PnlFill);
             this.Controls.Add(this.PanelTop);
             this.Controls.Add(this.PanelSide);
             this.Controls.Add(this.PanelBottom);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.Name = "MesaDePracticas3";
             this.Text = "MesaDePracticas3";
             this.PanelBottom.ResumeLayout(false);
             this.PanelBottom.PerformLayout();
             this.PanelSide.ResumeLayout(false);
+            this.PanelSide.PerformLayout();
             this.PanelTop.ResumeLayout(false);
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
@@ -295,5 +347,6 @@
         private System.Windows.Forms.Label LblCaptura3;
         private System.Windows.Forms.Label LblCaptura2;
         private System.Windows.Forms.Label LblCaptura1;
+        private System.Windows.Forms.Label LblTitulo;
     }
 }

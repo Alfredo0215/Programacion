@@ -3,8 +3,8 @@
 Formato: planificar-fases v1 · módulos: software
 
 ## Estado actual
-- Fase en curso: 6b, Mesa 2 (variante sonnet) · Última actualización: 2026-11-23
-- **Siguiente acción:** Alfredo aplica la paleta en el diseñador de `MesaDePracticas2` (`CDron.cs` ya está) y prueba el dron a mano. A 2026-11-23 el `.Designer.cs` de la Mesa 2 no tenía cambios guardados.
+- Fase en curso: 6c, Mesa 3 (variante opus) · Última actualización: 2026-11-23
+- **Siguiente acción:** Alfredo revisa en la app Mesa 3 y los títulos `LblTitulo` de las Mesas 1-3, y hace la prueba de regresión; si está bien, la 6c pasa a [x]. Mesa 4 aún no tiene label de título: se agrega en el diseñador (en la Fase 7 o antes). Después, Fase 7.
 - `docs/Screenshot_4.png` (lo cita la Fase 0) quedó borrado en el commit `4fcd0e5`. Si hace falta: `git restore --source=45f402e docs/Screenshot_4.png`.
 
 Leyenda: [ ] pendiente · [~] en curso · [h] hecho sin verificar · [x] verificado (fecha)
@@ -229,7 +229,7 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 
 ---
 
-## Fase 6b: Mesa 2, variante sonnet  [~]
+## Fase 6b: Mesa 2, variante sonnet  [x] (2026-11-23)
 **Objetivo:** aplicar la variante sonnet (el estilo base del menú) a `MesaDePracticas2` y al dron.
 **Entregable demostrable:** Mesa 2 con la paleta del menú; el dron muestra sus 3 estados con colores de la paleta.
 **Escribe:** Alfredo en el diseñador; Claude propone el cambio en `CDron.cs`.
@@ -244,12 +244,13 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 **Qué debes entender:** por qué los estados deben distinguirse por lo claro u oscuro que son y no solo por el tono.
 **Punto de revisión:** con `CDron.cs` y `MesaDePracticas1.cs` usando colores en código, ¿alguno de esos colores se repite en dos `.cs`? Si se repite, se reevalúa el lugar común (ver "Riesgos globales").
 **Notas:**
-- 2026-11-23: `CDron.cs` hecho (los tres estados en la paleta; se quitan `R`, `G` y `B`, que eran al azar). Compila, Grep limpio. Falta el diseñador de `MesaDePracticas2` y la prueba manual del dron.
-- Punto de revisión: `#C96442` ya aparece en `DlgPrincipal.cs` y en `CDron.cs`. Son dos `.cs`, así que toca reevaluar el lugar común. Propuesta: no crearlo todavía, porque es un solo valor y el riesgo de que se desincronice es bajo. Se reevalúa si un tercer `.cs` lo usa.
+- 2026-11-23: `CDron.cs` hecho; compila, tests 36/36, Grep limpio; prueba manual del dron correcta (Alfredo). Diseñador guardado; faltan `BackColor` en `BtnPractica1-4` y `BtnP1Pnl1`.
+- 2026-11-23: Claude puso a mano en `MesaDePracticas2.Designer.cs` (con permiso de Alfredo, con el diseñador cerrado) `BackColor` 237; 235; 227 en `BtnPractica1-4` y 245; 244; 238 en `BtnP1Pnl1`, y quitó su `UseVisualStyleBackColor = true`. Compila, tests 36/36, Grep limpio (solo `FromArgb` y `Transparent`). Falta la revisión visual y la prueba de regresión (Alfredo).
+- 2026-11-23: verificada. Revisión visual y prueba de regresión correctas (Alfredo).
 
 ---
 
-## Fase 6c: Mesa 3, variante opus  [ ]
+## Fase 6c: Mesa 3, variante opus  [h]
 **Objetivo:** aplicar la variante opus a `MesaDePracticas3`: densa y solemne.
 **Entregable demostrable:** Mesa 3 con acento ciruela `#6B4E7A`, títulos en Georgia y paneles `#EDEBE3`.
 **Escribe:** Alfredo en el diseñador.
@@ -262,6 +263,8 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 **Qué debes entender:** por qué cambiar `Font` en el formulario mueve sus controles y en una sola etiqueta no.
 **Punto de revisión:** ¿las tres variantes juntas se ven como una sola app?
 **Notas:**
+- 2026-11-23: Claude editó a mano `MesaDePracticas3.Designer.cs` (permiso de Alfredo; la pestaña activa de Visual Studio era la de Mesa 2). Paneles laterales y franjas `#EDEBE3`; `PnlFill`, `PnlPracticas1-4` y formulario `#F5F4EE`; formulario en Segoe UI 8,25 (mide 6 × 13, igual que la fuente anterior: no reescala); `BtnPractica1-4` planos, fondo `#EDEBE3`, hover `#DDD9CE`, texto ciruela `#6B4E7A` (5.87:1 sobre `#EDEBE3`), Segoe UI 9,75; `LblCaptura1-3` y `LblInfo` como en Mesa 2. También `PanelTop`, `PanelBottom` y las etiquetas, que no estaban en las tareas, para que pase el Grep. Compila, tests 36/36, Grep limpio (solo `FromArgb`). Pendiente: no hay etiquetas de título, así que Georgia no se aplicó; `TbxCaptura1-3` siguen con borde 3D (en Mesa 2, `FixedSingle`).
+- 2026-11-23: resuelto el título en Georgia. Alfredo agregó `LblTitulo` en `PanelSide` de las Mesas 1-3; Claude le dio formato (permiso de Alfredo): "Opus", Georgia 14,25 pt negrita, ciruela `#6B4E7A` (5.87:1 sobre `#EDEBE3`), `Location` (24, 72), `Size` (133, 34), centrado sobre los botones. Para que las mesas se vean como una sola app, Mesa 1 lleva "Haiku" (salvia, 4.54:1 sobre `#F5F4EE`) y Mesa 2 "Sonnet" (terracota, 3.27:1 sobre `#EDEBE3`, válido por ir en 14 pt negrita), las dos en Segoe UI con el mismo tamaño y posición. Compila, tests 36/36, Grep limpio en las Mesas 1-3 (`FromArgb`, más el `White` y el `Transparent` que ya había). Mesa 4 todavía no tiene label.
 
 ---
 
@@ -363,6 +366,8 @@ No cambies comportamiento: si hace falta, detente y consulta.
 | 2026-11-22 | 6 | [Firme] Criterio de contraste WCAG AA (4.5:1 texto, 3:1 texto grande y no-texto), medido antes de elegir los acentos | Elegir los acentos a ojo | El terracota del menú mide 3.90 y el salvia inicial 4.47: a ojo no se nota |
 | 2026-11-22 | 6b | [Firme] El dron apagado pasa de color al azar a `#7A776E` fijo | Azar dentro de tonos neutros | El azar no era un requisito (Alfredo) |
 | 2026-11-23 | 6a | [Firme] Botones rellenos sin borde visible: diámetro 5 px, no píldora | Píldora (diámetro = alto), como los chips del menú | `Region` recorta por píxeles, sin suavizado: con una curva larga y un relleno que contrasta con el fondo, la escalera se nota (validado a ojo por Alfredo). Los chips del menú lo disimulan con su borde suavizado `#DDD9CE` |
+| 2026-11-23 | 6b | [Firme] `BtnP1Pnl1` con contorno terracota y texto oscuro | Relleno terracota con texto blanco | Texto blanco sobre `#C96442` mide 3.90 < 4.5 |
+| 2026-11-23 | 6b | `#C96442` en `DlgPrincipal.cs` y `CDron.cs` sin un lugar común | Clase de colores compartida | Un solo valor en dos archivos; se reevalúa si aparece en un tercero |
 
 ## Riesgos globales
 - **Dos planes sobre `MesaDePracticas4`:** no se ejecutan a la vez una fase de `PLAN.md` y la Fase 7 u 8 de este plan.
