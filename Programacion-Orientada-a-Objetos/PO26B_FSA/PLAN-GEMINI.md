@@ -3,8 +3,8 @@
 Formato: planificar-fases v1 · módulos: software
 
 ## Estado actual
-- Fase en curso: 3, Historial y errores (por proponer) · Última actualización: 2026-11-24
-- **Siguiente acción:** propuesta de la Fase 3; antes, validar en la documentación `thoughtSignature` y el tiempo de espera de `HttpClient`.
+- Fase en curso: 3, Historial y errores (código escrito, falta verificar) · Última actualización: 2026-11-24
+- **Siguiente acción:** Alfredo verifica la Fase 3 con F5 según su "Hecho cuando" (4-5 peticiones) y la marca `[x]`. Con eso termina el MVP.
 
 Leyenda: [ ] pendiente · [~] en curso · [h] hecho sin verificar · [x] verificado (fecha)
 Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
@@ -26,7 +26,7 @@ Relación con los otros planes: `PLAN.md` es del acuario y `PLAN-ESTILO.md` del 
 | 0 | Una respuesta de Gemini obtenida desde PowerShell y el proyecto compilando con `System.Net.Http` y `Newtonsoft.Json` | Alfredo guiado por Claude | [x] 2026-11-24 |
 | 1 | Menú con la nueva distribución (conversación, caja reducida con scroll, chips debajo), sin lógica | Alfredo (diseñador) y Claude (completó propiedades) | [x] 2026-11-24 |
 | 2 | Una pregunta y su respuesta en el menú, sin historial | Claude (autorizado por Alfredo) | [x] 2026-11-24 |
-| 3 | Conversación con historial de 10 elementos y manejo de errores | Alfredo guiado por Claude | [ ] (esqueleto) |
+| 3 | Conversación con historial de 10 elementos y manejo de errores | Claude (autorizado por Alfredo) | [h] |
 
 ---
 
@@ -124,8 +124,32 @@ Relación con los otros planes: `PLAN.md` es del acuario y `PLAN-ESTILO.md` del 
 **Respuesta (2026-11-24):** HTTPS funciona desde la app sin configurar TLS (el supuesto `[Validar en Fase 2]` se cumple). Lectura de la respuesta (Markdown, rueda del ratón sin barra): no reportado.
 **Notas:** (2026-11-24) Verificado por Alfredo con F5: pruebas del "Hecho cuando" pasan.
 
-## Fase 3: Historial y errores  [ ]  (esqueleto: depende de [Validar en Fase 0])
-**Objetivo:** mantener una conversación de hasta 10 elementos y manejar los fallos sin romperla. · **Entregable demostrable:** una conversación de varios turnos en la que Gemini recuerda lo anterior, y un mensaje claro si no hay red, la clave falta, se agota la cuota, la respuesta llega sin texto (candidato bloqueado o vacío; forma exacta según la documentación) o se pasa el tiempo de espera. · **Hecho cuando:** los tests del historial pasan (recorte por pares al pasar de 10, la lista nunca empieza con `model`, una petición fallida no deja la pregunta en el historial); en la app, Gemini responde usando un dato dicho dos turnos antes; con la red desconectada aparece el error y la siguiente pregunta funciona. · **Decisiones:** [Validar en Fase 3] Tiempo de espera de `HttpClient`: comprobar su valor por defecto en la documentación y decidir si sirve para la demo. · Los errores se programan a partir del JSON de error anotado en la Fase 0 y se clasifican por `status`/`reason`, no solo por el código HTTP (un 400 puede ser la clave u otra petición inválida). El 503 `UNAVAILABLE` es temporal: el mensaje invita a reintentar. · [Validar en Fase 3] [volátil] Si la API exige devolver `thoughtSignature` en el historial de varios turnos. → Si la exige, el historial guarda más que el texto de cada mensaje. · [Firme] Cuota de 20 RPD: sin reintento automático (un fallo también gasta cuota; reintentar lo decide el usuario); la lógica del historial se prueba con tests sin red; las pruebas manuales en la app se limitan a lo que pide el "Hecho cuando" (unas 5-6 peticiones).
+## Fase 3: Historial y errores  [h]
+**Objetivo:** mantener una conversación de hasta 10 elementos y manejar los fallos sin romperla.
+**Entregable demostrable:** una conversación de varios turnos en la que Gemini recuerda lo anterior, y un mensaje claro si no hay red, la clave falta o no es válida, se agota la cuota, el servidor falla, la respuesta llega sin texto o se pasa el tiempo de espera.
+**Depende de:** Fase 2 (`CClienteGemini`, `BtnEnviar_Click`).
+**Escribe:** Claude, con autorización explícita de Alfredo (ver registro).
+**Decisiones:**
+- [Firme] El historial (`List<JObject>`, máx. 10 elementos) vive en `CClienteGemini`. Cada elemento es un `content` de la API (`{ role, parts }`); las respuestas del modelo se guardan **tal como llegan**, con su `thoughtSignature`, y se reenvían igual.
+- [Firme] `EnviarAsync` envía una copia (`new JArray(historial)` + el turno del usuario); el historial solo cambia en `AgregarTurno`, que se llama tras una respuesta válida. Recorte por pares con `RemoveRange(0, 2)`: nunca empieza con `model`.
+- [Firme] Funciones sin red y probables: `AgregarTurno`, `GetHistorial`, `ExtraerContenido`, `TextoDe` y `MensajeDeError` (las tres últimas `static`), todas `internal`. `TextoDe` une el `text` de todas las partes.
+- [Firme] Errores: `HttpRequestException` y `TaskCanceledException` se capturan solo alrededor de `SendAsync` (sin conexión / tiempo agotado). Un código HTTP de error se traduce con `MensajeDeError`: `reason` `API_KEY_INVALID` → clave; 429 → límite y cuota; 500/503/504 → reintentar en unos minutos; 403 → permiso; 404 → modelo; otro → código y `error.message`. Un cuerpo que no es JSON se clasifica solo por el código. `promptFeedback.blockReason` → pregunta bloqueada; sin texto → `finishReason`.
+- [Firme] En `DlgPrincipal`, si falla y la caja está vacía, la pregunta vuelve a `TbxMensaje`: reintentar es un clic y lo decide el usuario.
+- [Firme] Cuota de 20 RPD: sin reintento automático (un fallo también gasta cuota); la lógica del historial se prueba con tests sin red; las pruebas manuales se limitan a lo que pide el "Hecho cuando".
+- Resuelto (2026-11-24) [volátil] `thoughtSignature`: la documentación dice que las firmas *"are required to maintain reasoning continuity across multi-turn interactions"* y existe el error `MISSING_THOUGHT_SIGNATURE`, pero no aclara si en chat de solo texto con `generateContent` faltar da 400 o solo degrada el razonamiento. Decisión: guardar cada `content` tal como llega, correcto en los dos casos. Fuente: `aistudio.google.com/docs/thinking` (#signatures) y `/docs/thought-signatures`.
+- Resuelto (2026-11-24) Tiempo de espera: `HttpClient.Timeout` vale 100 s por defecto (learn.microsoft.com, `HttpClient.Timeout`). Se fija en 60 s. Hipótesis sin confirmar: en .NET Framework, agotarlo lanza `TaskCanceledException` (la página de Microsoft no lo dice); si fuera otra, el error sale con el mensaje genérico de .NET, sin romper nada.
+**Tareas (hechas por Claude, 2026-11-24):** reescribir `EnviarAsync` y añadir historial y funciones de lectura/errores en `CClienteGemini.cs`; cambiar el `catch` de `BtnEnviar_Click`; crear `PO26B_FSA.Tests\CClienteGeminiTests.cs` (11 tests); añadir `<PackageReference Include="Newtonsoft.Json" Version="13.0.4" />` a `PO26B_FSA.Tests.csproj` (los tests usan `JObject` y la referencia del proyecto principal, por `packages.config`, no llega al de tests).
+**Hecho cuando:** los tests del historial pasan (recorte por pares al pasar de 10, la lista nunca empieza con `model`, una petición fallida no deja la pregunta en el historial) junto con los de lectura y errores; en la app, Gemini responde usando un dato dicho dos turnos antes; con la red desconectada aparece "No hay conexión…", la pregunta vuelve a la caja y, al reconectar, la siguiente pregunta funciona y Gemini conserva el recuerdo.
+**Verificación:** automática (compila; 47 tests pasan: 36 antiguos + 11 nuevos, 2026-11-24) y manual con F5 por Alfredo (4-5 peticiones).
+**Fuera de alcance:** Markdown, *streaming*, guardar la conversación entre sesiones, botón para borrar, reintento automático, clase de excepción propia.
+**Qué debes entender:** por qué el recorte es por pares; que `new JArray(historial)` es una lista nueva para enviar y el historial solo cambia en `AgregarTurno`; qué es la `thoughtSignature` y por qué se reenvía sin leerla; que la pantalla muestra toda la conversación pero Gemini solo recuerda los últimos 5 pares; por qué `TaskCanceledException` es una hipótesis.
+**Punto de revisión:** ¿Gemini recuerda el dato? ¿Los mensajes de error se entienden? ¿Hizo falta algún reintento por 503?
+**Notas:** (2026-11-24) Hechos de la documentación (aistudio.google.com/docs, consultada 2026-11-24):
+- Para 3.6: si el último turno no vacío de la petición es `model`, la API responde 400 (*"Prefilled model turn validation"*). El historial siempre termina en el turno del usuario.
+- No hay regla documentada de alternancia `user`/`model`.
+- Pregunta bloqueada: llega `promptFeedback.blockReason` y no llega `candidates` (*"Returns no candidates at all only if there was something wrong with the prompt"*).
+- Reintentos: *"Only retry on transient errors (like 429, 408, or 5xx). Do not retry on client errors (like 400, 402, or 403)."* (`/docs/troubleshooting`).
+- `temperature`, `top_p` y `top_k` están *"deprecated and ignored"* en 3.6 y darán 400 en modelos futuros; la app no los envía.
 
 ---
 
@@ -163,6 +187,12 @@ Relación con los otros planes: `PLAN.md` es del acuario y `PLAN-ESTILO.md` del 
 | 2026-11-24 | 2 | `catch` mínimo que escribe `Error: <mensaje>` en la conversación | Sin `catch` hasta la Fase 3 | En un `async void`, una excepción sin capturar abre el cuadro de excepción no controlada de WinForms |
 | 2026-11-24 | 2 | Convertir `\n` en `Environment.NewLine` al mostrar | Mostrar el texto tal cual | El `TextBox` solo salta de línea con `\r\n`; la API usa `\n` |
 | 2026-11-24 | 2 | La Fase 2 la escribe Claude | "Alfredo guiado por Claude" | Autorización explícita de Alfredo ("tú escribes el código de este plan") |
+| 2026-11-24 | 3 | Guardar cada `content` del modelo tal como llega (con `thoughtSignature`) | Guardar solo el texto | La documentación no aclara si la firma es obligatoria en texto plano; guardar todo es correcto en los dos casos y averiguarlo gastaría cuota |
+| 2026-11-24 | 3 | Enviar una copia del historial y tocarlo solo tras un éxito | Añadir la pregunta y quitarla si falla | La regla "un fallo no deja la pregunta" sale de la estructura; no hay un "quitar" que olvidar en el `catch` |
+| 2026-11-24 | 3 | Tiempo de espera de 60 s | 100 s por defecto | En una demo, 100 s parece un cuelgue; 60 s deja margen para que el modelo piense. Criterio de Claude, no un dato |
+| 2026-11-24 | 3 | Devolver la pregunta a `TbxMensaje` si falla y la caja está vacía | Que el usuario la reescriba | Reintentar es un clic y sigue siendo decisión del usuario; no pisa lo que haya escrito después |
+| 2026-11-24 | 3 | Sin clase de excepción propia; `CClienteGemini` lanza excepciones estándar con mensajes claros | `CErrorGemini` | El formulario trata todos los errores igual (muestra `ex.Message`); una clase propia hoy no evita ningún coste |
+| 2026-11-24 | 3 | La Fase 3 la escribe Claude | "Alfredo guiado por Claude" | Autorización explícita de Alfredo ("aplícalo") |
 
 ## Riesgos globales
 - **Filtrar la clave a GitHub:** solo se lee de la variable de entorno; antes de cada commit, revisar que no aparece en el diff.

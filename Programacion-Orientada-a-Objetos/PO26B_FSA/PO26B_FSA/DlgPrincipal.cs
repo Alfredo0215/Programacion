@@ -97,8 +97,12 @@ namespace PO26B_FSA
             }
             catch (Exception ex)
             {
-                // Mínimo para no cerrar la app; los mensajes claros van en la Fase 3.
+                // CClienteGemini ya traduce los errores previstos a mensajes claros.
                 AgregarALaConversacion("Error", ex.Message);
+                if (TbxMensaje.TextLength == 0)
+                {
+                    TbxMensaje.Text = pregunta;   // reintentar lo decide el usuario
+                }
             }
             finally
             {
