@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DlgPrincipal));
             this.PnlBackground = new System.Windows.Forms.Panel();
+            this.PnlMensaje = new System.Windows.Forms.Panel();
+            this.BtnEnviar = new System.Windows.Forms.Button();
+            this.TbxMensaje = new System.Windows.Forms.TextBox();
             this.BtnChip4 = new System.Windows.Forms.Button();
             this.BtnChip3 = new System.Windows.Forms.Button();
             this.BtnChip2 = new System.Windows.Forms.Button();
             this.BtnChip1 = new System.Windows.Forms.Button();
-            this.TbxMensaje = new System.Windows.Forms.TextBox();
             this.LblSaludo = new System.Windows.Forms.Label();
             this.LblLogo = new System.Windows.Forms.Label();
             this.PnlBarraLateral = new System.Windows.Forms.Panel();
@@ -42,14 +43,12 @@
             this.BtnMesa3 = new System.Windows.Forms.Button();
             this.BtnMesa2 = new System.Windows.Forms.Button();
             this.BtnMesa1 = new System.Windows.Forms.Button();
-            this.PnlMensaje = new System.Windows.Forms.Panel();
-            this.BtnEnviar = new System.Windows.Forms.Button();
             this.LblTituloMesas = new System.Windows.Forms.Label();
-            this.LblPie = new System.Windows.Forms.Label();
             this.PnlLineaPie = new System.Windows.Forms.Panel();
+            this.LblPie = new System.Windows.Forms.Label();
             this.PnlBackground.SuspendLayout();
-            this.PnlBarraLateral.SuspendLayout();
             this.PnlMensaje.SuspendLayout();
+            this.PnlBarraLateral.SuspendLayout();
             this.SuspendLayout();
             // 
             // PnlBackground
@@ -69,6 +68,45 @@
             this.PnlBackground.Name = "PnlBackground";
             this.PnlBackground.Size = new System.Drawing.Size(920, 679);
             this.PnlBackground.TabIndex = 8;
+            // 
+            // PnlMensaje
+            // 
+            this.PnlMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.PnlMensaje.Controls.Add(this.BtnEnviar);
+            this.PnlMensaje.Controls.Add(this.TbxMensaje);
+            this.PnlMensaje.Location = new System.Drawing.Point(172, 346);
+            this.PnlMensaje.Name = "PnlMensaje";
+            this.PnlMensaje.Padding = new System.Windows.Forms.Padding(14, 10, 64, 10);
+            this.PnlMensaje.Size = new System.Drawing.Size(600, 90);
+            this.PnlMensaje.TabIndex = 7;
+            // 
+            // BtnEnviar
+            // 
+            this.BtnEnviar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
+            this.BtnEnviar.FlatAppearance.BorderSize = 0;
+            this.BtnEnviar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
+            this.BtnEnviar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
+            this.BtnEnviar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnEnviar.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.BtnEnviar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnEnviar.Location = new System.Drawing.Point(520, 10);
+            this.BtnEnviar.Name = "BtnEnviar";
+            this.BtnEnviar.Size = new System.Drawing.Size(70, 70);
+            this.BtnEnviar.TabIndex = 3;
+            this.BtnEnviar.TabStop = false;
+            this.BtnEnviar.Text = "↑";
+            this.BtnEnviar.UseVisualStyleBackColor = false;
+            // 
+            // TbxMensaje
+            // 
+            this.TbxMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.TbxMensaje.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TbxMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TbxMensaje.Location = new System.Drawing.Point(14, 10);
+            this.TbxMensaje.Multiline = true;
+            this.TbxMensaje.Name = "TbxMensaje";
+            this.TbxMensaje.Size = new System.Drawing.Size(522, 70);
+            this.TbxMensaje.TabIndex = 2;
             // 
             // BtnChip4
             // 
@@ -141,17 +179,6 @@
             this.BtnChip1.Text = "Mesa 1";
             this.BtnChip1.UseVisualStyleBackColor = false;
             this.BtnChip1.Click += new System.EventHandler(this.BtnMesa1_Click);
-            // 
-            // TbxMensaje
-            // 
-            this.TbxMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
-            this.TbxMensaje.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.TbxMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TbxMensaje.Location = new System.Drawing.Point(14, 10);
-            this.TbxMensaje.Multiline = true;
-            this.TbxMensaje.Name = "TbxMensaje";
-            this.TbxMensaje.Size = new System.Drawing.Size(522, 70);
-            this.TbxMensaje.TabIndex = 2;
             // 
             // LblSaludo
             // 
@@ -269,34 +296,6 @@
             this.BtnMesa1.UseVisualStyleBackColor = true;
             this.BtnMesa1.Click += new System.EventHandler(this.BtnMesa1_Click);
             // 
-            // PnlMensaje
-            // 
-            this.PnlMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
-            this.PnlMensaje.Controls.Add(this.BtnEnviar);
-            this.PnlMensaje.Controls.Add(this.TbxMensaje);
-            this.PnlMensaje.Location = new System.Drawing.Point(172, 346);
-            this.PnlMensaje.Name = "PnlMensaje";
-            this.PnlMensaje.Padding = new System.Windows.Forms.Padding(14, 10, 64, 10);
-            this.PnlMensaje.Size = new System.Drawing.Size(600, 90);
-            this.PnlMensaje.TabIndex = 7;
-            // 
-            // BtnEnviar
-            // 
-            this.BtnEnviar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
-            this.BtnEnviar.FlatAppearance.BorderSize = 0;
-            this.BtnEnviar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
-            this.BtnEnviar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
-            this.BtnEnviar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEnviar.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
-            this.BtnEnviar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
-            this.BtnEnviar.Location = new System.Drawing.Point(520, 10);
-            this.BtnEnviar.Name = "BtnEnviar";
-            this.BtnEnviar.Size = new System.Drawing.Size(70, 70);
-            this.BtnEnviar.TabIndex = 3;
-            this.BtnEnviar.TabStop = false;
-            this.BtnEnviar.Text = "↑";
-            this.BtnEnviar.UseVisualStyleBackColor = false;
-            // 
             // LblTituloMesas
             // 
             this.LblTituloMesas.Dock = System.Windows.Forms.DockStyle.Top;
@@ -308,6 +307,15 @@
             this.LblTituloMesas.TabIndex = 6;
             this.LblTituloMesas.Text = "Mesas";
             this.LblTituloMesas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // PnlLineaPie
+            // 
+            this.PnlLineaPie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.PnlLineaPie.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.PnlLineaPie.Location = new System.Drawing.Point(10, 622);
+            this.PnlLineaPie.Name = "PnlLineaPie";
+            this.PnlLineaPie.Size = new System.Drawing.Size(268, 1);
+            this.PnlLineaPie.TabIndex = 8;
             // 
             // LblPie
             // 
@@ -321,15 +329,6 @@
             this.LblPie.Text = "Programación Orientada a Objetos\r\n26B\r\n";
             this.LblPie.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // PnlLineaPie
-            // 
-            this.PnlLineaPie.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.PnlLineaPie.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.PnlLineaPie.Location = new System.Drawing.Point(10, 622);
-            this.PnlLineaPie.Name = "PnlLineaPie";
-            this.PnlLineaPie.Size = new System.Drawing.Size(268, 1);
-            this.PnlLineaPie.TabIndex = 8;
-            // 
             // DlgPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -338,15 +337,14 @@
             this.Controls.Add(this.PnlBackground);
             this.Controls.Add(this.PnlBarraLateral);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "DlgPrincipal";
             this.Text = "POO26B_FSA Programación Orientada a Objetos";
             this.PnlBackground.ResumeLayout(false);
             this.PnlBackground.PerformLayout();
-            this.PnlBarraLateral.ResumeLayout(false);
             this.PnlMensaje.ResumeLayout(false);
             this.PnlMensaje.PerformLayout();
+            this.PnlBarraLateral.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

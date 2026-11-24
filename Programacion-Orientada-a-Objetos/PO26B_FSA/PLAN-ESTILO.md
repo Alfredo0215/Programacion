@@ -3,9 +3,8 @@
 Formato: planificar-fases v1 · módulos: software
 
 ## Estado actual
-- Fase en curso: 9, limpieza · Última actualización: 2026-11-23
-- **Siguiente acción:** empezar la Fase 9. Grep del 2026-11-23: `AplicarEstiloTerraria` e `Interpolar` solo aparecen en su definición en `UIHelper.cs`; ningún `.cs` usa los recursos de Terraria. Hay que repetir el Grep al empezar.
-- Fase 8 pospuesta hasta que el acuario esté terminado (`PLAN.md`, Fase 7). Al retomarla: primero se responde el punto de revisión de la Fase 7 (¿`LightSteelBlue` desentona con el marco crema?) y después se completa la fase con planificar-fases.
+- Fase en curso: ninguna; queda la 8 (pospuesta) · Última actualización: 2026-11-23
+- **Siguiente acción:** ninguna en este plan hasta cerrar el acuario (`PLAN.md`, Fase 7). Al retomar la Fase 8: primero se responde su punto de revisión (¿`LightSteelBlue` desentona con el marco crema?) y después se completa la fase con planificar-fases.
 - `docs/Screenshot_4.png` (lo cita la Fase 0) quedó borrado en el commit `4fcd0e5`. Si hace falta: `git restore --source=45f402e docs/Screenshot_4.png`.
 
 Leyenda: [ ] pendiente · [~] en curso · [h] hecho sin verificar · [x] verificado (fecha)
@@ -14,7 +13,7 @@ Hechos externos: [volátil] dato que caduca: se anota con fuente y fecha
 Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "Interfaz y diseñador" y "Estilo chat"). Este plan no los copia.
 
 **Hecho siempre incluye** (toda fase):
-- Compila con el MSBuild de Visual Studio (comando en `CLAUDE.md`, sección "Compilar") y `dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj` pasa.
+- Compila con el MSBuild de Visual Studio y los tests pasan (comandos en `CLAUDE.md`, secciones "Compilar" y "Tests").
 - Prueba de regresión a mano: desde el menú se abre cada mesa con `AbrirMesa`; al cerrar la mesa vuelve el menú; la X cierra la app; Esc no hace nada en el menú.
 
 **Reparto en cada fase:** Alfredo agrega y configura los controles en el diseñador de Visual Studio, con los pasos que Claude le explica. Claude propone la lógica de los `.cs` y espera "aplícalo". Una fase solo cambia el aspecto, salvo la Fase 1 (navegación del menú) y la Fase 5 (logo sin animación); ver registro. El comportamiento del acuario lo decide `PLAN.md`.
@@ -40,7 +39,7 @@ Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "I
 | 6c | Mesa 3 con la variante opus (acento ciruela, títulos en Georgia) | Alfredo en diseñador | [x] (2026-11-23) |
 | 7 | Marco del acuario en `MesaDePracticas4` con la variante fable (acento ocre) | Claude edita el `.Designer.cs` (permiso de Alfredo) | [x] (2026-11-23) |
 | 8 | Lienzo del acuario: fondo y colores de entidades (esqueleto) | Claude propone `.cs` | pospuesta (2026-11-23) |
-| 9 | Limpieza: sin `FilaMesa`, sin código ni recursos Terraria, `CLAUDE.md` sin la nota de restos | Claude propone | [ ] |
+| 9 | Limpieza: sin `FilaMesa`, sin código ni recursos Terraria, `CLAUDE.md` sin la nota de restos | Alfredo en Visual Studio + Claude (`UIHelper.cs`, docs) | [x] (2026-11-23) |
 
 ---
 
@@ -319,19 +318,24 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 
 ---
 
-## Fase 9: Limpieza  [ ]
+## Fase 9: Limpieza  [x] (2026-11-23)
 **Objetivo:** quitar el código y los recursos de Terraria que ya no se usan, y la nota de restos del `CLAUDE.md`.
 **Entregable demostrable:** el proyecto sin `FilaMesa`, sin `AplicarEstiloTerraria`, sin la fuente Andy, sin los PNG de Terraria y con el `CLAUDE.md` sin la viñeta "Restos de Terraria".
 **Escribe:** Claude propone; Alfredo aplica o dice "aplícalo".
 **Decisiones:** [Firme] Solo se borra lo que el Grep confirma sin uso.
 **Tareas:** borrar `FilaMesa.cs`, `FilaMesa.Designer.cs`, `FilaMesa.resx` y sus entradas en el `.csproj`; `AplicarEstiloTerraria` e `Interpolar` de `UIHelper.cs`; los PNG del inventario (`TerrariaBackground`, `Personaje1-4`, `CorazonVida`, `EstrellaMana`, `LogoPOO`, `LogoPOO1`, `BotonJugar`, `PlayButton`) desde Recursos del proyecto en Visual Studio (borra la entrada de `Resources.resx` y del `.csproj`); `corazoonvida.png` del disco; el ícono si la Fase 0 lo marcó; viñeta "Restos de Terraria" de `CLAUDE.md`.
-**Hecho cuando:** un Grep de `AplicarEstiloTerraria`, `"Andy"`, `FilaMesa` y de cada nombre de recurso borrado en los `.cs`, `.resx` y `.csproj` no devuelve nada, y pasa la cabecera.
+**Hecho cuando:** un Grep de `AplicarEstiloTerraria|Interpolar|MENU_FONT|FilaMesa|"Andy"|TerrariaBackground|Personaje[1-4]|CorazonVida|EstrellaMana|LogoPOO|BotonJugar|PlayButton|corazoonvida|\$this\.Icon` en los `.cs`, `.resx` y `.csproj` no devuelve nada, `Resources\` solo contiene `Dron.png`, y pasa la cabecera.
 **Verificación:** Grep (automático) y la prueba de regresión (manual).
 **Fuera de alcance:** refactorizar `UIHelper` más allá de borrar lo que no se usa.
 **Riesgos:** borrar un recurso todavía referenciado rompe la compilación → la compilación de la cabecera lo detecta.
 **Qué debes entender:** por qué se borra al final y no al principio: mientras quedaba un uso, borrar el método rompía la compilación.
 **Punto de revisión:** fin de la limpieza; la migración termina con la Fase 8 (pospuesta).
 **Notas:**
+- 2026-11-23 · Alfredo (Visual Studio): borrado `FilaMesa` desde el Explorador de soluciones (con sus 3 entradas del `.csproj`); `Icon` de `DlgPrincipal` restablecido; quitadas las 11 entradas del editor de Recursos y eliminados los PNG desde el Explorador de soluciones (el editor no los borra del disco ni del `.csproj`).
+- 2026-11-23 · Claude: `UIHelper.cs` sin `MENU_FONT_*`, `AplicarEstiloTerraria` ni `Interpolar` (`RoundControl` se conserva; los `using` sin uso se dejan, fuera de alcance); `corazoonvida.png` borrado.
+- 2026-11-23 · Causa de error: se borró `Properties\Resources.resx` entero (y con él `Resources.Designer.cs`). Ese `.resx` también registraba `Dron`, que usa `MesaDePracticas2.Designer.cs:302` → `CS0234`. Se recuperaron con `git restore --source=HEAD`, se volvieron a añadir al `.csproj` y se vaciaron desde el editor.
+- 2026-11-23 · Causa de error: `No se encontró el archivo de metadatos ...PO26B_FSA.exe` era un error en cadena del proyecto de tests cuando el proyecto principal no compilaba.
+- 2026-11-23 · Grep vacío; compila; 36/36 tests (MSBuild de VS + `dotnet test --no-build`); prueba de regresión correcta (Alfredo).
 
 ---
 
@@ -351,7 +355,7 @@ No cambies comportamiento: si hace falta, detente y consulta.
 ## Preguntas abiertas
 | Pregunta | Supuesto mientras tanto | Cuándo se resuelve |
 |---|---|---|
-| ¿Qué ícono sustituye al árbol de Terraria? | El de WinForms por defecto o uno propio; sin decidir | Fase 9 |
+| ~~¿Qué ícono sustituye al árbol de Terraria?~~ | Resuelta el 2026-11-23: el de WinForms por defecto (ver registro) | — |
 | ~~¿Cómo se distinguen 2 categorías (Mesa 1) y 3 estados del dron (uno al azar) con una paleta de un solo acento?~~ | Resuelta el 2026-11-22: ver Fases 6a y 6b | — |
 
 ## Registro de decisiones
@@ -399,6 +403,10 @@ No cambies comportamiento: si hace falta, detente y consulta.
 | 2026-11-23 | 7 | En Mesa 4 el ocre va solo en `LblTitulo` (14,25 pt negrita) y como relleno de `BtnIniciarPausar` con texto blanco; los botones laterales llevan texto `#2B2A27` | Ocre en el texto de los botones laterales, como el ciruela en Mesa 3 | Cálculos de Claude (WCAG): ocre sobre `#EDEBE3` 4.45 < 4.5; blanco sobre ocre 5.30 |
 | 2026-11-23 | 7 | Claude aplicó la fase editando el `.Designer.cs` a mano | Alfredo en el diseñador | Permiso explícito de Alfredo en la sesión, con el diseñador cerrado y confirmado por él |
 | 2026-11-23 | 8, 9 | La Fase 8 se pospone hasta terminar el acuario (`PLAN.md`, Fase 7); la Fase 9 va antes | Seguir el orden 8 → 9 | Decisión de Alfredo: los colores de las entidades conviene decidirlos con el acuario terminado, y la limpieza no depende de él (Grep 2026-11-23: los restos no tienen usos) |
+| 2026-11-23 | 9 | Ícono del menú restablecido al de WinForms por defecto | Un `.ico` propio en la paleta | Igual que las mesas y sin recurso nuevo; un ícono propio sería contenido nuevo |
+| 2026-11-23 | 9 | `Resources.resx` recuperado con git y vaciado desde el editor de Recursos | Reescribirlo a mano solo con `Dron` | El editor regenera `Resources.Designer.cs`; a mano quedaría desactualizado |
+| 2026-11-23 | 9 | En `UIHelper.cs` solo se borra lo de Terraria; los `using` sin uso se quedan | Limpiar también los `using` | Ya sobraban antes de la fase; "Fuera de alcance" excluye refactorizar `UIHelper` |
+| 2026-11-23 | — | Tests: compilar con el MSBuild de VS y ejecutar `dotnet test --no-build` | `dotnet test` solo; añadir `System.Resources.Extensions` y `GenerateResourceUsePreserializedResources` | El MSBuild de `dotnet` falla con `MSB3822`/`MSB3823` en los `.resx` con imágenes; cambiar el `.csproj` por la herramienta de tests no compensa |
 
 ## Riesgos globales
 - **Dos planes sobre `MesaDePracticas4`:** no se ejecutan a la vez una fase de `PLAN.md` y la Fase 7 u 8 de este plan.

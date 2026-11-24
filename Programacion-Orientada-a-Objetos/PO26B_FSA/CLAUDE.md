@@ -28,8 +28,12 @@ Un hook compila automáticamente tras cada edición de un `.cs` del proyecto pri
 Proyecto MSTest en `PO26B_FSA.Tests` (`net472`, estilo SDK, no necesita listar archivos en el `.csproj`). Se ejecuta desde la raíz de `PO26B_FSA`:
 
 ```powershell
-dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
+$msbuild = & "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe" -latest -requires Microsoft.Component.MSBuild -find 'MSBuild\**\Bin\MSBuild.exe'
+& $msbuild "PO26B_FSA.Tests\PO26B_FSA.Tests.csproj" /restore /p:Configuration=Debug /nologo /v:m
+dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj --no-build
 ```
+
+No uses `dotnet test` sin `--no-build`: al compilar, el MSBuild de `dotnet` falla con `MSB3822`/`MSB3823` en los `.resx` con recursos que no son texto (imágenes, ícono). Antes pasaba solo porque reutilizaba los recursos ya generados por Visual Studio.
 
 - Las clases `C*` son `internal`; los tests las ven por `InternalsVisibleTo` en `Properties\AssemblyInfo.cs`.
 - `CHombre` / `CMujer` usan `Random`; prueba rangos, no valores exactos.
@@ -51,6 +55,7 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj
 
 - El diseñador no escribe en el `.Designer.cs` una propiedad con su valor por defecto (p. ej. `Visible = true`): para verificar un cambio así, busca que haya desaparecido la línea con el valor anterior.
 - No edites los `.Designer.cs` a mano, salvo permiso explícito de Alfredo en esa sesión y solo con el diseñador cerrado en Visual Studio (si está abierto, al guardar puede sobrescribir la edición). Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
+- `Properties\Resources.resx` guarda todos los recursos del proyecto (incluido `Dron`, que usa Mesa 2). Para quitar un recurso: Proyecto → Propiedades → Recursos → Quitar recurso, y después se elimina el archivo desde el Explorador de soluciones. No se borra ni se edita a mano el `.resx`: `Resources.Designer.cs` se genera a partir de él.
 - Para comprobar que un diseñador está cerrado, Claude solo ve la pestaña activa de Visual Studio (el título de la ventana). Una pestaña de diseñador abierta en segundo plano no se detecta: Alfredo confirma que la cerró.
 - Al dar colores para el diseñador, usa el formato `R; G; B` (p. ej. `245; 244; 238`).
 - Estética: todo el proyecto (menú, mesas 1-3 y `MesaDePracticas4`, acuario incluido) usa el estilo de la sección "Estilo chat". El pixel-art estilo Terraria está retirado: no lo propongas.
@@ -76,7 +81,6 @@ Solo en el menú principal (`DlgPrincipal`): una sola vista (menú y selector de
 
 - Cambia la apariencia, no el comportamiento. Excepciones ya decididas: la vista única del menú (Fase 1 de `PLAN-ESTILO.md`) y el logo fijo sin animación (Fase 5). Se conserva `AbrirMesa` (al cerrar una mesa vuelve el menú).
 - Acuario: primero migra el marco (panel, botones, etiquetas). Los colores de peces y plantas en el `Paint` se deciden en su propia fase.
-- Restos de Terraria (no tomarlos como referencia; se eliminan en la Fase 9 de `PLAN-ESTILO.md`): `FilaMesa` entera, `UIHelper.AplicarEstiloTerraria` e `Interpolar`, la fuente Andy (instalada en Windows, se quita cambiando `Font` en el diseñador), `TerrariaBackground` y los PNG que liste el inventario.
 - Fases y avance: `PLAN-ESTILO.md`; léelo solo en tareas de estilo. `PLAN.md` decide el comportamiento del acuario y `PLAN-ESTILO.md` su aspecto; una fase no mezcla las dos cosas.
 
 ## Proyecto final: Acuario

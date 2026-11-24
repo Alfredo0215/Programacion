@@ -73,11 +73,10 @@
     <Compile Include="DlgPrincipal.Designer.cs">
       <DependentUpon>DlgPrincipal.cs</DependentUpon>
     </Compile>
-    <Compile Include="FilaMesa.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FilaMesa.Designer.cs">
-      <DependentUpon>FilaMesa.cs</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UIHelper.cs" />
     <Compile Include="Mesas-De-Practicas\MesaDePracticas4.cs">
@@ -109,9 +108,6 @@
     <EmbeddedResource Include="DlgPrincipal.resx">
       <DependentUpon>DlgPrincipal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FilaMesa.resx">
-      <DependentUpon>FilaMesa.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Mesas-De-Practicas\MesaDePracticas4.resx">
       <DependentUpon>MesaDePracticas4.cs</DependentUpon>
     </EmbeddedResource>
@@ -126,14 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -147,39 +138,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\TerrariaBackground.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LogoPOO.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\LogoPOO1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Personaje1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\BotonJugar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\PlayButton.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Personaje2.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Personaje3.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Personaje4.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\CorazonVida.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\EstrellaMana.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Dron.png" />
