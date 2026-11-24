@@ -31,6 +31,7 @@
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.LblInfo = new System.Windows.Forms.Label();
             this.PanelSide = new System.Windows.Forms.Panel();
+            this.LblTitulo = new System.Windows.Forms.Label();
             this.BtnPractica4 = new System.Windows.Forms.Button();
             this.BtnPractica3 = new System.Windows.Forms.Button();
             this.BtnPractica2 = new System.Windows.Forms.Button();
@@ -49,7 +50,7 @@
             this.PnlPracticas3 = new System.Windows.Forms.Panel();
             this.PnlPracticas2 = new System.Windows.Forms.Panel();
             this.PnlPracticas4 = new System.Windows.Forms.Panel();
-            this.LblTitulo = new System.Windows.Forms.Label();
+            this.BtnP2Pnl1 = new System.Windows.Forms.Button();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
@@ -95,6 +96,17 @@
             this.PanelSide.Name = "PanelSide";
             this.PanelSide.Size = new System.Drawing.Size(193, 494);
             this.PanelSide.TabIndex = 1;
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
+            this.LblTitulo.Location = new System.Drawing.Point(24, 72);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(133, 34);
+            this.LblTitulo.TabIndex = 5;
+            this.LblTitulo.Text = "Sonnet";
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnPractica4
             // 
@@ -232,9 +244,9 @@
             this.LblCaptura2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura2.Location = new System.Drawing.Point(140, 32);
             this.LblCaptura2.Name = "LblCaptura2";
-            this.LblCaptura2.Size = new System.Drawing.Size(65, 17);
+            this.LblCaptura2.Size = new System.Drawing.Size(64, 17);
             this.LblCaptura2.TabIndex = 2;
-            this.LblCaptura2.Text = "Captura 2";
+            this.LblCaptura2.Text = "Vigilantes";
             // 
             // LblCaptura1
             // 
@@ -244,9 +256,9 @@
             this.LblCaptura1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura1.Location = new System.Drawing.Point(24, 32);
             this.LblCaptura1.Name = "LblCaptura1";
-            this.LblCaptura1.Size = new System.Drawing.Size(65, 17);
+            this.LblCaptura1.Size = new System.Drawing.Size(50, 17);
             this.LblCaptura1.TabIndex = 1;
-            this.LblCaptura1.Text = "Captura 1";
+            this.LblCaptura1.Text = "Drones";
             // 
             // PnlFill
             // 
@@ -268,6 +280,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PnlPracticas1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.PnlPracticas1.Controls.Add(this.BtnP2Pnl1);
             this.PnlPracticas1.Controls.Add(this.BtnP1Pnl1);
             this.PnlPracticas1.Controls.Add(this.PbxDron);
             this.PnlPracticas1.Location = new System.Drawing.Point(7, 7);
@@ -344,16 +357,23 @@
             this.PnlPracticas4.Size = new System.Drawing.Size(910, 379);
             this.PnlPracticas4.TabIndex = 3;
             // 
-            // LblTitulo
+            // BtnP2Pnl1
             // 
-            this.LblTitulo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
-            this.LblTitulo.Location = new System.Drawing.Point(24, 72);
-            this.LblTitulo.Name = "LblTitulo";
-            this.LblTitulo.Size = new System.Drawing.Size(133, 34);
-            this.LblTitulo.TabIndex = 5;
-            this.LblTitulo.Text = "Sonnet";
-            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.BtnP2Pnl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnP2Pnl1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
+            this.BtnP2Pnl1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.BtnP2Pnl1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.BtnP2Pnl1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnP2Pnl1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.BtnP2Pnl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
+            this.BtnP2Pnl1.Location = new System.Drawing.Point(105, 15);
+            this.BtnP2Pnl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnP2Pnl1.Name = "BtnP2Pnl1";
+            this.BtnP2Pnl1.Size = new System.Drawing.Size(75, 24);
+            this.BtnP2Pnl1.TabIndex = 2;
+            this.BtnP2Pnl1.Text = "P2";
+            this.BtnP2Pnl1.UseVisualStyleBackColor = false;
+            this.BtnP2Pnl1.Click += new System.EventHandler(this.BtnP2Pnl1_Click);
             // 
             // MesaDePracticas2
             // 
@@ -372,7 +392,6 @@
             this.PanelBottom.ResumeLayout(false);
             this.PanelBottom.PerformLayout();
             this.PanelSide.ResumeLayout(false);
-            this.PanelSide.PerformLayout();
             this.PanelTop.ResumeLayout(false);
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
@@ -406,5 +425,6 @@
         private System.Windows.Forms.PictureBox PbxDron;
         private System.Windows.Forms.Button BtnP1Pnl1;
         private System.Windows.Forms.Label LblTitulo;
+        private System.Windows.Forms.Button BtnP2Pnl1;
     }
 }

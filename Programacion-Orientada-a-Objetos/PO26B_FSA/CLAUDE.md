@@ -77,11 +77,12 @@ En todas las pantallas:
 - Esquinas redondeadas: `UIHelper.RoundControl`. Con borde visible (chips, cajas): píldora, diámetro = alto. En botones rellenos sin borde visible: diámetro 5 px, porque `Region` no suaviza y una curva larga se ve dentada. Si el control ya tiene borde (`FlatAppearance.BorderSize`), se pone a 0 para no dibujar dos.
 - Un `Button` con `FlatStyle = Flat` necesita `BackColor` propio: si se deja `UseVisualStyleBackColor = true`, Windows lo pinta en su gris y el Grep de colores no lo detecta (la propiedad no aparece en el `.Designer.cs`).
 
-Solo en el menú principal (`DlgPrincipal`): una sola vista (menú y selector de mesas juntos): barra lateral izquierda con las 4 mesas como lista de conversaciones; área principal con logo "POO26B" en texto, saludo "¿Qué practicamos hoy?", caja de mensaje (decorativa por ahora) y chips que abren mesas. Sin botón "Atrás" ni Esc; la app se cierra con la X. Las mesas no copian esta distribución.
+Solo en el menú principal (`DlgPrincipal`): una sola vista (menú y selector de mesas juntos): barra lateral izquierda con las 4 mesas como lista de conversaciones; área principal con logo "POO26B" en texto, saludo "¿Qué practicamos hoy?", caja de mensaje (se conecta a Gemini según `PLAN-GEMINI.md`) y chips que abren mesas. Sin botón "Atrás" ni Esc; la app se cierra con la X. Las mesas no copian esta distribución.
 
 - Cambia la apariencia, no el comportamiento. Excepciones ya decididas: la vista única del menú (Fase 1 de `PLAN-ESTILO.md`) y el logo fijo sin animación (Fase 5). Se conserva `AbrirMesa` (al cerrar una mesa vuelve el menú).
 - Acuario: primero migra el marco (panel, botones, etiquetas). Los colores de peces y plantas en el `Paint` se deciden en su propia fase.
 - Fases y avance: `PLAN-ESTILO.md`; léelo solo en tareas de estilo. `PLAN.md` decide el comportamiento del acuario y `PLAN-ESTILO.md` su aspecto; una fase no mezcla las dos cosas.
+- Chat con Gemini en el menú: fases y decisiones en `PLAN-GEMINI.md`; léelo solo en tareas de esa función. Es comportamiento nuevo: no va en fases de `PLAN-ESTILO.md`.
 
 ## Proyecto final: Acuario
 

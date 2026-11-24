@@ -32,6 +32,7 @@ namespace PO26B_FSA
 
         //Atributos de control
 
+        // true mientras el dron se destruye: ya no responde a clics.
         protected bool inhabilitado;
         protected volatile bool encendido;
         protected volatile bool destruido;
@@ -40,11 +41,17 @@ namespace PO26B_FSA
 
         //Atributos de ejecución
 
-        protected Thread procesoNavegacion;
+        // volatile: lo asigna el hilo de arranque y lo lee el clic.
+        protected volatile Thread procesoNavegacion;
 
         //Atributos de configuración
 
         protected const int TAMAÑO = 50;
+
+        // Gris = quieto (apagado o pausado); el color de movimiento lo puede
+        // cambiar una subclase.
+        protected Color colorQuieto = Color.FromArgb(122, 119, 110);
+        protected Color colorEnMovimiento = Color.FromArgb(201, 100, 66);
         //---------------------------------------------------------------------
         //Métodos.
         //---------------------------------------------------------------------
@@ -84,7 +91,7 @@ namespace PO26B_FSA
             Name = "DRON";
             Size = new System.Drawing.Size(50, 50);
             // Estado apagado: texto secundario #7A776E (Fase 6b, variante sonnet).
-            BackColor = Color.FromArgb(122, 119, 110);
+            BackColor = colorQuieto;
             BringToFront();
            
             Click += new EventHandler(Accion);
@@ -103,17 +110,22 @@ namespace PO26B_FSA
                 if (destruido)
                     return;
 
-                Visible = false;
-                Thread.Sleep(100);
-                Visible = true;
-                Thread.Sleep(100);
-                Visible = true;
+                // Parpadea 4 veces antes de moverse.
+                for (int i = 0; i < 4; i++)
+                {
+                    Visible = false;
+                    Thread.Sleep(200);
+                    if (destruido)
+                        return;
 
-                if (destruido)
-                    return;
+                    Visible = true;
+                    Thread.Sleep(200);
+                    if (destruido)
+                        return;
+                }
 
                 // Estado encendido: acento terracota #C96442.
-                BackColor = Color.FromArgb(201, 100, 66);
+                BackColor = colorEnMovimiento;
                 encendido = true;
                 Desplazar(numRandom.Next(1, 50));
             });
@@ -122,7 +134,9 @@ namespace PO26B_FSA
             procesoEncendido.Start();
         }
 
-        public void Desplazar(int velocidad)
+        // virtual: una subclase (p. ej. el vigilante) puede reemplazar la
+        // forma de moverse.
+        public virtual void Desplazar(int velocidad)
         {
 
             int x;
@@ -131,9 +145,17 @@ namespace PO26B_FSA
             procesoNavegacion = new Thread(() =>
             {
 
-                while (encendido && !destruido)
+                // Un solo hilo por dron: en pausa no termina, solo espera.
+                // Así reanudar no crea un segundo hilo.
+                while (!destruido)
                 {
-                    x = Location.X; 
+                    if (!encendido)
+                    {
+                        Thread.Sleep(velocidad);
+                        continue;
+                    }
+
+                    x = Location.X;
                     y = Location.Y;
 
                     if (norte)
@@ -145,29 +167,7 @@ namespace PO26B_FSA
                     if (oeste)
                         x = x - 1;
 
-                    if(x <= 0)
-                    {
-                        oeste = false;
-                        este = true;
-                    }
-
-                    if (x >= areaDesplazamiento.Width - TAMAÑO)
-                    {
-                        oeste = true;
-                        este = false;
-                    }
-
-                    if (y <= 0)
-                    {
-                        norte = false;
-                        sur = true;
-                    }
-
-                    if (y >= areaDesplazamiento.Height - TAMAÑO)
-                    {
-                        sur = false;
-                        norte = true;
-                    }
+                    CambiarDireccion(x, y);
 
                     Location = new Point(x, y);
                     Thread.Sleep(velocidad);
@@ -178,10 +178,94 @@ namespace PO26B_FSA
             procesoNavegacion.Start();
         }
 
+        //---------------------------------------------------------------------
+        // Decide la dirección según la posición (x, y) recién calculada.
+        // Este dron rebota en diagonal; una subclase puede cambiar la regla.
+        //---------------------------------------------------------------------
+        protected virtual void CambiarDireccion(int x, int y)
+        {
+            if (x <= 0)
+            {
+                oeste = false;
+                este = true;
+            }
+
+            if (x >= areaDesplazamiento.Width - TAMAÑO)
+            {
+                oeste = true;
+                este = false;
+            }
+
+            if (y <= 0)
+            {
+                norte = false;
+                sur = true;
+            }
+
+            if (y >= areaDesplazamiento.Height - TAMAÑO)
+            {
+                sur = false;
+                norte = true;
+            }
+        }
+
+        //---------------------------------------------------------------------
+        // Clic: pausa el dron si se mueve y lo reanuda si está en pausa.
+        // Shift+clic: lo destruye.
+        //---------------------------------------------------------------------
         private void Accion(object sender, EventArgs e)
         {
-            // Estado tras el clic: texto #2B2A27.
-            BackColor = Color.FromArgb(43, 42, 39);
+            // Aún arrancando, o ya destruyéndose: el clic no hace nada.
+            if (procesoNavegacion == null || inhabilitado)
+                return;
+
+            if (ModifierKeys.HasFlag(Keys.Shift))
+            {
+                Destruir();
+                return;
+            }
+
+            encendido = !encendido;
+            BackColor = encendido ? colorEnMovimiento : colorQuieto;
+        }
+
+        //---------------------------------------------------------------------
+        // Detiene el dron, lo hace parpadear 3 veces y lo quita del área.
+        //---------------------------------------------------------------------
+        private void Destruir()
+        {
+            Thread procesoDestruccion;
+
+            inhabilitado = true;
+            encendido = false;
+            BackColor = colorQuieto;
+
+            procesoDestruccion = new Thread(() =>
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    Visible = false;
+                    Thread.Sleep(200);
+                    if (destruido)
+                        return;
+
+                    Visible = true;
+                    Thread.Sleep(200);
+                    if (destruido)
+                        return;
+                }
+
+                // Windows solo deja destruir una ventana al hilo que la creó:
+                // Remove y Dispose se piden al hilo de la interfaz.
+                BeginInvoke(new Action(() =>
+                {
+                    areaDesplazamiento.Controls.Remove(this);
+                    Dispose();
+                }));
+            });
+
+            procesoDestruccion.IsBackground = true;
+            procesoDestruccion.Start();
         }
 
         //---------------------------------------------------------------------

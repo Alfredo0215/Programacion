@@ -19,27 +19,30 @@ compilar → prueba de aceptación → siguiente tarea.
 
 ## Tareas
 
-- [ ] **T1 – Hilos seguros.** Hilos en segundo plano, bandera `destruido`,
-  `Dispose` sobrescrito. *(Código aplicado y compila; falta la prueba manual.)*
+- [x] **T1 – Hilos seguros.** Hilos en segundo plano, bandera `destruido`,
+  `Dispose` sobrescrito.
   Prueba: crear 5 drones, cerrar Mesa 2, cerrar la app → sin errores y el
   proceso desaparece del Administrador de tareas.
-- [ ] **T2 – Arranque y parpadeo.** Espera `tiempoArranque` ms, parpadea 4
+- [x] **T2 – Arranque y parpadeo.** Espera `tiempoArranque` ms, parpadea 4
   veces, luego se mueve.
   Prueba: el parpadeo se ve antes de moverse.
-- [ ] **T3 – Pausar / reanudar con clic.** Como máximo un hilo de movimiento
+- [x] **T3 – Pausar / reanudar con clic.** Como máximo un hilo de movimiento
   por dron.
   Prueba: 10 clics rápidos → al final se mueve a su velocidad normal, no al doble.
-- [ ] **T4 – Shift+clic destruye.** Parpadea 3 veces y se quita; el manejador
+- [x] **T4 – Shift+clic destruye.** Parpadea 3 veces y se quita; el manejador
   termina ahí (no cae en la lógica de pausar/reanudar).
   Prueba: destruir uno en movimiento y uno pausado → ninguno revive.
-- [ ] **T5 – `Desplazar` pasa a `virtual`.**
+- [x] **T5 – `Desplazar` pasa a `virtual`.** (En T6 se añadió
+  `CambiarDireccion` virtual: es lo único que el vigilante sobrescribe.)
   Prueba: compila y nada visible cambia.
 - [ ] **T6 – `CDronVigilante`.** Clase nueva en su `.cs`, agregada a mano al
-  `POO26B_FSA.csproj`; recorre el perímetro.
+  `POO26B_FSA.csproj`; recorre el perímetro. *(Código aplicado y compila;
+  la prueba manual necesita el botón de T7.)*
   Prueba: baja hasta abajo y recorre este → norte → oeste → sur sin salirse,
   incluidas las 4 esquinas.
-- [ ] **T7 – Botón y contadores.** Segundo botón y dos contadores (controles
-  desde el diseñador).
+- [ ] **T7 – Botón y contadores.** `BtnP2Pnl1` crea vigilantes; `TbxCaptura1`
+  y `TbxCaptura2` (antes posición del cursor) cuentan drones y vigilantes.
+  *(Código aplicado y compila; falta la prueba manual.)*
   Prueba: cada botón crea su tipo y su contador sube en 1.
 
 ## Fallos de la referencia que no se copian
