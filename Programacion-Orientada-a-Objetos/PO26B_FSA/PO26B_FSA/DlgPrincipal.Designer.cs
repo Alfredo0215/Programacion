@@ -46,6 +46,7 @@
             this.LblTituloMesas = new System.Windows.Forms.Label();
             this.PnlLineaPie = new System.Windows.Forms.Panel();
             this.LblPie = new System.Windows.Forms.Label();
+            this.TbxConversacion = new System.Windows.Forms.TextBox();
             this.PnlBackground.SuspendLayout();
             this.PnlMensaje.SuspendLayout();
             this.PnlBarraLateral.SuspendLayout();
@@ -54,6 +55,7 @@
             // PnlBackground
             // 
             this.PnlBackground.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.PnlBackground.Controls.Add(this.TbxConversacion);
             this.PnlBackground.Controls.Add(this.PnlMensaje);
             this.PnlBackground.Controls.Add(this.BtnChip4);
             this.PnlBackground.Controls.Add(this.BtnChip3);
@@ -74,10 +76,10 @@
             this.PnlMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.PnlMensaje.Controls.Add(this.BtnEnviar);
             this.PnlMensaje.Controls.Add(this.TbxMensaje);
-            this.PnlMensaje.Location = new System.Drawing.Point(172, 346);
+            this.PnlMensaje.Location = new System.Drawing.Point(172, 524);
             this.PnlMensaje.Name = "PnlMensaje";
-            this.PnlMensaje.Padding = new System.Windows.Forms.Padding(14, 10, 64, 10);
-            this.PnlMensaje.Size = new System.Drawing.Size(600, 90);
+            this.PnlMensaje.Padding = new System.Windows.Forms.Padding(14, 8, 52, 8);
+            this.PnlMensaje.Size = new System.Drawing.Size(600, 50);
             this.PnlMensaje.TabIndex = 7;
             // 
             // BtnEnviar
@@ -87,26 +89,27 @@
             this.BtnEnviar.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
             this.BtnEnviar.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
             this.BtnEnviar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnEnviar.Font = new System.Drawing.Font("Segoe UI", 16F, System.Drawing.FontStyle.Bold);
+            this.BtnEnviar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.BtnEnviar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
-            this.BtnEnviar.Location = new System.Drawing.Point(520, 10);
+            this.BtnEnviar.Location = new System.Drawing.Point(556, 8);
             this.BtnEnviar.Name = "BtnEnviar";
-            this.BtnEnviar.Size = new System.Drawing.Size(70, 70);
+            this.BtnEnviar.Size = new System.Drawing.Size(34, 34);
             this.BtnEnviar.TabIndex = 3;
             this.BtnEnviar.TabStop = false;
             this.BtnEnviar.Text = "↑";
             this.BtnEnviar.UseVisualStyleBackColor = false;
+            this.BtnEnviar.Click += new System.EventHandler(this.BtnEnviar_Click);
             // 
             // TbxMensaje
             // 
+            this.TbxMensaje.AcceptsReturn = true;
             this.TbxMensaje.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.TbxMensaje.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TbxMensaje.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TbxMensaje.Location = new System.Drawing.Point(14, 10);
+            this.TbxMensaje.Location = new System.Drawing.Point(14, 8);
             this.TbxMensaje.Multiline = true;
             this.TbxMensaje.Name = "TbxMensaje";
-            this.TbxMensaje.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TbxMensaje.Size = new System.Drawing.Size(522, 70);
+            this.TbxMensaje.Size = new System.Drawing.Size(534, 34);
             this.TbxMensaje.TabIndex = 2;
             // 
             // BtnChip4
@@ -118,7 +121,7 @@
             this.BtnChip4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.BtnChip4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnChip4.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.BtnChip4.Location = new System.Drawing.Point(585, 475);
+            this.BtnChip4.Location = new System.Drawing.Point(585, 590);
             this.BtnChip4.Name = "BtnChip4";
             this.BtnChip4.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
             this.BtnChip4.Size = new System.Drawing.Size(90, 37);
@@ -136,7 +139,7 @@
             this.BtnChip3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.BtnChip3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnChip3.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.BtnChip3.Location = new System.Drawing.Point(468, 475);
+            this.BtnChip3.Location = new System.Drawing.Point(468, 590);
             this.BtnChip3.Name = "BtnChip3";
             this.BtnChip3.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
             this.BtnChip3.Size = new System.Drawing.Size(90, 37);
@@ -154,7 +157,7 @@
             this.BtnChip2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.BtnChip2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnChip2.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.BtnChip2.Location = new System.Drawing.Point(351, 475);
+            this.BtnChip2.Location = new System.Drawing.Point(351, 590);
             this.BtnChip2.Name = "BtnChip2";
             this.BtnChip2.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
             this.BtnChip2.Size = new System.Drawing.Size(90, 37);
@@ -172,7 +175,7 @@
             this.BtnChip1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.BtnChip1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnChip1.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.BtnChip1.Location = new System.Drawing.Point(230, 475);
+            this.BtnChip1.Location = new System.Drawing.Point(230, 590);
             this.BtnChip1.Name = "BtnChip1";
             this.BtnChip1.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
             this.BtnChip1.Size = new System.Drawing.Size(90, 37);
@@ -186,7 +189,7 @@
             this.LblSaludo.AutoSize = true;
             this.LblSaludo.Font = new System.Drawing.Font("Georgia", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblSaludo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
-            this.LblSaludo.Location = new System.Drawing.Point(206, 240);
+            this.LblSaludo.Location = new System.Drawing.Point(206, 76);
             this.LblSaludo.Name = "LblSaludo";
             this.LblSaludo.Size = new System.Drawing.Size(518, 56);
             this.LblSaludo.TabIndex = 1;
@@ -197,7 +200,7 @@
             this.LblLogo.AutoSize = true;
             this.LblLogo.Font = new System.Drawing.Font("Georgia", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblLogo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(201)))), ((int)(((byte)(100)))), ((int)(((byte)(66)))));
-            this.LblLogo.Location = new System.Drawing.Point(392, 168);
+            this.LblLogo.Location = new System.Drawing.Point(392, 30);
             this.LblLogo.Name = "LblLogo";
             this.LblLogo.Size = new System.Drawing.Size(156, 38);
             this.LblLogo.TabIndex = 0;
@@ -330,6 +333,19 @@
             this.LblPie.Text = "Programación Orientada a Objetos\r\n26B\r\n";
             this.LblPie.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // TbxConversacion
+            // 
+            this.TbxConversacion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.TbxConversacion.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TbxConversacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
+            this.TbxConversacion.Location = new System.Drawing.Point(172, 148);
+            this.TbxConversacion.Multiline = true;
+            this.TbxConversacion.Name = "TbxConversacion";
+            this.TbxConversacion.ReadOnly = true;
+            this.TbxConversacion.Size = new System.Drawing.Size(600, 360);
+            this.TbxConversacion.TabIndex = 8;
+            this.TbxConversacion.TabStop = false;
+            // 
             // DlgPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -369,6 +385,7 @@
         private System.Windows.Forms.Label LblTituloMesas;
         private System.Windows.Forms.Panel PnlLineaPie;
         private System.Windows.Forms.Label LblPie;
+        private System.Windows.Forms.TextBox TbxConversacion;
     }
 }
 

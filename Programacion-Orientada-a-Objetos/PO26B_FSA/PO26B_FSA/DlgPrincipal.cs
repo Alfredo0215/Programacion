@@ -8,6 +8,11 @@ namespace PO26B_FSA
     public partial class DlgPrincipal : Form
     {
         //---------------------------------------------------------------------
+        // Atributos.
+        //---------------------------------------------------------------------
+        private readonly CClienteGemini gemini = new CClienteGemini();
+
+        //---------------------------------------------------------------------
         // Método constructor, configuración inicial del programa.
         //---------------------------------------------------------------------
         public DlgPrincipal()
@@ -69,6 +74,46 @@ namespace PO26B_FSA
                 mesa.ShowDialog();
             }
             this.Show();
+        }
+
+        //---------------------------------------------------------------------
+        // Envía la pregunta de la caja a Gemini y muestra la respuesta.
+        //---------------------------------------------------------------------
+        private async void BtnEnviar_Click(object sender, EventArgs e)
+        {
+            string pregunta = TbxMensaje.Text.Trim();
+            if (pregunta.Length == 0)
+            {
+                return;   // vacío o solo espacios / saltos de línea
+            }
+
+            BtnEnviar.Enabled = false;
+            AgregarALaConversacion("Tú", pregunta);
+            TbxMensaje.Clear();
+            try
+            {
+                string respuesta = await gemini.EnviarAsync(pregunta);
+                AgregarALaConversacion("Gemini", respuesta);
+            }
+            catch (Exception ex)
+            {
+                // Mínimo para no cerrar la app; los mensajes claros van en la Fase 3.
+                AgregarALaConversacion("Error", ex.Message);
+            }
+            finally
+            {
+                BtnEnviar.Enabled = true;
+            }
+        }
+
+        //---------------------------------------------------------------------
+        // Añade un mensaje al final de la conversación.
+        //---------------------------------------------------------------------
+        private void AgregarALaConversacion(string quien, string texto)
+        {
+            // La API usa "\n"; el TextBox solo salta de línea con "\r\n".
+            texto = texto.Replace("\r\n", "\n").Replace("\n", Environment.NewLine);
+            TbxConversacion.AppendText(quien + ": " + texto + Environment.NewLine + Environment.NewLine);
         }
     }
 }
