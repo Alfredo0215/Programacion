@@ -65,7 +65,7 @@
             // 
             // PanelBottom
             // 
-            this.PanelBottom.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.PanelBottom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.PanelBottom.Controls.Add(this.LblInfo);
             this.PanelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.PanelBottom.Location = new System.Drawing.Point(0, 494);
@@ -77,6 +77,7 @@
             // 
             this.LblInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LblInfo.AutoSize = true;
+            this.LblInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblInfo.Location = new System.Drawing.Point(922, 12);
             this.LblInfo.Name = "LblInfo";
             this.LblInfo.Size = new System.Drawing.Size(191, 13);
@@ -85,7 +86,7 @@
             // 
             // PanelSide
             // 
-            this.PanelSide.BackColor = System.Drawing.Color.Aquamarine;
+            this.PanelSide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.PanelSide.Controls.Add(this.LblTitulo);
             this.PanelSide.Controls.Add(this.BtnProyectoFIA);
             this.PanelSide.Controls.Add(this.BtnProyectoF);
@@ -97,27 +98,37 @@
             // 
             // BtnProyectoFIA
             // 
+            this.BtnProyectoFIA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.BtnProyectoFIA.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnProyectoFIA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnProyectoFIA.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnProyectoFIA.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.BtnProyectoFIA.Location = new System.Drawing.Point(24, 257);
             this.BtnProyectoFIA.Name = "BtnProyectoFIA";
             this.BtnProyectoFIA.Size = new System.Drawing.Size(133, 39);
             this.BtnProyectoFIA.TabIndex = 3;
             this.BtnProyectoFIA.Text = "Proyecto Final IA";
-            this.BtnProyectoFIA.UseVisualStyleBackColor = true;
+            this.BtnProyectoFIA.UseVisualStyleBackColor = false;
             this.BtnProyectoFIA.Click += new System.EventHandler(this.BtnPractica4_Click);
             // 
             // BtnProyectoF
             // 
+            this.BtnProyectoF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
+            this.BtnProyectoF.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnProyectoF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnProyectoF.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnProyectoF.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.BtnProyectoF.Location = new System.Drawing.Point(24, 167);
             this.BtnProyectoF.Name = "BtnProyectoF";
             this.BtnProyectoF.Size = new System.Drawing.Size(133, 39);
             this.BtnProyectoF.TabIndex = 1;
             this.BtnProyectoF.Text = "Proyecto Final";
-            this.BtnProyectoF.UseVisualStyleBackColor = true;
+            this.BtnProyectoF.UseVisualStyleBackColor = false;
             this.BtnProyectoF.Click += new System.EventHandler(this.BtnPractica2_Click);
             // 
             // PanelTop
             // 
-            this.PanelTop.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.PanelTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(237)))), ((int)(((byte)(235)))), ((int)(((byte)(227)))));
             this.PanelTop.Controls.Add(this.TbxCaptura3);
             this.PanelTop.Controls.Add(this.TbxCaptura2);
             this.PanelTop.Controls.Add(this.TbxCaptura1);
@@ -125,7 +136,7 @@
             this.PanelTop.Controls.Add(this.LblCaptura2);
             this.PanelTop.Controls.Add(this.LblCaptura1);
             this.PanelTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelTop.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.PanelTop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.PanelTop.Location = new System.Drawing.Point(193, 0);
             this.PanelTop.Name = "PanelTop";
             this.PanelTop.Size = new System.Drawing.Size(923, 100);
@@ -133,6 +144,7 @@
             // 
             // TbxCaptura3
             // 
+            this.TbxCaptura3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TbxCaptura3.Location = new System.Drawing.Point(260, 58);
             this.TbxCaptura3.Name = "TbxCaptura3";
             this.TbxCaptura3.Size = new System.Drawing.Size(100, 20);
@@ -140,6 +152,7 @@
             // 
             // TbxCaptura2
             // 
+            this.TbxCaptura2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TbxCaptura2.Location = new System.Drawing.Point(143, 58);
             this.TbxCaptura2.Name = "TbxCaptura2";
             this.TbxCaptura2.Size = new System.Drawing.Size(100, 20);
@@ -147,6 +160,7 @@
             // 
             // TbxCaptura1
             // 
+            this.TbxCaptura1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TbxCaptura1.Location = new System.Drawing.Point(27, 58);
             this.TbxCaptura1.Name = "TbxCaptura1";
             this.TbxCaptura1.Size = new System.Drawing.Size(100, 20);
@@ -156,7 +170,7 @@
             // 
             this.LblCaptura3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LblCaptura3.AutoSize = true;
-            this.LblCaptura3.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LblCaptura3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura3.Location = new System.Drawing.Point(257, 32);
             this.LblCaptura3.Name = "LblCaptura3";
             this.LblCaptura3.Size = new System.Drawing.Size(53, 13);
@@ -167,7 +181,7 @@
             // 
             this.LblCaptura2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LblCaptura2.AutoSize = true;
-            this.LblCaptura2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LblCaptura2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura2.Location = new System.Drawing.Point(140, 32);
             this.LblCaptura2.Name = "LblCaptura2";
             this.LblCaptura2.Size = new System.Drawing.Size(53, 13);
@@ -178,7 +192,7 @@
             // 
             this.LblCaptura1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.LblCaptura1.AutoSize = true;
-            this.LblCaptura1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.LblCaptura1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura1.Location = new System.Drawing.Point(24, 32);
             this.LblCaptura1.Name = "LblCaptura1";
             this.LblCaptura1.Size = new System.Drawing.Size(53, 13);
@@ -187,7 +201,7 @@
             // 
             // PnlFill
             // 
-            this.PnlFill.BackColor = System.Drawing.Color.AliceBlue;
+            this.PnlFill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.PnlFill.Controls.Add(this.PnlProyectoF);
             this.PnlFill.Controls.Add(this.PnlProyectoFIA);
             this.PnlFill.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -201,7 +215,7 @@
             this.PnlProyectoF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlProyectoF.BackColor = System.Drawing.Color.Lavender;
+            this.PnlProyectoF.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.PnlProyectoF.Controls.Add(this.PbxAcuario);
             this.PnlProyectoF.Controls.Add(this.FlpControlesAcuario);
             this.PnlProyectoF.Controls.Add(this.LblEstadisticas);
@@ -237,58 +251,79 @@
             // 
             // BtnIniciarPausar
             // 
+            this.BtnIniciarPausar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(100)))), ((int)(((byte)(32)))));
+            this.BtnIniciarPausar.FlatAppearance.BorderSize = 0;
+            this.BtnIniciarPausar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnIniciarPausar.ForeColor = System.Drawing.Color.White;
             this.BtnIniciarPausar.Location = new System.Drawing.Point(3, 3);
             this.BtnIniciarPausar.Name = "BtnIniciarPausar";
             this.BtnIniciarPausar.Size = new System.Drawing.Size(75, 23);
             this.BtnIniciarPausar.TabIndex = 0;
             this.BtnIniciarPausar.Text = "Pausar";
-            this.BtnIniciarPausar.UseVisualStyleBackColor = true;
+            this.BtnIniciarPausar.UseVisualStyleBackColor = false;
             this.BtnIniciarPausar.Click += new System.EventHandler(this.BtnIniciarPausar_Click);
             // 
             // BtnReiniciar
             // 
+            this.BtnReiniciar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnReiniciar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnReiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnReiniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.BtnReiniciar.Location = new System.Drawing.Point(84, 3);
             this.BtnReiniciar.Name = "BtnReiniciar";
             this.BtnReiniciar.Size = new System.Drawing.Size(75, 23);
             this.BtnReiniciar.TabIndex = 1;
             this.BtnReiniciar.Text = "Reiniciar";
-            this.BtnReiniciar.UseVisualStyleBackColor = true;
+            this.BtnReiniciar.UseVisualStyleBackColor = false;
             this.BtnReiniciar.Click += new System.EventHandler(this.BtnReiniciar_Click);
             // 
             // BtnAgregarPlanta
             // 
+            this.BtnAgregarPlanta.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnAgregarPlanta.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnAgregarPlanta.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAgregarPlanta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.BtnAgregarPlanta.Location = new System.Drawing.Point(165, 3);
             this.BtnAgregarPlanta.Name = "BtnAgregarPlanta";
             this.BtnAgregarPlanta.Size = new System.Drawing.Size(75, 23);
             this.BtnAgregarPlanta.TabIndex = 2;
             this.BtnAgregarPlanta.Text = "Planta";
-            this.BtnAgregarPlanta.UseVisualStyleBackColor = true;
+            this.BtnAgregarPlanta.UseVisualStyleBackColor = false;
             this.BtnAgregarPlanta.Click += new System.EventHandler(this.BtnAgregarPlanta_Click);
             // 
             // BtnAgregarHerbivoro
             // 
+            this.BtnAgregarHerbivoro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnAgregarHerbivoro.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnAgregarHerbivoro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAgregarHerbivoro.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.BtnAgregarHerbivoro.Location = new System.Drawing.Point(246, 3);
             this.BtnAgregarHerbivoro.Name = "BtnAgregarHerbivoro";
             this.BtnAgregarHerbivoro.Size = new System.Drawing.Size(75, 23);
             this.BtnAgregarHerbivoro.TabIndex = 3;
             this.BtnAgregarHerbivoro.Text = "Herbívoro";
-            this.BtnAgregarHerbivoro.UseVisualStyleBackColor = true;
+            this.BtnAgregarHerbivoro.UseVisualStyleBackColor = false;
             this.BtnAgregarHerbivoro.Click += new System.EventHandler(this.BtnAgregarHerbivoro_Click);
             // 
             // BtnAgregarDepredador
             // 
+            this.BtnAgregarDepredador.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnAgregarDepredador.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnAgregarDepredador.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnAgregarDepredador.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.BtnAgregarDepredador.Location = new System.Drawing.Point(327, 3);
             this.BtnAgregarDepredador.Name = "BtnAgregarDepredador";
             this.BtnAgregarDepredador.Size = new System.Drawing.Size(75, 23);
             this.BtnAgregarDepredador.TabIndex = 4;
             this.BtnAgregarDepredador.Text = "Depredador";
-            this.BtnAgregarDepredador.UseVisualStyleBackColor = true;
+            this.BtnAgregarDepredador.UseVisualStyleBackColor = false;
             this.BtnAgregarDepredador.Click += new System.EventHandler(this.BtnAgregarDepredador_Click);
             // 
             // LblEstadisticas
             // 
             this.LblEstadisticas.AutoSize = true;
             this.LblEstadisticas.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LblEstadisticas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblEstadisticas.Location = new System.Drawing.Point(0, 0);
             this.LblEstadisticas.Name = "LblEstadisticas";
             this.LblEstadisticas.Size = new System.Drawing.Size(51, 13);
@@ -300,7 +335,7 @@
             this.PnlProyectoFIA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlProyectoFIA.BackColor = System.Drawing.Color.YellowGreen;
+            this.PnlProyectoFIA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.PnlProyectoFIA.Location = new System.Drawing.Point(4, 6);
             this.PnlProyectoFIA.Name = "PnlProyectoFIA";
             this.PnlProyectoFIA.Size = new System.Drawing.Size(910, 379);
@@ -314,23 +349,25 @@
             // LblTitulo
             // 
             this.LblTitulo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(88)))), ((int)(((byte)(119)))), ((int)(((byte)(89)))));
-            this.LblTitulo.Location = new System.Drawing.Point(24, 58);
+            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(100)))), ((int)(((byte)(32)))));
+            this.LblTitulo.Location = new System.Drawing.Point(24, 72);
             this.LblTitulo.Name = "LblTitulo";
             this.LblTitulo.Size = new System.Drawing.Size(133, 34);
             this.LblTitulo.TabIndex = 6;
-            this.LblTitulo.Text = "Haiku";
+            this.LblTitulo.Text = "Fable";
             this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MesaDePracticas4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
             this.ClientSize = new System.Drawing.Size(1116, 594);
             this.Controls.Add(this.PnlFill);
             this.Controls.Add(this.PanelTop);
             this.Controls.Add(this.PanelSide);
             this.Controls.Add(this.PanelBottom);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MesaDePracticas4";
             this.Text = "MesaDePracticas4";
             this.PanelBottom.ResumeLayout(false);

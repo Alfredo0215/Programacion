@@ -8,10 +8,10 @@ Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
 
 Regla de trabajo (desde 2026-11-17): Claude propone cada paso, lo explica y justifica el código; Alfredo aprueba; Claude implementa. Cada propuesta incluye "qué debes entender para defenderlo".
 
-## Estado actual (2026-11-17)
-- **Fase 6 [~]:** lógica y controles hechos; compila; tests 36/36. Falta la prueba manual.
-- **1.ª prueba manual:** el tiempo ya se muestra en ticks (ver registro). Pendiente: los peces nadan bajo los botones porque `PbxAcuario` no está al frente de `FlpControlesAcuario`.
-- **Siguiente paso (Alfredo):** traer `PbxAcuario` al frente y guardar (en el `.Designer.cs`, su `Controls.Add` debe quedar primero); corregir el texto "Hervíboro" → "Herbívoro"; repetir la prueba manual (pausar congela, volver al panel no quita la pausa, reiniciar vuelve a 20 / 10 / 3 y 0 ticks, agregar se ve aun en pausa, conteos = pantalla, nada se dibuja bajo los botones).
+## Estado actual (2026-11-23)
+- **Fase 6 [x] (2026-11-23):** verificada; ver su resultado.
+- **Siguiente paso:** Fase 7, equilibrio y cierre del MVP.
+- Al cerrar la Fase 7: retomar la Fase 8 de `PLAN-ESTILO.md` (colores del lienzo y de las entidades), pospuesta hasta entonces.
 
 **Prompt para continuar:**
 ~~~
@@ -152,11 +152,11 @@ MesaDePracticas4            tiene un CEcosistema; Tick → Paso() + Invalidate()
 
 ---
 
-## Fase 6: Interfaz y estadísticas  [~]
+## Fase 6: Interfaz y estadísticas  [x] (2026-11-23)
 **Objetivo:** controlar y observar la simulación.
 **Entregable demostrable:** botones Iniciar/Pausar, Reiniciar y Agregar (planta, herbívoro, depredador); panel con conteos por tipo y ticks.
 **Depende de:** 5.
-**Decisiones:** [Firme] estilo pixel-art Terraria; controles desde el diseñador.
+**Decisiones:** [Firme] controles desde el diseñador. ~~Estilo pixel-art Terraria~~: retirado; el aspecto del acuario lo decide `PLAN-ESTILO.md` (estilo chat, variante Fable).
 **Tareas:** pasos en el diseñador; handlers `Control_Evento`; conteos leídos del ecosistema.
 **Criterio de aceptación:** pausar congela sin perder estado; reiniciar vuelve al estado inicial; los conteos coinciden con lo que se ve.
 **Pruebas y evaluación:** manual; MSTest del conteo por tipo si vive en la lógica.
@@ -164,6 +164,7 @@ MesaDePracticas4            tiene un CEcosistema; Tick → Paso() + Invalidate()
 **Riesgos:** el formulario empieza a contener reglas de la simulación → moverlas a la lógica.
 **Para que lo entiendas tú:** por qué el formulario pregunta al ecosistema y no cuenta por su cuenta.
 **Punto de revisión:** ¿el formulario solo muestra y reenvía acciones?
+**Resultado (2026-11-23):** compila; tests 36/36. La 1.ª prueba manual (2026-11-17) mostró que los peces nadaban bajo los botones; se corrigió trayendo `PbxAcuario` al frente (su `Controls.Add` va primero) y el texto "Hervíboro" pasó a "Herbívoro". Segunda prueba manual de Alfredo, en verde: pausar congela; volver al panel no quita la pausa; reiniciar vuelve a 20 / 10 / 3 y 0 ticks; lo que se agrega se ve aun en pausa; los conteos coinciden con la pantalla; nada se dibuja bajo los botones.
 
 ---
 

@@ -3,8 +3,9 @@
 Formato: planificar-fases v1 · módulos: software
 
 ## Estado actual
-- Fase en curso: 6c, Mesa 3 (variante opus) · Última actualización: 2026-11-23
-- **Siguiente acción:** Alfredo revisa en la app Mesa 3 y los títulos `LblTitulo` de las Mesas 1-3, y hace la prueba de regresión; si está bien, la 6c pasa a [x]. Mesa 4 aún no tiene label de título: se agrega en el diseñador (en la Fase 7 o antes). Después, Fase 7.
+- Fase en curso: 9, limpieza · Última actualización: 2026-11-23
+- **Siguiente acción:** empezar la Fase 9. Grep del 2026-11-23: `AplicarEstiloTerraria` e `Interpolar` solo aparecen en su definición en `UIHelper.cs`; ningún `.cs` usa los recursos de Terraria. Hay que repetir el Grep al empezar.
+- Fase 8 pospuesta hasta que el acuario esté terminado (`PLAN.md`, Fase 7). Al retomarla: primero se responde el punto de revisión de la Fase 7 (¿`LightSteelBlue` desentona con el marco crema?) y después se completa la fase con planificar-fases.
 - `docs/Screenshot_4.png` (lo cita la Fase 0) quedó borrado en el commit `4fcd0e5`. Si hace falta: `git restore --source=45f402e docs/Screenshot_4.png`.
 
 Leyenda: [ ] pendiente · [~] en curso · [h] hecho sin verificar · [x] verificado (fecha)
@@ -35,10 +36,10 @@ Modo de trabajo: `CLAUDE.md` de usuario y `CLAUDE.md` del proyecto (secciones "I
 | 4 | Barra lateral con 4 `Button` planos en lugar de `FilaMesa`; paleta y Segoe UI en el menú; sin fondo Terraria | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-22) |
 | 5 | Área principal: logo "POO26B" en texto, saludo, caja de mensaje y chips que abren mesas | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-22) |
 | 6a | Mesa 1 con la variante haiku (acento salvia, paneles sin relleno) | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-23) |
-| 6b | Mesa 2 con la variante sonnet (estilo base) y el dron con 3 estados en la paleta | Alfredo en diseñador + Claude propone `.cs` | [~] |
-| 6c | Mesa 3 con la variante opus (acento ciruela, títulos en Georgia) | Alfredo en diseñador | [ ] |
-| 7 | Marco del acuario en `MesaDePracticas4` con la variante fable (acento ocre) | Alfredo en diseñador | [ ] |
-| 8 | Lienzo del acuario: fondo y colores de entidades (esqueleto) | Claude propone `.cs` | [ ] |
+| 6b | Mesa 2 con la variante sonnet (estilo base) y el dron con 3 estados en la paleta | Alfredo en diseñador + Claude propone `.cs` | [x] (2026-11-23) |
+| 6c | Mesa 3 con la variante opus (acento ciruela, títulos en Georgia) | Alfredo en diseñador | [x] (2026-11-23) |
+| 7 | Marco del acuario en `MesaDePracticas4` con la variante fable (acento ocre) | Claude edita el `.Designer.cs` (permiso de Alfredo) | [x] (2026-11-23) |
+| 8 | Lienzo del acuario: fondo y colores de entidades (esqueleto) | Claude propone `.cs` | pospuesta (2026-11-23) |
 | 9 | Limpieza: sin `FilaMesa`, sin código ni recursos Terraria, `CLAUDE.md` sin la nota de restos | Claude propone | [ ] |
 
 ---
@@ -250,7 +251,7 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 
 ---
 
-## Fase 6c: Mesa 3, variante opus  [h]
+## Fase 6c: Mesa 3, variante opus  [x] (2026-11-23)
 **Objetivo:** aplicar la variante opus a `MesaDePracticas3`: densa y solemne.
 **Entregable demostrable:** Mesa 3 con acento ciruela `#6B4E7A`, títulos en Georgia y paneles `#EDEBE3`.
 **Escribe:** Alfredo en el diseñador.
@@ -263,31 +264,55 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 **Qué debes entender:** por qué cambiar `Font` en el formulario mueve sus controles y en una sola etiqueta no.
 **Punto de revisión:** ¿las tres variantes juntas se ven como una sola app?
 **Notas:**
-- 2026-11-23: Claude editó a mano `MesaDePracticas3.Designer.cs` (permiso de Alfredo; la pestaña activa de Visual Studio era la de Mesa 2). Paneles laterales y franjas `#EDEBE3`; `PnlFill`, `PnlPracticas1-4` y formulario `#F5F4EE`; formulario en Segoe UI 8,25 (mide 6 × 13, igual que la fuente anterior: no reescala); `BtnPractica1-4` planos, fondo `#EDEBE3`, hover `#DDD9CE`, texto ciruela `#6B4E7A` (5.87:1 sobre `#EDEBE3`), Segoe UI 9,75; `LblCaptura1-3` y `LblInfo` como en Mesa 2. También `PanelTop`, `PanelBottom` y las etiquetas, que no estaban en las tareas, para que pase el Grep. Compila, tests 36/36, Grep limpio (solo `FromArgb`). Pendiente: no hay etiquetas de título, así que Georgia no se aplicó; `TbxCaptura1-3` siguen con borde 3D (en Mesa 2, `FixedSingle`).
+- 2026-11-23: Claude editó a mano `MesaDePracticas3.Designer.cs` (permiso de Alfredo; la pestaña activa de Visual Studio era la de Mesa 2). Paneles laterales y franjas `#EDEBE3`; `PnlFill`, `PnlPracticas1-4` y formulario `#F5F4EE`; formulario en Segoe UI 8,25 (mide 6 × 13, igual que la fuente anterior: no reescala); `BtnPractica1-4` planos, fondo `#EDEBE3`, hover `#DDD9CE`, texto ciruela `#6B4E7A` (5.87:1 sobre `#EDEBE3`), Segoe UI 9,75; `LblCaptura1-3` y `LblInfo` como en Mesa 2. También `PanelTop`, `PanelBottom` y las etiquetas, que no estaban en las tareas, para que pase el Grep. Compila, tests 36/36, Grep limpio (solo `FromArgb`). Pendiente: no hay etiquetas de título, así que Georgia no se aplicó; `TbxCaptura1-3` siguen con borde 3D (en Mesa 2, `FixedSingle`). Resuelto después: Alfredo los puso en `FixedSingle` en el diseñador.
 - 2026-11-23: resuelto el título en Georgia. Alfredo agregó `LblTitulo` en `PanelSide` de las Mesas 1-3; Claude le dio formato (permiso de Alfredo): "Opus", Georgia 14,25 pt negrita, ciruela `#6B4E7A` (5.87:1 sobre `#EDEBE3`), `Location` (24, 72), `Size` (133, 34), centrado sobre los botones. Para que las mesas se vean como una sola app, Mesa 1 lleva "Haiku" (salvia, 4.54:1 sobre `#F5F4EE`) y Mesa 2 "Sonnet" (terracota, 3.27:1 sobre `#EDEBE3`, válido por ir en 14 pt negrita), las dos en Segoe UI con el mismo tamaño y posición. Compila, tests 36/36, Grep limpio en las Mesas 1-3 (`FromArgb`, más el `White` y el `Transparent` que ya había). Mesa 4 todavía no tiene label.
+- 2026-11-23: verificada. Revisión visual y prueba de regresión correctas (Alfredo).
 
 ---
 
-## Fase 7: Marco del acuario  [ ]
+## Fase 7: Marco del acuario  [x] (2026-11-23)
 **Objetivo:** aplicar la paleta y las fuentes a `MesaDePracticas4`, sin tocar el lienzo.
 **Entregable demostrable:** `MesaDePracticas4` con paneles, botones y etiquetas en la paleta; el acuario se ve y funciona igual por dentro.
-**Escribe:** Alfredo en el diseñador.
+**Escribe:** Claude, a mano en el `.Designer.cs` (permiso de Alfredo, con el diseñador cerrado).
 **Decisiones:**
 - [Firme] `PbxAcuario` y los colores de las entidades no se tocan aquí (Fase 8).
 - [Firme] No se cambia nada del comportamiento del acuario; eso es de `PLAN.md`.
 - [Firme] (2026-11-22) Variante fable: marco cálido con acento ocre `#8C6420` (texto blanco 5.30:1). Mismas decisiones comunes que la Fase 6.
-**Tareas:** diseñador de `MesaDePracticas4` (`PanelSide`, `PnlFill`, `PnlProyectoF`, `PnlProyectoFIA`, etiquetas, fuentes; botones a `FlatStyle = Flat`).
-**Hecho cuando:** el marco no tiene colores fuera de la paleta, `AlternarPractica` sigue abriendo el acuario, la simulación corre con `TimerAcuario` y los tests pasan.
+- [Firme] (2026-11-23, cálculos de Claude con la fórmula de WCAG) Ocre sobre `#EDEBE3`: 4.45:1, no llega a 4.5 → en el panel lateral el ocre solo va en el título de 14,25 pt negrita; los botones laterales llevan texto `#2B2A27`. Ocre sobre `#F5F4EE`: 4.81:1. Texto blanco sobre ocre: 5.30:1 → el ocre se usa como relleno de `BtnIniciarPausar`, el botón principal.
+**Tareas:** en el diseñador de `MesaDePracticas4` (con permiso de Alfredo el 2026-11-23, Claude edita el `.Designer.cs` a mano con el diseñador cerrado):
+- Primero el `Font` del formulario a Segoe UI 8,25; `AutoScaleDimensions` debe seguir en (6, 13).
+- Después:
+
+| Control | Propiedad | Valor |
+|---|---|---|
+| Formulario, `PnlFill`, `PnlProyectoF`, `PnlProyectoFIA` | `BackColor` | `245; 244; 238` |
+| `PanelSide`, `PanelTop`, `PanelBottom` | `BackColor` | `237; 235; 227` |
+| `PanelTop` | `ForeColor` (antes `AppWorkspace`) | `43; 42; 39` |
+| `LblCaptura1-3`, `LblInfo`, `LblEstadisticas` | `ForeColor` | `43; 42; 39` |
+| `TbxCaptura1-3` | `BorderStyle` | `FixedSingle` |
+| `BtnProyectoF`, `BtnProyectoFIA` | `FlatStyle` / `BackColor` / `FlatAppearance.MouseOverBackColor` / `ForeColor` | `Flat` / `237; 235; 227` / `221; 217; 206` / `43; 42; 39`, Segoe UI 9,75 |
+| `BtnIniciarPausar` (botón principal) | `FlatStyle` / `BackColor` / `ForeColor` / `FlatAppearance.BorderSize` | `Flat` / `140; 100; 32` / `White` / `0` |
+| `BtnReiniciar`, `BtnAgregar*` | `FlatStyle` / `BackColor` / `FlatAppearance.BorderColor` / `ForeColor` | `Flat` / `245; 244; 238` / `221; 217; 206` / `43; 42; 39` |
+| `LblTitulo` | `Text` / `ForeColor` / `Location` | `Fable` / `140; 100; 32` / `24; 72` |
+| `PbxAcuario` | — | no se toca (Fase 8) |
+
+- En cada botón que pasa a `Flat` se quita `UseVisualStyleBackColor = true`.
+
+**Hecho cuando:** el marco no tiene colores fuera de la paleta: el Grep `SystemColors\.|Color\.[A-Z][a-z]+` en `MesaDePracticas4.cs` y `MesaDePracticas4.Designer.cs` solo devuelve `FromArgb`, `White`, `Transparent` y la excepción esperada `PbxAcuario.BackColor = LightSteelBlue` (es de la Fase 8); `AlternarPractica` sigue abriendo el acuario, la simulación corre con `TimerAcuario` y los tests pasan.
 **Verificación:** manual en la app; `dotnet test` como en la cabecera.
 **Fuera de alcance:** `PbxAcuario`, `CHerbivoro`, `CDepredador`, `CPlanta`.
 **Riesgos:** una fase de `PLAN.md` en curso edita `MesaDePracticas4` al mismo tiempo → se termina primero esa fase y luego esta.
 **Qué debes entender:** por qué separar el marco del lienzo permite cambiar el aspecto sin arriesgar la simulación.
 **Punto de revisión:** con el marco ya en crema, ¿el fondo actual del lienzo (`LightSteelBlue`) se ve fuera de lugar? Esa observación alimenta la Fase 8.
 **Notas:**
+- 2026-11-23: Claude aplicó la tabla editando a mano `MesaDePracticas4.Designer.cs` (permiso de Alfredo, diseñador cerrado y confirmado por él). Formulario en Segoe UI 8,25; `AutoScaleDimensions` sigue en (6, 13). En los 7 botones que pasaron a `Flat`, `UseVisualStyleBackColor = true` quedó como `false`, que es lo que escribe el diseñador cuando un botón tiene `BackColor` propio. No se tocaron `PbxAcuario`, ningún `.cs`, el orden de los `Controls.Add` ni los eventos. Compila; tests 36/36; Grep: solo `FromArgb`, `White` (`BtnIniciarPausar`) y `PbxAcuario` en `LightSteelBlue`. Faltan (Alfredo): revisión visual, prueba del acuario (`AlternarPractica`, `TimerAcuario`) y prueba de regresión del menú.
+- 2026-11-23: verificada. Revisión visual, prueba del acuario y regresión del menú correctas (Alfredo). El punto de revisión (¿`LightSteelBlue` desentona?) queda sin responder: es lo primero de la Fase 8.
 
 ---
 
-## Fase 8: Lienzo del acuario  [ ]  (esqueleto: depende de [Validar en Fase 8])
+## Fase 8: Lienzo del acuario  [pospuesta (2026-11-23)]  (esqueleto: depende de [Validar en Fase 8])
+
+> **Cambio de plan (2026-11-23):** Alfredo pospone esta fase hasta que el acuario esté terminado (cierre del MVP en `PLAN.md`, Fase 7), y la Fase 9 se hace antes. Motivo: los colores de peces y plantas se deciden mejor con la simulación ya cerrada, mientras que la limpieza no depende del diseño del acuario. El Grep del 2026-11-23 lo confirma: los restos de Terraria no tienen usos en el acuario. Consecuencia: la Fase 9 ya no es el fin de la migración; lo es la Fase 8.
 **Objetivo:** decidir el fondo de `PbxAcuario` y los colores de peces y plantas. · **Entregable demostrable:** el acuario con colores coherentes con la paleta. · **Hecho cuando:** con la simulación corriendo, se distinguen a simple vista herbívoros, depredadores y plantas sobre el fondo elegido, y los tests pasan.
 
 [Validar en Fase 8] Contraste sobre `#F5F4EE`. Criterio fijado de antemano: si los tres tipos de entidad no se distinguen a simple vista, la paleta recibe colores de entidad nuevos (se anotan en `CLAUDE.md`) o el lienzo usa un fondo propio. Los colores viven en `CHerbivoro.cs`, `CDepredador.cs` y `CPlanta.cs`: cambiar el pincel es aspecto, pero esos archivos son del proyecto final. Esta fase no coincide con una fase de `PLAN.md` que los edite.
@@ -305,7 +330,7 @@ Motivo: los retratos no encajan en una lista de conversaciones (registro 2026-11
 **Fuera de alcance:** refactorizar `UIHelper` más allá de borrar lo que no se usa.
 **Riesgos:** borrar un recurso todavía referenciado rompe la compilación → la compilación de la cabecera lo detecta.
 **Qué debes entender:** por qué se borra al final y no al principio: mientras quedaba un uso, borrar el método rompía la compilación.
-**Punto de revisión:** fin de la migración.
+**Punto de revisión:** fin de la limpieza; la migración termina con la Fase 8 (pospuesta).
 **Notas:**
 
 ---
@@ -368,6 +393,12 @@ No cambies comportamiento: si hace falta, detente y consulta.
 | 2026-11-23 | 6a | [Firme] Botones rellenos sin borde visible: diámetro 5 px, no píldora | Píldora (diámetro = alto), como los chips del menú | `Region` recorta por píxeles, sin suavizado: con una curva larga y un relleno que contrasta con el fondo, la escalera se nota (validado a ojo por Alfredo). Los chips del menú lo disimulan con su borde suavizado `#DDD9CE` |
 | 2026-11-23 | 6b | [Firme] `BtnP1Pnl1` con contorno terracota y texto oscuro | Relleno terracota con texto blanco | Texto blanco sobre `#C96442` mide 3.90 < 4.5 |
 | 2026-11-23 | 6b | `#C96442` en `DlgPrincipal.cs` y `CDron.cs` sin un lugar común | Clase de colores compartida | Un solo valor en dos archivos; se reevalúa si aparece en un tercero |
+| 2026-11-23 | 6c | Ciruela en el texto de `BtnPractica1-4`, fondo `#EDEBE3`, hover `#DDD9CE` | Relleno ciruela con texto blanco | Sin relleno no hace falta redondear en el `.cs`; 5.87:1 sobre `#EDEBE3` |
+| 2026-11-23 | 6c | También se migran `PanelTop`, `PanelBottom`, `LblCaptura1-3`, `LblInfo`, `TbxCaptura1-3` y el formulario, como en Mesa 2 | Limitarse a los controles de "Tareas" | Con `SystemColors` en esos controles, el Grep de "Hecho cuando" fallaba; los bordes `FixedSingle` igualan Mesa 2 |
+| 2026-11-23 | 6a-6c | `LblTitulo` por mesa en `PanelSide`: nombre del modelo, acento de la mesa, 14,25 pt negrita, (24, 72), (133, 34), centrado; Georgia solo en Opus | Georgia en los cuatro; tamaños distintos por mesa | 14 pt negrita es el mínimo para el terracota (3.27:1); `CLAUDE.md` reserva Georgia para el logo, el saludo y los títulos de Opus |
+| 2026-11-23 | 7 | En Mesa 4 el ocre va solo en `LblTitulo` (14,25 pt negrita) y como relleno de `BtnIniciarPausar` con texto blanco; los botones laterales llevan texto `#2B2A27` | Ocre en el texto de los botones laterales, como el ciruela en Mesa 3 | Cálculos de Claude (WCAG): ocre sobre `#EDEBE3` 4.45 < 4.5; blanco sobre ocre 5.30 |
+| 2026-11-23 | 7 | Claude aplicó la fase editando el `.Designer.cs` a mano | Alfredo en el diseñador | Permiso explícito de Alfredo en la sesión, con el diseñador cerrado y confirmado por él |
+| 2026-11-23 | 8, 9 | La Fase 8 se pospone hasta terminar el acuario (`PLAN.md`, Fase 7); la Fase 9 va antes | Seguir el orden 8 → 9 | Decisión de Alfredo: los colores de las entidades conviene decidirlos con el acuario terminado, y la limpieza no depende de él (Grep 2026-11-23: los restos no tienen usos) |
 
 ## Riesgos globales
 - **Dos planes sobre `MesaDePracticas4`:** no se ejecutan a la vez una fase de `PLAN.md` y la Fase 7 u 8 de este plan.

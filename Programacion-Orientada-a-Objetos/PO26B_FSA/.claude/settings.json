@@ -9,6 +9,8 @@
       "PowerShell(& $msbuild *POO26B_FSA.csproj*)"
     ],
     "deny": [
+      "Edit(**/*.Designer.cs)",
+      "Write(**/*.Designer.cs)",
       "Bash(git push:*)",
       "Bash(git reset --hard:*)",
       "Bash(git clean:*)"
