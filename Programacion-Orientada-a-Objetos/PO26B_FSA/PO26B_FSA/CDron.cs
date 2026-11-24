@@ -33,7 +33,8 @@ namespace PO26B_FSA
         //Atributos de control
 
         protected bool inhabilitado;
-        protected bool encendido;
+        protected volatile bool encendido;
+        protected volatile bool destruido;
 
         protected bool regresarACasa;
 
@@ -98,20 +99,26 @@ namespace PO26B_FSA
             procesoEncendido = new Thread(() => {
                 Thread.Sleep(tiempoArranque);
 
+                // La mesa pudo cerrarse mientras el hilo dormía.
+                if (destruido)
+                    return;
+
                 Visible = false;
                 Thread.Sleep(100);
                 Visible = true;
                 Thread.Sleep(100);
                 Visible = true;
 
+                if (destruido)
+                    return;
 
                 // Estado encendido: acento terracota #C96442.
                 BackColor = Color.FromArgb(201, 100, 66);
                 encendido = true;
-                Desplazar(numRandom.Next(1, 50
-                    ));
+                Desplazar(numRandom.Next(1, 50));
             });
 
+            procesoEncendido.IsBackground = true;
             procesoEncendido.Start();
         }
 
@@ -124,7 +131,7 @@ namespace PO26B_FSA
             procesoNavegacion = new Thread(() =>
             {
 
-                while(encendido)
+                while (encendido && !destruido)
                 {
                     x = Location.X; 
                     y = Location.Y;
@@ -167,6 +174,7 @@ namespace PO26B_FSA
                 }
             });
 
+            procesoNavegacion.IsBackground = true;
             procesoNavegacion.Start();
         }
 
@@ -174,6 +182,17 @@ namespace PO26B_FSA
         {
             // Estado tras el clic: texto #2B2A27.
             BackColor = Color.FromArgb(43, 42, 39);
+        }
+
+        //---------------------------------------------------------------------
+        // Al liberarse el dron (p. ej. al cerrar la mesa), avisa a sus hilos
+        // para que terminen.
+        //---------------------------------------------------------------------
+        protected override void Dispose(bool disposing)
+        {
+            destruido = true;
+            encendido = false;
+            base.Dispose(disposing);
         }
     }
 }

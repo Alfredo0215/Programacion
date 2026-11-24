@@ -1,0 +1,301 @@
+﻿using System;
+using System.Drawing;
+using System.Threading;
+using System.Windows.Forms;
+
+namespace POO26B_MCDA
+{
+
+    // ============================================================
+    // Clase que representa un dron
+    // ============================================================
+    internal class Cdron : PictureBox
+    {
+        // ============================================================
+        // ATRIBUTOS
+        // ============================================================
+        private int Xposinicial;
+        private int Yposinicial;
+
+        //atributos de dezpalzamiento
+
+        protected Control Area;
+        protected bool Nort;
+        protected bool south;
+        protected bool east;
+        protected bool west;
+
+        //atributos de control
+
+        protected volatile bool ON;
+        protected volatile bool Disable;
+        protected volatile bool destruido;
+        protected bool ComebackToPoStart;
+
+        //atributos de ejecucion
+
+        protected Thread LifeTravel;
+
+
+        //confuguracion atributos
+
+        protected const int Tamano = 30;
+
+        // ============================================================
+        // CONSTRUCTOR
+        // ============================================================
+
+
+        public Cdron(Control Area) {
+        Random random = new Random();
+
+            this.Area = Area;
+            this.Area.Controls.Add(this);
+
+
+            Xposinicial = random.Next(0, Area.Width - Tamano);
+
+            Yposinicial = random.Next(0, Area.Height - Tamano);
+
+            //inicializa atributos de navegacion
+            Nort = false;
+            south = true;
+            east = true;
+            west = false;
+
+            //inicializa a tributos de control
+            ON = false;
+            Disable = false;
+            ComebackToPoStart = false;
+
+            //inicializa atributos de ejecucion
+
+            LifeTravel = null;
+
+            //incia otra properties
+
+            Location = new Point(this.Xposinicial, this.Yposinicial);
+            Name = "dron";
+            Size = new Size(Tamano,Tamano);
+            BackColor = Color.Yellow;
+            BringToFront();
+
+
+            //NOTA EVITA LA EXCECEPCION CUANDO OBJETOS SON MANIPULADOS ENTRE HILOS OSEA EN SUBRPOCESOS
+            CheckForIllegalCrossThreadCalls = false;
+
+            //aisgna evento al click en dron
+
+            Click += new EventHandler(accion);
+            Click += new EventHandler(stop);
+
+        
+        }
+
+        private void Cdron_Click(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        // ============================================================
+        // Enciende el dron
+        // ============================================================
+
+        public void Activar(int Timerun) {
+
+            Thread lifetime;
+
+
+            lifetime = new Thread(() =>
+            {
+
+                Random random = new Random();
+
+
+                Thread.Sleep(random.Next(1000, 10000));
+
+                // La pestaña pudo cerrarse mientras el hilo dormía: no se debe
+                // tocar un control ya liberado.
+                if (destruido)
+                    return;
+
+                for (int i =  0; i < 4; i++)
+                {
+                    Thread.Sleep(200);
+                    if (destruido)
+                        return;
+                    Visible = false;
+                    Thread.Sleep(200);
+                    if (destruido)
+                        return;
+                    Visible = true;
+                }
+
+                if (destruido)
+                    return;
+
+                BackColor = Color.Red;
+                ON = true;
+
+                Moved(random.Next(1, 50));
+                
+
+            });
+
+            lifetime.IsBackground = true;
+            lifetime.Start();
+        }
+        // DEZPALZA EL DRON A UNA VELOCIDAD DETERMINADA
+        public virtual void Moved(int speed)
+        {
+            int X, Y;
+
+            LifeTravel = new Thread(() =>
+            {
+                // Así el hilo se queda esperando a que el dron se encienda.
+                while (ON == true && !destruido)
+                {
+              
+                        // Obtiene la posición actual del dron
+                        X = Location.X;
+                        Y = Location.Y;
+
+                        // Calcula el desplazamiento    
+                        if (Nort) Y -= 1;
+                        if (south) Y += 1;
+                        if (east) X += 1;
+                        if (west) X -= 1;
+
+                        if (X <= 0)
+                           {
+                        west = false; 
+                        east = true;
+                           }
+                    if (Y <= 0)
+                    {
+                        Nort = false;
+                        south = true;
+
+                    }
+                    if ( X >= Area.Width - Tamano)
+                    {
+                        west = true;
+                        east = false;
+
+                    }
+                    if (Y >= Area.Height - Tamano) 
+                    {
+                        Nort = true;
+                        south = false;
+                    }
+
+                        
+
+                        // Asigna la nueva posición
+                        Location = new Point(X, Y);
+                    
+
+                    // El Sleep siempre debe ejecutarse para no congelar el procesador
+                    Thread.Sleep(speed);
+                }
+            });
+
+            // Inicia el hilo
+            LifeTravel.IsBackground = true;
+            LifeTravel.Start();
+        }
+
+        // ============================================================
+        // CAMBIA DE COLOR EL DRON
+        // ============================================================
+        private void accion(object sender, EventArgs e)
+        {
+            BackColor = Color.Black;
+
+
+        }
+        // ============================================================
+        // DETIENE EL DRON
+        // ============================================================
+        private void stop(object sender, EventArgs e)
+        {
+            Random randi = new Random();
+            // destruye el dron pulsando shift click
+            if (ModifierKeys.HasFlag(Keys.Shift))
+            {
+                Thread Bills;
+                Bills = new Thread(() =>
+                {
+
+                    BackColor = Color.Black;
+                    ON = false;
+
+                    Thread.Sleep(1000);
+
+
+                        if (destruido)
+                            return;
+
+                        for (int i = 0; i < 3; i++)
+                        {
+                            Thread.Sleep(200);
+                            if (destruido)
+                                return;
+                            Visible = false;
+                            Thread.Sleep(200);
+                            if (destruido)
+                                return;
+                            Visible = true;
+                        }
+
+                        if (destruido)
+                            return;
+
+                        Area.Controls.Remove(this);
+                        this.Dispose();
+
+
+
+                });
+
+                Bills.IsBackground = true;
+                Bills.Start();
+
+
+
+
+            }
+            // Al hacer clik pausa
+            if (ON)
+            {
+                BackColor = Color.DarkRed;
+                ON = false;
+                
+            }
+            //Al hacer clik mueve
+            else
+            {
+                ON = true;
+                BackColor = Color.Red;
+                Moved(randi.Next(1,50));
+            }
+                
+
+
+        }
+
+        // ============================================================
+        // DESTRUIR DRON
+        // ============================================================
+
+        protected override void Dispose(bool disposing)
+        {
+            destruido = true;
+            ON = false;
+            base.Dispose(disposing);
+            
+
+        }
+
+    }
+}

@@ -1,0 +1,115 @@
+﻿
+
+using System.Drawing;
+using System.Threading;
+using System.Windows.Forms;
+
+namespace POO26B_MCDA
+{
+
+    // ============================================================
+    // Clase que representa un dron vigilante
+    //Progrmacion orinetada a objetos
+    //INGENIERIA EN COMPUTACION
+    //CENTRO UNIVERSITARIO DE LA COSTA
+    //MCDA 12/11/2026
+    // ============================================================
+
+
+    internal class CdronVigilante : Cdron
+    {
+        // ============================================================
+        // ATRIBUTOS
+        // ============================================================
+
+        // ============================================================
+        // CONSTRUCTOR
+        // ============================================================
+        public CdronVigilante(Control Area) : base(Area) 
+        {
+            // NOTA = LOS DRONES APARECENE EN AZUL NO EN AMARILLO
+            BackColor = Color.DarkBlue;
+
+            // ESTOS DRONES NO SE MUEVE EN DIAGONAL BAJAN A RODEAR TODO EL PERIMETRO
+
+            Nort = false;
+            south = true;
+            east = false;
+            west = false;
+        }
+
+        // DEZPALZA EL DRON VIGIALANTE A UNA VELOCIDAD DETERMINADA
+
+        public override void Moved(int speed) 
+        {
+            int X, Y;
+
+            LifeTravel = new Thread(() =>
+            {
+                // Así el hilo se queda esperando a que el dron se encienda.
+                while (ON == true && !destruido)
+                {
+
+                    // Obtiene la posición actual del dron
+                    X = Location.X;
+                    Y = Location.Y;
+
+                    // Calcula el desplazamiento    
+                    if (Nort) Y -= 1;
+                    if (south) Y += 1;
+                    if (east) X += 1;
+                    if (west) X -= 1;
+
+                    if (X <= 0 && Y <= 0)
+                    {
+                        west = false; 
+                        east = false;
+                        south = true; //baja al llegar al limite de la X
+                        Nort = false;
+                    }
+
+                    else if (Y <= 0  )
+                    {
+                        west = true; // va a la izquierda al llegar al limite de la Y
+                        east = false;
+                        south = false; 
+                        Nort = false;
+
+                    }
+                    else if (X >= Area.Width - Tamano )
+                    {
+                        west = false;
+                        east = false;
+                        south = false;
+                        Nort = true;
+
+                    }
+                    
+                    
+                    else if (Y >= Area.Height - Tamano)
+                    {
+                       west = false;
+                       east = true;
+                       south = false;
+                       Nort = false;
+                    }
+                    
+
+
+                    // Asigna la nueva posición
+                    Location = new Point(X, Y);
+
+
+                    // El Sleep siempre debe ejecutarse para no congelar el procesador
+                    Thread.Sleep(speed);
+                }
+            });
+
+            // Inicia el hilo
+            LifeTravel.IsBackground = true;
+            LifeTravel.Start();
+        }
+
+
+    }
+}
