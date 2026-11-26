@@ -32,6 +32,7 @@
             this.PanelBottom = new System.Windows.Forms.Panel();
             this.LblInfo = new System.Windows.Forms.Label();
             this.PanelSide = new System.Windows.Forms.Panel();
+            this.LblTitulo = new System.Windows.Forms.Label();
             this.BtnProyectoFIA = new System.Windows.Forms.Button();
             this.BtnProyectoF = new System.Windows.Forms.Button();
             this.PanelTop = new System.Windows.Forms.Panel();
@@ -42,6 +43,14 @@
             this.LblCaptura2 = new System.Windows.Forms.Label();
             this.LblCaptura1 = new System.Windows.Forms.Label();
             this.PnlFill = new System.Windows.Forms.Panel();
+            this.PnlProyectoFIA = new System.Windows.Forms.Panel();
+            this.PbxFluido = new System.Windows.Forms.PictureBox();
+            this.FlpControlesFluido = new System.Windows.Forms.FlowLayoutPanel();
+            this.BtnFluidoPausar = new System.Windows.Forms.Button();
+            this.BtnFluidoReiniciar = new System.Windows.Forms.Button();
+            this.BtnFluidoVista = new System.Windows.Forms.Button();
+            this.BtnFluidoProyección = new System.Windows.Forms.Button();
+            this.LblFluido = new System.Windows.Forms.Label();
             this.PnlProyectoF = new System.Windows.Forms.Panel();
             this.PbxAcuario = new System.Windows.Forms.PictureBox();
             this.FlpControlesAcuario = new System.Windows.Forms.FlowLayoutPanel();
@@ -51,13 +60,16 @@
             this.BtnAgregarHerbivoro = new System.Windows.Forms.Button();
             this.BtnAgregarDepredador = new System.Windows.Forms.Button();
             this.LblEstadisticas = new System.Windows.Forms.Label();
-            this.PnlProyectoFIA = new System.Windows.Forms.Panel();
             this.TimerAcuario = new System.Windows.Forms.Timer(this.components);
-            this.LblTitulo = new System.Windows.Forms.Label();
+            this.TmrFluido = new System.Windows.Forms.Timer(this.components);
+            this.BtnFluidoObstaculo = new System.Windows.Forms.Button();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
             this.PnlFill.SuspendLayout();
+            this.PnlProyectoFIA.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxFluido)).BeginInit();
+            this.FlpControlesFluido.SuspendLayout();
             this.PnlProyectoF.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxAcuario)).BeginInit();
             this.FlpControlesAcuario.SuspendLayout();
@@ -80,7 +92,7 @@
             this.LblInfo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblInfo.Location = new System.Drawing.Point(922, 12);
             this.LblInfo.Name = "LblInfo";
-            this.LblInfo.Size = new System.Drawing.Size(191, 13);
+            this.LblInfo.Size = new System.Drawing.Size(208, 13);
             this.LblInfo.TabIndex = 0;
             this.LblInfo.Text = "Programación Orientada a Objetos 26B";
             // 
@@ -95,6 +107,17 @@
             this.PanelSide.Name = "PanelSide";
             this.PanelSide.Size = new System.Drawing.Size(193, 494);
             this.PanelSide.TabIndex = 1;
+            // 
+            // LblTitulo
+            // 
+            this.LblTitulo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(100)))), ((int)(((byte)(32)))));
+            this.LblTitulo.Location = new System.Drawing.Point(24, 72);
+            this.LblTitulo.Name = "LblTitulo";
+            this.LblTitulo.Size = new System.Drawing.Size(133, 34);
+            this.LblTitulo.TabIndex = 6;
+            this.LblTitulo.Text = "Fable";
+            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // BtnProyectoFIA
             // 
@@ -147,7 +170,7 @@
             this.TbxCaptura3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TbxCaptura3.Location = new System.Drawing.Point(260, 58);
             this.TbxCaptura3.Name = "TbxCaptura3";
-            this.TbxCaptura3.Size = new System.Drawing.Size(100, 20);
+            this.TbxCaptura3.Size = new System.Drawing.Size(100, 22);
             this.TbxCaptura3.TabIndex = 6;
             // 
             // TbxCaptura2
@@ -155,7 +178,7 @@
             this.TbxCaptura2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TbxCaptura2.Location = new System.Drawing.Point(143, 58);
             this.TbxCaptura2.Name = "TbxCaptura2";
-            this.TbxCaptura2.Size = new System.Drawing.Size(100, 20);
+            this.TbxCaptura2.Size = new System.Drawing.Size(100, 22);
             this.TbxCaptura2.TabIndex = 5;
             // 
             // TbxCaptura1
@@ -163,7 +186,7 @@
             this.TbxCaptura1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.TbxCaptura1.Location = new System.Drawing.Point(27, 58);
             this.TbxCaptura1.Name = "TbxCaptura1";
-            this.TbxCaptura1.Size = new System.Drawing.Size(100, 20);
+            this.TbxCaptura1.Size = new System.Drawing.Size(100, 22);
             this.TbxCaptura1.TabIndex = 4;
             // 
             // LblCaptura3
@@ -173,7 +196,7 @@
             this.LblCaptura3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura3.Location = new System.Drawing.Point(257, 32);
             this.LblCaptura3.Name = "LblCaptura3";
-            this.LblCaptura3.Size = new System.Drawing.Size(53, 13);
+            this.LblCaptura3.Size = new System.Drawing.Size(57, 13);
             this.LblCaptura3.TabIndex = 3;
             this.LblCaptura3.Text = "Captura 3";
             // 
@@ -184,7 +207,7 @@
             this.LblCaptura2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura2.Location = new System.Drawing.Point(140, 32);
             this.LblCaptura2.Name = "LblCaptura2";
-            this.LblCaptura2.Size = new System.Drawing.Size(53, 13);
+            this.LblCaptura2.Size = new System.Drawing.Size(57, 13);
             this.LblCaptura2.TabIndex = 2;
             this.LblCaptura2.Text = "Captura 2";
             // 
@@ -195,20 +218,121 @@
             this.LblCaptura1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
             this.LblCaptura1.Location = new System.Drawing.Point(24, 32);
             this.LblCaptura1.Name = "LblCaptura1";
-            this.LblCaptura1.Size = new System.Drawing.Size(53, 13);
+            this.LblCaptura1.Size = new System.Drawing.Size(57, 13);
             this.LblCaptura1.TabIndex = 1;
             this.LblCaptura1.Text = "Captura 1";
             // 
             // PnlFill
             // 
             this.PnlFill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
-            this.PnlFill.Controls.Add(this.PnlProyectoF);
             this.PnlFill.Controls.Add(this.PnlProyectoFIA);
+            this.PnlFill.Controls.Add(this.PnlProyectoF);
             this.PnlFill.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlFill.Location = new System.Drawing.Point(193, 100);
             this.PnlFill.Name = "PnlFill";
             this.PnlFill.Size = new System.Drawing.Size(923, 394);
             this.PnlFill.TabIndex = 3;
+            // 
+            // PnlProyectoFIA
+            // 
+            this.PnlProyectoFIA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.PnlProyectoFIA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.PnlProyectoFIA.Controls.Add(this.PbxFluido);
+            this.PnlProyectoFIA.Controls.Add(this.FlpControlesFluido);
+            this.PnlProyectoFIA.Controls.Add(this.LblFluido);
+            this.PnlProyectoFIA.Location = new System.Drawing.Point(4, 6);
+            this.PnlProyectoFIA.Name = "PnlProyectoFIA";
+            this.PnlProyectoFIA.Size = new System.Drawing.Size(910, 379);
+            this.PnlProyectoFIA.TabIndex = 3;
+            // 
+            // PbxFluido
+            // 
+            this.PbxFluido.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PbxFluido.Location = new System.Drawing.Point(0, 13);
+            this.PbxFluido.Name = "PbxFluido";
+            this.PbxFluido.Size = new System.Drawing.Size(910, 336);
+            this.PbxFluido.TabIndex = 2;
+            this.PbxFluido.TabStop = false;
+            // 
+            // FlpControlesFluido
+            // 
+            this.FlpControlesFluido.Controls.Add(this.BtnFluidoPausar);
+            this.FlpControlesFluido.Controls.Add(this.BtnFluidoReiniciar);
+            this.FlpControlesFluido.Controls.Add(this.BtnFluidoVista);
+            this.FlpControlesFluido.Controls.Add(this.BtnFluidoProyección);
+            this.FlpControlesFluido.Controls.Add(this.BtnFluidoObstaculo);
+            this.FlpControlesFluido.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.FlpControlesFluido.Location = new System.Drawing.Point(0, 349);
+            this.FlpControlesFluido.Name = "FlpControlesFluido";
+            this.FlpControlesFluido.Size = new System.Drawing.Size(910, 30);
+            this.FlpControlesFluido.TabIndex = 1;
+            // 
+            // BtnFluidoPausar
+            // 
+            this.BtnFluidoPausar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(100)))), ((int)(((byte)(32)))));
+            this.BtnFluidoPausar.FlatAppearance.BorderSize = 0;
+            this.BtnFluidoPausar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFluidoPausar.ForeColor = System.Drawing.Color.White;
+            this.BtnFluidoPausar.Location = new System.Drawing.Point(3, 3);
+            this.BtnFluidoPausar.Name = "BtnFluidoPausar";
+            this.BtnFluidoPausar.Size = new System.Drawing.Size(75, 23);
+            this.BtnFluidoPausar.TabIndex = 0;
+            this.BtnFluidoPausar.Text = "Pausar";
+            this.BtnFluidoPausar.UseVisualStyleBackColor = false;
+            this.BtnFluidoPausar.Click += new System.EventHandler(this.BtnFluidoPausar_Click);
+            // 
+            // BtnFluidoReiniciar
+            // 
+            this.BtnFluidoReiniciar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnFluidoReiniciar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnFluidoReiniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFluidoReiniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
+            this.BtnFluidoReiniciar.Location = new System.Drawing.Point(84, 3);
+            this.BtnFluidoReiniciar.Name = "BtnFluidoReiniciar";
+            this.BtnFluidoReiniciar.Size = new System.Drawing.Size(75, 23);
+            this.BtnFluidoReiniciar.TabIndex = 1;
+            this.BtnFluidoReiniciar.Text = "Reiniciar";
+            this.BtnFluidoReiniciar.UseVisualStyleBackColor = false;
+            this.BtnFluidoReiniciar.Click += new System.EventHandler(this.BtnFluidoReiniciar_Click);
+            // 
+            // BtnFluidoVista
+            // 
+            this.BtnFluidoVista.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnFluidoVista.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnFluidoVista.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFluidoVista.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
+            this.BtnFluidoVista.Location = new System.Drawing.Point(165, 3);
+            this.BtnFluidoVista.Name = "BtnFluidoVista";
+            this.BtnFluidoVista.Size = new System.Drawing.Size(115, 23);
+            this.BtnFluidoVista.TabIndex = 2;
+            this.BtnFluidoVista.Text = "Vista: Tinta";
+            this.BtnFluidoVista.UseVisualStyleBackColor = false;
+            this.BtnFluidoVista.Click += new System.EventHandler(this.BtnFluidoVista_Click);
+            // 
+            // BtnFluidoProyección
+            // 
+            this.BtnFluidoProyección.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnFluidoProyección.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnFluidoProyección.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFluidoProyección.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
+            this.BtnFluidoProyección.Location = new System.Drawing.Point(286, 3);
+            this.BtnFluidoProyección.Name = "BtnFluidoProyección";
+            this.BtnFluidoProyección.Size = new System.Drawing.Size(110, 23);
+            this.BtnFluidoProyección.TabIndex = 3;
+            this.BtnFluidoProyección.Text = "Proyección: Sí";
+            this.BtnFluidoProyección.UseVisualStyleBackColor = false;
+            this.BtnFluidoProyección.Click += new System.EventHandler(this.BtnFluidoProyección_Click);
+            // 
+            // LblFluido
+            // 
+            this.LblFluido.AutoSize = true;
+            this.LblFluido.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LblFluido.Location = new System.Drawing.Point(0, 0);
+            this.LblFluido.Name = "LblFluido";
+            this.LblFluido.Size = new System.Drawing.Size(0, 13);
+            this.LblFluido.TabIndex = 0;
             // 
             // PnlProyectoF
             // 
@@ -330,32 +454,28 @@
             this.LblEstadisticas.TabIndex = 1;
             this.LblEstadisticas.Text = "Ticks = 0";
             // 
-            // PnlProyectoFIA
-            // 
-            this.PnlProyectoFIA.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.PnlProyectoFIA.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
-            this.PnlProyectoFIA.Location = new System.Drawing.Point(4, 6);
-            this.PnlProyectoFIA.Name = "PnlProyectoFIA";
-            this.PnlProyectoFIA.Size = new System.Drawing.Size(910, 379);
-            this.PnlProyectoFIA.TabIndex = 3;
-            // 
             // TimerAcuario
             // 
             this.TimerAcuario.Interval = 33;
             this.TimerAcuario.Tick += new System.EventHandler(this.TimerAcuario_Tick);
             // 
-            // LblTitulo
+            // TmrFluido
             // 
-            this.LblTitulo.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblTitulo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(100)))), ((int)(((byte)(32)))));
-            this.LblTitulo.Location = new System.Drawing.Point(24, 72);
-            this.LblTitulo.Name = "LblTitulo";
-            this.LblTitulo.Size = new System.Drawing.Size(133, 34);
-            this.LblTitulo.TabIndex = 6;
-            this.LblTitulo.Text = "Fable";
-            this.LblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.TmrFluido.Interval = 15;
+            // 
+            // BtnFluidoObstaculo
+            // 
+            this.BtnFluidoObstaculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnFluidoObstaculo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnFluidoObstaculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFluidoObstaculo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
+            this.BtnFluidoObstaculo.Location = new System.Drawing.Point(402, 3);
+            this.BtnFluidoObstaculo.Name = "BtnFluidoObstaculo";
+            this.BtnFluidoObstaculo.Size = new System.Drawing.Size(110, 23);
+            this.BtnFluidoObstaculo.TabIndex = 4;
+            this.BtnFluidoObstaculo.Text = "Obstaculo: No";
+            this.BtnFluidoObstaculo.UseVisualStyleBackColor = false;
+            this.BtnFluidoObstaculo.Click += new System.EventHandler(this.BtnFluidoObstaculo_Click);
             // 
             // MesaDePracticas4
             // 
@@ -376,6 +496,10 @@
             this.PanelTop.ResumeLayout(false);
             this.PanelTop.PerformLayout();
             this.PnlFill.ResumeLayout(false);
+            this.PnlProyectoFIA.ResumeLayout(false);
+            this.PnlProyectoFIA.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbxFluido)).EndInit();
+            this.FlpControlesFluido.ResumeLayout(false);
             this.PnlProyectoF.ResumeLayout(false);
             this.PnlProyectoF.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbxAcuario)).EndInit();
@@ -411,5 +535,14 @@
         private System.Windows.Forms.Button BtnAgregarHerbivoro;
         private System.Windows.Forms.Button BtnAgregarDepredador;
         private System.Windows.Forms.Label LblTitulo;
+        private System.Windows.Forms.FlowLayoutPanel FlpControlesFluido;
+        private System.Windows.Forms.Label LblFluido;
+        private System.Windows.Forms.PictureBox PbxFluido;
+        private System.Windows.Forms.Timer TmrFluido;
+        private System.Windows.Forms.Button BtnFluidoPausar;
+        private System.Windows.Forms.Button BtnFluidoReiniciar;
+        private System.Windows.Forms.Button BtnFluidoVista;
+        private System.Windows.Forms.Button BtnFluidoProyección;
+        private System.Windows.Forms.Button BtnFluidoObstaculo;
     }
 }

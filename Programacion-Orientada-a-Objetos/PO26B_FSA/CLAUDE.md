@@ -35,6 +35,8 @@ dotnet test PO26B_FSA.Tests\PO26B_FSA.Tests.csproj --no-build
 
 No uses `dotnet test` sin `--no-build`: al compilar, el MSBuild de `dotnet` falla con `MSB3822`/`MSB3823` en los `.resx` con recursos que no son texto (imágenes, ícono). Antes pasaba solo porque reutilizaba los recursos ya generados por Visual Studio.
 
+Hay tests lentos marcados con `[TestCategory("Diagnostico")]`: en las ejecuciones normales usa `--filter "TestCategory!=Diagnostico"`, y lánzalos aparte solo cuando una tarea lo pida.
+
 - Las clases `C*` son `internal`; los tests las ven por `InternalsVisibleTo` en `Properties\AssemblyInfo.cs`.
 - `CHombre` / `CMujer` usan `Random`; prueba rangos, no valores exactos.
 - Los tests nuevos también van en español.
@@ -46,10 +48,10 @@ No uses `dotnet test` sin `--no-build`: al compilar, el MSBuild de `dotnet` fall
 - Clases con prefijo `C` (`CPersona`, `CHombre`); las de celular no lo llevan (`Celular`, `CelularAndroid`).
 - Getters como métodos estilo Java (`GetSistemaOperativo()`), no propiedades.
 - Controles con prefijo de 3 letras (`Btn`, `Lbl`, `Pnl`, `Pbx`, `Tbx`) y handlers `Control_Evento` (`LblMesa2_Click`).
-- Excepciones aceptadas por Alfredo en `MesaDePracticas4`, que no se proponen renombrar: `TimerAcuario` (sin prefijo de 3 letras) y `BtnPractica2_Click`, conectado a `BtnProyectoF`. Los controles nuevos siguen la convención.
+- Excepciones aceptadas por Alfredo en `MesaDePracticas4`, que no se proponen renombrar: `TimerAcuario` (sin prefijo de 3 letras), `BtnPractica2_Click`, conectado a `BtnProyectoF`, y `BtnPractica4_Click`, conectado a `BtnProyectoFIA`. Los controles nuevos siguen la convención.
 - Llaves en su propia línea, 4 espacios de indentación.
 - Secciones de clase con banner `//----` / `// Atributos.` / `//----`.
-- Los namespaces son `PO26B_FSA`, `PO26B_FSA.Mesas_De_Practicas` (carpeta `Mesas-De-Practicas`) y `PO26B_FSA.Acuario` (carpeta `Acuario`, clases del proyecto final).
+- Los namespaces son `PO26B_FSA`, `PO26B_FSA.Mesas_De_Practicas` (carpeta `Mesas-De-Practicas`) `PO26B_FSA.Acuario` (carpeta `Acuario`, clases del proyecto final) y `PO26B_FSA.Fluidos` (carpeta `Fluidos`, Proyecto Final IA).
 
 ## Interfaz y diseñador
 
@@ -57,6 +59,7 @@ No uses `dotnet test` sin `--no-build`: al compilar, el MSBuild de `dotnet` fall
 - No edites los `.Designer.cs` a mano, salvo permiso explícito de Alfredo en esa sesión y solo con el diseñador cerrado en Visual Studio (si está abierto, al guardar puede sobrescribir la edición). Los controles se agregan desde el diseñador de Visual Studio; cuando haga falta uno, explica los pasos a seguir en el diseñador. Cuando se pida editar, solo se toca la lógica en el `.cs`.
 - `Properties\Resources.resx` guarda todos los recursos del proyecto (incluido `Dron`, que usa Mesa 2). Para quitar un recurso: Proyecto → Propiedades → Recursos → Quitar recurso, y después se elimina el archivo desde el Explorador de soluciones. No se borra ni se edita a mano el `.resx`: `Resources.Designer.cs` se genera a partir de él.
 - Para comprobar que un diseñador está cerrado, Claude solo ve la pestaña activa de Visual Studio (el título de la ventana). Una pestaña de diseñador abierta en segundo plano no se detecta: Alfredo confirma que la cerró.
+- Para un botón nuevo con el estilo de uno existente: en el diseñador, Ctrl+C / Ctrl+V del existente dentro del mismo contenedor y cambiar `(Name)`, `Text` y el ancho. Copia el estilo (`FlatStyle`, colores, `FlatAppearance`), pero no el evento `Click` (verificado 2026-11-25): se crea con doble clic.
 - Al dar colores para el diseñador, usa el formato `R; G; B` (p. ej. `245; 244; 238`).
 - Estética: todo el proyecto (menú, mesas 1-3 y `MesaDePracticas4`, acuario incluido) usa el estilo de la sección "Estilo chat". El pixel-art estilo Terraria está retirado: no lo propongas.
 - Un control con `Dock = Fill` debe quedar al frente de sus hermanos acoplados (clic derecho → Traer al frente); si no, los controles `Top`/`Bottom` lo tapan y su `ClientSize` incluye la zona tapada. En el `.Designer.cs`, su `Controls.Add` aparece primero. En general, WinForms acopla en orden z inverso: el control más al fondo se acopla primero (queda arriba con `Top`, abajo con `Bottom`). El orden se ve y se cambia en Ver → Otras ventanas → Esquema del documento (arriba = frente).
@@ -95,3 +98,7 @@ Simulación de ecosistema (plantas, peces herbívoros y depredadores). Fases, es
 - Claude propone diseño y código con justificación (incluye "qué debes entender para defenderlo") y espera la aprobación de Alfredo antes de implementar. Los controles se siguen agregando en el diseñador.
 - Los eventos de controles ya existentes pueden suscribirse en código (p. ej. `PbxAcuario.Paint` en el constructor) para no tocar el `.Designer.cs`.
 - El estado actual y el siguiente paso están en la sección "Estado actual" de `PLAN.md`.
+
+## Proyecto Final IA: Fluidos
+
+Simulador de fluidos (Stable Fluids) en `PnlProyectoFIA` de `MesaDePracticas4`, abierto con `BtnProyectoFIA`. Fases, estado y decisiones en `PLAN-FLUIDOS.md`; léelo solo en tareas de esta función. Es independiente del acuario: no usa su `PLAN.md`. Código en la carpeta `Fluidos`, namespace `PO26B_FSA.Fluidos`. Su propio Timer (`TmrFluido`); valen las reglas de ticks y de no tocar controles desde otros hilos.
