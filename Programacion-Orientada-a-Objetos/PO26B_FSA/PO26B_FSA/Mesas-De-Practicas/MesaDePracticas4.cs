@@ -55,6 +55,8 @@ namespace PO26B_FSA.Mesas_De_Practicas
         private CVistaFluido.Vista vistaElegidaFluido = CVistaFluido.Vista.Tinta;
         private bool proyeccionFluido = true;
         private bool obstaculoFluido;
+        private bool confinamientoFluido;
+        private bool flechasFluido;
         // Posiciones del ratón (en píxeles) desde el último tick. Se gastan en
         // el siguiente Tick: un solo reloj manda en la simulación.
         private readonly List<Point> trazoFluido = new List<Point>();
@@ -86,6 +88,10 @@ namespace PO26B_FSA.Mesas_De_Practicas
             PbxFluido.MouseDown += PbxFluido_MouseDown;
             PbxFluido.MouseMove += PbxFluido_MouseMove;
             PbxFluido.MouseUp += PbxFluido_MouseUp;
+            // El diseñador no creó estos Click: se suscriben aquí para no
+            // tocar el .Designer.cs.
+            BtnFluidoConfinamiento.Click += BtnFluidoConfinamiento_Click;
+            BtnFluidoFlechas.Click += BtnFluidoFlechas_Click;
         }
 
         //---------------------------------------------------------------------
@@ -245,8 +251,10 @@ namespace PO26B_FSA.Mesas_De_Practicas
                                  1.0, DisipacionFluido);
             fluido.SetProyeccion(proyeccionFluido);
             fluido.SetObstaculo(obstaculoFluido);
+            fluido.SetConfinamiento(confinamientoFluido);
             vistaFluido = new CVistaFluido(ColumnasFluido, filas);
             vistaFluido.SetVista(vistaElegidaFluido);
+            vistaFluido.SetFlechas(flechasFluido);
             vistaFluido.Actualizar(fluido);
         }
 
@@ -559,6 +567,25 @@ namespace PO26B_FSA.Mesas_De_Practicas
             obstaculoFluido = !obstaculoFluido;
             fluido.SetObstaculo(obstaculoFluido);
             BtnFluidoObstaculo.Text = obstaculoFluido ? "Obstáculo: Sí" : "Obstáculo: No";
+            RepintarFluido();
+        }
+
+        // Fase 5. Vorticity confinement: una fuerza que devuelve a los
+        // remolinos el giro que les quita la interpolación. No es física.
+        private void BtnFluidoConfinamiento_Click(object sender, EventArgs e)
+        {
+            confinamientoFluido = !confinamientoFluido;
+            fluido.SetConfinamiento(confinamientoFluido);
+            BtnFluidoConfinamiento.Text = confinamientoFluido ? "Confinamiento: Sí" : "Confinamiento: No";
+        }
+
+        // Fase 6. Flechas de velocidad encima de la vista actual. Se repinta
+        // para que se vean (o se quiten) también en pausa.
+        private void BtnFluidoFlechas_Click(object sender, EventArgs e)
+        {
+            flechasFluido = !flechasFluido;
+            vistaFluido.SetFlechas(flechasFluido);
+            BtnFluidoFlechas.Text = flechasFluido ? "Flechas: Sí" : "Flechas: No";
             RepintarFluido();
         }
     }

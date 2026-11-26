@@ -3,12 +3,12 @@
 Formato: planificar-fases v1 · módulos: software
 
 ## Estado actual
-- Fase siguiente: 4, Guion de la demo y ensayo [ ] · Fase 3 [x] (2026-11-25) · Fase 2 [x] (2026-11-25) · Fase 1 [x] (2026-11-25) · Fase 0 [x] (2026-11-25) · Última actualización: 2026-11-25
-- Combinación vigente: 160×59, k = 20, SOR ω = 1.7, `NearestNeighbor` (constantes en `MesaDePracticas4.cs` y en `CFluidoTests.cs`).
+- Fase siguiente: 4, Guion + vídeo (pendiente de replanificar) [ ] · Fase 6 [x] (2026-11-26) · Fase 5 [x] (2026-11-26) · Fase 3 [x] (2026-11-25) · Fase 2 [x] (2026-11-25) · Fase 1 [x] (2026-11-25) · Fase 0 [x] (2026-11-25) · Última actualización: 2026-11-26
+- Combinación vigente: 160×59, k = 20, SOR ω = 1.7, `NearestNeighbor` (constantes en `MesaDePracticas4.cs` y en `CFluidoTests.cs`). Confinamiento ε = 0.01 (`CFluido.EpsilonConfinamiento`). Flechas: V_ref 0.35 en la caja cerrada y 0.7 con el obstáculo (`CVistaFluido`).
 - Historial de las fases cerradas (decisiones completas, mediciones, sondas y filas archivadas del Registro): `PLAN-FLUIDOS-historial.md`. Solo hace falta leerlo para entender por qué se decidió algo; lo vigente está en este plan.
 - **Siguiente acción:**
   1. Replanificar la Fase 4 con planificar-fases: la demo será un vídeo grabado en el PC de Alfredo y proyectado (ver Registro). El objetivo, la lista previa y el minuto 4:15 del guion actuales suponen una demo en vivo.
-  2. Alfredo decide si el guion incorpora lo observado en las fases 2 y 3 (ver Preguntas abiertas).
+  2. En esa replanificación, resolver las Preguntas abiertas (qué entra en el guion de las fases 2, 3, 5 y 6; programa y resolución del vídeo) y añadir a la lista previa la legibilidad de las flechas en la grabación de prueba (pendiente de la Fase 6).
 
 Leyenda: [ ] pendiente · [~] en curso · [h] hecho sin verificar · [x] verificado (fecha)
 Decisiones: [Firme] ya decidida · [Validar en Fase N] supuesto a comprobar
@@ -17,7 +17,7 @@ Modo de trabajo: `CLAUDE.md` de usuario y del proyecto. Excepción de este plan,
 
 **Hecho siempre incluye:** el `.csproj` principal compila con el MSBuild de Visual Studio, el proyecto de tests compila y `dotnet test ... --no-build` pasa (comandos en el `CLAUDE.md` del proyecto). Todo `.cs` nuevo está en `POO26B_FSA.csproj`.
 
-**Presupuesto:** ~10 h con Alfredo. Estimación por fase en el mapa; si una fase pasa de 1.5× su estimación, se para y se decide en el punto de revisión.
+**Presupuesto:** ~11.5 h con Alfredo (eran ~10 h; ampliado el 2026-11-26 al añadir la Fase 6). Estimación por fase en el mapa; si una fase pasa de 1.5× su estimación, se para y se decide en el punto de revisión.
 
 ## Resumen de la arquitectura
 - **Decisión:** solucionador "Stable Fluids" de Stam (1999/2003) con valores en el centro de las celdas, cuadrícula rectangular Nx×Ny con celdas cuadradas (el panel mide 910×379, proporción ~2.4:1), `dt` constante por tick. Advección semi-lagrangiana con interpolación bilineal; proyección con k iteraciones de Gauss-Seidel; paredes de la caja como en Stam; sin paso de difusión (viscosidad). Un solo hilo. La cuadrícula es fija y se dibuja centrada con su proporción (franjas de fondo a los lados si el panel cambia de forma).
@@ -34,11 +34,14 @@ Modo de trabajo: `CLAUDE.md` de usuario y del proyecto. Excepción de este plan,
 | 1 | Tinta y fuerza con el ratón, pausa y reinicio: **demo mínima** | Claude (Alfredo: diseñador) | 1.5 h | [x] 2026-11-25 |
 | 2 | Vistas de presión y vorticidad + interruptor de proyección | Claude (Alfredo: diseñador) | 1.5 h | [x] 2026-11-25 |
 | 3 | Obstáculo circular fijo que se activa y desactiva | Claude (Alfredo: diseñador) | 2 h | [x] 2026-11-25 |
-| 4 | Guion de la demo ensayado + lista previa | Alfredo (guion: Claude) | 1 h | [ ] |
-| 5 | *Vorticity confinement* (esqueleto) | Claude | 1 h | [ ] |
+| 5 | Interruptor de *vorticity confinement*: los remolinos duran más | Claude (Alfredo: diseñador) | 1.5 h | [x] 2026-11-26 |
+| 6 | Flechas de velocidad sobre cualquier vista, con interruptor | Claude (Alfredo: diseñador) | 1.5 h | [x] 2026-11-26 |
+| 4 | Guion + vídeo grabado (pendiente de replanificar) | Alfredo (guion: Claude) | 1 h | [ ] |
 | — | Margen para imprevistos | — | 0.5 h | — |
 
-Las fases 0 a 2 bastan para una demo completa. La 3 añade lo vistoso. La 5 es mejora, salvo que la Fase 0 la convierta en requisito (ver su decisión).
+Las fases 0 a 2 bastan para una demo completa. La 3 añade lo vistoso. Las 5 y 6 son mejoras (la Fase 0 confirmó que la 5 no es requisito).
+
+> **Cambio de plan (2026-11-26):** la Fase 4 pasa al final. La demo es un vídeo grabado (Registro, 2026-11-25): grabarlo antes de las mejoras obligaría a regrabarlo. Se detalla la Fase 5 y se añade la Fase 6 (flechas de velocidad, antes en "Después del MVP"). Se conservan los números para no romper las referencias del Registro. El presupuesto pasa de ~10 h a ~11.5 h (aprobado por Alfredo).
 
 ---
 
@@ -156,10 +159,94 @@ Detalle completo: `PLAN-FLUIDOS-historial.md`, sección "Fase 1".
 
 ---
 
-## Fase 4: Guion de la demo y ensayo  [ ]
+## Fase 5: *Vorticity confinement*  [x] 2026-11-26
+**Objetivo:** devolver a los remolinos la fuerza que les quita la disipación numérica.
+**Entregable demostrable:** el botón "Confinamiento: No/Sí". Con el confinamiento encendido, los remolinos del arrastre y de la estela duran más a la vista.
+**Escribe:** Claude. Alfredo hace los pasos del diseñador.
+**Decisiones:**
+- [Firme] Método de Fedkiw, Stam y Jensen (2001). Se calcula ω (la vorticidad, que ya existe). Luego η = ∇|ω| con diferencias centrales, que apunta hacia el centro del remolino. Después N = η / (|η| + 1e-6) y la fuerza f = ε·(N_y·ω, −N_x·ω). Se suma a u y v como una fuente más, al principio de `Paso()`, antes de advectar. La proyección quita después la divergencia que añada. El 1e-6 evita dividir entre 0 donde no hay giro, igual que el ε de `ColorDivergente`.
+- [Firme] Se usa en índices (i, j) sin cambiar ningún signo. La fórmula de ω y la de f se definen respecto a los mismos ejes: si se invierte el eje vertical, cambian las dos y el resultado se mantiene. Lo comprueba `Confinamiento_RefuerzaElGiro`. Si el signo estuviera mal, el confinamiento apagaría los remolinos y ese test fallaría.
+- [Firme] La fuerza solo se aplica en celdas de fluido (`AnularSolido` después). Es un `bool` de `CFluido`, como la proyección. Reiniciar lo conserva.
+- [Validar en Fase 5] **Valor de ε.** Se hace un barrido en el diagnóstico con 4 valores que cubren dos órdenes de magnitud. Se elige el **más pequeño** que cumpla tres cosas: pulso ≥ 848 ticks (el doble de 424); la velocidad máxima con el chorro, en 2000 ticks, se queda ≤ 1.5 celdas/tick (hoy 0.70); y no aparece ningún NaN. Si ningún valor cumple las tres, la fase se cierra sin confinamiento y se registra. El criterio se fija antes de ver los datos.
+**Tareas:**
+- *Alfredo, en el diseñador:* `BtnFluidoConfinamiento` (texto "Confinamiento: No") en `FlpControlesFluido`.
+- *Claude:* `AplicarConfinamiento()` y su `bool` en `CFluido`; el handler; el barrido de ε en `Diagnostico_Confinamiento` (`[TestCategory("Diagnostico")]`); los tests.
+**Hecho cuando:** el ε elegido cumple las tres condiciones de arriba; con el obstáculo y el confinamiento encendidos, la calle de Kármán sigue apareciendo y no se rompe en ruido de celda en celda; los tests pasan.
+**Verificación:**
+- Automática: `Confinamiento_RefuerzaElGiro` (en el vórtice suave de la escena de prueba, tras un paso, el máximo de |ω| es mayor que sin confinamiento). `Confinamiento_SinGiro_NoCambiaLaVelocidad` (en un flujo uniforme ω = 0: u y v no cambian y no sale NaN). `MilPasosConFuerzasGrandes_SinNaN` con el confinamiento encendido.
+- Manual: la estela y un arrastre, con el confinamiento apagado y encendido.
+**Fuera de alcance:** cambiar la advección (MacCormack) o la disipación de la tinta.
+**Riesgos:** con ε grande aparece un moteado de celda en celda en la vorticidad. En ese caso se baja ε, aunque el pulso se quede por debajo de 848, y se registra.
+**Qué debes entender:** por qué la interpolación apaga los remolinos (promedia con las vecinas), y por qué una fuerza perpendicular a ∇|ω| los refuerza: empuja el giro hacia el núcleo, que se aprieta y gira más rápido. También que esto inyecta energía *a propósito*. No es física: es una corrección para que se vea mejor, y en la demo hay que decirlo así.
+**Punto de revisión:** ¿el guion muestra el interruptor, o se deja siempre encendido?
+**Notas:**
+- 2026-11-26: código escrito por Claude. Los dos `.csproj` compilan; 75 de 75 tests en verde al cerrar la fase (nuevos: `Confinamiento_RefuerzaElGiro`, `Confinamiento_SinGiro_NoCambiaLaVelocidad`, `MilPasosConFuerzasGrandes_ConConfinamiento_SinNaN`).
+- El diseñador no creó el `Click` de `BtnFluidoConfinamiento`; se suscribe en el constructor de `MesaDePracticas4`.
+- Barrido (`Diagnostico_Confinamiento`, 160×59, k = 20, ω = 1.7, `diagnostico-confinamiento.txt`):
+
+  | ε | Pulso | Courant máx con chorro (2000 ticks) | Cumple |
+  |---|---|---|---|
+  | 0 | 424 | 0.70 | referencia |
+  | 0.01 | > 2000 | 0.73 | sí (elegido) |
+  | 0.05 | > 2000 | 0.91 | sí |
+  | 0.2 | > 2000 | 0.99 | sí |
+  | 1.0 | > 2000 | 1.44 | sí |
+
+  El pulso no distingue entre los ε que cumplen: todos superan el tope de 2000 ticks.
+- Prueba manual (capturas de Alfredo, 2026-11-26; lectura de Claude):
+  - Obstáculo + confinamiento, tick 739: calle de Kármán alterna, sin moteado de celda en celda.
+  - Tick ~425, apagado (431) frente a encendido (422): apagado, las bandas del chorro son lisas; encendido, se rompen en remolinos pequeños ("cuentas") y el par del frente tiene núcleo. Las cuentas las pone el confinamiento. Recuerdan a la inestabilidad de Kelvin-Helmholtz, pero aquí las amplifica una fuerza artificial.
+  - Tick ~3000, apagado (2981) frente a encendido (3026): apagado, el chorro va recto y la recirculación es un velo sin núcleos; encendido, el chorro se curva y quedan dos remolinos grandes con núcleo. Cumple "los remolinos duran más a la vista".
+  - Con el confinamiento, la caja cerrada no se calma nunca, pero no se vuelve ruido.
+- Horas: no registradas.
+
+---
+
+## Fase 6: Flechas de velocidad  [x] 2026-11-26
+**Objetivo:** ver hacia dónde se mueve el fluido en cada zona y qué tan rápido.
+**Entregable demostrable:** el botón "Flechas: No/Sí" dibuja ~140 flechas sobre la vista actual (Tinta, Presión o Vorticidad). Sobre Presión se ve el fluido frenar al llegar al ocre, delante del obstáculo.
+**Depende de:** Fase 2 (no depende de la 5).
+**Escribe:** Claude. Alfredo hace los pasos del diseñador.
+**Decisiones:**
+- [Firme] Una flecha cada 8 celdas, en el centro de cada bloque: 20 × 7 = 140 con 160×59. Se toma la velocidad de la celda central, sin promediar el bloque. Es lo más simple y basta para ver la dirección.
+- [Firme] **Escala absoluta, no relativa.** Largo = mín(1, |u·`dt`| / V_ref) · 0.9 · espaciado, con V_ref = 0.35 celdas/tick como constante. Así la velocidad típica del chorro (0.70) llega al tope y una zona lenta se ve corta, sin que importe lo que pase junto al cursor. Por debajo de 0.02 celdas/tick no se dibuja la flecha: en el fluido casi quieto la dirección es ruido, y la punta sería más grande que el cuerpo. Dentro del obstáculo la velocidad es 0, así que ahí no hay flechas y no hace falta código aparte. (Sustituida el 2026-11-26: una referencia por escena, ver Registro.)
+- [Firme] Sin cambio de signo en vertical: j crece hacia abajo, igual que la y de la pantalla, así que v > 0 se dibuja hacia abajo. (En la vorticidad pasaba lo contrario: allí importaba el sentido del giro.)
+- [Firme] `Actualizar` calcula los segmentos en coordenadas de celda solo si las flechas están encendidas, y `Dibujar` los pasa a pantalla con el rectángulo de *letterbox*. El cálculo es una función pura y se puede probar sin pantalla. El `Pen` con `AdjustableArrowCap` se crea una sola vez. Las flechas se dibujan con `SmoothingMode.AntiAlias` y `PixelOffsetMode.Default`, como el aviso. Reiniciar conserva el estado de las flechas.
+- [Validar en Fase 6] **Color y V_ref, a la vista.** Color de partida: texto `#2B2A27`, 1.5 px. Si se pierde sobre la tinta densa, se prueba `#F5F4EE` solo en la vista Tinta. Para V_ref: si más de la mitad de las flechas visibles están en el tope, se sube; si fuera del chorro casi no queda ninguna, se baja. Las dos cosas son constantes.
+- [Validar en Fase 6] **Coste.** Se estima en < 1 ms, sin medir. Se mide con la constante `bool` de medición, maximizado. Si los ticks/s bajan de ~57 (el 90 % de la Fase 0), se pasa a una flecha cada 10 celdas.
+**Tareas:**
+- *Alfredo, en el diseñador:* `BtnFluidoFlechas` (texto "Flechas: No") en `FlpControlesFluido`.
+- *Claude:* el cálculo de los segmentos y su dibujo en `CVistaFluido`; el handler; los tests.
+**Hecho cuando:** las flechas se ven en las tres vistas y siguen al chorro, al arrastre y al rodeo del obstáculo; el coste cumple; los tests pasan.
+**Verificación:**
+- Automática: `Flecha_VelocidadBaja_NoSeDibuja`, `Flecha_VPositiva_ApuntaHaciaAbajo`, `Flecha_LargoConTope` (una velocidad 10 veces V_ref da el largo máximo, no 10 veces más), `PuntosDeMuestra_DentroDelInterior`.
+- Manual: legibilidad en el monitor de Alfredo y en la grabación de prueba.
+**Fuera de alcance:** flechas con color según la rapidez, líneas de corriente y partículas trazadoras.
+**Riesgos:** con 140 flechas la vista se satura y tapa los colores. Si pasa, se prueba una cada 10 celdas antes de cambiar nada más.
+**Qué debes entender:** por qué la escala absoluta evita el problema de la escala relativa de los colores, y qué se pierde con ella (más allá de V_ref todas las flechas miden lo mismo). También por qué aquí no se invierte el eje vertical y en la vorticidad sí importaba.
+**Punto de revisión:** ¿las flechas entran en el guion? ¿En qué vista?
+**Notas:**
+- 2026-11-26: código escrito por Claude. Los dos `.csproj` compilan; 79 de 79 tests en verde (nuevos: `Flecha_VelocidadBaja_NoSeDibuja`, `Flecha_VPositiva_ApuntaHaciaAbajo`, `Flecha_LargoConTope`, `PuntosDeMuestra_DentroDelInterior`). `Flecha` recibe la referencia como parámetro.
+- El diseñador no creó el `Click` de `BtnFluidoFlechas`; se suscribe en el constructor.
+- Detalles que no fijaba el plan (supuestos de Claude): cada flecha va centrada en su punto de muestra; las filas sobrantes (3 de 59) se reparten a los dos lados; punta `AdjustableArrowCap(3, 3)`.
+- Prueba manual (capturas de Alfredo, 2026-11-26; lectura de Claude):
+  - Tick 2052, confinamiento: las flechas giran en sentido horario alrededor de una mancha ocre de vorticidad. Las flechas y los colores, calculados por caminos distintos, coinciden.
+  - Tick 262: las flechas del chorro se acortan al entrar en el ocre de presión del frente.
+  - Tick 735: las flechas giran alrededor de los mínimos ciruela y se abren en el ocre del frente. Por arriba y por abajo se ve la corriente de retorno de la caja, que ninguna vista mostraba antes.
+  - Obstáculo, ticks 79, 234 y 476: las flechas rodean el círculo y no hay ninguna dentro; detrás aparece una burbuja de recirculación que se vuelve asimétrica.
+  - Color `#2B2A27`: se lee también sobre la tinta densa.
+  - V_ref: con 0.35, en la escena del obstáculo casi todas las flechas salen en el tope (se dispara el criterio). Con 0.7 por escena (tick 520): el flujo libre llega justo al tope, detrás del círculo las flechas son casi puntos y la estela alterna se ve en las flechas. A los lados del círculo se saturan.
+  - Coste: ticks/s sin cambio apreciable con las flechas (observado por Alfredo; sin número).
+  - La caja cerrada tras el cambio a V_ref por escena no se volvió a capturar: que no cambió se infiere del código (misma constante 0.35).
+- La legibilidad en la grabación de prueba (campo Verificación) no se hizo: el "Hecho cuando" no la exige y pasa a la lista previa de la Fase 4.
+- Horas: no registradas.
+
+---
+
+## Fase 4: Guion de la demo y ensayo  [ ]  (pendiente de replanificar: la demo es un vídeo)
 **Objetivo:** que la demo de 5 minutos salga igual en vivo que en el ensayo.
 **Entregable demostrable:** dos ensayos cronometrados de principio a fin sin tocar código, y la lista previa marcada.
-**Depende de:** Fase 2 (la Fase 3 es opcional; si no está, se salta el minuto 3).
+**Depende de:** Fase 2 (la Fase 3 es opcional; si no está, se salta el minuto 3). Se ejecuta después de las fases 5 y 6 (Cambio de plan 2026-11-26).
 **Escribe:** Alfredo ensaya; Claude escribió el guion (abajo) y lo ajusta a lo que exista.
 **Decisiones:** [Firme] la demo se ejecuta en Release + Ctrl+F5, como decidió la Fase 0 (F5 no se mide).
 **Tareas:**
@@ -201,22 +288,16 @@ Detalle completo: `PLAN-FLUIDOS-historial.md`, sección "Fase 1".
 
 ---
 
-## Fase 5: *Vorticity confinement*  [ ]  (esqueleto: depende de [Validar en Fase 0] y [Validar en Fase 3])
-**Objetivo:** devolver a los remolinos la fuerza que les quita la disipación numérica. · **Entregable demostrable:** un interruptor que muestra los remolinos más vivos con la mejora que sin ella. · **Hecho cuando:** con la mejora, el pulso de la Fase 0 (escena de prueba, mismo N y k) tarda al menos el doble de ticks en bajar al 10 % de su pico, y `MilPasosConFuerzasGrandes_SinNaN` sigue pasando.
-
----
-
 ## Después del MVP
 - Obstáculos dibujados con el botón derecho (decidido como mejora, no como requisito).
 - Vista de la divergencia antes y después de proyectar.
 - Cuadrícula escalonada (MAC) si la presión en el centro de las celdas no convence ni con SOR.
 - Advección MacCormack/BFECC con limitador.
-- Flechas de velocidad (idea de Alfredo, 2026-11-25): una flecha cada ~8 celdas (~140 flechas), dibujada encima de la vista actual en `CVistaFluido.Dibujar` (`AdjustableArrowCap`) y activada con un botón propio. Aporta lo único que ninguna vista muestra: la velocidad misma; sobre Presión se vería el fluido frenar al llegar al ocre. Por decidir antes de hacerla: la escala de la longitud (con escala relativa, el cursor encoge las demás flechas) y su coste de dibujo, estimado en < 1 ms y sin medir. Se decide tras la Fase 3 o la 4, según el presupuesto.
 
 ## Preguntas abiertas
 | Pregunta | Supuesto mientras tanto | Cuándo se resuelve |
 |---|---|---|
-| ¿El guion incorpora lo observado en las fases 2 y 3 (el centro de un remolino tiene presión baja; remanso delante del círculo y presión baja a los lados; ocre = giro horario)? | No: el guion queda como está | Al replanificar la Fase 4 |
+| ¿El guion incorpora lo observado en las fases 2, 3, 5 y 6 (presión baja en los núcleos; remanso delante del círculo; ocre = giro horario; comparación del confinamiento apagado y encendido en el tick ~3000; flechas)? ¿En qué vista van las flechas? | No: el guion queda como está | Al replanificar la Fase 4 |
 | ¿Con qué programa y a qué resolución se graba el vídeo? | En el monitor de Alfredo (2560×1440), maximizado | Al replanificar la Fase 4 (la compresión del vídeo puede borrar los degradados pálidos) |
 
 ## Registro de decisiones
@@ -279,10 +360,17 @@ Las filas reemplazadas, o que solo describen cómo se midió en las fases 0 y 1,
 | 2026-11-25 | 3 | Gauss-Seidel con un solo camino de código que incluye la regla del sólido | Un camino rápido aparte para la caja cerrada | Sin sólidos da el mismo resultado exacto (dividir entre 4 es exacto); coste medido 1.9 ms/paso. Duplicar código no evitaba ningún coste observado |
 | 2026-11-25 | 3 | Supuesto resuelto: D = 14 y U·`dt` = 0.7 bastan para la estela alterna | Recursos de reserva (perturbar la entrada, subir U, adelantar la Fase 5) | La estela alterna aparece a los 3-10 s y sigue en los ticks 1999-2049. La Fase 5 sigue siendo opcional |
 | 2026-11-25 | 4 | Demo como vídeo grabado con antelación en el PC de Alfredo y proyectado | Demo en vivo en el portátil | Decidido por Alfredo. Quita los riesgos en vivo (ms, ritmo, ratón) y añade uno nuevo: la legibilidad del vídeo comprimido. La Fase 4 está pendiente de replanificar |
+| 2026-11-26 | 4, 5, 6 | Orden 5 → 6 → 4, sin cambiar los números; presupuesto de ~10 h a ~11.5 h | Grabar el vídeo ya y hacer las mejoras después; renumerar las fases | Aprobado por Alfredo. Grabar antes de las mejoras obliga a regrabar; renumerar rompe las referencias del Registro |
+| 2026-11-26 | 6 | Flechas con escala absoluta (V_ref = 0.35 celdas/tick, con tope) | Escala relativa al máximo del tick, como los colores | Con la escala relativa, el cursor encoge todas las demás flechas: es el mismo problema de palidez de la Fase 2 |
+| 2026-11-26 | 5 | Criterio de ε fijado antes del barrido: el menor que da pulso ≥ 848 ticks, velocidad con chorro ≤ 1.5 celdas/tick y sin NaN | Elegir ε a la vista | Elegir tras ver los datos invita a justificar lo que salió; el confinamiento inyecta energía y necesita un tope |
+| 2026-11-26 | 5 | ε = 0.01 | 0.05, 0.2, 1.0 | Es el menor que cumple el criterio fijado antes del barrido. Todos dan pulso > 2000; un ε mayor solo sube la velocidad con chorro (0.73 → 1.44) |
+| 2026-11-26 | 5 | Confinamiento al principio de `Paso()`, como fuente; en índices (i, j) sin cambiar el signo; se salta el anillo pegado al borde y el sólido | Aplicarlo después de proyectar | Como fuente, la proyección quita la divergencia que añade. El signo lo comprueba `Confinamiento_RefuerzaElGiro` |
+| 2026-11-26 | 6 | V_ref por escena: 0.35 en la caja cerrada, 0.7 con el obstáculo (= velocidad de entrada) | Una sola V_ref (0.35 o 0.7) | Decidido por Alfredo. Las escenas tienen velocidades ~10 veces distintas: con 0.35 el obstáculo se satura; con 0.7 el retorno de la caja queda en ~9 px. Coste: la escala cambia al alternar el obstáculo y los lados del círculo se saturan |
+| 2026-11-26 | 6 | Flechas `#2B2A27` en todas las vistas | `#F5F4EE` en la vista Tinta | Se leen sobre la tinta densa |
 
 ## Riesgos globales
 - **Lentitud en vivo** → la Fase 0 mide en la configuración de la demo; lista previa de la Fase 4.
 - **Saturación o pantalla vacía** → disipación, tope de fuerza, escena inicial y botón Reiniciar.
 - **NaN que estropea la imagen** → test de 1000 pasos con fuerzas grandes y tope de fuerza.
-- **Remolinos que se apagan** → medición en la Fase 0; la Fase 5 puede pasar a ser requisito.
-- **Tiempo** → las fases 0 a 2 ya forman la demo; 3 y 5 se recortan sin romperla.
+- **Remolinos que se apagan** → *vorticity confinement* (Fase 5, interruptor).
+- **Tiempo** → las fases 0 a 2 ya forman la demo; 3, 5 y 6 se recortan sin romperla.

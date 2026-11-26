@@ -25,6 +25,14 @@ namespace PO26B_FSA.Fluidos
         private const double CourantEntrada = 0.7;
         private const int RadioObstaculo = 7;
 
+        // Fase 5: intensidad ε del vorticity confinement (con h = 1 celda).
+        // Barrido de Diagnostico_Confinamiento (2026-11-26): 0.01 es el
+        // menor que cumple (pulso > 2000 ticks, Courant con chorro 0.73).
+        public const double EpsilonConfinamiento = 0.01;
+
+        // Evita dividir entre 0 al normalizar ∇|ω| donde no hay giro.
+        private const double MinimoGradiente = 1e-6;
+
         private readonly int nx;
         private readonly int ny;
         private readonly int ancho;          // nx + 2: celdas por fila con el borde.
@@ -44,6 +52,10 @@ namespace PO26B_FSA.Fluidos
         // Interruptor de la Fase 2. Apagado, Paso() no proyecta: p se queda
         // como estaba y las paredes se siguen aplicando (las aplica Advectar).
         private bool proyeccionActiva = true;
+
+        // Interruptor de la Fase 5 y su ε (los tests prueban otros valores).
+        private bool confinamientoActivo;
+        private double epsilonConfinamiento = EpsilonConfinamiento;
 
         // Fase 3. Máscara de celdas sólidas y la lista de sus índices (para
         // recorrer solo esas ~150 celdas). Con bordes abiertos, la izquierda
@@ -97,6 +109,18 @@ namespace PO26B_FSA.Fluidos
         public void SetProyeccion(bool activa)
         {
             proyeccionActiva = activa;
+        }
+
+        public bool GetConfinamiento() { return confinamientoActivo; }
+
+        public void SetConfinamiento(bool activo)
+        {
+            confinamientoActivo = activo;
+        }
+
+        internal void SetEpsilonConfinamiento(double epsilon)
+        {
+            epsilonConfinamiento = epsilon;
         }
 
         public bool GetObstaculo() { return celdasSolidas.Length > 0; }
@@ -215,12 +239,18 @@ namespace PO26B_FSA.Fluidos
         }
 
         //---------------------------------------------------------------------
-        // Un tick: advección de velocidad → proyección → advección de tinta →
+        // Un tick: confinamiento (si está activo, es una fuente más) →
+        // advección de velocidad → proyección → advección de tinta →
         // disipación de la tinta. Sin paso de difusión (ver Registro). Con la
         // proyección apagada se salta solo ese paso.
         //---------------------------------------------------------------------
         public void Paso()
         {
+            if (confinamientoActivo)
+            {
+                AplicarConfinamiento();
+            }
+
             Array.Copy(u, u0, u.Length);
             Array.Copy(v, v0, v.Length);
             Advectar(1, u, u0, u0, v0);
@@ -389,6 +419,39 @@ namespace PO26B_FSA.Fluidos
                 }
             }
             return vort;
+        }
+
+        //---------------------------------------------------------------------
+        // Fase 5. Vorticity confinement (Fedkiw, Stam y Jensen, 2001).
+        // η = ∇|ω| apunta hacia el núcleo del remolino; N = η / |η|; la
+        // fuerza f = ε·(N_y·ω, −N_x·ω) es N × ω en 2D: tangente al giro y en
+        // su mismo sentido, así que devuelve el giro que quita la
+        // interpolación. Se usa en índices (i, j) tal cual: ω y f se definen
+        // respecto a los mismos ejes, así que la j hacia abajo no cambia
+        // ningún signo (lo comprueba Confinamiento_RefuerzaElGiro).
+        // Se salta el anillo pegado al borde (∇|ω| leería celdas de pared)
+        // y las celdas del sólido. Lee vort y escribe u y v: no se pisan.
+        //---------------------------------------------------------------------
+        private void AplicarConfinamiento()
+        {
+            Vorticidad();
+            for (int j = 2; j < ny; j++)
+            {
+                for (int i = 2; i < nx; i++)
+                {
+                    int k = IX(i, j);
+                    if (solido[k])
+                    {
+                        continue;
+                    }
+                    double ex = 0.5 * (Math.Abs(vort[IX(i + 1, j)]) - Math.Abs(vort[IX(i - 1, j)]));
+                    double ey = 0.5 * (Math.Abs(vort[IX(i, j + 1)]) - Math.Abs(vort[IX(i, j - 1)]));
+                    double largo = Math.Sqrt(ex * ex + ey * ey) + MinimoGradiente;
+                    double factor = dt * epsilonConfinamiento * vort[k] / largo;
+                    u[k] += factor * ey;
+                    v[k] -= factor * ex;
+                }
+            }
         }
 
         //---------------------------------------------------------------------

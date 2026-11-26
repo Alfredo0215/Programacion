@@ -50,6 +50,9 @@
             this.BtnFluidoReiniciar = new System.Windows.Forms.Button();
             this.BtnFluidoVista = new System.Windows.Forms.Button();
             this.BtnFluidoProyección = new System.Windows.Forms.Button();
+            this.BtnFluidoObstaculo = new System.Windows.Forms.Button();
+            this.BtnFluidoConfinamiento = new System.Windows.Forms.Button();
+            this.BtnFluidoFlechas = new System.Windows.Forms.Button();
             this.LblFluido = new System.Windows.Forms.Label();
             this.PnlProyectoF = new System.Windows.Forms.Panel();
             this.PbxAcuario = new System.Windows.Forms.PictureBox();
@@ -62,7 +65,6 @@
             this.LblEstadisticas = new System.Windows.Forms.Label();
             this.TimerAcuario = new System.Windows.Forms.Timer(this.components);
             this.TmrFluido = new System.Windows.Forms.Timer(this.components);
-            this.BtnFluidoObstaculo = new System.Windows.Forms.Button();
             this.PanelBottom.SuspendLayout();
             this.PanelSide.SuspendLayout();
             this.PanelTop.SuspendLayout();
@@ -263,6 +265,8 @@
             this.FlpControlesFluido.Controls.Add(this.BtnFluidoVista);
             this.FlpControlesFluido.Controls.Add(this.BtnFluidoProyección);
             this.FlpControlesFluido.Controls.Add(this.BtnFluidoObstaculo);
+            this.FlpControlesFluido.Controls.Add(this.BtnFluidoConfinamiento);
+            this.FlpControlesFluido.Controls.Add(this.BtnFluidoFlechas);
             this.FlpControlesFluido.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.FlpControlesFluido.Location = new System.Drawing.Point(0, 349);
             this.FlpControlesFluido.Name = "FlpControlesFluido";
@@ -324,6 +328,46 @@
             this.BtnFluidoProyección.Text = "Proyección: Sí";
             this.BtnFluidoProyección.UseVisualStyleBackColor = false;
             this.BtnFluidoProyección.Click += new System.EventHandler(this.BtnFluidoProyección_Click);
+            // 
+            // BtnFluidoObstaculo
+            // 
+            this.BtnFluidoObstaculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnFluidoObstaculo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnFluidoObstaculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFluidoObstaculo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
+            this.BtnFluidoObstaculo.Location = new System.Drawing.Point(402, 3);
+            this.BtnFluidoObstaculo.Name = "BtnFluidoObstaculo";
+            this.BtnFluidoObstaculo.Size = new System.Drawing.Size(110, 23);
+            this.BtnFluidoObstaculo.TabIndex = 4;
+            this.BtnFluidoObstaculo.Text = "Obstaculo: No";
+            this.BtnFluidoObstaculo.UseVisualStyleBackColor = false;
+            this.BtnFluidoObstaculo.Click += new System.EventHandler(this.BtnFluidoObstaculo_Click);
+            // 
+            // BtnFluidoConfinamiento
+            // 
+            this.BtnFluidoConfinamiento.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnFluidoConfinamiento.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnFluidoConfinamiento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFluidoConfinamiento.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
+            this.BtnFluidoConfinamiento.Location = new System.Drawing.Point(518, 3);
+            this.BtnFluidoConfinamiento.Name = "BtnFluidoConfinamiento";
+            this.BtnFluidoConfinamiento.Size = new System.Drawing.Size(121, 23);
+            this.BtnFluidoConfinamiento.TabIndex = 5;
+            this.BtnFluidoConfinamiento.Text = "Confinamiento: No";
+            this.BtnFluidoConfinamiento.UseVisualStyleBackColor = false;
+            // 
+            // BtnFluidoFlechas
+            // 
+            this.BtnFluidoFlechas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
+            this.BtnFluidoFlechas.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
+            this.BtnFluidoFlechas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnFluidoFlechas.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
+            this.BtnFluidoFlechas.Location = new System.Drawing.Point(645, 3);
+            this.BtnFluidoFlechas.Name = "BtnFluidoFlechas";
+            this.BtnFluidoFlechas.Size = new System.Drawing.Size(121, 23);
+            this.BtnFluidoFlechas.TabIndex = 6;
+            this.BtnFluidoFlechas.Text = "Flechas: No";
+            this.BtnFluidoFlechas.UseVisualStyleBackColor = false;
             // 
             // LblFluido
             // 
@@ -463,20 +507,6 @@
             // 
             this.TmrFluido.Interval = 15;
             // 
-            // BtnFluidoObstaculo
-            // 
-            this.BtnFluidoObstaculo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(244)))), ((int)(((byte)(238)))));
-            this.BtnFluidoObstaculo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(217)))), ((int)(((byte)(206)))));
-            this.BtnFluidoObstaculo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnFluidoObstaculo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(43)))), ((int)(((byte)(42)))), ((int)(((byte)(39)))));
-            this.BtnFluidoObstaculo.Location = new System.Drawing.Point(402, 3);
-            this.BtnFluidoObstaculo.Name = "BtnFluidoObstaculo";
-            this.BtnFluidoObstaculo.Size = new System.Drawing.Size(110, 23);
-            this.BtnFluidoObstaculo.TabIndex = 4;
-            this.BtnFluidoObstaculo.Text = "Obstaculo: No";
-            this.BtnFluidoObstaculo.UseVisualStyleBackColor = false;
-            this.BtnFluidoObstaculo.Click += new System.EventHandler(this.BtnFluidoObstaculo_Click);
-            // 
             // MesaDePracticas4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -544,5 +574,7 @@
         private System.Windows.Forms.Button BtnFluidoVista;
         private System.Windows.Forms.Button BtnFluidoProyección;
         private System.Windows.Forms.Button BtnFluidoObstaculo;
+        private System.Windows.Forms.Button BtnFluidoConfinamiento;
+        private System.Windows.Forms.Button BtnFluidoFlechas;
     }
 }

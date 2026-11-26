@@ -40,12 +40,28 @@ namespace PO26B_FSA.Fluidos
 
         private const string TextoAviso = "Sin proyección: presión congelada";
 
+        // Fase 6. Flechas de velocidad: una cada EspaciadoFlechas celdas.
+        // Escala absoluta por escena: la referencia (celdas/tick) da el largo
+        // máximo, FraccionLargo · espaciado; por debajo de VelocidadMinima no
+        // se dibuja (la dirección del fluido casi quieto es ruido). La caja
+        // cerrada y el canal con obstáculo tienen velocidades ~10 veces
+        // distintas, así que cada uno tiene su referencia; la del obstáculo
+        // es la velocidad de la entrada (CourantEntrada de CFluido).
+        public const int EspaciadoFlechas = 8;
+        public const double VelocidadReferencia = 0.35;
+        public const double VelocidadReferenciaObstaculo = 0.7;
+        public const double VelocidadMinima = 0.02;
+        public const double FraccionLargo = 0.9;
+
         public static readonly Color Fondo = Color.FromArgb(0xF5, 0xF4, 0xEE);
         public static readonly Color Ocre = Color.FromArgb(0x8C, 0x64, 0x20);
         public static readonly Color Ciruela = Color.FromArgb(0x6B, 0x4E, 0x7A);
         private static readonly Color Oscuro = Color.FromArgb(0x2B, 0x2A, 0x27);
         private static readonly Color Borde = Color.FromArgb(0xDD, 0xD9, 0xCE);
         private static readonly Font FuenteAviso = new Font("Segoe UI", 10f);
+        // Se crea una sola vez: la punta (AdjustableArrowCap) se mide en
+        // múltiplos del grosor del lápiz.
+        private static readonly Pen LapizFlecha = CrearLapizFlecha();
 
         // Qué campo se pinta. Presión y vorticidad usan ColorDivergente:
         // positivo ocre (presión alta, giro horario en pantalla), negativo
@@ -63,6 +79,15 @@ namespace PO26B_FSA.Fluidos
         private double escala;              // e de ColorDivergente; vuelve a 0 al cambiar de vista.
         private bool presionCongelada;      // Vista Presión con la proyección apagada.
 
+        // Fase 6. Puntos de muestra (celdas), fijos para la cuadrícula, y los
+        // segmentos del último Actualizar en coordenadas de celda: 4 valores
+        // por flecha (x0, y0, x1, y1), con la celda (i, j) centrada en
+        // (i − 0.5, j − 0.5) como su píxel en la imagen.
+        private readonly Point[] muestras;
+        private readonly float[] segmentos;
+        private int flechasVisibles;
+        private bool flechasActivas;
+
         //---------------------------------------------------------------------
         // Constructor.
         //---------------------------------------------------------------------
@@ -78,9 +103,19 @@ namespace PO26B_FSA.Fluidos
             // repetirla en espejo evita ese marco desvanecido.
             atributos = new ImageAttributes();
             atributos.SetWrapMode(WrapMode.TileFlipXY);
+
+            muestras = PuntosDeMuestra(nx, ny, EspaciadoFlechas);
+            segmentos = new float[4 * muestras.Length];
         }
 
         public Vista GetVista() { return vista; }
+        public bool GetFlechas() { return flechasActivas; }
+
+        public void SetFlechas(bool activas)
+        {
+            flechasActivas = activas;
+            flechasVisibles = 0;
+        }
 
         // Cambiar de vista reinicia la escala: la presión y la vorticidad
         // tienen tamaños muy distintos.
@@ -207,6 +242,83 @@ namespace PO26B_FSA.Fluidos
         }
 
         //---------------------------------------------------------------------
+        // Fase 6. Una celda por bloque de "espaciado" × "espaciado", la del
+        // centro del bloque. Los bloques se centran en la cuadrícula: las
+        // celdas que sobran (p. ej. 3 de 59 filas) se reparten a los lados.
+        //---------------------------------------------------------------------
+        public static Point[] PuntosDeMuestra(int nx, int ny, int espaciado)
+        {
+            int columnas = nx / espaciado, filas = ny / espaciado;
+            int margenX = (nx - columnas * espaciado) / 2;
+            int margenY = (ny - filas * espaciado) / 2;
+            Point[] puntos = new Point[columnas * filas];
+            int n = 0;
+            for (int b = 0; b < filas; b++)
+            {
+                for (int a = 0; a < columnas; a++)
+                {
+                    puntos[n++] = new Point(1 + margenX + espaciado / 2 + a * espaciado,
+                                            1 + margenY + espaciado / 2 + b * espaciado);
+                }
+            }
+            return puntos;
+        }
+
+        //---------------------------------------------------------------------
+        // Fase 6. Vector de la flecha, en celdas, para una velocidad (u·dt,
+        // v·dt) en celdas/tick. Largo = mín(1, rapidez / referencia) ·
+        // FraccionLargo · espaciado, en la dirección de la velocidad. No se
+        // cambia el signo de v: la fila j crece hacia abajo, igual que la y
+        // de la pantalla. Devuelve false si es tan lenta que no se dibuja.
+        //---------------------------------------------------------------------
+        public static bool Flecha(double udt, double vdt, double espaciado, double referencia,
+                                  out double dx, out double dy)
+        {
+            double rapidez = Math.Sqrt(udt * udt + vdt * vdt);
+            if (rapidez < VelocidadMinima)
+            {
+                dx = 0;
+                dy = 0;
+                return false;
+            }
+            double largo = Math.Min(1.0, rapidez / referencia) * FraccionLargo * espaciado;
+            dx = udt / rapidez * largo;
+            dy = vdt / rapidez * largo;
+            return true;
+        }
+
+        // Llena "segmentos" con las flechas visibles, centradas en su punto
+        // de muestra.
+        private void CalcularFlechas(CFluido fluido)
+        {
+            double[] u = fluido.GetU(), v = fluido.GetV();
+            double dt = fluido.GetDt();
+            double referencia = fluido.GetObstaculo() ? VelocidadReferenciaObstaculo : VelocidadReferencia;
+            flechasVisibles = 0;
+            foreach (Point m in muestras)
+            {
+                int k = fluido.IX(m.X, m.Y);
+                double dx, dy;
+                if (Flecha(u[k] * dt, v[k] * dt, EspaciadoFlechas, referencia, out dx, out dy))
+                {
+                    double cx = m.X - 0.5, cy = m.Y - 0.5;
+                    int s = 4 * flechasVisibles++;
+                    segmentos[s] = (float)(cx - dx / 2);
+                    segmentos[s + 1] = (float)(cy - dy / 2);
+                    segmentos[s + 2] = (float)(cx + dx / 2);
+                    segmentos[s + 3] = (float)(cy + dy / 2);
+                }
+            }
+        }
+
+        private static Pen CrearLapizFlecha()
+        {
+            Pen lapiz = new Pen(Oscuro, 1.5f);
+            lapiz.CustomEndCap = new AdjustableArrowCap(3f, 3f);
+            return lapiz;
+        }
+
+        //---------------------------------------------------------------------
         // Rellena la imagen con el campo de la vista actual en las celdas
         // interiores. La celda (i, j) es el píxel (i − 1, j − 1).
         // Presión y vorticidad: escala e ← máx(máx|x|, 0.95·e, ε), con el
@@ -263,6 +375,11 @@ namespace PO26B_FSA.Fluidos
                 pixeles[(j - 1) * nx + (i - 1)] = colorSolido;
             }
 
+            if (flechasActivas)
+            {
+                CalcularFlechas(fluido);
+            }
+
             BitmapData datos = imagen.LockBits(new Rectangle(0, 0, nx, ny),
                                                ImageLockMode.WriteOnly, PixelFormat.Format32bppArgb);
             try
@@ -293,6 +410,12 @@ namespace PO26B_FSA.Fluidos
             g.PixelOffsetMode = PixelOffsetMode.Half;
             g.DrawImage(imagen, destino, 0, 0, nx, ny, GraphicsUnit.Pixel, atributos);
 
+            if (flechasActivas && flechasVisibles > 0)
+            {
+                DibujarFlechas(g, destino);
+            }
+
+            // El aviso va encima de las flechas.
             if (presionCongelada)
             {
                 DibujarAviso(g, destino);
@@ -329,6 +452,25 @@ namespace PO26B_FSA.Fluidos
                 g.DrawPath(borde, forma);
                 g.DrawString(TextoAviso, FuenteAviso, letra,
                              chip.X + alto / 2f, chip.Y + (alto - texto.Height) / 2f);
+            }
+        }
+
+        //---------------------------------------------------------------------
+        // Fase 6. Pasa los segmentos de celdas a pantalla con el rectángulo
+        // de letterbox: x = r.X + xc · r.Width / nx (igual en vertical).
+        //---------------------------------------------------------------------
+        private void DibujarFlechas(Graphics g, Rectangle destino)
+        {
+            g.PixelOffsetMode = PixelOffsetMode.Default;
+            g.SmoothingMode = SmoothingMode.AntiAlias;
+            float sx = (float)destino.Width / nx;
+            float sy = (float)destino.Height / ny;
+            for (int f = 0; f < flechasVisibles; f++)
+            {
+                int s = 4 * f;
+                g.DrawLine(LapizFlecha,
+                           destino.X + segmentos[s] * sx, destino.Y + segmentos[s + 1] * sy,
+                           destino.X + segmentos[s + 2] * sx, destino.Y + segmentos[s + 3] * sy);
             }
         }
 

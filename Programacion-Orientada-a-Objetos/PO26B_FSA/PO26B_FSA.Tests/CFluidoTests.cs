@@ -126,10 +126,12 @@ namespace PO26B_FSA.Tests
         }
 
         // Ticks hasta que el máx|vorticidad| (sin el anillo de borde) baja al
-        // 10 % de su pico; -1 si no baja en "tope" ticks.
-        public static int Pulso(int nx, int ny, int k, double omega, int tope)
+        // 10 % de su pico; -1 si no baja en "tope" ticks. "confinamiento" > 0
+        // enciende el vorticity confinement (Fase 5) con ese ε.
+        public static int Pulso(int nx, int ny, int k, double omega, int tope, double confinamiento = 0)
         {
             CFluido f = new CFluido(nx, ny, k, omega);
+            Confinar(f, confinamiento);
             VorticeSuave(f);
             double pico = MaxAbsInterior(f, f.Vorticidad(), 1);
             for (int t = 1; t <= tope; t++)
@@ -144,10 +146,11 @@ namespace PO26B_FSA.Tests
 
         // Número de Courant máx|velocidad|·dt cada 100 ticks de chorro.
         public static List<double> CourantConChorro(int nx, int ny, int k, double omega, int ticks,
-                                                    bool proyeccion = true)
+                                                    bool proyeccion = true, double confinamiento = 0)
         {
             CFluido f = new CFluido(nx, ny, k, omega);
             f.SetProyeccion(proyeccion);
+            Confinar(f, confinamiento);
             List<double> lecturas = new List<double>();
             for (int t = 1; t <= ticks; t++)
             {
@@ -167,6 +170,13 @@ namespace PO26B_FSA.Tests
                 }
             }
             return lecturas;
+        }
+
+        // ε = 0 deja el confinamiento apagado.
+        public static void Confinar(CFluido f, double epsilon)
+        {
+            f.SetConfinamiento(epsilon > 0);
+            f.SetEpsilonConfinamiento(epsilon);
         }
     }
 
@@ -309,7 +319,19 @@ namespace PO26B_FSA.Tests
         [TestMethod]
         public void MilPasosConFuerzasGrandes_SinNaN()
         {
+            MilPasosConFuerzasGrandes(false);
+        }
+
+        [TestMethod]
+        public void MilPasosConFuerzasGrandes_ConConfinamiento_SinNaN()
+        {
+            MilPasosConFuerzasGrandes(true);
+        }
+
+        private static void MilPasosConFuerzasGrandes(bool confinamiento)
+        {
             CFluido f = new CFluido(40, 20);
+            f.SetConfinamiento(confinamiento);
             Random azar = new Random(7);
             for (int t = 0; t < 1000; t++)
             {
@@ -796,6 +818,150 @@ namespace PO26B_FSA.Tests
             string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "diagnostico-sin-proyeccion.txt");
             File.WriteAllText(ruta, texto, Encoding.UTF8);
             Console.WriteLine(texto);
+        }
+
+        //---------------------------------------------------------------------
+        // Fase 5. En el vórtice suave, un paso con confinamiento deja un giro
+        // máximo mayor que el mismo paso sin él. Con el signo de la fuerza
+        // invertido, el confinamiento apagaría el giro y este test fallaría.
+        //---------------------------------------------------------------------
+        [TestMethod]
+        public void Confinamiento_RefuerzaElGiro()
+        {
+            CFluido sin = new CFluido(ColumnasElegidas, FilasElegidas, IteracionesElegidas, OmegaElegido);
+            CFluido con = new CFluido(ColumnasElegidas, FilasElegidas, IteracionesElegidas, OmegaElegido);
+            EscenasFluido.VorticeSuave(sin);
+            EscenasFluido.VorticeSuave(con);
+            con.SetConfinamiento(true);
+
+            sin.Paso();
+            con.Paso();
+
+            double giroSin = EscenasFluido.MaxAbsInterior(sin, sin.Vorticidad(), 1);
+            double giroCon = EscenasFluido.MaxAbsInterior(con, con.Vorticidad(), 1);
+            Assert.IsTrue(giroCon > giroSin, $"con confinamiento {giroCon}, sin él {giroSin}");
+        }
+
+        //---------------------------------------------------------------------
+        // Un flujo uniforme no gira (ω = 0): el confinamiento no le añade
+        // fuerza ni produce NaN al normalizar un gradiente nulo. Es la escena
+        // de EntradaYSalida_FlujoUniforme_SeMantiene con el confinamiento.
+        //---------------------------------------------------------------------
+        [TestMethod]
+        public void Confinamiento_SinGiro_NoCambiaLaVelocidad()
+        {
+            CFluido f = new CFluido(ColumnasElegidas, FilasElegidas, IteracionesElegidas, OmegaElegido);
+            f.SetBordesAbiertos(true);
+            f.SetConfinamiento(true);
+            for (int j = 1; j <= f.GetNy(); j++)
+                for (int i = 1; i <= f.GetNx(); i++)
+                    f.GetU()[f.IX(i, j)] = 0.7;
+            f.AplicarParedes(1, f.GetU());
+
+            for (int t = 0; t < 100; t++) f.Paso();
+
+            for (int j = 1; j <= f.GetNy(); j++)
+                for (int i = 1; i <= f.GetNx(); i++)
+                {
+                    Assert.AreEqual(0.7, f.GetU()[f.IX(i, j)], 1e-9);
+                    Assert.AreEqual(0.0, f.GetV()[f.IX(i, j)], 1e-9);
+                }
+        }
+
+        //---------------------------------------------------------------------
+        // Diagnóstico de la Fase 5: barrido de ε con la combinación vigente.
+        // Criterio fijado antes de medir (PLAN-FLUIDOS.md): el menor ε con
+        // pulso ≥ 848 ticks, Courant con chorro ≤ 1.5 en 2000 ticks y sin
+        // NaN. ε = 0 es la referencia (424 ticks). No falla nunca; escribe
+        // diagnostico-confinamiento.txt.
+        //---------------------------------------------------------------------
+        [TestMethod]
+        [TestCategory("Diagnostico")]
+        public void Diagnostico_Confinamiento()
+        {
+            double[] epsilones = { 0, 0.01, 0.05, 0.2, 1.0 };
+            const int TopePulso = 2000;
+            CultureInfo ci = CultureInfo.InvariantCulture;
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine(string.Format(ci, "{0}×{1}, k = {2}, ω = {3}", ColumnasElegidas, FilasElegidas,
+                IteracionesElegidas, OmegaElegido));
+            sb.AppendLine("ε | Pulso (ticks) | Courant con chorro cada 100 ticks (máx) | Cumple");
+            foreach (double eps in epsilones)
+            {
+                int pulso = EscenasFluido.Pulso(ColumnasElegidas, FilasElegidas, IteracionesElegidas,
+                    OmegaElegido, TopePulso, eps);
+                List<double> courant = EscenasFluido.CourantConChorro(ColumnasElegidas, FilasElegidas,
+                    IteracionesElegidas, OmegaElegido, 2000, true, eps);
+                double maximo = 0;
+                bool nan = false;
+                foreach (double c in courant)
+                {
+                    nan |= double.IsNaN(c) || double.IsInfinity(c);
+                    maximo = Math.Max(maximo, c);
+                }
+                bool cumple = (pulso < 0 || pulso >= 848) && maximo <= 1.5 && !nan;
+                sb.AppendLine(string.Format(ci, "{0} | {1} | {2} (máx {3:0.00}) | {4}", eps,
+                    pulso < 0 ? "> " + TopePulso : pulso.ToString(ci),
+                    string.Join(" ", courant.ConvertAll(c => c.ToString("0.00", ci))), maximo,
+                    nan ? "no (NaN)" : cumple ? "sí" : "no"));
+            }
+
+            string ruta = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "diagnostico-confinamiento.txt");
+            File.WriteAllText(ruta, sb.ToString(), Encoding.UTF8);
+            Console.WriteLine(sb.ToString());
+        }
+
+        //---------------------------------------------------------------------
+        // Fase 6. Flechas de velocidad.
+        //---------------------------------------------------------------------
+        [TestMethod]
+        public void Flecha_VelocidadBaja_NoSeDibuja()
+        {
+            double dx, dy, r = CVistaFluido.VelocidadReferencia;
+            Assert.IsFalse(CVistaFluido.Flecha(CVistaFluido.VelocidadMinima / 2, 0, 8, r, out dx, out dy));
+            Assert.IsTrue(CVistaFluido.Flecha(CVistaFluido.VelocidadMinima * 2, 0, 8, r, out dx, out dy));
+        }
+
+        // j crece hacia abajo como la y de la pantalla: v > 0 apunta abajo,
+        // sin invertir el signo.
+        [TestMethod]
+        public void Flecha_VPositiva_ApuntaHaciaAbajo()
+        {
+            double dx, dy;
+            Assert.IsTrue(CVistaFluido.Flecha(0, 0.3, 8, CVistaFluido.VelocidadReferencia, out dx, out dy));
+            Assert.AreEqual(0.0, dx, 1e-12);
+            Assert.IsTrue(dy > 0);
+        }
+
+        // Por debajo de la referencia el largo es proporcional; por encima,
+        // se queda en el tope (FraccionLargo · espaciado).
+        [TestMethod]
+        public void Flecha_LargoConTope()
+        {
+            double tope = CVistaFluido.FraccionLargo * 8;
+            double dx, dy;
+
+            double r = CVistaFluido.VelocidadReferencia;
+
+            CVistaFluido.Flecha(10 * r, 0, 8, r, out dx, out dy);
+            Assert.AreEqual(tope, dx, 1e-9);
+
+            CVistaFluido.Flecha(0, -r / 2, 8, r, out dx, out dy);
+            Assert.AreEqual(-tope / 2, dy, 1e-9);
+        }
+
+        [TestMethod]
+        public void PuntosDeMuestra_DentroDelInterior()
+        {
+            int nx = ColumnasElegidas, ny = FilasElegidas;
+            Point[] puntos = CVistaFluido.PuntosDeMuestra(nx, ny, CVistaFluido.EspaciadoFlechas);
+
+            Assert.AreEqual((nx / 8) * (ny / 8), puntos.Length);
+            foreach (Point p in puntos)
+            {
+                Assert.IsTrue(p.X >= 1 && p.X <= nx && p.Y >= 1 && p.Y <= ny, $"({p.X}, {p.Y}) fuera");
+            }
         }
 
         private static double CentroX(CFluido f, double[] campo)
